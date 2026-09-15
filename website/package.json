@@ -12,6 +12,7 @@
     "test": "node --test lib/*.test.ts scripts/*.test.mjs",
     "validate:data": "node scripts/validate-reset-feed.mjs",
     "ingest:tibo": "node scripts/ingest-tibo-post.mjs",
+    "audit:grokbot": "node scripts/report-grokbot-run.mjs",
     "guard:grokbot": "node scripts/guard-grokbot-diff.mjs",
     "lint": "oxlint",
     "format": "oxfmt"

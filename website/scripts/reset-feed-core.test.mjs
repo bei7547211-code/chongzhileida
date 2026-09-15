@@ -17,6 +17,18 @@ test('全量重置与重置卡可被确定性分类', () => {
   assert.equal(classifyResetPost('Shipping a new editor theme.'), null);
 });
 
+test('含糊的额度讨论交给用户判断而不自动入库', () => {
+  const result = ingestTiboPost(feed, {
+    id: '2100000000000000000',
+    authorHandle: '@thsottiaux',
+    publishedAt: '2026-09-15T12:00:00.000Z',
+    text: 'We are discussing the weekly quota.',
+    url: 'https://x.com/thsottiaux/status/2100000000000000000',
+  });
+  assert.equal(result.changed, false);
+  assert.equal(result.reason, 'needs-judgment');
+});
+
 test('只允许 Tibo 本人帖子', () => {
   assert.throws(() =>
     ingestTiboPost(feed, {

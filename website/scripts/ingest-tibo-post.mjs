@@ -17,7 +17,12 @@ const feed = JSON.parse(await readFile(feedPath, 'utf8'));
 const result = ingestTiboPost(feed, payload);
 
 if (!result.changed) {
-  console.log(result.reason === 'duplicate' ? 'DUPLICATE' : 'IRRELEVANT');
+  const output = {
+    duplicate: 'DUPLICATE',
+    irrelevant: 'IRRELEVANT',
+    'needs-judgment': `NEEDS_JUDGMENT ${payload.id}`,
+  }[result.reason];
+  console.log(output);
   process.exit(0);
 }
 

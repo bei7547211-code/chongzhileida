@@ -41,6 +41,7 @@ export function classifyResetPost(text) {
   if (/\b(banked reset|reset cards?)\b/i.test(normalized)) {
     return {
       kind: 'banked',
+      requiresJudgment: false,
       title: 'Tibo 发布重置卡公告',
       summary: '检测到 Tibo 发布与 banked reset 或重置卡相关的公开信号。',
     };
@@ -53,6 +54,7 @@ export function classifyResetPost(text) {
   ) {
     return {
       kind: 'full',
+      requiresJudgment: false,
       title: 'Tibo 发布额度重置公告',
       summary: '检测到 Tibo 发布面向用户的 Codex 额度重置公告。',
     };
@@ -63,6 +65,7 @@ export function classifyResetPost(text) {
   ) {
     return {
       kind: 'signal',
+      requiresJudgment: true,
       title: 'Tibo 发布重置相关信号',
       summary: '这条帖子提及重置、额度或用量，已收录为待观察信号。',
     };
@@ -144,6 +147,14 @@ export function ingestTiboPost(feed, payload, now = new Date()) {
 
   const classification = classifyResetPost(payload.text);
   if (!classification) return { changed: false, reason: 'irrelevant', feed };
+  if (classification.requiresJudgment) {
+    return {
+      changed: false,
+      reason: 'needs-judgment',
+      classification,
+      feed,
+    };
+  }
 
   const nextFeed = structuredClone(feed);
   const date = new Date(payload.publishedAt).toISOString().slice(0, 10);

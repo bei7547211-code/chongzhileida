@@ -24,6 +24,7 @@
 - 尚未接入真实数据和自动抓取。
 - 网站已调整为 Vercel 原生支持的 Next.js 生产构建。
 - 已完成 GrokBot 数据入口、作者校验、reset 分类、ID 去重、数据守卫和 CI。
+- 已预留飞书审计接口，每天 11:00 的巡检结果、故障和待判断问题可发送到飞书群。
 - GrokBot 云端 Routine 仍需按 `docs/GROKBOT-MONITOR-MVP.md` 首次登录并手动验收后才能开启。
 
 ## 后续开发入口
