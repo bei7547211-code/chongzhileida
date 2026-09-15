@@ -16,6 +16,7 @@ import { Button } from '@/components/ui/button';
 import {
   announcements,
   kindMeta,
+  monitor,
   resetEvents,
   resetStats,
   tibo,
@@ -57,6 +58,30 @@ function formatChineseDate(date: string) {
   return `${year} 年 ${Number(month)} 月 ${Number(day)} 日`;
 }
 
+function getRelativeTime(publishedAt: string) {
+  const elapsed = Math.max(0, Date.now() - Date.parse(publishedAt));
+  const hours = Math.floor(elapsed / 3_600_000);
+  if (hours < 1) return { value: '刚刚', unit: '' };
+  if (hours < 24) return { value: String(hours), unit: '小时前' };
+  return { value: String(Math.floor(hours / 24)), unit: '天前' };
+}
+
+function formatRelativeTime(publishedAt: string) {
+  const relative = getRelativeTime(publishedAt);
+  return `${relative.value}${relative.unit ? ` ${relative.unit}` : ''}`;
+}
+
+function formatPublishedTime(publishedAt: string) {
+  return new Intl.DateTimeFormat('zh-CN', {
+    timeZone: 'Asia/Shanghai',
+    month: 'numeric',
+    day: 'numeric',
+    hour: '2-digit',
+    minute: '2-digit',
+    hour12: false,
+  }).format(new Date(publishedAt));
+}
+
 function TiboAvatar({ compact = false }: { compact?: boolean }) {
   return (
     <span className={compact ? 'tibo-avatar tibo-avatar-sm' : 'tibo-avatar'}>
@@ -83,6 +108,7 @@ export function ResetDashboard() {
     'idle',
   );
   const heatmapWeeks = useMemo(() => createHeatmapWeeks(), []);
+  const latestRelative = getRelativeTime(latestAnnouncement.publishedAt);
   const eventMap = useMemo(
     () => new Map(resetEvents.map((event) => [event.date, event])),
     [],
@@ -142,7 +168,7 @@ export function ResetDashboard() {
 
           <div className="header-status">
             <span className="status-dot" aria-hidden="true" />
-            RADAR ONLINE
+            {monitor.enabled ? 'GROKBOT ACTIVE' : 'GROKBOT READY'}
           </div>
         </header>
 
@@ -195,8 +221,8 @@ export function ResetDashboard() {
               距离最近一次重置公告
             </p>
             <div className="latest-time">
-              <strong>3</strong>
-              <span>天前</span>
+              <strong>{latestRelative.value}</strong>
+              {latestRelative.unit && <span>{latestRelative.unit}</span>}
             </div>
             <a
               className="latest-source"
@@ -207,7 +233,9 @@ export function ResetDashboard() {
               <span>
                 {latestAnnouncement.emoji} {latestAnnouncement.title}
               </span>
-              <span>9 月 12 日 · 16:09 GMT+8</span>
+              <span>
+                {formatPublishedTime(latestAnnouncement.publishedAt)} GMT+8
+              </span>
               <ExternalLink />
             </a>
           </div>
@@ -404,7 +432,8 @@ export function ResetDashboard() {
                       {announcement.emoji} {kindMeta[announcement.kind].label}
                     </span>
                     <time dateTime={announcement.date}>
-                      {announcement.relative} · {announcement.time}
+                      {formatRelativeTime(announcement.publishedAt)} ·{' '}
+                      {formatPublishedTime(announcement.publishedAt)} GMT+8
                     </time>
                     <ExternalLink className="announcement-external" />
                   </div>
@@ -436,7 +465,11 @@ export function ResetDashboard() {
         </section>
 
         <footer className="site-footer">
-          <p>公开数据原型 · 最近更新 2026-09-12 · 与 OpenAI 无隶属关系</p>
+          <p>
+            {monitor.enabled ? 'GrokBot 自动监控' : 'GrokBot 接入准备完成'} ·
+            最近数据 {formatChineseDate(resetStats.updatedAt.slice(0, 10))} · 与
+            OpenAI 无隶属关系
+          </p>
           <p>历史规律不代表下一次一定发生，个人额度请以 Codex 内显示为准。</p>
         </footer>
       </div>

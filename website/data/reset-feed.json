@@ -1,0 +1,106 @@
+{
+  "schemaVersion": 1,
+  "updatedAt": "2026-09-12T08:09:00.000Z",
+  "source": {
+    "name": "Thibault “Tibo” Sottiaux",
+    "handle": "@thsottiaux",
+    "role": "OpenAI Codex 负责人",
+    "profileUrl": "https://x.com/thsottiaux",
+    "avatarUrl": "https://codex-resets.com/thsottiaux-avatar.jpg"
+  },
+  "monitor": {
+    "provider": "grokbot",
+    "enabled": false,
+    "lastIngestedPostId": "2098685367058612394"
+  },
+  "events": [
+    { "date": "2026-09-12", "kind": "full" },
+    { "date": "2026-09-08", "kind": "full" },
+    { "date": "2026-09-05", "kind": "banked" },
+    { "date": "2026-09-03", "kind": "banked" },
+    { "date": "2026-08-31", "kind": "full" },
+    { "date": "2026-08-29", "kind": "full" },
+    { "date": "2026-08-27", "kind": "full" },
+    { "date": "2026-08-25", "kind": "signal" },
+    { "date": "2026-08-24", "kind": "full" },
+    { "date": "2026-08-21", "kind": "banked" },
+    { "date": "2026-08-13", "kind": "full" },
+    { "date": "2026-08-11", "kind": "full" },
+    { "date": "2026-08-08", "kind": "full" },
+    { "date": "2026-08-01", "kind": "full" },
+    { "date": "2026-07-29", "kind": "full" },
+    { "date": "2026-07-28", "kind": "full" },
+    { "date": "2026-07-25", "kind": "full" },
+    { "date": "2026-07-21", "kind": "full" },
+    { "date": "2026-07-18", "kind": "full" },
+    { "date": "2026-07-16", "kind": "full" },
+    { "date": "2026-07-14", "kind": "full" },
+    { "date": "2026-07-13", "kind": "banked" },
+    { "date": "2026-07-12", "kind": "banked" },
+    { "date": "2026-07-11", "kind": "full" },
+    { "date": "2026-07-10", "kind": "full" },
+    { "date": "2026-07-09", "kind": "full" },
+    { "date": "2026-06-29", "kind": "full" },
+    { "date": "2026-06-28", "kind": "full" },
+    { "date": "2026-06-26", "kind": "full" },
+    { "date": "2026-06-18", "kind": "banked" },
+    { "date": "2026-06-04", "kind": "full" },
+    { "date": "2026-05-31", "kind": "full" },
+    { "date": "2026-05-23", "kind": "full" },
+    { "date": "2026-05-16", "kind": "full" },
+    { "date": "2026-04-28", "kind": "full" },
+    { "date": "2026-04-20", "kind": "signal" },
+    { "date": "2026-04-17", "kind": "full" },
+    { "date": "2026-04-09", "kind": "full" },
+    { "date": "2026-04-07", "kind": "full" },
+    { "date": "2026-04-01", "kind": "full" },
+    { "date": "2026-03-27", "kind": "full" }
+  ],
+  "announcements": [
+    {
+      "id": "2098685367058612394",
+      "publishedAt": "2026-09-12T08:09:00.000Z",
+      "kind": "full",
+      "title": "全量重置已完成",
+      "text": "Reset all propagated. Sweet dreams.",
+      "summary": "重置信号已经传播完成，所有用户可检查自己的额度状态。",
+      "url": "https://x.com/thsottiaux/status/2098685367058612394"
+    },
+    {
+      "id": "2097174560412246215",
+      "publishedAt": "2026-09-08T01:56:00.000Z",
+      "kind": "full",
+      "title": "所有用户额度重置",
+      "text": "All reset for everyone. Enjoy the week with Astra.",
+      "summary": "Tibo 宣布所有用户完成重置，并邀请大家使用 Astra。",
+      "url": "https://x.com/thsottiaux/status/2097174560412246215"
+    },
+    {
+      "id": "2096035437299237298",
+      "publishedAt": "2026-09-05T00:39:00.000Z",
+      "kind": "banked",
+      "title": "Plus / Pro / Business 获得重置卡",
+      "text": "We will do the full banked reset today too for all Plus, Pro and Business users. Lands end of day.",
+      "summary": "Astra 提前上线，符合条件的付费用户可获得一张可自行使用的重置卡。",
+      "url": "https://x.com/thsottiaux/status/2096035437299237298"
+    },
+    {
+      "id": "2095651088502591861",
+      "publishedAt": "2026-09-03T23:12:00.000Z",
+      "kind": "banked",
+      "title": "Astra 等待用户每日补发一张卡",
+      "text": "We will give one banked reset for every day you don't have access to Astra on your paid ChatGPT plan, starting today.",
+      "summary": "付费用户在尚未获得 Astra 期间，每等待一天可得到一张重置卡。",
+      "url": "https://x.com/thsottiaux/status/2095651088502591861"
+    },
+    {
+      "id": "2094251180121854309",
+      "publishedAt": "2026-08-31T02:29:00.000Z",
+      "kind": "full",
+      "title": "庆祝 2500 万活跃用户",
+      "text": "We hit 25M active users and to celebrate we have now reset usage for all paid subscriptions for ChatGPT Work and Codex.",
+      "summary": "Codex 与 ChatGPT Work 达到 2500 万活跃用户，所有付费订阅获得额度重置。",
+      "url": "https://x.com/thsottiaux/status/2094251180121854309"
+    }
+  ]
+}

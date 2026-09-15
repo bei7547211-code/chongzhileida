@@ -23,6 +23,8 @@
 - 已加入核心规则自动测试，测试与正式构建均通过。
 - 尚未接入真实数据和自动抓取。
 - 网站已调整为 Vercel 原生支持的 Next.js 生产构建。
+- 已完成 GrokBot 数据入口、作者校验、reset 分类、ID 去重、数据守卫和 CI。
+- GrokBot 云端 Routine 仍需按 `docs/GROKBOT-MONITOR-MVP.md` 首次登录并手动验收后才能开启。
 
 ## 后续开发入口
 
@@ -33,6 +35,7 @@ npm run dev
 ```
 
 最新开发说明见 `docs/DEVELOPMENT-MVP-Tibo公告流-v0.4.md`。
+GrokBot 监控与验收手册见 `docs/GROKBOT-MONITOR-MVP.md`。
 
 在 Vercel 从 GitHub 导入本仓库时，请将 **Root Directory** 设为 `website`，
 其余构建选项保持自动检测即可。邮件提醒暂不在当前范围内。
