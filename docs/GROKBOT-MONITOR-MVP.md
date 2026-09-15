@@ -115,6 +115,14 @@ GitHub、不能放进网站前端，也不要出现在截图中。
     {
       "question": "这条推文是否应视为重置公告？",
       "reason": "提到了 quota，但没有明确表示额度已经重置。",
+      "options": [
+        { "id": "A", "label": "作为重置公告发布" },
+        { "id": "B", "label": "作为普通信号发布" },
+        { "id": "C", "label": "暂不发布" }
+      ],
+      "recommendation": "C",
+      "recommendationReason": "没有确认性动词，误报的影响大于漏报。",
+      "safeDefault": "保持现状，不发布。",
       "url": "https://x.com/thsottiaux/status/2100000000000000000"
     }
   ]
@@ -149,6 +157,7 @@ npm run audit:grokbot -- scripts/fixtures/grokbot-audit.sample.json --dry-run
 - GitHub `main` 更新后，Vercel 自动更新正式域名。
 - 每天北京时间 11:00 仅运行一次，并为每次运行生成审计记录。
 - 审计报告能区分正常、已更新、需要判断和运行失败。
+- 每个待判断问题必须包含 2—3 个选项、推荐项、理由和未回复时的安全默认动作。
 
 ## 已知边界
 

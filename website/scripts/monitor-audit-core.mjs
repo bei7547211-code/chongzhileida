@@ -39,6 +39,32 @@ export function validateMonitorAudit(audit) {
       typeof item.reason === 'string' && item.reason.trim(),
       '待判断原因不能为空',
     );
+    invariant(
+      Array.isArray(item.options) &&
+        item.options.length >= 2 &&
+        item.options.length <= 3,
+      '每个判断题必须提供 2 到 3 个选项',
+    );
+    const optionIds = new Set();
+    for (const option of item.options) {
+      invariant(/^[A-C]$/.test(option?.id), '判断选项 ID 必须是 A、B 或 C');
+      invariant(!optionIds.has(option.id), '判断选项 ID 不能重复');
+      optionIds.add(option.id);
+      invariant(
+        typeof option.label === 'string' && option.label.trim(),
+        '判断选项内容不能为空',
+      );
+    }
+    invariant(optionIds.has(item.recommendation), '推荐项必须来自判断选项');
+    invariant(
+      typeof item.recommendationReason === 'string' &&
+        item.recommendationReason.trim(),
+      '推荐理由不能为空',
+    );
+    invariant(
+      typeof item.safeDefault === 'string' && item.safeDefault.trim(),
+      '必须说明未回复时的安全默认动作',
+    );
     if (item.url !== undefined) {
       invariant(
         /^https:\/\/(x\.com|twitter\.com)\//.test(item.url),
@@ -110,9 +136,14 @@ export function renderMonitorAudit(audit) {
     lines.push('需要你判断：');
     audit.judgmentNeeded.forEach((item, index) => {
       lines.push(`${index + 1}. ${item.question.trim()}`);
-      lines.push(
-        `   原因：${item.reason.trim()}${item.url ? `\n   原帖：${item.url}` : ''}`,
-      );
+      lines.push(`   原因：${item.reason.trim()}`);
+      item.options.forEach((option) => {
+        lines.push(`   ${option.id}. ${option.label.trim()}`);
+      });
+      lines.push(`   建议：${item.recommendation}`);
+      lines.push(`   建议理由：${item.recommendationReason.trim()}`);
+      lines.push(`   未回复：${item.safeDefault.trim()}`);
+      if (item.url) lines.push(`   原帖：${item.url}`);
     });
   } else {
     lines.push('需要你判断：无');

@@ -1,0 +1,24 @@
+{
+  "startedAt": "2026-09-16T02:59:00.000Z",
+  "finishedAt": "2026-09-16T03:01:00.000Z",
+  "status": "attention",
+  "checkedPosts": 8,
+  "newPosts": 1,
+  "ingestedPostIds": [],
+  "summary": "发现一条含糊的额度讨论，未自动入库。",
+  "judgmentNeeded": [
+    {
+      "question": "这条推文是否应视为重置公告？",
+      "reason": "提到了 quota，但没有明确表示额度已经重置。",
+      "options": [
+        { "id": "A", "label": "作为重置公告发布" },
+        { "id": "B", "label": "作为普通信号发布" },
+        { "id": "C", "label": "暂不发布" }
+      ],
+      "recommendation": "C",
+      "recommendationReason": "没有确认性动词，误报的影响大于漏报。",
+      "safeDefault": "保持现状，不发布。",
+      "url": "https://x.com/thsottiaux/status/2100000000000000000"
+    }
+  ]
+}

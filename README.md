@@ -37,6 +37,7 @@ npm run dev
 
 最新开发说明见 `docs/DEVELOPMENT-MVP-Tibo公告流-v0.4.md`。
 GrokBot 监控与验收手册见 `docs/GROKBOT-MONITOR-MVP.md`。
+自动执行边界和人工决策规则见 `docs/OPERATIONS-REVIEW-POLICY.md`。
 
 在 Vercel 从 GitHub 导入本仓库时，请将 **Root Directory** 设为 `website`，
 其余构建选项保持自动检测即可。邮件提醒暂不在当前范围内。
