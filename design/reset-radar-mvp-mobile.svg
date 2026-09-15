@@ -1,0 +1,112 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="430" height="1400" viewBox="0 0 430 1400" role="img" aria-labelledby="title desc">
+  <title id="title">Reset Radar MVP 移动端高保真视觉稿</title>
+  <desc id="desc">适合从微信群和移动搜索进入的单列 Reset Radar 页面，首屏完成状态判断、雷达分解释和邮件订阅。</desc>
+  <defs>
+    <linearGradient id="m-bg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#07110d"/><stop offset="1" stop-color="#0a1712"/></linearGradient>
+    <linearGradient id="m-lime" x1="0" y1="0" x2="1" y2="0"><stop stop-color="#b8f33d"/><stop offset="1" stop-color="#66e4c3"/></linearGradient>
+    <pattern id="m-grid" width="32" height="32" patternUnits="userSpaceOnUse"><path d="M32 0H0V32" fill="none" stroke="#dfffd7" stroke-opacity="0.035"/></pattern>
+    <filter id="m-glow" x="-80%" y="-80%" width="260%" height="260%"><feGaussianBlur stdDeviation="5" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+  </defs>
+  <rect width="430" height="1400" fill="url(#m-bg)"/>
+  <rect width="430" height="1400" fill="url(#m-grid)"/>
+  <g font-family="Inter, PingFang SC, Microsoft YaHei, sans-serif">
+    <g transform="translate(22 22)">
+      <circle cx="14" cy="14" r="12" fill="none" stroke="#b8f33d" stroke-width="1.5"/>
+      <circle cx="14" cy="14" r="4" fill="#b8f33d"/>
+      <text x="36" y="12" fill="#f1f5ec" font-size="12" font-weight="700" letter-spacing=".7">RESET / RADAR</text>
+      <text x="36" y="26" fill="#657b6f" font-size="7" font-family="SFMono-Regular, Consolas, monospace" letter-spacing="1">CODEX SIGNAL DESK</text>
+      <circle cx="305" cy="14" r="4" fill="#b8f33d" filter="url(#m-glow)"/>
+      <text x="316" y="18" fill="#82978c" font-size="8" font-family="SFMono-Regular, Consolas, monospace">2M AGO</text>
+    </g>
+    <line x1="20" y1="62" x2="410" y2="62" stroke="#2b3b34"/>
+    <g transform="translate(20 78)">
+      <rect width="166" height="22" rx="11" fill="#f0b45c" fill-opacity=".1" stroke="#f0b45c" stroke-opacity=".35"/>
+      <circle cx="12" cy="11" r="3" fill="#f0b45c"/>
+      <text x="22" y="14.5" fill="#dfbd86" font-size="7" font-family="SFMono-Regular, Consolas, monospace" letter-spacing=".55">原型数据 · 非实时状态</text>
+    </g>
+
+    <g transform="translate(20 116)">
+      <rect width="390" height="700" rx="22" fill="#0c1914" stroke="#2d4438"/>
+      <g transform="translate(20 20)">
+        <rect width="112" height="28" rx="14" fill="#b8f33d" fill-opacity=".1" stroke="#b8f33d" stroke-opacity=".38"/>
+        <circle cx="15" cy="14" r="4" fill="#b8f33d"/>
+        <text x="27" y="18" fill="#c9f66d" font-size="9" font-family="SFMono-Regular, Consolas, monospace" letter-spacing=".7">WATCHING</text>
+      </g>
+      <text x="20" y="92" fill="#f3f6f1" font-size="34" font-weight="650" letter-spacing="-1.5">还没重置。</text>
+      <text x="20" y="134" fill="#b8f33d" font-size="34" font-weight="650" letter-spacing="-1.5">但信号正在升温。</text>
+      <text x="20" y="164" fill="#8fa298" font-size="11">真正落地时，第一时间告诉你。</text>
+
+      <g transform="translate(195 290)">
+        <circle r="102" fill="#091710" stroke="#31483d"/>
+        <circle r="76" fill="none" stroke="#375044"/><circle r="50" fill="none" stroke="#375044"/><circle r="24" fill="none" stroke="#375044"/>
+        <path d="M-102 0H102M0-102V102" stroke="#375044"/>
+        <path d="M0 0L88-51A102 102 0 0 1 102 0Z" fill="#b8f33d" opacity=".15"/>
+        <line x1="0" y1="0" x2="90" y2="-53" stroke="#b8f33d"/>
+        <circle cx="65" cy="-38" r="5" fill="#b8f33d" filter="url(#m-glow)"/>
+        <circle r="102" fill="none" stroke="#b8f33d" stroke-width="4" stroke-dasharray="480 161" stroke-linecap="round" transform="rotate(-90)"/>
+        <rect x="-58" y="-45" width="116" height="90" rx="16" fill="#0c1914" stroke="#30463b"/>
+        <text x="0" y="-20" text-anchor="middle" fill="#71877b" font-size="7" font-family="SFMono-Regular, Consolas, monospace" letter-spacing=".7">24H RADAR</text>
+        <text x="0" y="23" text-anchor="middle" fill="#f1f5ef" font-size="42" font-weight="650">75</text>
+        <text x="0" y="38" text-anchor="middle" fill="#b8f33d" font-size="7" font-family="SFMono-Regular, Consolas, monospace">HIGH SIGNAL</text>
+      </g>
+
+      <g transform="translate(20 412)">
+        <text x="0" y="0" fill="#5f7569" font-size="7" font-family="SFMono-Regular, Consolas, monospace" letter-spacing=".8">WHY THE SCORE MOVED</text>
+        <g transform="translate(0 13)">
+          <rect width="350" height="44" rx="9" fill="#101f19" stroke="#293b32"/>
+          <circle cx="15" cy="22" r="4" fill="#b8f33d"/>
+          <text x="27" y="18" fill="#d5ded8" font-size="10">团队成员出现明确预告</text>
+          <text x="27" y="32" fill="#6f8478" font-size="7" font-family="SFMono-Regular, Consolas, monospace">STAFF +40 · SOURCE VERIFIED</text>
+          <text x="310" y="25" fill="#b8f33d" font-size="8">来源 ↗</text>
+        </g>
+        <g transform="translate(0 63)">
+          <rect width="350" height="44" rx="9" fill="#101f19" stroke="#293b32"/>
+          <circle cx="15" cy="22" r="4" fill="#66e4c3"/>
+          <text x="27" y="18" fill="#d5ded8" font-size="10">接近历史重置间隔</text>
+          <text x="27" y="32" fill="#6f8478" font-size="7" font-family="SFMono-Regular, Consolas, monospace">CADENCE +20 · 2.8 DAYS</text>
+        </g>
+      </g>
+
+      <g transform="translate(20 550)">
+        <text x="0" y="0" fill="#60766a" font-size="7" font-family="SFMono-Regular, Consolas, monospace">EMAIL ALERT</text>
+        <rect y="10" width="350" height="46" rx="10" fill="#09120e" stroke="#385046"/>
+        <text x="15" y="38" fill="#899d92" font-size="11">you@example.com</text>
+        <rect y="64" width="350" height="46" rx="10" fill="#b8f33d"/>
+        <text x="175" y="92" text-anchor="middle" fill="#0b170f" font-size="11" font-weight="700">重置时通知我 →</text>
+        <text x="0" y="130" fill="#5f7469" font-size="8">只发确认事件 · 无营销邮件 · 随时退订</text>
+      </g>
+    </g>
+
+    <g transform="translate(20 850)">
+      <text x="0" y="0" fill="#eef4ef" font-size="23" font-weight="600">最近发生了什么</text>
+      <text x="0" y="23" fill="#6d8276" font-size="9">公共 Reset 与 Reset 卡分开记录</text>
+      <g transform="translate(0 48)">
+        <rect width="390" height="92" rx="14" fill="#0c1914" stroke="#2a3b33"/>
+        <circle cx="20" cy="24" r="7" fill="#b8f33d"/>
+        <text x="38" y="21" fill="#697f73" font-size="7" font-family="SFMono-Regular, Consolas, monospace">09/12 · 16:09 GMT+8</text>
+        <text x="38" y="45" fill="#edf3ef" font-size="13" font-weight="550">用量重置已全部生效</text>
+        <text x="38" y="65" fill="#71877b" font-size="9">全部用户 · Usage Reset</text>
+        <text x="310" y="45" fill="#b8f33d" font-size="9">来源 ↗</text>
+      </g>
+      <g transform="translate(0 150)">
+        <rect width="390" height="92" rx="14" fill="#0c1914" stroke="#2a3b33"/>
+        <circle cx="20" cy="24" r="7" fill="#f0b45c"/>
+        <text x="38" y="21" fill="#697f73" font-size="7" font-family="SFMono-Regular, Consolas, monospace">09/09 · 02:23 GMT+8</text>
+        <text x="38" y="45" fill="#edf3ef" font-size="13" font-weight="550">向受影响用户补发 Reset 卡</text>
+        <text x="38" y="65" fill="#71877b" font-size="9">部分用户 · Banked Reset</text>
+        <text x="310" y="45" fill="#f0b45c" font-size="9">来源 ↗</text>
+      </g>
+      <g transform="translate(0 264)">
+        <rect width="390" height="112" rx="14" fill="#102219" stroke="#31483d"/>
+        <text x="18" y="27" fill="#769081" font-size="7" font-family="SFMono-Regular, Consolas, monospace">IMPORTANT</text>
+        <text x="18" y="54" fill="#e9f0eb" font-size="14" font-weight="550">雷达，不是水晶球。</text>
+        <text x="18" y="77" fill="#7f9388" font-size="9">这里追踪额外公共 Reset，不是你账户里的正常倒计时。</text>
+        <text x="18" y="96" fill="#b8f33d" font-size="9">查看计算方法 →</text>
+      </g>
+    </g>
+
+    <line x1="20" y1="1318" x2="410" y2="1318" stroke="#2a3b33"/>
+    <text x="20" y="1348" fill="#667b70" font-size="8">独立社区工具 · 与 OpenAI 无隶属关系</text>
+    <text x="20" y="1368" fill="#4f6359" font-size="7">方法 · 隐私 · 退订 · 联系</text>
+  </g>
+</svg>

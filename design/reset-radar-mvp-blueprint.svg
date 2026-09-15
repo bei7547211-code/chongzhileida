@@ -1,0 +1,189 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1800" height="2100" viewBox="0 0 1800 2100" role="img" aria-labelledby="title desc">
+  <title id="title">Reset Radar MVP 产品需求可视化蓝图</title>
+  <desc id="desc">把 Reset Radar 的用户问题、核心功能、首页信息顺序、状态机、雷达评分、运营发布和 MVP 验证标准展示在一张图中。</desc>
+  <defs>
+    <linearGradient id="b-bg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#07110d"/><stop offset=".6" stop-color="#0a1712"/><stop offset="1" stop-color="#08120f"/></linearGradient>
+    <linearGradient id="b-lime" x1="0" y1="0" x2="1" y2="0"><stop stop-color="#b8f33d"/><stop offset="1" stop-color="#66e4c3"/></linearGradient>
+    <pattern id="b-grid" width="56" height="56" patternUnits="userSpaceOnUse"><path d="M56 0H0V56" fill="none" stroke="#dfffd7" stroke-opacity=".03"/></pattern>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto"><path d="M0 0L10 5L0 10Z" fill="#6f887b"/></marker>
+    <filter id="b-shadow" x="-20%" y="-20%" width="140%" height="140%"><feDropShadow dx="0" dy="14" stdDeviation="22" flood-color="#000" flood-opacity=".28"/></filter>
+    <filter id="b-glow" x="-80%" y="-80%" width="260%" height="260%"><feGaussianBlur stdDeviation="7" result="x"/><feMerge><feMergeNode in="x"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+  </defs>
+  <rect width="1800" height="2100" fill="url(#b-bg)"/>
+  <rect width="1800" height="2100" fill="url(#b-grid)"/>
+  <g font-family="Inter, PingFang SC, Microsoft YaHei, sans-serif">
+    <!-- masthead -->
+    <g transform="translate(90 74)">
+      <circle cx="24" cy="24" r="21" fill="none" stroke="#b8f33d" stroke-width="2"/>
+      <circle cx="24" cy="24" r="7" fill="#b8f33d"/>
+      <path d="M24 3V12M24 36V45M3 24H12M36 24H45" stroke="#b8f33d" stroke-width="2"/>
+      <text x="66" y="21" fill="#f0f5f0" font-size="22" font-weight="700" letter-spacing="1">RESET / RADAR</text>
+      <text x="66" y="43" fill="#71877b" font-size="11" font-family="SFMono-Regular, Consolas, monospace" letter-spacing="1.7">MVP PRODUCT BLUEPRINT · V0.1</text>
+    </g>
+    <text x="1710" y="102" text-anchor="end" fill="#60756a" font-size="12" font-family="SFMono-Regular, Consolas, monospace">2026.09.15 · DESIGN FOR DECISION</text>
+    <line x1="90" y1="138" x2="1710" y2="138" stroke="#2b3c34"/>
+
+    <!-- headline -->
+    <g transform="translate(90 198)">
+      <text x="0" y="0" fill="#6f877a" font-size="12" font-family="SFMono-Regular, Consolas, monospace" letter-spacing="1.8">THE ONLY PROMISE</text>
+      <text x="0" y="72" fill="#f0f5f0" font-size="58" font-weight="650" letter-spacing="-2.5">让用户不再刷群等 Reset。</text>
+      <text x="0" y="126" fill="#b8f33d" font-size="34" font-weight="550">5 秒看懂状态，确认发生时立即收到邮件。</text>
+      <rect x="1235" y="0" width="385" height="128" rx="22" fill="#102219" stroke="#b8f33d" stroke-opacity=".35"/>
+      <text x="1264" y="33" fill="#71897b" font-size="10" font-family="SFMono-Regular, Consolas, monospace" letter-spacing="1.3">MVP SUCCESS MOMENT</text>
+      <text x="1264" y="72" fill="#eaf2ec" font-size="17" font-weight="550">“还没 Reset，但信号很强。</text>
+      <text x="1264" y="99" fill="#eaf2ec" font-size="17" font-weight="550">我订阅，确认后再回来。”</text>
+    </g>
+
+    <!-- user problem lane -->
+    <g transform="translate(90 392)">
+      <text x="0" y="0" fill="#f0f4f1" font-size="26" font-weight="600">01 · 用户正在经历什么</text>
+      <g transform="translate(0 42)">
+        <rect width="1620" height="166" rx="22" fill="#0c1914" stroke="#293b32"/>
+        <g transform="translate(34 31)">
+          <circle cx="38" cy="48" r="35" fill="#182920" stroke="#3b5146"/>
+          <path d="M22 48h32M38 32v32" stroke="#9db2a6" stroke-width="3" stroke-linecap="round"/>
+          <text x="92" y="28" fill="#72877c" font-size="10" font-family="SFMono-Regular, Consolas, monospace">TRIGGER</text>
+          <text x="92" y="60" fill="#eaf1ec" font-size="20" font-weight="550">额度快耗尽或已经耗尽</text>
+          <text x="92" y="87" fill="#71877b" font-size="13">工作被迫停下，开始寻找额外 Reset</text>
+        </g>
+        <path d="M386 83H456" stroke="#6f887b" stroke-width="2" marker-end="url(#arrow)"/>
+        <g transform="translate(486 31)">
+          <circle cx="38" cy="48" r="35" fill="#182920" stroke="#3b5146"/>
+          <path d="M21 38h34M21 49h26M21 60h20" stroke="#9db2a6" stroke-width="3" stroke-linecap="round"/>
+          <text x="92" y="28" fill="#72877c" font-size="10" font-family="SFMono-Regular, Consolas, monospace">BEHAVIOR</text>
+          <text x="92" y="60" fill="#eaf1ec" font-size="20" font-weight="550">反复刷群、X 和各种页面</text>
+          <text x="92" y="87" fill="#71877b" font-size="13">信息分散、真假不明、持续打断</text>
+        </g>
+        <path d="M868 83H938" stroke="#6f887b" stroke-width="2" marker-end="url(#arrow)"/>
+        <g transform="translate(968 31)">
+          <circle cx="38" cy="48" r="35" fill="#182920" stroke="#3b5146"/>
+          <path d="M20 55L31 66L56 34" fill="none" stroke="#b8f33d" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+          <text x="92" y="28" fill="#72877c" font-size="10" font-family="SFMono-Regular, Consolas, monospace">DESIRED OUTCOME</text>
+          <text x="92" y="60" fill="#eaf1ec" font-size="20" font-weight="550">看到可信结论，然后离开</text>
+          <text x="92" y="87" fill="#71877b" font-size="13">确认发生时由网站主动叫回来</text>
+        </g>
+      </g>
+    </g>
+
+    <!-- core page architecture -->
+    <g transform="translate(90 650)">
+      <text x="0" y="0" fill="#f0f4f1" font-size="26" font-weight="600">02 · 一个首页，完成完整决策</text>
+      <text x="1620" y="0" text-anchor="end" fill="#6f8478" font-size="12">从上到下按照用户问题排序，而不是按照功能排序</text>
+      <g transform="translate(0 42)" filter="url(#b-shadow)">
+        <rect width="1060" height="516" rx="26" fill="#0c1914" stroke="#31463b"/>
+        <rect x="28" y="28" width="1004" height="78" rx="16" fill="#102219" stroke="#b8f33d" stroke-opacity=".32"/>
+        <circle cx="62" cy="67" r="11" fill="#b8f33d" filter="url(#b-glow)"/>
+        <text x="87" y="61" fill="#739080" font-size="10" font-family="SFMono-Regular, Consolas, monospace">CURRENT STATUS</text>
+        <text x="87" y="87" fill="#eff5ef" font-size="20" font-weight="550">还没重置 · 正在观察</text>
+        <rect x="778" y="48" width="224" height="40" rx="20" fill="#b8f33d" fill-opacity=".1" stroke="#b8f33d" stroke-opacity=".35"/>
+        <text x="890" y="73" text-anchor="middle" fill="#c5f466" font-size="10" font-family="SFMono-Regular, Consolas, monospace">DATA FRESH · 2M</text>
+
+        <g transform="translate(28 126)">
+          <rect width="320" height="204" rx="18" fill="#091710" stroke="#2c4136"/>
+          <circle cx="160" cy="97" r="67" fill="none" stroke="#334b3f" stroke-width="14"/>
+          <circle cx="160" cy="97" r="67" fill="none" stroke="#b8f33d" stroke-width="14" stroke-dasharray="316 106" stroke-linecap="round" transform="rotate(-90 160 97)"/>
+          <text x="160" y="91" text-anchor="middle" fill="#eff5ef" font-size="42" font-weight="650">75</text>
+          <text x="160" y="114" text-anchor="middle" fill="#b8f33d" font-size="9" font-family="SFMono-Regular, Consolas, monospace">HIGH SIGNAL</text>
+          <text x="160" y="183" text-anchor="middle" fill="#71877b" font-size="10">未来 24 小时信号强度</text>
+        </g>
+        <g transform="translate(366 126)">
+          <rect width="666" height="204" rx="18" fill="#101f19" stroke="#2b3e34"/>
+          <text x="24" y="30" fill="#667d71" font-size="9" font-family="SFMono-Regular, Consolas, monospace">WHY THE SCORE MOVED</text>
+          <circle cx="29" cy="67" r="5" fill="#b8f33d"/><text x="45" y="73" fill="#dce5df" font-size="14">团队成员明确预告</text><text x="615" y="73" text-anchor="end" fill="#b8f33d" font-size="11">+40</text>
+          <circle cx="29" cy="108" r="5" fill="#66e4c3"/><text x="45" y="114" fill="#dce5df" font-size="14">接近历史间隔</text><text x="615" y="114" text-anchor="end" fill="#66e4c3" font-size="11">+20</text>
+          <circle cx="29" cy="149" r="5" fill="#f0b45c"/><text x="45" y="155" fill="#dce5df" font-size="14">产品发布触发</text><text x="615" y="155" text-anchor="end" fill="#f0b45c" font-size="11">+15</text>
+          <text x="24" y="186" fill="#6a8175" font-size="10">每个加分项都必须能打开来源或解释</text>
+        </g>
+        <g transform="translate(28 350)">
+          <rect width="748" height="90" rx="16" fill="#09130f" stroke="#385046"/>
+          <text x="22" y="28" fill="#63796d" font-size="9" font-family="SFMono-Regular, Consolas, monospace">EMAIL</text>
+          <text x="22" y="58" fill="#95a79d" font-size="15">you@example.com</text>
+          <rect x="762" y="0" width="270" height="90" rx="16" fill="#b8f33d"/>
+          <text x="897" y="54" text-anchor="middle" fill="#0b170f" font-size="15" font-weight="700">确认重置时通知我 →</text>
+        </g>
+        <text x="28" y="478" fill="#60756a" font-size="11">追踪额外公共 Reset，不读取你的个人额度。</text>
+      </g>
+
+      <g transform="translate(1110 42)">
+        <g><circle cx="25" cy="25" r="25" fill="#b8f33d"/><text x="25" y="31" text-anchor="middle" fill="#0b170f" font-size="15" font-weight="700">1</text><text x="68" y="20" fill="#eff4f0" font-size="17" font-weight="550">状态先于一切</text><text x="68" y="44" fill="#71877b" font-size="12">是否已经发生 + 数据新鲜度</text></g>
+        <g transform="translate(0 92)"><circle cx="25" cy="25" r="25" fill="#182b22" stroke="#66e4c3"/><text x="25" y="31" text-anchor="middle" fill="#66e4c3" font-size="15" font-weight="700">2</text><text x="68" y="20" fill="#eff4f0" font-size="17" font-weight="550">雷达帮助决策</text><text x="68" y="44" fill="#71877b" font-size="12">信号强度，不冒充概率</text></g>
+        <g transform="translate(0 184)"><circle cx="25" cy="25" r="25" fill="#182b22" stroke="#f0b45c"/><text x="25" y="31" text-anchor="middle" fill="#f0b45c" font-size="15" font-weight="700">3</text><text x="68" y="20" fill="#eff4f0" font-size="17" font-weight="550">原因必须可追溯</text><text x="68" y="44" fill="#71877b" font-size="12">显示加分原因和原始来源</text></g>
+        <g transform="translate(0 276)"><circle cx="25" cy="25" r="25" fill="#182b22" stroke="#b8f33d"/><text x="25" y="31" text-anchor="middle" fill="#b8f33d" font-size="15" font-weight="700">4</text><text x="68" y="20" fill="#eff4f0" font-size="17" font-weight="550">订阅就是主转化</text><text x="68" y="44" fill="#71877b" font-size="12">无需账户，只验证邮箱</text></g>
+        <g transform="translate(0 368)"><circle cx="25" cy="25" r="25" fill="#182b22" stroke="#6d8477"/><text x="25" y="31" text-anchor="middle" fill="#9aafa3" font-size="15" font-weight="700">5</text><text x="68" y="20" fill="#eff4f0" font-size="17" font-weight="550">历史建立信任</text><text x="68" y="44" fill="#71877b" font-size="12">最近事件、范围和来源</text></g>
+      </g>
+    </g>
+
+    <!-- state + score -->
+    <g transform="translate(90 1278)">
+      <text x="0" y="0" fill="#f0f4f1" font-size="26" font-weight="600">03 · 状态负责事实，分数负责信号</text>
+      <g transform="translate(0 44)">
+        <rect width="990" height="282" rx="22" fill="#0c1914" stroke="#293b32"/>
+        <text x="28" y="38" fill="#6f8579" font-size="10" font-family="SFMono-Regular, Consolas, monospace">STATUS MACHINE</text>
+        <g transform="translate(28 78)">
+          <rect width="154" height="66" rx="14" fill="#111f19" stroke="#405249"/><text x="77" y="28" text-anchor="middle" fill="#9aaca2" font-size="12" font-family="SFMono-Regular, Consolas, monospace">QUIET</text><text x="77" y="49" text-anchor="middle" fill="#63776c" font-size="10">暂无信号</text>
+          <path d="M168 33H214" stroke="#6e8578" marker-end="url(#arrow)"/>
+          <g transform="translate(228)"><rect width="154" height="66" rx="14" fill="#102219" stroke="#b8f33d" stroke-opacity=".45"/><text x="77" y="28" text-anchor="middle" fill="#c3f168" font-size="12" font-family="SFMono-Regular, Consolas, monospace">WATCHING</text><text x="77" y="49" text-anchor="middle" fill="#748a7e" font-size="10">信号出现</text></g>
+          <path d="M396 33H442" stroke="#6e8578" marker-end="url(#arrow)"/>
+          <g transform="translate(456)"><rect width="154" height="66" rx="14" fill="#221d14" stroke="#f0b45c" stroke-opacity=".5"/><text x="77" y="28" text-anchor="middle" fill="#e9c58e" font-size="12" font-family="SFMono-Regular, Consolas, monospace">ANNOUNCED</text><text x="77" y="49" text-anchor="middle" fill="#8d7b60" font-size="10">明确预告</text></g>
+          <path d="M624 33H670" stroke="#6e8578" marker-end="url(#arrow)"/>
+          <g transform="translate(684)"><rect width="154" height="66" rx="14" fill="#b8f33d"/><text x="77" y="28" text-anchor="middle" fill="#0b170f" font-size="12" font-family="SFMono-Regular, Consolas, monospace">LANDED</text><text x="77" y="49" text-anchor="middle" fill="#294117" font-size="10">确认生效</text></g>
+        </g>
+        <line x1="28" y1="174" x2="962" y2="174" stroke="#2a3d33"/>
+        <circle cx="44" cy="213" r="6" fill="#63786d"/><text x="60" y="218" fill="#8da096" font-size="12">超过 20 分钟未检查 → STALE，不再给确定性结论</text>
+        <circle cx="44" cy="249" r="6" fill="#f0b45c"/><text x="60" y="254" fill="#8da096" font-size="12">Reset 卡独立标记，绝不显示成 LANDED</text>
+      </g>
+      <g transform="translate(1030 44)">
+        <rect width="590" height="282" rx="22" fill="#0c1914" stroke="#293b32"/>
+        <text x="28" y="38" fill="#6f8579" font-size="10" font-family="SFMono-Regular, Consolas, monospace">RADAR SCORE · 0—100</text>
+        <g transform="translate(28 72)">
+          <rect width="534" height="24" rx="12" fill="#182a21"/>
+          <rect width="400" height="24" rx="12" fill="url(#b-lime)"/>
+          <line x1="160" y1="-8" x2="160" y2="36" stroke="#385044"/><line x1="320" y1="-8" x2="320" y2="36" stroke="#385044"/><line x1="427" y1="-8" x2="427" y2="36" stroke="#385044"/>
+          <text x="0" y="58" fill="#6f8579" font-size="10">LOW</text><text x="160" y="58" text-anchor="middle" fill="#6f8579" font-size="10">WATCH</text><text x="320" y="58" text-anchor="middle" fill="#b8f33d" font-size="10">HIGH</text><text x="534" y="58" text-anchor="end" fill="#b8f33d" font-size="10">VERY HIGH</text>
+        </g>
+        <g transform="translate(28 164)" font-family="SFMono-Regular, Consolas, monospace">
+          <text x="0" y="0" fill="#98aaa0" font-size="11">历史节奏</text><text x="126" y="0" fill="#66e4c3" font-size="11">0—30</text>
+          <text x="270" y="0" fill="#98aaa0" font-size="11">团队信号</text><text x="430" y="0" fill="#b8f33d" font-size="11">0 / 20 / 40</text>
+          <text x="0" y="40" fill="#98aaa0" font-size="11">产品事件</text><text x="126" y="40" fill="#f0b45c" font-size="11">0 / 15</text>
+          <text x="270" y="40" fill="#98aaa0" font-size="11">社区落地</text><text x="430" y="40" fill="#8ca096" font-size="11">0 / 5 / 15</text>
+          <text x="0" y="84" fill="#61776b" font-size="10">每次变分必须附理由；75/100 不写成 75% 概率。</text>
+        </g>
+      </g>
+    </g>
+
+    <!-- operating loop -->
+    <g transform="translate(90 1666)">
+      <text x="0" y="0" fill="#f0f4f1" font-size="26" font-weight="600">04 · MVP 真正要跑通的闭环</text>
+      <g transform="translate(0 46)">
+        <rect width="1620" height="190" rx="22" fill="#0c1914" stroke="#293b32"/>
+        <g transform="translate(32 36)"><circle cx="50" cy="50" r="47" fill="#182920" stroke="#3a5045"/><path d="M27 52h46M50 29v46" stroke="#94aa9e" stroke-width="3"/><text x="50" y="121" text-anchor="middle" fill="#dce5df" font-size="13" font-weight="550">发现信号</text></g>
+        <path d="M142 86H238" stroke="#6e8578" stroke-width="2" marker-end="url(#arrow)"/>
+        <g transform="translate(258 36)"><circle cx="50" cy="50" r="47" fill="#182920" stroke="#3a5045"/><path d="M29 36h42M29 51h34M29 66h25" stroke="#94aa9e" stroke-width="3" stroke-linecap="round"/><text x="50" y="121" text-anchor="middle" fill="#dce5df" font-size="13" font-weight="550">人工核验</text><text x="50" y="143" text-anchor="middle" fill="#667c70" font-size="10">≤ 5 分钟</text></g>
+        <path d="M368 86H464" stroke="#6e8578" stroke-width="2" marker-end="url(#arrow)"/>
+        <g transform="translate(484 36)"><circle cx="50" cy="50" r="47" fill="#182920" stroke="#b8f33d" stroke-opacity=".55"/><path d="M27 50L42 65L74 32" fill="none" stroke="#b8f33d" stroke-width="4" stroke-linecap="round"/><text x="50" y="121" text-anchor="middle" fill="#dce5df" font-size="13" font-weight="550">发布事件</text><text x="50" y="143" text-anchor="middle" fill="#667c70" font-size="10">后台 ≤ 90 秒</text></g>
+        <path d="M594 86H690" stroke="#6e8578" stroke-width="2" marker-end="url(#arrow)"/>
+        <g transform="translate(710 36)"><circle cx="50" cy="50" r="47" fill="#b8f33d"/><path d="M25 37h50v34H25zM25 39l25 18 25-18" fill="none" stroke="#0b170f" stroke-width="3"/><text x="50" y="121" text-anchor="middle" fill="#dce5df" font-size="13" font-weight="550">邮件送达</text><text x="50" y="143" text-anchor="middle" fill="#667c70" font-size="10">服务受理 ≤ 2 分钟</text></g>
+        <path d="M820 86H916" stroke="#6e8578" stroke-width="2" marker-end="url(#arrow)"/>
+        <g transform="translate(936 36)"><circle cx="50" cy="50" r="47" fill="#182920" stroke="#3a5045"/><circle cx="50" cy="43" r="14" fill="none" stroke="#94aa9e" stroke-width="3"/><path d="M26 76c6-16 42-16 48 0" fill="none" stroke="#94aa9e" stroke-width="3"/><text x="50" y="121" text-anchor="middle" fill="#dce5df" font-size="13" font-weight="550">用户回来</text><text x="50" y="143" text-anchor="middle" fill="#667c70" font-size="10">打开事件与来源</text></g>
+        <path d="M1046 86H1142" stroke="#6e8578" stroke-width="2" marker-end="url(#arrow)"/>
+        <g transform="translate(1162 36)"><circle cx="50" cy="50" r="47" fill="#182920" stroke="#3a5045"/><path d="M30 52h40M50 32v40" stroke="#94aa9e" stroke-width="3"/><text x="50" y="121" text-anchor="middle" fill="#dce5df" font-size="13" font-weight="550">社群转发</text><text x="50" y="143" text-anchor="middle" fill="#667c70" font-size="10">带来新访客</text></g>
+        <path d="M1272 86H1368" stroke="#6e8578" stroke-width="2" marker-end="url(#arrow)"/>
+        <g transform="translate(1388 36)"><circle cx="50" cy="50" r="47" fill="#102219" stroke="#66e4c3"/><path d="M26 50h48M50 26v48" stroke="#66e4c3" stroke-width="3"/><text x="50" y="121" text-anchor="middle" fill="#dce5df" font-size="13" font-weight="550">新增订阅</text><text x="50" y="143" text-anchor="middle" fill="#667c70" font-size="10">形成增长闭环</text></g>
+      </g>
+    </g>
+
+    <!-- validation strip -->
+    <g transform="translate(90 1950)">
+      <rect width="1050" height="96" rx="18" fill="#102219" stroke="#b8f33d" stroke-opacity=".35"/>
+      <text x="28" y="32" fill="#6f8b7b" font-size="10" font-family="SFMono-Regular, Consolas, monospace">MVP PASS LINE</text>
+      <text x="28" y="68" fill="#eaf2ec" font-size="19" font-weight="550">100 名合格访客中，≥15% 完成邮箱验证订阅</text>
+      <text x="765" y="68" fill="#b8f33d" font-size="13">上线 14 天 + 经历至少 3 次事件后评审</text>
+      <g transform="translate(1090)">
+        <rect width="530" height="96" rx="18" fill="#171b16" stroke="#3a443d"/>
+        <text x="26" y="30" fill="#7b8b82" font-size="10" font-family="SFMono-Regular, Consolas, monospace">NOT MVP</text>
+        <text x="26" y="61" fill="#a7b4ad" font-size="12">多平台 · 个人额度 · Web Push · 付费 · 社区 · 自动预测</text>
+        <text x="26" y="80" fill="#65756d" font-size="10">验证核心需求之前，一个都不加。</text>
+      </g>
+    </g>
+  </g>
+</svg>
