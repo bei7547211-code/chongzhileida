@@ -9,8 +9,10 @@
     "avatarUrl": "https://codex-resets.com/thsottiaux-avatar.jpg"
   },
   "monitor": {
-    "provider": "grokbot",
-    "enabled": false,
+    "provider": "codex-heartbeat",
+    "enabled": true,
+    "scheduleLabel": "每天 11:00",
+    "reviewRequired": true,
     "lastIngestedPostId": "2098685367058612394"
   },
   "events": [

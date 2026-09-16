@@ -21,11 +21,11 @@
 - 已完成 Tibo 公告流：最近重置、统计卡、26 周热力图、类型筛选和 X 原帖跳转。
 - 邮件订阅已从当前版本移除，暂不引入数据库和发信成本。
 - 已加入核心规则自动测试，测试与正式构建均通过。
-- 尚未接入真实数据和自动抓取。
+- 当前公开记录来自 Tibo 的真实 X 原帖，并提供原帖直达链接。
 - 网站已调整为 Vercel 原生支持的 Next.js 生产构建。
-- 已完成 GrokBot 数据入口、作者校验、reset 分类、ID 去重、数据守卫和 CI。
-- 已预留飞书审计接口，每天 11:00 的巡检结果、故障和待判断问题可发送到飞书群。
-- GrokBot 云端 Routine 仍需按 `docs/GROKBOT-MONITOR-MVP.md` 首次登录并手动验收后才能开启。
+- 已启用每天 11:00 的零新增成本公开信息巡检，并把运行结果、故障和待判断问题发送到飞书审查群。
+- 已完成作者校验、reset 分类、ID 去重、数据守卫和 CI；含糊内容不会直接发布。
+- GrokBot 仅保留为未来可选的数据入口，不是当前线上运行的必要依赖。
 
 ## 后续开发入口
 
@@ -36,7 +36,7 @@ npm run dev
 ```
 
 最新开发说明见 `docs/DEVELOPMENT-MVP-Tibo公告流-v0.4.md`。
-GrokBot 监控与验收手册见 `docs/GROKBOT-MONITOR-MVP.md`。
+可选的 GrokBot 监控与验收手册见 `docs/GROKBOT-MONITOR-MVP.md`。
 自动执行边界和人工决策规则见 `docs/OPERATIONS-REVIEW-POLICY.md`。
 
 在 Vercel 从 GitHub 导入本仓库时，请将 **Root Directory** 设为 `website`，

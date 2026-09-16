@@ -28,8 +28,10 @@ type ResetFeed = {
     avatarUrl: string;
   };
   monitor: {
-    provider: 'grokbot';
+    provider: 'codex-heartbeat';
     enabled: boolean;
+    scheduleLabel: string;
+    reviewRequired: boolean;
     lastIngestedPostId: string | null;
   };
   events: ResetEvent[];

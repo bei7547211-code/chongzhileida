@@ -6,10 +6,13 @@ import {
   ArrowUpRight,
   Check,
   ChevronDown,
+  Clock3,
   Copy,
   ExternalLink,
   Radio,
+  SearchCheck,
   Share2,
+  ShieldCheck,
   Sparkles,
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
@@ -168,7 +171,7 @@ export function ResetDashboard() {
 
           <div className="header-status">
             <span className="status-dot" aria-hidden="true" />
-            {monitor.enabled ? 'GROKBOT ACTIVE' : 'GROKBOT READY'}
+            {monitor.enabled ? 'DAILY REVIEW ACTIVE' : 'MANUAL REVIEW'}
           </div>
         </header>
 
@@ -212,7 +215,43 @@ export function ResetDashboard() {
         </section>
 
         <section
-          className="latest-card reveal reveal-3"
+          className="review-flow reveal reveal-3"
+          aria-label="重置雷达运行机制"
+        >
+          <article>
+            <span className="review-flow-icon">
+              <Clock3 aria-hidden="true" />
+            </span>
+            <div>
+              <small>STEP 01 · {monitor.scheduleLabel}</small>
+              <strong>公开信息巡检</strong>
+              <p>定时检查 Tibo 的公开动态，不需要付费 API。</p>
+            </div>
+          </article>
+          <article>
+            <span className="review-flow-icon">
+              <SearchCheck aria-hidden="true" />
+            </span>
+            <div>
+              <small>STEP 02 · EVIDENCE</small>
+              <strong>原帖证据核验</strong>
+              <p>核对作者、原文、链接与是否真的宣布重置。</p>
+            </div>
+          </article>
+          <article>
+            <span className="review-flow-icon">
+              <ShieldCheck aria-hidden="true" />
+            </span>
+            <div>
+              <small>STEP 03 · REVIEWED</small>
+              <strong>确认后再发布</strong>
+              <p>含糊信号暂停更新，只把已确认的信息放到网站。</p>
+            </div>
+          </article>
+        </section>
+
+        <section
+          className="latest-card reveal reveal-4"
           aria-labelledby="latest-title"
         >
           <div className="card-grid-pattern" aria-hidden="true" />
@@ -263,7 +302,7 @@ export function ResetDashboard() {
           </div>
         </section>
 
-        <section className="stats-grid reveal reveal-4" aria-label="重置统计">
+        <section className="stats-grid reveal reveal-5" aria-label="重置统计">
           <article className="stat-card stat-card-primary">
             <span>累计重置公告</span>
             <strong>{resetStats.total}</strong>
@@ -282,7 +321,7 @@ export function ResetDashboard() {
         </section>
 
         <section
-          className="history-section section-block reveal reveal-5"
+          className="history-section section-block reveal reveal-6"
           aria-labelledby="history-title"
         >
           <div className="section-heading">
@@ -466,9 +505,9 @@ export function ResetDashboard() {
 
         <footer className="site-footer">
           <p>
-            {monitor.enabled ? 'GrokBot 自动监控' : 'GrokBot 接入准备完成'} ·
-            最近数据 {formatChineseDate(resetStats.updatedAt.slice(0, 10))} · 与
-            OpenAI 无隶属关系
+            {monitor.scheduleLabel} 公开信息巡检 · 证据核验后发布 · 最近数据{' '}
+            {formatChineseDate(resetStats.updatedAt.slice(0, 10))} · 与 OpenAI
+            无隶属关系
           </p>
           <p>历史规律不代表下一次一定发生，个人额度请以 Codex 内显示为准。</p>
         </footer>
