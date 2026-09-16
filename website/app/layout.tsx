@@ -31,7 +31,7 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         {children}
-        <Analytics />
+        {process.env.VERCEL === '1' ? <Analytics /> : null}
       </body>
     </html>
   );
