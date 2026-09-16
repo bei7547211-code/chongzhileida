@@ -1,0 +1,9 @@
+{
+  "schemaVersion": 1,
+  "enabled": false,
+  "status": "ready",
+  "lastRunAt": null,
+  "lastPublishedTopicId": null,
+  "lastResult": null,
+  "pendingRequirements": ["运行频率", "飞书 Webhook"]
+}

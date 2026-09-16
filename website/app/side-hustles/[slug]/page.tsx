@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
-import { ArrowLeft, ArrowUpRight, ExternalLink, Gift } from 'lucide-react';
+import { ArrowLeft, ArrowUpRight, Gift } from 'lucide-react';
 import { getSideHustle, sideHustles } from '@/data/side-hustles';
 
 type PageProps = { params: Promise<{ slug: string }> };
@@ -38,7 +38,21 @@ export default async function SideHustleDetailPage({ params }: PageProps) {
           <Link href="/side-hustles" className="hustle-back">
             <ArrowLeft /> 精选副业
           </Link>
-          <span>原帖 {post.word_count.toLocaleString('zh-CN')} 字</span>
+          <div className="hustle-nav-actions">
+            <span className="hustle-nav-meta">
+              原帖 {post.word_count.toLocaleString('zh-CN')} 字
+            </span>
+            <Link
+              href="/experience-card"
+              className="hustle-nav-cta"
+              aria-label="免费体验生财有术三天"
+            >
+              <Gift />
+              <span className="hustle-cta-label-long">直接体验</span>
+              <span className="hustle-cta-label-short">体验</span>
+              <ArrowUpRight />
+            </Link>
+          </div>
         </nav>
 
         <header className="hustle-detail-head reveal reveal-2">
@@ -106,18 +120,10 @@ export default async function SideHustleDetailPage({ params }: PageProps) {
 
         <section className="hustle-paywall">
           <p>
-            这里刻意不复述方法、步骤和工具。完整答案属于原作者，也留在原帖里。
+            这里刻意不复述方法、步骤和工具。完整答案属于原作者，也留在生财有术。
           </p>
           <div>
-            <a
-              href={post.url}
-              target="_blank"
-              rel="noreferrer"
-              className="hustle-primary-cta"
-            >
-              去生财阅读全文 <ExternalLink />
-            </a>
-            <Link href="/experience-card" className="hustle-secondary-cta">
+            <Link href="/experience-card" className="hustle-primary-cta">
               <Gift /> 免费体验三天 <ArrowUpRight />
             </Link>
           </div>

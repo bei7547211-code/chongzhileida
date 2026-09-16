@@ -1,0 +1,115 @@
+{
+  "schemaVersion": 1,
+  "updatedAt": "2026-09-16T05:17:34.000Z",
+  "sourceUrl": "https://x.com/thsottiaux",
+  "posts": [
+    {
+      "id": "2099922755655479624",
+      "publishedAt": "2026-09-15T18:06:14.000Z",
+      "title": "2026：效率之年",
+      "summary": "Tibo 谈效率节奏与周二发布习惯，未提及额度或重置。",
+      "category": "观点",
+      "resetSignal": "none",
+      "url": "https://x.com/thsottiaux/status/2099922755655479624"
+    },
+    {
+      "id": "2099744972195131850",
+      "publishedAt": "2026-09-15T06:19:47.000Z",
+      "title": "DevDay 与近期交付节奏",
+      "summary": "提到 DevDay 2025 与近期产品交付，未出现重置表述。",
+      "category": "产品",
+      "resetSignal": "none",
+      "url": "https://x.com/thsottiaux/status/2099744972195131850"
+    },
+    {
+      "id": "2099393115241300166",
+      "publishedAt": "2026-09-14T07:01:38.000Z",
+      "title": "Codex 功能取舍征集",
+      "summary": "向用户征集应该从 Codex 移除哪些不再有用的功能。",
+      "category": "互动",
+      "resetSignal": "none",
+      "url": "https://x.com/thsottiaux/status/2099393115241300166"
+    },
+    {
+      "id": "2098685367058612394",
+      "publishedAt": "2026-09-12T08:09:17.000Z",
+      "title": "全量重置已传播完成",
+      "summary": "Tibo 明确确认所有重置已经传播完成，属于已核验的重置公告。",
+      "category": "重置",
+      "resetSignal": "confirmed",
+      "url": "https://x.com/thsottiaux/status/2098685367058612394"
+    },
+    {
+      "id": "2098639827084480864",
+      "publishedAt": "2026-09-12T05:08:20.000Z",
+      "title": "本周 Astra 产品进展",
+      "summary": "汇总图像、实时模型、Agents API 与 Data Agent 等产品进展。",
+      "category": "产品",
+      "resetSignal": "none",
+      "url": "https://x.com/thsottiaux/status/2098639827084480864"
+    },
+    {
+      "id": "2098612714704891959",
+      "publishedAt": "2026-09-12T03:20:36.000Z",
+      "title": "Astra 用户重置与质量修复",
+      "summary": "Tibo 向 Astra 用户确认一次重置，并同步近期质量问题的修复进展。",
+      "category": "重置",
+      "resetSignal": "confirmed",
+      "url": "https://x.com/thsottiaux/status/2098612714704891959"
+    },
+    {
+      "id": "2098569976143806918",
+      "publishedAt": "2026-09-12T00:30:46.000Z",
+      "title": "Git AI 团队加入 OpenAI",
+      "summary": "欢迎 Git AI 团队成员加入，继续推进编码智能体贡献分析能力。",
+      "category": "团队",
+      "resetSignal": "none",
+      "url": "https://x.com/thsottiaux/status/2098569976143806918"
+    },
+    {
+      "id": "2098569538510180712",
+      "publishedAt": "2026-09-12T00:29:02.000Z",
+      "title": "ChatGPT 建站能力升级",
+      "summary": "宣布通过 ChatGPT 创建、分享和托管网站的能力迎来升级。",
+      "category": "产品",
+      "resetSignal": "none",
+      "url": "https://x.com/thsottiaux/status/2098569538510180712"
+    },
+    {
+      "id": "2098300998968357218",
+      "publishedAt": "2026-09-11T06:41:57.000Z",
+      "title": "GPT-5.3-Codex-Spark 即将退役",
+      "summary": "因使用量下降且已有更强模型，GPT-5.3-Codex-Spark 将在下周退役。",
+      "category": "模型",
+      "resetSignal": "none",
+      "url": "https://x.com/thsottiaux/status/2098300998968357218"
+    },
+    {
+      "id": "2098238138334548260",
+      "publishedAt": "2026-09-11T02:32:10.000Z",
+      "title": "Agents API 上线",
+      "summary": "介绍按需扩展智能体的 API，并说明其底层基础设施来自 ChatGPT Work。",
+      "category": "产品",
+      "resetSignal": "none",
+      "url": "https://x.com/thsottiaux/status/2098238138334548260"
+    },
+    {
+      "id": "2098165551554240764",
+      "publishedAt": "2026-09-10T21:43:44.000Z",
+      "title": "OpenAI Data Agent",
+      "summary": "分享 OpenAI 内部制作看板、理解业务所使用的数据智能体。",
+      "category": "产品",
+      "resetSignal": "none",
+      "url": "https://x.com/thsottiaux/status/2098165551554240764"
+    },
+    {
+      "id": "2098113585683808624",
+      "publishedAt": "2026-09-10T18:17:14.000Z",
+      "title": "暂停 200 美元 Pro 新订阅",
+      "summary": "为保障 Astra 现有用户体验，暂时停止高负载 Pro 方案的新订阅，属于容量压力信号，不是重置公告。",
+      "category": "容量",
+      "resetSignal": "related",
+      "url": "https://x.com/thsottiaux/status/2098113585683808624"
+    }
+  ]
+}

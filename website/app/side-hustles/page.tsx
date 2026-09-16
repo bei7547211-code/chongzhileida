@@ -5,13 +5,14 @@ import {
   ArrowLeft,
   ArrowUpRight,
   Bookmark,
+  Gift,
   Heart,
   MessageCircle,
 } from 'lucide-react';
 import { sideHustles, sideHustlesUpdatedAt } from '@/data/side-hustles';
 
 export const metadata: Metadata = {
-  title: '精选副业 · 真实成绩与原帖入口',
+  title: '精选副业 · 真实成绩与完整案例',
   description:
     '从生财有术精华帖中筛选个人实战案例，只展示真实成绩和问题，完整方法留在原帖。',
 };
@@ -25,24 +26,38 @@ export default function SideHustlesPage() {
           <a href="/" className="hustle-back">
             <ArrowLeft /> 重置雷达
           </a>
-          <span>更新于 {sideHustlesUpdatedAt}</span>
+          <div className="hustle-nav-actions">
+            <span className="hustle-nav-meta">
+              更新于 {sideHustlesUpdatedAt}
+            </span>
+            <a
+              href="/experience-card"
+              className="hustle-nav-cta"
+              aria-label="免费体验生财有术三天"
+            >
+              <Gift />
+              <span className="hustle-cta-label-long">直接体验</span>
+              <span className="hustle-cta-label-short">体验</span>
+              <ArrowUpRight />
+            </a>
+          </div>
         </header>
 
         <section className="hustle-hero reveal reveal-2">
           <p className="section-kicker">SELECTED SIDE HUSTLES</p>
           <h1>精选副业</h1>
           <p>
-            只选有真实成绩的个人实战。这里告诉你谁做成了、解决了什么问题，答案和完整方法留在原帖。
+            只选有真实成绩的个人实战。这里告诉你谁做成了、解决了什么问题，完整方法留在生财有术。
           </p>
           <div className="hustle-principles" aria-label="收录原则">
-            <span>真实成绩</span>
+            <span>{sideHustles.length} 个真实案例</span>
             <span>个人复盘</span>
-            <span>原帖可查</span>
+            <span>免费体验</span>
           </div>
         </section>
 
         <section className="hustle-feed" aria-label="精选副业列表">
-          {sideHustles.map((post) => (
+          {sideHustles.map((post, index) => (
             <article
               className="hustle-feed-card reveal reveal-3"
               key={post.topic_id}
@@ -53,7 +68,7 @@ export default function SideHustlesPage() {
                   alt=""
                   fill
                   sizes="(max-width: 760px) 100vw, 420px"
-                  priority
+                  priority={index === 0}
                 />
               </a>
               <div className="hustle-card-copy">

@@ -6,14 +6,26 @@ import Link from 'next/link';
 import {
   ArrowUpRight,
   Check,
-  ChevronDown,
   Copy,
   ExternalLink,
+  Gauge,
+  Info,
+  MessageCircle,
   Radio,
-  Share2,
+  Rss,
+  ScanLine,
+  ShieldCheck,
   Sparkles,
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from '@/components/ui/dialog';
 import {
   announcements,
   kindMeta,
@@ -23,6 +35,12 @@ import {
   type ResetEvent,
   type ResetKind,
 } from '@/data/reset-history';
+import {
+  tiboPosts,
+  tiboPostsUpdatedAt,
+  type TiboResetSignal,
+} from '@/data/tibo-posts';
+import { calculateResetProbability } from '@/lib/reset-probability';
 
 type FilterKind = 'all' | ResetKind;
 
@@ -34,6 +52,21 @@ const filters: { value: FilterKind; label: string }[] = [
 ];
 
 const latestAnnouncement = announcements[0];
+const publicRssUrl = 'https://www.resetrelay.com/feed.xml';
+const probabilityModel = calculateResetProbability(
+  resetEvents,
+  tiboPosts,
+  tiboPostsUpdatedAt,
+);
+
+const signalMeta: Record<
+  TiboResetSignal,
+  { label: string; className: string }
+> = {
+  confirmed: { label: '确认重置', className: 'is-confirmed' },
+  related: { label: '相关信号', className: 'is-related' },
+  none: { label: '普通动态', className: 'is-neutral' },
+};
 
 function toDateKey(date: Date) {
   const year = date.getUTCFullYear();
@@ -58,8 +91,8 @@ function formatChineseDate(date: string) {
   return `${year} 年 ${Number(month)} 月 ${Number(day)} 日`;
 }
 
-function getRelativeTime(publishedAt: string) {
-  const elapsed = Math.max(0, Date.now() - Date.parse(publishedAt));
+function getRelativeTime(publishedAt: string, asOf = tiboPostsUpdatedAt) {
+  const elapsed = Math.max(0, Date.parse(asOf) - Date.parse(publishedAt));
   const hours = Math.floor(elapsed / 3_600_000);
   if (hours < 1) return { value: '刚刚', unit: '' };
   if (hours < 24) return { value: String(hours), unit: '小时前' };
@@ -80,6 +113,15 @@ function formatPublishedTime(publishedAt: string) {
     minute: '2-digit',
     hour12: false,
   }).format(new Date(publishedAt));
+}
+
+function getShanghaiDateKey(value: string | number | Date) {
+  return new Intl.DateTimeFormat('en-CA', {
+    timeZone: 'Asia/Shanghai',
+    year: 'numeric',
+    month: '2-digit',
+    day: '2-digit',
+  }).format(new Date(value));
 }
 
 function TiboAvatar({ compact = false }: { compact?: boolean }) {
@@ -103,42 +145,28 @@ export function ResetDashboard() {
   const [selectedEvent, setSelectedEvent] = useState<ResetEvent>(
     resetEvents[0],
   );
-  const [showAll, setShowAll] = useState(false);
-  const [shareState, setShareState] = useState<'idle' | 'copied' | 'shared'>(
-    'idle',
-  );
+  const [rssCopied, setRssCopied] = useState(false);
   const heatmapWeeks = useMemo(() => createHeatmapWeeks(), []);
   const latestRelative = getRelativeTime(latestAnnouncement.publishedAt);
+  const hasResetToday =
+    getShanghaiDateKey(latestAnnouncement.publishedAt) ===
+    getShanghaiDateKey(tiboPostsUpdatedAt);
+  const latestThreeSignalCount = tiboPosts
+    .slice(0, 3)
+    .filter((post) => post.resetSignal !== 'none').length;
   const eventMap = useMemo(
     () => new Map(resetEvents.map((event) => [event.date, event])),
     [],
   );
 
-  const visibleAnnouncements = announcements
-    .filter((item) => filter === 'all' || item.kind === filter)
-    .slice(0, showAll ? announcements.length : 3);
-
-  async function shareRadar() {
-    const text = `重置雷达：Codex 最近一次公共重置发生在 ${latestAnnouncement.date}。过去记录 ${resetStats.total} 次，平均间隔 ${resetStats.averageDays} 天。（公开数据原型）`;
-
-    try {
-      if (navigator.share) {
-        await navigator.share({ title: 'Codex 重置雷达', text });
-        setShareState('shared');
-      } else {
-        await navigator.clipboard.writeText(text);
-        setShareState('copied');
-      }
-      window.setTimeout(() => setShareState('idle'), 2200);
-    } catch (error) {
-      if (error instanceof DOMException && error.name === 'AbortError') return;
-      setShareState('idle');
-    }
+  async function copyRssUrl() {
+    await navigator.clipboard.writeText(publicRssUrl);
+    setRssCopied(true);
+    window.setTimeout(() => setRssCopied(false), 2200);
   }
 
   function chooseFilter(nextFilter: FilterKind) {
     setFilter(nextFilter);
-    setShowAll(false);
   }
 
   return (
@@ -166,9 +194,22 @@ export function ResetDashboard() {
             </span>
           </a>
 
-          <Link className="header-status" href="/side-hustles">
-            <span className="status-dot" aria-hidden="true" />
-            精选副业 <ArrowUpRight aria-hidden="true" />
+          <Link
+            className="header-status"
+            href="/side-hustles"
+            aria-label="查看精选副业真实案例库"
+          >
+            <span className="header-status-badge">
+              <span className="status-dot" aria-hidden="true" />
+              NEW
+            </span>
+            <span className="header-status-copy">
+              <strong>精选副业</strong>
+              <small>真实案例库</small>
+            </span>
+            <span className="header-status-arrow" aria-hidden="true">
+              <ArrowUpRight />
+            </span>
           </Link>
         </header>
 
@@ -181,33 +222,146 @@ export function ResetDashboard() {
             的 Codex 重置公告，替你从噪音里找到真正的信号。
           </p>
           <div className="intro-actions">
-            <Button
-              type="button"
-              size="lg"
-              onClick={shareRadar}
-              className="pill-action"
-            >
-              {shareState === 'copied' ? (
-                <Copy />
-              ) : shareState === 'shared' ? (
-                <Check />
-              ) : (
-                <Share2 />
-              )}
-              {shareState === 'copied'
-                ? '已复制'
-                : shareState === 'shared'
-                  ? '已打开分享'
-                  : '分享当前状态'}
-            </Button>
-            <a
-              href={tibo.profileUrl}
-              target="_blank"
-              rel="noreferrer"
-              className="secondary-action"
-            >
-              关注 Tibo <ArrowUpRight />
-            </a>
+            <Dialog>
+              <DialogTrigger
+                render={<Button size="lg" className="pill-action" />}
+              >
+                <Gauge aria-hidden="true" /> 检查我的额度
+              </DialogTrigger>
+              <DialogContent className="core-dialog">
+                <DialogHeader>
+                  <span className="dialog-icon" aria-hidden="true">
+                    <Gauge />
+                  </span>
+                  <DialogTitle>30 秒确认你的真实额度</DialogTitle>
+                  <DialogDescription>
+                    公共重置不等于每个账户的剩余额度，最终以你的 Usage
+                    页面为准。
+                  </DialogDescription>
+                </DialogHeader>
+                <ol className="usage-steps">
+                  <li>
+                    <span>01</span>
+                    <div>打开 ChatGPT Desktop、Codex 或 ChatGPT 网页。</div>
+                  </li>
+                  <li>
+                    <span>02</span>
+                    <div>进入账户菜单，选择“设置 → Usage”。</div>
+                  </li>
+                  <li>
+                    <span>03</span>
+                    <div>核对 5 小时、周额度和下一次重置时间。</div>
+                  </li>
+                </ol>
+                <a
+                  className="dialog-official-link"
+                  href="https://help.openai.com/en/articles/20001498-how-banked-codex-resets-work"
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  查看 OpenAI 官方说明 <ExternalLink aria-hidden="true" />
+                </a>
+              </DialogContent>
+            </Dialog>
+
+            <Dialog>
+              <DialogTrigger
+                render={
+                  <Button
+                    variant="outline"
+                    size="lg"
+                    className="secondary-action"
+                  />
+                }
+              >
+                <Rss aria-hidden="true" /> 免费接收提醒
+              </DialogTrigger>
+              <DialogContent className="core-dialog rss-dialog">
+                <DialogHeader>
+                  <span className="dialog-icon" aria-hidden="true">
+                    <Rss />
+                  </span>
+                  <DialogTitle>免费接收真正的重置提醒</DialogTitle>
+                  <DialogDescription>
+                    不懂 RSS
+                    也没关系。它就像一个安静的消息订阅：有新公告时更新，平时不会打扰你。
+                  </DialogDescription>
+                </DialogHeader>
+
+                <div className="rss-explainer">
+                  <strong>你会收到什么？</strong>
+                  <p>
+                    只有 Tibo
+                    明确说“额度已经重置”或“发放重置卡”时，我们才会更新提醒。
+                  </p>
+                </div>
+
+                <div className="rss-rule-grid" aria-label="提醒规则">
+                  <article className="rss-rule-yes">
+                    <span>会提醒</span>
+                    <p>明确的额度重置、重置完成、重置卡公告。</p>
+                  </article>
+                  <article className="rss-rule-no">
+                    <span>不会提醒</span>
+                    <p>普通产品动态、群聊预测、未经证实的转述。</p>
+                  </article>
+                </div>
+
+                <div className="rss-address-group">
+                  <span>先复制这条订阅地址</span>
+                  <div className="rss-address">
+                    <code>resetrelay.com/feed.xml</code>
+                    <Button type="button" size="sm" onClick={copyRssUrl}>
+                      {rssCopied ? <Check /> : <Copy />}
+                      {rssCopied ? '复制成功' : '复制地址'}
+                    </Button>
+                  </div>
+                </div>
+
+                <div className="rss-tutorial">
+                  <h3>第一次使用，照着这三步做</h3>
+                  <ol className="usage-steps rss-steps">
+                    <li>
+                      <span>01</span>
+                      <div>点击上面的“复制地址”。</div>
+                    </li>
+                    <li>
+                      <span>02</span>
+                      <div>打开任意订阅工具，例如 Feedly 或 NetNewsWire。</div>
+                    </li>
+                    <li>
+                      <span>03</span>
+                      <div>找到“添加来源”或“添加订阅”，粘贴地址并确认。</div>
+                    </li>
+                  </ol>
+                </div>
+
+                <div className="rss-reader-links" aria-label="推荐订阅工具">
+                  <span>没有订阅工具？</span>
+                  <a
+                    href="https://feedly.com/"
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    网页版 Feedly <ExternalLink aria-hidden="true" />
+                  </a>
+                  <a
+                    href="https://netnewswire.com/"
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    苹果设备 NetNewsWire <ExternalLink aria-hidden="true" />
+                  </a>
+                </div>
+                <p className="dialog-note">
+                  提醒会出现在订阅工具里，不会直接发送短信或微信消息。全程不需要在本站登录。
+                </p>
+              </DialogContent>
+            </Dialog>
+
+            <span className="privacy-note">
+              <ShieldCheck aria-hidden="true" /> 无需登录 · 不读取你的账户
+            </span>
           </div>
         </section>
 
@@ -216,28 +370,34 @@ export function ResetDashboard() {
           aria-labelledby="latest-title"
         >
           <div className="card-grid-pattern" aria-hidden="true" />
-          <div className="latest-copy">
-            <p className="eyebrow" id="latest-title">
-              距离最近一次重置公告
-            </p>
-            <div className="latest-time">
-              <strong>{latestRelative.value}</strong>
-              {latestRelative.unit && <span>{latestRelative.unit}</span>}
+          <div className="latest-main">
+            <div className="latest-heading">
+              <span className="latest-badge">
+                <Radio aria-hidden="true" />
+                {hasResetToday ? '今天已确认重置' : '当前状态'}
+              </span>
+              <div>
+                <h2 id="latest-title">
+                  {hasResetToday ? '今天出现确认重置' : '暂未发现新的公开重置'}
+                </h2>
+                <p>所有判断都能回到原始 X 帖子，不把普通动态误报为重置。</p>
+              </div>
             </div>
-            <a
-              className="latest-source"
-              href={latestAnnouncement.xUrl}
-              target="_blank"
-              rel="noreferrer"
-            >
-              <span>
-                {latestAnnouncement.emoji} {latestAnnouncement.title}
-              </span>
-              <span>
-                {formatPublishedTime(latestAnnouncement.publishedAt)} GMT+8
-              </span>
-              <ExternalLink />
-            </a>
+
+            <div className="current-signal" aria-live="polite">
+              <span>最近一次确认重置</span>
+              <div className="current-signal-value">
+                <strong>{latestRelative.value}</strong>
+                <em>{latestRelative.unit}</em>
+              </div>
+              <p>
+                最近 3 条帖子中，
+                {latestThreeSignalCount === 0
+                  ? '没有'
+                  : `有 ${latestThreeSignalCount} 条`}
+                明确重置信号。
+              </p>
+            </div>
           </div>
 
           <div className="radar-orbit" aria-hidden="true">
@@ -254,12 +414,27 @@ export function ResetDashboard() {
             </div>
           </div>
 
-          <div className="watching-sticker">
-            <span>👀</span>
-            <div>
-              <strong>正在守候</strong>
-              <small>下一次公共信号</small>
+          <div className="latest-card-footer">
+            <div className="latest-reset-summary">
+              <span>最近一次 Codex 重置</span>
+              <strong>
+                {latestRelative.value}
+                {latestRelative.unit}
+              </strong>
+              <em>{latestAnnouncement.emoji} 额度重置</em>
             </div>
+            <a
+              className="latest-source"
+              href={latestAnnouncement.xUrl}
+              target="_blank"
+              rel="noreferrer"
+            >
+              <span>
+                {formatPublishedTime(latestAnnouncement.publishedAt)} GMT+8
+              </span>
+              查看原帖
+              <ExternalLink aria-hidden="true" />
+            </a>
           </div>
         </section>
 
@@ -385,89 +560,136 @@ export function ResetDashboard() {
         </section>
 
         <section
-          className="announcements-section section-block"
-          aria-labelledby="announcements-title"
+          className="posts-section section-block"
+          aria-labelledby="posts-title"
         >
-          <div className="section-heading announcement-heading">
+          <div className="section-heading posts-heading">
             <div>
-              <p className="section-kicker">TIBO / VERIFIED POSTS</p>
-              <h2 id="announcements-title">Codex 重置公告</h2>
+              <p className="section-kicker">TIBO / ALL RECENT POSTS</p>
+              <h2 id="posts-title">Tibo 最近动态</h2>
             </div>
-            <p>每条卡片都直达原始 X 帖子</p>
+            <p>
+              已核验 {tiboPosts.length} 条 ·{' '}
+              {formatPublishedTime(tiboPostsUpdatedAt)} 更新
+            </p>
           </div>
 
-          <div className="profile-note">
-            <a href={tibo.profileUrl} target="_blank" rel="noreferrer">
-              <TiboAvatar compact />
-            </a>
-            <div>
-              <strong>{tibo.name}</strong>
-              <span>{tibo.role} · 页面重点追踪对象</span>
-            </div>
-            <Sparkles aria-hidden="true" />
-          </div>
-
-          <div className="announcement-list">
-            {visibleAnnouncements.map((announcement, index) => (
-              <article className="announcement-row" key={announcement.id}>
-                <a
-                  className="timeline-avatar"
-                  href={tibo.profileUrl}
-                  target="_blank"
-                  rel="noreferrer"
-                  aria-label="查看 Tibo 的 X 主页"
-                >
+          <div className="posts-probability-layout">
+            <div className="tibo-feed-panel">
+              <div className="profile-note">
+                <a href={tibo.profileUrl} target="_blank" rel="noreferrer">
                   <TiboAvatar compact />
                 </a>
-                <span className="timeline-line" aria-hidden="true" />
-                <a
-                  className="announcement-card"
-                  href={announcement.xUrl}
-                  target="_blank"
-                  rel="noreferrer"
-                  style={{ '--item-delay': `${index * 70}ms` } as CSSProperties}
-                >
-                  <div className="announcement-meta">
-                    <span className={`kind-badge kind-${announcement.kind}`}>
-                      {announcement.emoji} {kindMeta[announcement.kind].label}
-                    </span>
-                    <time dateTime={announcement.date}>
-                      {formatRelativeTime(announcement.publishedAt)} ·{' '}
-                      {formatPublishedTime(announcement.publishedAt)} GMT+8
-                    </time>
-                    <ExternalLink className="announcement-external" />
-                  </div>
-                  <h3>{announcement.title}</h3>
-                  <p className="announcement-summary">{announcement.summary}</p>
-                  <blockquote>{announcement.original}</blockquote>
-                  <span className="view-original">
-                    在 X 查看原帖 <ArrowUpRight />
-                  </span>
-                </a>
-              </article>
-            ))}
-          </div>
+                <div>
+                  <strong>{tibo.name}</strong>
+                  <span>{tibo.role} · 最近公开帖子</span>
+                </div>
+                <Sparkles aria-hidden="true" />
+              </div>
 
-          {announcements.filter(
-            (item) => filter === 'all' || item.kind === filter,
-          ).length > 3 && (
-            <Button
-              type="button"
-              variant="outline"
-              size="lg"
-              className="show-more"
-              onClick={() => setShowAll((current) => !current)}
+              <div className="tibo-post-list">
+                {tiboPosts.map((post, index) => {
+                  const signal = signalMeta[post.resetSignal];
+                  return (
+                    <article className="tibo-post-row" key={post.id}>
+                      <span className="post-index" aria-hidden="true">
+                        {String(index + 1).padStart(2, '0')}
+                      </span>
+                      <a
+                        className="tibo-post-card"
+                        href={post.url}
+                        target="_blank"
+                        rel="noreferrer"
+                        style={
+                          { '--item-delay': `${index * 45}ms` } as CSSProperties
+                        }
+                      >
+                        <div className="tibo-post-meta">
+                          <span className="post-category">{post.category}</span>
+                          <span className={`post-signal ${signal.className}`}>
+                            {signal.label}
+                          </span>
+                          <time dateTime={post.publishedAt}>
+                            {formatRelativeTime(post.publishedAt)} ·{' '}
+                            {formatPublishedTime(post.publishedAt)}
+                          </time>
+                          <ExternalLink aria-hidden="true" />
+                        </div>
+                        <h3>{post.title}</h3>
+                        <p>{post.summary}</p>
+                      </a>
+                    </article>
+                  );
+                })}
+              </div>
+            </div>
+
+            <aside
+              className="probability-card"
+              aria-labelledby="probability-title"
             >
-              {showAll ? '收起公告' : '展开更多公告'}
-              <ChevronDown className={showAll ? 'rotate-180' : ''} />
-            </Button>
-          )}
+              <div className="probability-kicker">
+                <ScanLine aria-hidden="true" /> 历史模型预判
+              </div>
+              <h3 id="probability-title">未来 24 小时重置可能性</h3>
+              <div
+                className="probability-dial"
+                style={
+                  {
+                    '--probability': `${probabilityModel.probability * 3.6}deg`,
+                  } as CSSProperties
+                }
+                aria-label={`未来 24 小时重置可能性 ${probabilityModel.probability}%`}
+              >
+                <div>
+                  <strong>{probabilityModel.probability}</strong>
+                  <span>%</span>
+                </div>
+              </div>
+              <p className="probability-verdict">
+                {probabilityModel.probability < 35
+                  ? '偏低，但已进入常见重置间隔。'
+                  : '正在升高，建议留意新的明确表述。'}
+              </p>
+
+              <div className="probability-factors">
+                <div>
+                  <span>距上次确认</span>
+                  <strong>{probabilityModel.elapsedDays} 天</strong>
+                </div>
+                <div>
+                  <span>最近 3 条信号</span>
+                  <strong>{latestThreeSignalCount} 条</strong>
+                </div>
+                <div>
+                  <span>可比历史样本</span>
+                  <strong>{probabilityModel.sampleSize} 组</strong>
+                </div>
+              </div>
+
+              <details className="probability-method">
+                <summary>
+                  <Info aria-hidden="true" /> 这个概率怎么算？
+                </summary>
+                <p>
+                  只使用已记录的重置间隔：在“已经等待至少{' '}
+                  {probabilityModel.elapsedDays} 天”的历史样本中，统计接下来 24
+                  小时发生重置的比例。普通帖子不加分，明确重置原帖才会覆盖预测。
+                </p>
+              </details>
+
+              <div className="probability-disclaimer">
+                <MessageCircle aria-hidden="true" />
+                非官方概率，不代表 OpenAI 承诺。
+              </div>
+            </aside>
+          </div>
         </section>
 
         <footer className="site-footer">
           <p>
             公开记录均可直达原帖 · 最近数据{' '}
-            {formatChineseDate(resetStats.updatedAt.slice(0, 10))} · 与 OpenAI
+            {formatChineseDate(tiboPostsUpdatedAt.slice(0, 10))} · 与 OpenAI
             无隶属关系
           </p>
           <p>历史规律不代表下一次一定发生，个人额度请以 Codex 内显示为准。</p>

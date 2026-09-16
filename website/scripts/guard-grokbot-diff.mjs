@@ -15,7 +15,9 @@ const changedPaths = status
   .map((line) => line.slice(3).trim());
 const allowed = new Set([
   'website/data/reset-feed.json',
+  'website/data/tibo-posts.json',
   'data/reset-feed.json',
+  'data/tibo-posts.json',
 ]);
 const unexpected = changedPaths.filter((path) => !allowed.has(path));
 
