@@ -1,7 +1,10 @@
-import { readdir, readFile } from 'node:fs/promises';
+import { access, readdir, readFile } from 'node:fs/promises';
 import path from 'node:path';
 
-const buildDirectory = path.resolve('.next');
+const candidateBuildDirectories = [
+  path.resolve('.next'),
+  path.resolve('.vercel/output'),
+];
 const requiredSelectors = [
   '.hero-probability',
   '.tibo-post-card',
@@ -20,7 +23,28 @@ async function collectCssFiles(directory) {
   return files.flat();
 }
 
-const cssFiles = await collectCssFiles(buildDirectory);
+const availableBuildDirectories = [];
+
+for (const directory of candidateBuildDirectories) {
+  try {
+    await access(directory);
+    availableBuildDirectories.push(directory);
+  } catch {
+    // The local Next.js build does not create Vercel's output directory.
+  }
+}
+
+const cssFiles = [
+  ...new Set(
+    (
+      await Promise.all(
+        availableBuildDirectories.map((directory) =>
+          collectCssFiles(directory),
+        ),
+      )
+    ).flat(),
+  ),
+];
 
 if (cssFiles.length === 0) {
   throw new Error('CSS_BUNDLE_MISSING: .next 中没有找到 CSS 产物');
@@ -41,5 +65,5 @@ if (missingSelectors.length > 0) {
 }
 
 console.log(
-  `CSS_BUNDLE_VALID ${cssFiles.length} files / ${requiredSelectors.length} critical selectors`,
+  `CSS_BUNDLE_VALID ${cssFiles.length} files / ${requiredSelectors.length} critical selectors / ${availableBuildDirectories.length} build roots`,
 );
