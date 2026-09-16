@@ -1,6 +1,6 @@
 'use client';
 
-import { useMemo, useState, type CSSProperties } from 'react';
+import { useEffect, useMemo, useState, type CSSProperties } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import {
@@ -10,6 +10,7 @@ import {
   ExternalLink,
   Gauge,
   Info,
+  MessageCircle,
   Radio,
   Rss,
   ScanLine,
@@ -28,6 +29,7 @@ import {
 import {
   announcements,
   kindMeta,
+  monitor,
   resetEvents,
   resetStats,
   tibo,
@@ -52,11 +54,31 @@ const filters: { value: FilterKind; label: string }[] = [
 
 const latestAnnouncement = announcements[0];
 const publicRssUrl = 'https://www.resetrelay.com/feed.xml';
+const prayerStorageKey = 'reset-relay-prayer-count';
+const shanghaiOffsetMs = 8 * 60 * 60 * 1000;
+const dayMs = 24 * 60 * 60 * 1000;
+const scheduleMatch = monitor.scheduleLabel.match(/(\d{1,2}):(\d{2})/);
+const dailyScanHour = Number(scheduleMatch?.[1] ?? 15);
+const dailyScanMinute = Number(scheduleMatch?.[2] ?? 0);
 const probabilityModel = calculateResetProbability(
   resetEvents,
   tiboPosts,
   tiboPostsUpdatedAt,
 );
+
+type ScanCountdown = {
+  hours: string;
+  minutes: string;
+  seconds: string;
+  targetDate: string;
+};
+
+const emptyCountdown: ScanCountdown = {
+  hours: '--',
+  minutes: '--',
+  seconds: '--',
+  targetDate: '下一次',
+};
 
 const signalMeta: Record<
   TiboResetSignal,
@@ -114,13 +136,41 @@ function formatPublishedTime(publishedAt: string) {
   }).format(new Date(publishedAt));
 }
 
-function getShanghaiDateKey(value: string | number | Date) {
-  return new Intl.DateTimeFormat('en-CA', {
+function getNextScanCountdown(now: Date): ScanCountdown {
+  const shanghaiNow = new Date(now.getTime() + shanghaiOffsetMs);
+  let targetLocalTime = Date.UTC(
+    shanghaiNow.getUTCFullYear(),
+    shanghaiNow.getUTCMonth(),
+    shanghaiNow.getUTCDate(),
+    dailyScanHour,
+    dailyScanMinute,
+  );
+  let targetTime = targetLocalTime - shanghaiOffsetMs;
+
+  if (targetTime <= now.getTime()) {
+    targetLocalTime += dayMs;
+    targetTime = targetLocalTime - shanghaiOffsetMs;
+  }
+
+  const totalSeconds = Math.max(
+    0,
+    Math.ceil((targetTime - now.getTime()) / 1000),
+  );
+  const hours = Math.floor(totalSeconds / 3600);
+  const minutes = Math.floor((totalSeconds % 3600) / 60);
+  const seconds = totalSeconds % 60;
+  const targetDate = new Intl.DateTimeFormat('zh-CN', {
     timeZone: 'Asia/Shanghai',
-    year: 'numeric',
-    month: '2-digit',
-    day: '2-digit',
-  }).format(new Date(value));
+    month: 'numeric',
+    day: 'numeric',
+  }).format(new Date(targetTime));
+
+  return {
+    hours: String(hours).padStart(2, '0'),
+    minutes: String(minutes).padStart(2, '0'),
+    seconds: String(seconds).padStart(2, '0'),
+    targetDate,
+  };
 }
 
 function TiboAvatar({ compact = false }: { compact?: boolean }) {
@@ -145,11 +195,12 @@ export function ResetDashboard() {
     resetEvents[0],
   );
   const [rssCopied, setRssCopied] = useState(false);
+  const [wechatCopied, setWechatCopied] = useState(false);
+  const [prayerCount, setPrayerCount] = useState(0);
+  const [prayerReady, setPrayerReady] = useState(false);
+  const [countdown, setCountdown] = useState<ScanCountdown>(emptyCountdown);
   const heatmapWeeks = useMemo(() => createHeatmapWeeks(), []);
   const latestRelative = getRelativeTime(latestAnnouncement.publishedAt);
-  const hasResetToday =
-    getShanghaiDateKey(latestAnnouncement.publishedAt) ===
-    getShanghaiDateKey(tiboPostsUpdatedAt);
   const latestThreeSignalCount = tiboPosts
     .slice(0, 3)
     .filter((post) => post.resetSignal !== 'none').length;
@@ -157,6 +208,32 @@ export function ResetDashboard() {
     () => new Map(resetEvents.map((event) => [event.date, event])),
     [],
   );
+
+  useEffect(() => {
+    const updateCountdown = () =>
+      setCountdown(getNextScanCountdown(new Date()));
+    updateCountdown();
+    const timer = window.setInterval(updateCountdown, 1000);
+    return () => window.clearInterval(timer);
+  }, []);
+
+  useEffect(() => {
+    let savedCount = 0;
+    try {
+      savedCount = Number(window.localStorage.getItem(prayerStorageKey));
+    } catch {
+      // Local storage can be unavailable in privacy-restricted browsers.
+    }
+    const loadTimer = window.setTimeout(() => {
+      if (Number.isSafeInteger(savedCount) && savedCount > 0) {
+        setPrayerCount(savedCount);
+      }
+      setPrayerReady(true);
+    }, 0);
+    return () => {
+      window.clearTimeout(loadTimer);
+    };
+  }, []);
 
   async function copyRssUrl() {
     await navigator.clipboard.writeText(publicRssUrl);
@@ -166,6 +243,29 @@ export function ResetDashboard() {
 
   function chooseFilter(nextFilter: FilterKind) {
     setFilter(nextFilter);
+  }
+
+  function recordPrayer() {
+    if (!prayerReady) return;
+    setPrayerCount((currentCount) => {
+      const nextCount = Math.min(currentCount + 1, Number.MAX_SAFE_INTEGER);
+      try {
+        window.localStorage.setItem(prayerStorageKey, String(nextCount));
+      } catch {
+        // The interaction still works for the current page session.
+      }
+      return nextCount;
+    });
+  }
+
+  async function copyWechatContact() {
+    try {
+      await navigator.clipboard.writeText('7547211');
+      setWechatCopied(true);
+      window.setTimeout(() => setWechatCopied(false), 2200);
+    } catch {
+      setWechatCopied(false);
+    }
   }
 
   return (
@@ -204,7 +304,7 @@ export function ResetDashboard() {
             </span>
             <span className="header-status-copy">
               <strong>精选副业</strong>
-              <small>真实案例库</small>
+              <small>点击查看真实案例</small>
             </span>
             <span className="header-status-arrow" aria-hidden="true">
               <ArrowUpRight />
@@ -369,33 +469,50 @@ export function ResetDashboard() {
           aria-labelledby="latest-title"
         >
           <div className="card-grid-pattern" aria-hidden="true" />
-          <div className="latest-main">
-            <div className="latest-heading">
-              <span className="latest-badge">
-                <Radio aria-hidden="true" />
-                {hasResetToday ? '今天已确认重置' : '当前状态'}
+          <div className="signal-monitor">
+            <div className="signal-monitor-copy">
+              <span className="monitor-kicker">
+                <Radio aria-hidden="true" /> 雷达在线
               </span>
-              <div>
-                <h2 id="latest-title">
-                  {hasResetToday ? '今天出现确认重置' : '暂未发现新的公开重置'}
-                </h2>
-                <p>所有判断都能回到原始 X 帖子，不把普通动态误报为重置。</p>
+              <h2 id="latest-title">距离下一次信号扫描</h2>
+              <div
+                className="scan-countdown"
+                role="timer"
+                aria-label={`距离下一次信号扫描还有 ${countdown.hours} 小时 ${countdown.minutes} 分钟 ${countdown.seconds} 秒`}
+              >
+                <span>
+                  <strong>{countdown.hours}</strong>
+                  <small>时</small>
+                </span>
+                <i aria-hidden="true">:</i>
+                <span>
+                  <strong>{countdown.minutes}</strong>
+                  <small>分</small>
+                </span>
+                <i aria-hidden="true">:</i>
+                <span>
+                  <strong>{countdown.seconds}</strong>
+                  <small>秒</small>
+                </span>
               </div>
+              <p className="scan-schedule">
+                <span>{countdown.targetDate}</span>
+                {monitor.scheduleLabel.replace('每天 ', '')} · 北京时间
+              </p>
             </div>
 
-            <div className="current-signal" aria-live="polite">
-              <span>最近一次确认重置</span>
-              <div className="current-signal-value">
-                <strong>{latestRelative.value}</strong>
-                <em>{latestRelative.unit}</em>
+            <div className="radar-orbit" aria-hidden="true">
+              <div className="orbit-ring orbit-ring-1" />
+              <div className="orbit-ring orbit-ring-2" />
+              <div className="orbit-axis orbit-axis-x" />
+              <div className="orbit-axis orbit-axis-y" />
+              <div className="orbit-sweep" />
+              <span className="orbit-blip orbit-blip-a" />
+              <span className="orbit-blip orbit-blip-b" />
+              <div className="orbit-center">
+                <Radio />
+                <span>扫描中</span>
               </div>
-              <p>
-                最近 3 条帖子中，
-                {latestThreeSignalCount === 0
-                  ? '没有'
-                  : `有 ${latestThreeSignalCount} 条`}
-                明确重置信号。
-              </p>
             </div>
           </div>
 
@@ -490,6 +607,37 @@ export function ResetDashboard() {
               <ExternalLink aria-hidden="true" />
             </a>
           </div>
+        </section>
+
+        <section
+          className="prayer-card reveal reveal-4"
+          aria-labelledby="prayer-title"
+        >
+          <div className="prayer-copy">
+            <p className="section-kicker">RESET WISH / GOOD LUCK</p>
+            <h2 id="prayer-title">一起等 Tibo 下次重置</h2>
+            <p>点一下，为下一次额度重置攒点好运。次数只保存在你的浏览器里。</p>
+          </div>
+          <div
+            className="prayer-counter"
+            aria-busy={!prayerReady}
+            aria-live="polite"
+          >
+            <span>本设备已祈愿</span>
+            <div>
+              <strong>{prayerReady ? prayerCount : '—'}</strong>
+              <small>次</small>
+            </div>
+          </div>
+          <button
+            className="prayer-button"
+            type="button"
+            onClick={recordPrayer}
+            disabled={!prayerReady}
+          >
+            <span aria-hidden="true">🙏</span>
+            祈愿一次
+          </button>
         </section>
 
         <section className="stats-grid reveal reveal-4" aria-label="重置统计">
@@ -681,12 +829,26 @@ export function ResetDashboard() {
         </section>
 
         <footer className="site-footer">
-          <p>
-            公开记录均可直达原帖 · 最近数据{' '}
-            {formatChineseDate(tiboPostsUpdatedAt.slice(0, 10))} · 与 OpenAI
-            无隶属关系
+          <div className="footer-primary">
+            <p>
+              公开记录均可直达原帖 · 最近数据{' '}
+              {formatChineseDate(tiboPostsUpdatedAt.slice(0, 10))} · 与 OpenAI
+              无隶属关系
+            </p>
+            <button
+              className="footer-contact"
+              type="button"
+              onClick={copyWechatContact}
+              aria-label="复制站长微信号 7547211"
+            >
+              <MessageCircle aria-hidden="true" />
+              {wechatCopied ? '微信号已复制' : '联系站长 · 微信：7547211'}
+              <Copy aria-hidden="true" />
+            </button>
+          </div>
+          <p className="footer-disclaimer">
+            历史规律不代表下一次一定发生，个人额度请以 Codex 内显示为准。
           </p>
-          <p>历史规律不代表下一次一定发生，个人额度请以 Codex 内显示为准。</p>
         </footer>
       </div>
     </main>

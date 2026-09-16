@@ -7,6 +7,11 @@ const candidateBuildDirectories = [
 ];
 const requiredSelectors = [
   '.hero-probability',
+  '.signal-monitor',
+  '.radar-orbit',
+  '.scan-countdown',
+  '.prayer-card',
+  '.footer-contact',
   '.tibo-post-card',
   '.hustle-feed-card',
 ];
