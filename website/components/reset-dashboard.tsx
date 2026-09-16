@@ -10,7 +10,6 @@ import {
   ExternalLink,
   Gauge,
   Info,
-  MessageCircle,
   Radio,
   Rss,
   ScanLine,
@@ -400,19 +399,74 @@ export function ResetDashboard() {
             </div>
           </div>
 
-          <div className="radar-orbit" aria-hidden="true">
-            <div className="orbit-ring orbit-ring-1" />
-            <div className="orbit-ring orbit-ring-2" />
-            <div className="orbit-axis orbit-axis-x" />
-            <div className="orbit-axis orbit-axis-y" />
-            <div className="orbit-sweep" />
-            <span className="orbit-blip orbit-blip-a" />
-            <span className="orbit-blip orbit-blip-b" />
-            <div className="orbit-center">
-              <Radio />
-              <span>已核验</span>
+          <aside
+            className="hero-probability"
+            aria-labelledby="hero-probability-title"
+          >
+            <div className="hero-probability-head">
+              <div>
+                <span className="probability-kicker">
+                  <ScanLine aria-hidden="true" /> 历史模型预判
+                </span>
+                <h3 id="hero-probability-title">未来 24 小时重置可能性</h3>
+              </div>
+              <span className="hero-probability-live">
+                <span aria-hidden="true" /> 已更新
+              </span>
             </div>
-          </div>
+
+            <div className="hero-probability-body">
+              <div
+                className="hero-probability-dial"
+                style={
+                  {
+                    '--probability': `${probabilityModel.probability * 3.6}deg`,
+                  } as CSSProperties
+                }
+                aria-label={`未来 24 小时重置可能性 ${probabilityModel.probability}%`}
+              >
+                <div>
+                  <strong>{probabilityModel.probability}</strong>
+                  <span>%</span>
+                </div>
+              </div>
+
+              <div className="hero-probability-copy">
+                <strong>
+                  {probabilityModel.probability < 35
+                    ? '偏低，但已进入常见重置间隔。'
+                    : '正在升高，建议留意新的明确表述。'}
+                </strong>
+                <p>基于已核验的公开重置记录，不把普通动态当作重置信号。</p>
+              </div>
+            </div>
+
+            <div className="hero-probability-factors">
+              <div>
+                <span>距上次确认</span>
+                <strong>{probabilityModel.elapsedDays} 天</strong>
+              </div>
+              <div>
+                <span>最近 3 条信号</span>
+                <strong>{latestThreeSignalCount} 条</strong>
+              </div>
+              <div>
+                <span>历史样本</span>
+                <strong>{probabilityModel.sampleSize} 组</strong>
+              </div>
+            </div>
+
+            <details className="hero-probability-method">
+              <summary>
+                <Info aria-hidden="true" /> 这个概率怎么算？
+              </summary>
+              <p>
+                在“已经等待至少 {probabilityModel.elapsedDays}{' '}
+                天”的历史样本中，统计接下来 24
+                小时发生重置的比例。这是趋势参考，不是 OpenAI 承诺。
+              </p>
+            </details>
+          </aside>
 
           <div className="latest-card-footer">
             <div className="latest-reset-summary">
@@ -574,7 +628,7 @@ export function ResetDashboard() {
             </p>
           </div>
 
-          <div className="posts-probability-layout">
+          <div className="posts-layout">
             <div className="tibo-feed-panel">
               <div className="profile-note">
                 <a href={tibo.profileUrl} target="_blank" rel="noreferrer">
@@ -623,66 +677,6 @@ export function ResetDashboard() {
                 })}
               </div>
             </div>
-
-            <aside
-              className="probability-card"
-              aria-labelledby="probability-title"
-            >
-              <div className="probability-kicker">
-                <ScanLine aria-hidden="true" /> 历史模型预判
-              </div>
-              <h3 id="probability-title">未来 24 小时重置可能性</h3>
-              <div
-                className="probability-dial"
-                style={
-                  {
-                    '--probability': `${probabilityModel.probability * 3.6}deg`,
-                  } as CSSProperties
-                }
-                aria-label={`未来 24 小时重置可能性 ${probabilityModel.probability}%`}
-              >
-                <div>
-                  <strong>{probabilityModel.probability}</strong>
-                  <span>%</span>
-                </div>
-              </div>
-              <p className="probability-verdict">
-                {probabilityModel.probability < 35
-                  ? '偏低，但已进入常见重置间隔。'
-                  : '正在升高，建议留意新的明确表述。'}
-              </p>
-
-              <div className="probability-factors">
-                <div>
-                  <span>距上次确认</span>
-                  <strong>{probabilityModel.elapsedDays} 天</strong>
-                </div>
-                <div>
-                  <span>最近 3 条信号</span>
-                  <strong>{latestThreeSignalCount} 条</strong>
-                </div>
-                <div>
-                  <span>可比历史样本</span>
-                  <strong>{probabilityModel.sampleSize} 组</strong>
-                </div>
-              </div>
-
-              <details className="probability-method">
-                <summary>
-                  <Info aria-hidden="true" /> 这个概率怎么算？
-                </summary>
-                <p>
-                  只使用已记录的重置间隔：在“已经等待至少{' '}
-                  {probabilityModel.elapsedDays} 天”的历史样本中，统计接下来 24
-                  小时发生重置的比例。普通帖子不加分，明确重置原帖才会覆盖预测。
-                </p>
-              </details>
-
-              <div className="probability-disclaimer">
-                <MessageCircle aria-hidden="true" />
-                非官方概率，不代表 OpenAI 承诺。
-              </div>
-            </aside>
           </div>
         </section>
 

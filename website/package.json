@@ -7,7 +7,7 @@
   },
   "scripts": {
     "dev": "next dev",
-    "build": "next build && node scripts/guard-private-prompts.mjs --build",
+    "build": "next build && node scripts/verify-css-bundle.mjs && node scripts/guard-private-prompts.mjs --build",
     "start": "next start",
     "test": "node --test lib/*.test.ts scripts/*.test.mjs",
     "validate:data": "node scripts/validate-reset-feed.mjs && node scripts/validate-tibo-posts.mjs && node scripts/validate-side-hustles.mjs && node scripts/guard-private-prompts.mjs",
