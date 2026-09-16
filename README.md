@@ -26,6 +26,8 @@
 - 已启用每天 11:00 的零新增成本公开信息巡检，并把运行结果、故障和待判断问题发送到飞书审查群。
 - 已完成作者校验、reset 分类、ID 去重、数据守卫和 CI；含糊内容不会直接发布。
 - GrokBot 仅保留为未来可选的数据入口，不是当前线上运行的必要依赖。
+- 已接通生财有术官方 MCP，并上线“精选副业”列表、脱敏详情页和三天体验卡入口。
+- 精选副业只展示作者成绩、问题和少量原话，不公开原帖的方法与步骤。
 
 ## 后续开发入口
 
@@ -38,6 +40,7 @@ npm run dev
 最新开发说明见 `docs/DEVELOPMENT-MVP-Tibo公告流-v0.4.md`。
 可选的 GrokBot 监控与验收手册见 `docs/GROKBOT-MONITOR-MVP.md`。
 自动执行边界和人工决策规则见 `docs/OPERATIONS-REVIEW-POLICY.md`。
+精选副业的项目化收录规则见 `docs/SIDE-HUSTLE-CURATION-RULES.md`。
 
 在 Vercel 从 GitHub 导入本仓库时，请将 **Root Directory** 设为 `website`，
 其余构建选项保持自动检测即可。邮件提醒暂不在当前范围内。

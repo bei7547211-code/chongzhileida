@@ -10,7 +10,7 @@
     "build": "next build",
     "start": "next start",
     "test": "node --test lib/*.test.ts scripts/*.test.mjs",
-    "validate:data": "node scripts/validate-reset-feed.mjs",
+    "validate:data": "node scripts/validate-reset-feed.mjs && node scripts/validate-side-hustles.mjs",
     "ingest:tibo": "node scripts/ingest-tibo-post.mjs",
     "audit:grokbot": "node scripts/report-grokbot-run.mjs",
     "guard:grokbot": "node scripts/guard-grokbot-diff.mjs",

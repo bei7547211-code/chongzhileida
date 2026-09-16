@@ -13,6 +13,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL('https://www.resetrelay.com'),
   title: '重置雷达 · Reset Radar',
   description: '追踪 Tibo 的 Codex 公共重置公告、历史节奏与原始 X 帖子。',
   icons: { icon: '/favicon.svg' },

@@ -2,6 +2,7 @@
 
 import { useMemo, useState, type CSSProperties } from 'react';
 import Image from 'next/image';
+import Link from 'next/link';
 import {
   ArrowUpRight,
   Check,
@@ -165,10 +166,10 @@ export function ResetDashboard() {
             </span>
           </a>
 
-          <div className="header-status">
+          <Link className="header-status" href="/side-hustles">
             <span className="status-dot" aria-hidden="true" />
-            PUBLIC SIGNAL WATCH
-          </div>
+            精选副业 <ArrowUpRight aria-hidden="true" />
+          </Link>
         </header>
 
         <section className="intro reveal reveal-2">

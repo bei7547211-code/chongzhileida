@@ -223,6 +223,22 @@
   font-family: var(--font-geist-mono), monospace;
   font-size: 11px;
   letter-spacing: 0.12em;
+  text-decoration: none;
+  transition:
+    border-color 180ms ease,
+    color 180ms ease,
+    transform 180ms ease;
+}
+
+.header-status:hover {
+  border-color: rgb(183 255 42 / 48%);
+  color: var(--primary);
+  transform: translateY(-2px);
+}
+
+.header-status svg {
+  width: 14px;
+  height: 14px;
 }
 
 .status-dot {
@@ -1048,6 +1064,459 @@
   text-align: right;
 }
 
+.hustle-page {
+  background:
+    radial-gradient(circle at 80% 8%, rgb(183 255 42 / 7%), transparent 27rem),
+    transparent;
+}
+
+.hustle-shell,
+.hustle-detail,
+.experience-shell {
+  width: min(980px, calc(100% - 32px));
+}
+
+.hustle-nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  color: var(--muted-foreground);
+  font-family: var(--font-geist-mono), monospace;
+  font-size: 11px;
+}
+
+.hustle-back {
+  display: inline-flex;
+  min-height: 42px;
+  align-items: center;
+  gap: 8px;
+  padding: 0 15px;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  color: var(--foreground);
+  font-family: var(--font-geist-sans), sans-serif;
+  font-size: 13px;
+  font-weight: 650;
+  text-decoration: none;
+  transition: all 180ms ease;
+}
+
+.hustle-back:hover {
+  border-color: var(--primary);
+  color: var(--primary);
+  transform: translateX(-2px);
+}
+
+.hustle-back svg {
+  width: 15px;
+}
+
+.hustle-hero {
+  margin-top: 74px;
+}
+
+.hustle-hero h1,
+.experience-copy h1 {
+  margin-top: 12px;
+  color: var(--primary);
+  font-size: clamp(4rem, 12vw, 8.5rem);
+  font-weight: 720;
+  letter-spacing: -0.1em;
+  line-height: 0.9;
+}
+
+.hustle-hero > p:not(.section-kicker) {
+  max-width: 720px;
+  margin-top: 28px;
+  color: #c2d2c8;
+  font-size: clamp(1.05rem, 2.4vw, 1.3rem);
+  line-height: 1.8;
+}
+
+.hustle-principles {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 9px;
+  margin-top: 24px;
+}
+
+.hustle-principles span,
+.hustle-tags span {
+  display: inline-flex;
+  min-height: 30px;
+  align-items: center;
+  padding: 0 11px;
+  border: 1px solid rgb(85 230 186 / 24%);
+  border-radius: 999px;
+  background: rgb(85 230 186 / 6%);
+  color: var(--accent);
+  font-size: 11px;
+}
+
+.hustle-feed {
+  margin-top: 58px;
+}
+
+.hustle-feed-card {
+  display: grid;
+  grid-template-columns: minmax(260px, 0.78fr) minmax(0, 1.22fr);
+  overflow: hidden;
+  border: 1px solid rgb(85 230 186 / 30%);
+  border-radius: 28px;
+  background: linear-gradient(145deg, rgb(13 34 24 / 97%), rgb(8 22 16 / 98%));
+  box-shadow: 8px 9px 0 #10271d;
+}
+
+.hustle-cover {
+  position: relative;
+  min-height: 470px;
+  overflow: hidden;
+  background: #10271d;
+}
+
+.hustle-cover img {
+  object-fit: cover;
+  object-position: top center;
+  transition: transform 500ms ease;
+}
+
+.hustle-feed-card:hover .hustle-cover img {
+  transform: scale(1.025);
+}
+
+.hustle-card-copy {
+  padding: clamp(28px, 5vw, 52px);
+}
+
+.hustle-author {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.hustle-author img {
+  border: 1px solid rgb(183 255 42 / 42%);
+  border-radius: 50%;
+}
+
+.hustle-author strong,
+.hustle-author small {
+  display: block;
+}
+
+.hustle-author strong {
+  font-size: 14px;
+}
+
+.hustle-author small {
+  margin-top: 4px;
+  color: var(--muted-foreground);
+  font-family: var(--font-geist-mono), monospace;
+  font-size: 10px;
+}
+
+.hustle-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px;
+  margin-top: 25px;
+}
+
+.hustle-card-copy h2 {
+  margin-top: 20px;
+  font-size: clamp(1.65rem, 4vw, 2.45rem);
+  font-weight: 690;
+  letter-spacing: -0.05em;
+  line-height: 1.24;
+}
+
+.hustle-card-copy h2 a {
+  color: var(--foreground);
+  text-decoration: none;
+}
+
+.hustle-card-copy > p {
+  margin-top: 18px;
+  color: #b9ccc0;
+  font-size: 14px;
+  line-height: 1.8;
+}
+
+.hustle-card-stats {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 17px;
+  margin-top: 22px;
+  color: var(--muted-foreground);
+  font-family: var(--font-geist-mono), monospace;
+  font-size: 11px;
+}
+
+.hustle-card-stats span {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.hustle-card-stats svg {
+  width: 14px;
+  height: 14px;
+}
+
+.hustle-read-more {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  margin-top: 28px;
+  border-bottom: 1px solid rgb(183 255 42 / 40%);
+  color: var(--primary);
+  font-size: 13px;
+  font-weight: 650;
+  text-decoration: none;
+}
+
+.hustle-read-more svg {
+  width: 14px;
+}
+
+.hustle-detail {
+  max-width: 820px;
+}
+
+.hustle-detail-head {
+  margin-top: 70px;
+}
+
+.hustle-detail-head h1 {
+  max-width: 780px;
+  margin-top: 22px;
+  font-size: clamp(2.5rem, 7vw, 5.2rem);
+  font-weight: 720;
+  letter-spacing: -0.075em;
+  line-height: 1.08;
+}
+
+.hustle-byline {
+  margin-top: 24px;
+  color: var(--muted-foreground);
+  font-family: var(--font-geist-mono), monospace;
+  font-size: 11px;
+}
+
+.achievement-board {
+  margin-top: 58px;
+  padding: clamp(25px, 4vw, 36px);
+  border: 1px solid rgb(183 255 42 / 35%);
+  border-radius: 26px;
+  background: linear-gradient(145deg, rgb(35 63 21 / 76%), rgb(9 28 19 / 96%));
+  box-shadow: 7px 8px 0 #10271d;
+}
+
+.achievement-board > div {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  margin-top: 24px;
+}
+
+.achievement-board article {
+  padding-right: 16px;
+  border-right: 1px solid rgb(183 255 42 / 18%);
+}
+
+.achievement-board article:last-child {
+  border-right: 0;
+}
+
+.achievement-board strong,
+.achievement-board span {
+  display: block;
+}
+
+.achievement-board strong {
+  color: var(--primary);
+  font-family: var(--font-geist-mono), monospace;
+  font-size: clamp(2.4rem, 6vw, 4.3rem);
+  font-weight: 650;
+  letter-spacing: -0.08em;
+  line-height: 1;
+}
+
+.achievement-board span {
+  margin-top: 9px;
+  color: #c2d2c8;
+  font-size: 12px;
+}
+
+.hustle-prose-block {
+  margin-top: 74px;
+}
+
+.hustle-prose-block h2 {
+  margin-top: 9px;
+  font-size: clamp(1.8rem, 4vw, 2.7rem);
+  font-weight: 700;
+  letter-spacing: -0.05em;
+}
+
+.hustle-prose-block > p:not(.section-kicker):not(.answer-note) {
+  margin-top: 24px;
+  color: #c7d7cd;
+  font-size: 17px;
+  line-height: 2;
+}
+
+.problem-list {
+  margin-top: 28px;
+  list-style: none;
+}
+
+.problem-list li {
+  display: grid;
+  grid-template-columns: 46px 1fr;
+  gap: 17px;
+  padding: 21px 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.problem-list li > span {
+  color: var(--primary);
+  font-family: var(--font-geist-mono), monospace;
+  font-size: 12px;
+}
+
+.problem-list p {
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 1.7;
+}
+
+.answer-note {
+  margin-top: 18px;
+  color: var(--accent);
+  font-size: 13px;
+}
+
+.quote-stack {
+  display: grid;
+  gap: 13px;
+  margin-top: 27px;
+}
+
+.quote-stack blockquote {
+  padding: 24px 27px;
+  border: 1px solid rgb(85 230 186 / 22%);
+  border-left: 3px solid var(--primary);
+  border-radius: 0 18px 18px 0;
+  background: rgb(11 27 20 / 74%);
+  color: #d9e8de;
+  font-size: 15px;
+  line-height: 1.85;
+}
+
+.hustle-paywall {
+  margin-top: 78px;
+  padding: clamp(26px, 5vw, 42px);
+  border: 1px solid rgb(85 230 186 / 28%);
+  border-radius: 25px;
+  background: linear-gradient(145deg, rgb(13 34 24 / 97%), rgb(8 22 16 / 98%));
+}
+
+.hustle-paywall > p {
+  color: #c2d2c8;
+  font-size: 16px;
+  line-height: 1.8;
+}
+
+.hustle-paywall > div {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 11px;
+  margin-top: 24px;
+}
+
+.hustle-primary-cta,
+.hustle-secondary-cta {
+  display: inline-flex;
+  min-height: 49px;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 0 20px;
+  border-radius: 999px;
+  font-size: 14px;
+  font-weight: 680;
+  text-decoration: none;
+  transition: transform 180ms ease;
+}
+
+.hustle-primary-cta {
+  background: var(--primary);
+  color: var(--primary-foreground);
+}
+
+.hustle-secondary-cta {
+  border: 1px solid var(--border);
+  color: var(--foreground);
+}
+
+.hustle-primary-cta:hover,
+.hustle-secondary-cta:hover {
+  transform: translateY(-2px);
+}
+
+.hustle-primary-cta svg,
+.hustle-secondary-cta svg {
+  width: 15px;
+}
+
+.experience-layout {
+  display: grid;
+  grid-template-columns: 0.8fr 1.2fr;
+  align-items: center;
+  gap: clamp(30px, 7vw, 80px);
+  margin-top: 55px;
+}
+
+.experience-copy h1 {
+  max-width: 420px;
+  font-size: clamp(3.5rem, 8vw, 6.3rem);
+}
+
+.experience-copy > p:not(.section-kicker) {
+  margin-top: 25px;
+  color: #c2d2c8;
+  font-size: 16px;
+  line-height: 1.8;
+}
+
+.experience-copy .hustle-primary-cta {
+  margin-top: 28px;
+}
+
+.experience-copy small {
+  display: block;
+  margin-top: 15px;
+  color: var(--muted-foreground);
+  font-size: 11px;
+  line-height: 1.7;
+}
+
+.experience-poster {
+  overflow: hidden;
+  border: 1px solid rgb(85 230 186 / 30%);
+  border-radius: 28px;
+  background: #0b1b14;
+  box-shadow: 9px 10px 0 #10271d;
+}
+
+.experience-poster img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
 .reveal {
   animation: reveal-up 650ms cubic-bezier(0.2, 0.8, 0.2, 1) both;
 }
@@ -1260,15 +1729,80 @@
   .site-footer p:last-child {
     text-align: left;
   }
+
+  .hustle-shell,
+  .hustle-detail,
+  .experience-shell {
+    width: min(100% - 24px, 680px);
+  }
+  .hustle-hero {
+    margin-top: 56px;
+  }
+  .hustle-hero h1 {
+    font-size: 4.6rem;
+  }
+  .hustle-feed {
+    margin-top: 40px;
+  }
+  .hustle-feed-card {
+    grid-template-columns: 1fr;
+    border-radius: 22px;
+    box-shadow: 5px 6px 0 #10271d;
+  }
+  .hustle-cover {
+    min-height: 330px;
+  }
+  .hustle-card-copy {
+    padding: 25px 21px 29px;
+  }
+  .hustle-detail-head {
+    margin-top: 50px;
+  }
+  .hustle-detail-head h1 {
+    font-size: 2.65rem;
+  }
+  .achievement-board > div {
+    grid-template-columns: 1fr;
+  }
+  .achievement-board article {
+    padding: 0 0 15px;
+    border-right: 0;
+    border-bottom: 1px solid rgb(183 255 42 / 18%);
+  }
+  .achievement-board article:last-child {
+    padding-bottom: 0;
+    border-bottom: 0;
+  }
+  .hustle-prose-block {
+    margin-top: 58px;
+  }
+  .problem-list li {
+    grid-template-columns: 35px 1fr;
+    gap: 10px;
+  }
+  .experience-layout {
+    grid-template-columns: 1fr;
+    margin-top: 45px;
+  }
+  .experience-copy h1 {
+    font-size: 4rem;
+  }
+  .experience-poster {
+    border-radius: 22px;
+    box-shadow: 5px 6px 0 #10271d;
+  }
 }
 
 @media (max-width: 420px) {
   .header-status {
-    width: 33px;
-    padding: 0;
-    justify-content: center;
-    color: transparent;
-    font-size: 0;
+    min-height: 34px;
+    padding-inline: 10px;
+    color: var(--muted-foreground);
+    font-size: 9px;
+    letter-spacing: 0.05em;
+  }
+  .header-status .status-dot {
+    display: none;
   }
   .intro-actions {
     align-items: stretch;
