@@ -1,14 +1,7 @@
 /* oxlint-disable next/no-html-link-for-pages -- plain anchors avoid a hydration conflict in the local preview runtime */
 import type { Metadata } from 'next';
-import Image from 'next/image';
-import {
-  ArrowLeft,
-  ArrowUpRight,
-  Bookmark,
-  Gift,
-  Heart,
-  MessageCircle,
-} from 'lucide-react';
+import { ArrowLeft, ArrowUpRight, Gift, ShieldCheck } from 'lucide-react';
+import { SideHustleDirectory } from '@/components/side-hustle-directory';
 import { sideHustles, sideHustlesUpdatedAt } from '@/data/side-hustles';
 
 export const metadata: Metadata = {
@@ -19,7 +12,7 @@ export const metadata: Metadata = {
 
 export default function SideHustlesPage() {
   return (
-    <main className="radar-page hustle-page">
+    <main className="radar-page hustle-page hustle-index-page">
       <div className="ambient-glow ambient-glow-a" aria-hidden="true" />
       <div className="page-shell hustle-shell">
         <header className="hustle-nav reveal reveal-1">
@@ -43,72 +36,36 @@ export default function SideHustlesPage() {
           </div>
         </header>
 
-        <section className="hustle-hero reveal reveal-2">
-          <p className="section-kicker">SELECTED SIDE HUSTLES</p>
-          <h1>精选副业</h1>
-          <p>
-            只选有真实成绩的个人实战。这里告诉你谁做成了、解决了什么问题，完整方法留在生财有术。
-          </p>
-          <div className="hustle-principles" aria-label="收录原则">
-            <span>{sideHustles.length} 个真实案例</span>
-            <span>个人复盘</span>
-            <span>免费体验</span>
+        <section className="hustle-hero-banner reveal reveal-2">
+          <div className="hustle-hero-copy">
+            <p className="hustle-hero-kicker">SELECTED SIDE HUSTLES</p>
+            <div className="hustle-hero-title-row">
+              <h1>精选副业</h1>
+              <span>除了做 X，还能做什么赚钱？</span>
+            </div>
+            <p>
+              只收录有真实结果、真实过程的个人复盘。一眼看懂谁做成了、做到什么程度，再决定要不要深入学。
+            </p>
+          </div>
+
+          <div className="hustle-hero-proof" aria-label="收录标准">
+            <span>
+              <ShieldCheck /> 站长逐篇筛选
+            </span>
+            <div>
+              <p>
+                <strong>{sideHustles.length}</strong>
+                <small>篇真实案例</small>
+              </p>
+              <p>
+                <strong>100%</strong>
+                <small>原帖可核验</small>
+              </p>
+            </div>
           </div>
         </section>
 
-        <section className="hustle-feed" aria-label="精选副业列表">
-          {sideHustles.map((post, index) => (
-            <article
-              className="hustle-feed-card reveal reveal-3"
-              key={post.topic_id}
-            >
-              <a href={`/side-hustles/${post.slug}`} className="hustle-cover">
-                <Image
-                  src={post.cover}
-                  alt=""
-                  fill
-                  sizes="(max-width: 760px) 100vw, 420px"
-                  priority={index === 0}
-                />
-              </a>
-              <div className="hustle-card-copy">
-                <div className="hustle-author">
-                  <Image src={post.avatar} alt="" width={42} height={42} />
-                  <span>
-                    <strong>{post.author}</strong>
-                    <small>{post.published_at} · 生财精华帖</small>
-                  </span>
-                </div>
-                <div className="hustle-tags">
-                  {post.tags.slice(0, 3).map((tag) => (
-                    <span key={tag}>{tag}</span>
-                  ))}
-                </div>
-                <h2>
-                  <a href={`/side-hustles/${post.slug}`}>{post.title}</a>
-                </h2>
-                <p>{post.hook}</p>
-                <div className="hustle-card-stats" aria-label="帖子互动数据">
-                  <span>
-                    <Heart /> {post.stats.likes}
-                  </span>
-                  <span>
-                    <Bookmark /> {post.stats.favorites}
-                  </span>
-                  <span>
-                    <MessageCircle /> {post.stats.comments}
-                  </span>
-                </div>
-                <a
-                  href={`/side-hustles/${post.slug}`}
-                  className="hustle-read-more"
-                >
-                  看这篇解决什么问题 <ArrowUpRight />
-                </a>
-              </div>
-            </article>
-          ))}
-        </section>
+        <SideHustleDirectory posts={sideHustles} />
       </div>
     </main>
   );

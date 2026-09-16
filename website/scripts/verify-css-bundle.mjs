@@ -13,7 +13,7 @@ const requiredSelectors = [
   '.prayer-card',
   '.footer-contact',
   '.tibo-post-card',
-  '.hustle-feed-card',
+  '.hustle-directory-panel',
 ];
 
 async function collectCssFiles(directory) {
