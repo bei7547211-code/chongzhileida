@@ -87,8 +87,8 @@ export function validateResetFeed(feed) {
   );
   invariant(feed.monitor.enabled === true, '每日巡检必须处于启用状态');
   invariant(
-    feed.monitor.scheduleLabel === '每天 11:00',
-    '巡检时间必须标记为每天 11:00',
+    feed.monitor.scheduleLabel === '每天 15:00',
+    '巡检时间必须标记为每天 15:00',
   );
   invariant(feed.monitor.reviewRequired === true, '公开信息必须经过审查后发布');
   invariant(Array.isArray(feed.events), 'events 必须是数组');

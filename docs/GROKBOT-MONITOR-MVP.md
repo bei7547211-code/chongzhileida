@@ -8,7 +8,7 @@ Tibo 的 X 主页，发现新帖子后将原文交给本项目的确定性入库
 GrokBot 不负责随意改页面，也不能根据自己的猜测编造公告。
 
 ```text
-GrokBot Routine（每天 11:00，Asia/Shanghai）
+GrokBot Routine（每天 15:00，Asia/Shanghai）
   → 打开 @thsottiaux 主页和回复页
   → 只取得新帖子的 ID / 原文 / 时间 / URL
   → npm run ingest:tibo
@@ -27,7 +27,7 @@ GrokBot Routine（每天 11:00，Asia/Shanghai）
 3. 打开 Bot 的云电脑，由你亲自完成 X 和 GitHub 登录。不要把密码、验证码发给 Bot。
 4. 让 Bot 克隆私有仓库 `bei7547211-code/chongzhileida`。
 5. 先手动运行一次下方指令，确认它只建立基线，不会把旧帖子重复推送。
-6. 手动验收通过后，再将它保存为每天北京时间 11:00 执行的 Routine。
+6. 手动验收通过后，再将它保存为每天北京时间 15:00 执行的 Routine。
 
 在正式连接 Routine 前，可在 `website/` 目录运行下面的无写入演练：
 
@@ -155,7 +155,7 @@ npm run audit:grokbot -- scripts/fixtures/grokbot-audit.sample.json --dry-run
 - GrokBot 只能修改 `website/data/reset-feed.json`。
 - 入库后数据校验、自动测试和 Next.js 生产构建全部通过。
 - GitHub `main` 更新后，Vercel 自动更新正式域名。
-- 每天北京时间 11:00 仅运行一次，并为每次运行生成审计记录。
+- 每天北京时间 15:00 仅运行一次，并为每次运行生成审计记录。
 - 审计报告能区分正常、已更新、需要判断和运行失败。
 - 每个待判断问题必须包含 2—3 个选项、推荐项、理由和未回复时的安全默认动作。
 
@@ -163,5 +163,5 @@ npm run audit:grokbot -- scripts/fixtures/grokbot-audit.sample.json --dry-run
 
 - GrokBot 依赖 X 网页和登录会话，不如官方 X API 稳定。
 - X 页面改版、账号掉线或出现人机验证时，需要人工恢复。
-- 每天 11:00 运行一次，成本低、噪音少，但 Tibo 在 11:00 之后发布的公告会在次日才发现。
+- 每天 15:00 运行一次，成本低、噪音少，但 Tibo 在 15:00 之后发布的公告会在次日才发现。
 - 当用户量和可靠性要求提高后，应迁移到 X API Filtered Stream Webhook。
