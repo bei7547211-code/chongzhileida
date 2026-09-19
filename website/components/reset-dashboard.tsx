@@ -38,7 +38,7 @@ import {
 } from '@/data/reset-history';
 import {
   tiboPosts,
-  tiboPostsUpdatedAt,
+  tiboPostsVerifiedAt,
   type TiboResetSignal,
 } from '@/data/tibo-posts';
 import { calculateResetProbability } from '@/lib/reset-probability';
@@ -63,7 +63,7 @@ const dailyScanMinute = Number(scheduleMatch?.[2] ?? 0);
 const probabilityModel = calculateResetProbability(
   resetEvents,
   tiboPosts,
-  tiboPostsUpdatedAt,
+  tiboPostsVerifiedAt,
 );
 
 type ScanCountdown = {
@@ -112,7 +112,7 @@ function formatChineseDate(date: string) {
   return `${year} 年 ${Number(month)} 月 ${Number(day)} 日`;
 }
 
-function getRelativeTime(publishedAt: string, asOf = tiboPostsUpdatedAt) {
+function getRelativeTime(publishedAt: string, asOf = tiboPostsVerifiedAt) {
   const elapsed = Math.max(0, Date.parse(asOf) - Date.parse(publishedAt));
   const hours = Math.floor(elapsed / 3_600_000);
   if (hours < 1) return { value: '刚刚', unit: '' };
@@ -772,7 +772,7 @@ export function ResetDashboard() {
             </div>
             <p>
               已核验 {tiboPosts.length} 条 ·{' '}
-              {formatPublishedTime(tiboPostsUpdatedAt)} 更新
+              {formatPublishedTime(tiboPostsVerifiedAt)} 核验
             </p>
           </div>
 
@@ -832,7 +832,7 @@ export function ResetDashboard() {
           <div className="footer-primary">
             <p>
               公开记录均可直达原帖 · 最近数据{' '}
-              {formatChineseDate(tiboPostsUpdatedAt.slice(0, 10))} · 与 OpenAI
+              {formatChineseDate(tiboPostsVerifiedAt.slice(0, 10))} · 与 OpenAI
               无隶属关系
             </p>
             <button

@@ -48,7 +48,7 @@ export function classifyResetPost(text) {
   }
 
   if (
-    /\b(reset all|all reset|full reset|reset (?:has )?propagated|reset usage|usage (?:has been )?reset|reset for everyone)\b/i.test(
+    /\b(reset all|all reset|full reset|reset (?:has )?propagated|reset usage|usage (?:has been )?reset|reset for everyone|reset (?:usage )?for all|reset completed|completed the reset)\b/i.test(
       normalized,
     )
   ) {
@@ -82,15 +82,15 @@ export function validateResetFeed(feed) {
     '数据源必须是 @thsottiaux',
   );
   invariant(
-    feed.monitor?.provider === 'codex-heartbeat',
-    '当前巡检来源必须是 codex-heartbeat',
+    feed.monitor?.provider === 'mac-fxtwitter',
+    '当前巡检来源必须是 mac-fxtwitter',
   );
   invariant(feed.monitor.enabled === true, '每日巡检必须处于启用状态');
   invariant(
-    feed.monitor.scheduleLabel === '每天 15:00',
-    '巡检时间必须标记为每天 15:00',
+    feed.monitor.scheduleLabel === '每天 11:00',
+    '巡检时间必须标记为每天 11:00',
   );
-  invariant(feed.monitor.reviewRequired === true, '公开信息必须经过审查后发布');
+  invariant(feed.monitor.reviewRequired === true, '含糊信息必须经过审查后发布');
   invariant(Array.isArray(feed.events), 'events 必须是数组');
   invariant(Array.isArray(feed.announcements), 'announcements 必须是数组');
 

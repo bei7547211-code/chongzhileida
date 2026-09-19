@@ -17,6 +17,13 @@
     "ingest:tibo": "node scripts/ingest-tibo-post.mjs",
     "audit:grokbot": "node scripts/report-grokbot-run.mjs",
     "guard:grokbot": "node scripts/guard-grokbot-diff.mjs",
+    "monitor:tibo": "node scripts/run-tibo-monitor.mjs --dry-run",
+    "monitor:tibo:write": "node scripts/run-tibo-monitor.mjs --write",
+    "monitor:tibo:publish": "node scripts/run-tibo-monitor.mjs --publish",
+    "monitor:tibo:install": "node scripts/install-tibo-monitor.mjs",
+    "monitor:tibo:uninstall": "node scripts/install-tibo-monitor.mjs --uninstall",
+    "monitor:feishu:configure": "node scripts/configure-monitor-feishu.mjs",
+    "monitor:feishu:remove": "node scripts/configure-monitor-feishu.mjs --remove",
     "guard:private-prompts": "node scripts/guard-private-prompts.mjs",
     "lint": "oxlint",
     "format": "oxfmt"

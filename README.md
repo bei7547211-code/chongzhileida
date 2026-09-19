@@ -23,9 +23,9 @@
 - 已加入核心规则自动测试，测试与正式构建均通过。
 - 当前公开记录来自 Tibo 的真实 X 原帖，并提供原帖直达链接。
 - 网站已调整为 Vercel 原生支持的 Next.js 生产构建。
-- 已启用每天 15:00 的零新增成本公开信息巡检，并把运行结果、故障和待判断问题发送到飞书审查群。
+- 已开发每天 11:00 在 Mac 运行的零新增成本公开信息巡检：普通动态自动同步，明确重置自动发布，含糊内容只进入飞书审查。
 - 已完成作者校验、reset 分类、ID 去重、数据守卫和 CI；含糊内容不会直接发布。
-- GrokBot 仅保留为未来可选的数据入口，不是当前线上运行的必要依赖。
+- 采集器直接读取公开 JSON，不依赖 X 登录或 GrokBot；第三方数据源异常时保留上一版网站。
 - 已接通生财有术官方 MCP，并上线“精选副业”列表、脱敏详情页和三天体验卡入口。
 - 精选副业只展示作者成绩、问题和少量原话，不公开原帖的方法与步骤。
 
@@ -38,7 +38,8 @@ npm run dev
 ```
 
 最新开发说明见 `docs/DEVELOPMENT-MVP-Tibo公告流-v0.4.md`。
-可选的 GrokBot 监控与验收手册见 `docs/GROKBOT-MONITOR-MVP.md`。
+Mac 自动监控、飞书配置与验收手册见 `docs/MAC-TIBO-MONITOR-MVP.md`。
+旧 GrokBot 方案的迁移说明见 `docs/GROKBOT-MONITOR-MVP.md`。
 自动执行边界和人工决策规则见 `docs/OPERATIONS-REVIEW-POLICY.md`。
 精选副业的项目化收录规则见 `docs/SIDE-HUSTLE-CURATION-RULES.md`。
 

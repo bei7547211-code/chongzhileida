@@ -19,6 +19,7 @@ const feed = JSON.parse(await readFile(feedPath, 'utf8'));
 const postsFeed = JSON.parse(await readFile(postsPath, 'utf8'));
 const recentResult = ingestRecentTiboPost(postsFeed, payload);
 const result = ingestTiboPost(feed, payload);
+const canPublishRecentPost = result.reason !== 'needs-judgment';
 
 if (!result.changed) {
   const resetOutput = {
@@ -26,7 +27,7 @@ if (!result.changed) {
     irrelevant: 'GENERAL',
     'needs-judgment': `NEEDS_JUDGMENT ${payload.id}`,
   }[result.reason];
-  if (!dryRun && recentResult.changed) {
+  if (!dryRun && canPublishRecentPost && recentResult.changed) {
     await writeFile(
       postsPath,
       `${JSON.stringify(recentResult.feed, null, 2)}\n`,
@@ -34,7 +35,7 @@ if (!result.changed) {
     );
   }
   console.log(
-    recentResult.changed
+    canPublishRecentPost && recentResult.changed
       ? `${dryRun ? 'DRY_RUN ' : ''}TRACKED ${payload.id} AS ${resetOutput}`
       : resetOutput,
   );

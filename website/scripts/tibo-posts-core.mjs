@@ -35,6 +35,7 @@ function summarize(text, limit = 140) {
 export function validateTiboPostsFeed(feed) {
   invariant(feed?.schemaVersion === 1, '不支持的 Tibo 帖子数据版本');
   invariant(Number.isFinite(Date.parse(feed.updatedAt)), '帖子更新时间无效');
+  invariant(Number.isFinite(Date.parse(feed.verifiedAt)), '帖子核验时间无效');
   invariant(Array.isArray(feed.posts), 'posts 必须是数组');
   const ids = new Set();
   for (const post of feed.posts) {
@@ -107,6 +108,7 @@ export function ingestRecentTiboPost(feed, payload, now = new Date()) {
   nextFeed.posts.sort((a, b) => b.publishedAt.localeCompare(a.publishedAt));
   nextFeed.posts = nextFeed.posts.slice(0, 30);
   nextFeed.updatedAt = now.toISOString();
+  nextFeed.verifiedAt = now.toISOString();
   validateTiboPostsFeed(nextFeed);
   return { changed: true, reason: resetSignal, feed: nextFeed };
 }

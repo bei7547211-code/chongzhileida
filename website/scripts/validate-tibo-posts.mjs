@@ -10,6 +10,11 @@ const feed = JSON.parse(
 
 assert.equal(feed.schemaVersion, 1, 'Tibo 帖子版本必须为 1');
 assert.ok(Date.parse(feed.updatedAt), 'Tibo 帖子更新时间无效');
+assert.ok(Date.parse(feed.verifiedAt), 'Tibo 帖子核验时间无效');
+assert.ok(
+  Date.parse(feed.verifiedAt) >= Date.parse(feed.updatedAt),
+  '核验时间不能早于内容更新时间',
+);
 assert.ok(
   Array.isArray(feed.posts) && feed.posts.length >= 6,
   '至少保留 6 条帖子',

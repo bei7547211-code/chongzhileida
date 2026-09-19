@@ -9,54 +9,177 @@
     "avatarUrl": "https://codex-resets.com/thsottiaux-avatar.jpg"
   },
   "monitor": {
-    "provider": "codex-heartbeat",
+    "provider": "mac-fxtwitter",
     "enabled": true,
-    "scheduleLabel": "每天 15:00",
+    "scheduleLabel": "每天 11:00",
     "reviewRequired": true,
     "lastIngestedPostId": "2098685367058612394"
   },
   "events": [
-    { "date": "2026-09-12", "kind": "full" },
-    { "date": "2026-09-08", "kind": "full" },
-    { "date": "2026-09-05", "kind": "banked" },
-    { "date": "2026-09-03", "kind": "banked" },
-    { "date": "2026-08-31", "kind": "full" },
-    { "date": "2026-08-29", "kind": "full" },
-    { "date": "2026-08-27", "kind": "full" },
-    { "date": "2026-08-25", "kind": "signal" },
-    { "date": "2026-08-24", "kind": "full" },
-    { "date": "2026-08-21", "kind": "banked" },
-    { "date": "2026-08-13", "kind": "full" },
-    { "date": "2026-08-11", "kind": "full" },
-    { "date": "2026-08-08", "kind": "full" },
-    { "date": "2026-08-01", "kind": "full" },
-    { "date": "2026-07-29", "kind": "full" },
-    { "date": "2026-07-28", "kind": "full" },
-    { "date": "2026-07-25", "kind": "full" },
-    { "date": "2026-07-21", "kind": "full" },
-    { "date": "2026-07-18", "kind": "full" },
-    { "date": "2026-07-16", "kind": "full" },
-    { "date": "2026-07-14", "kind": "full" },
-    { "date": "2026-07-13", "kind": "banked" },
-    { "date": "2026-07-12", "kind": "banked" },
-    { "date": "2026-07-11", "kind": "full" },
-    { "date": "2026-07-10", "kind": "full" },
-    { "date": "2026-07-09", "kind": "full" },
-    { "date": "2026-06-29", "kind": "full" },
-    { "date": "2026-06-28", "kind": "full" },
-    { "date": "2026-06-26", "kind": "full" },
-    { "date": "2026-06-18", "kind": "banked" },
-    { "date": "2026-06-04", "kind": "full" },
-    { "date": "2026-05-31", "kind": "full" },
-    { "date": "2026-05-23", "kind": "full" },
-    { "date": "2026-05-16", "kind": "full" },
-    { "date": "2026-04-28", "kind": "full" },
-    { "date": "2026-04-20", "kind": "signal" },
-    { "date": "2026-04-17", "kind": "full" },
-    { "date": "2026-04-09", "kind": "full" },
-    { "date": "2026-04-07", "kind": "full" },
-    { "date": "2026-04-01", "kind": "full" },
-    { "date": "2026-03-27", "kind": "full" }
+    {
+      "date": "2026-09-12",
+      "kind": "full"
+    },
+    {
+      "date": "2026-09-08",
+      "kind": "full"
+    },
+    {
+      "date": "2026-09-05",
+      "kind": "banked"
+    },
+    {
+      "date": "2026-09-03",
+      "kind": "banked"
+    },
+    {
+      "date": "2026-08-31",
+      "kind": "full"
+    },
+    {
+      "date": "2026-08-29",
+      "kind": "full"
+    },
+    {
+      "date": "2026-08-27",
+      "kind": "full"
+    },
+    {
+      "date": "2026-08-25",
+      "kind": "signal"
+    },
+    {
+      "date": "2026-08-24",
+      "kind": "full"
+    },
+    {
+      "date": "2026-08-21",
+      "kind": "banked"
+    },
+    {
+      "date": "2026-08-13",
+      "kind": "full"
+    },
+    {
+      "date": "2026-08-11",
+      "kind": "full"
+    },
+    {
+      "date": "2026-08-08",
+      "kind": "full"
+    },
+    {
+      "date": "2026-08-01",
+      "kind": "full"
+    },
+    {
+      "date": "2026-07-29",
+      "kind": "full"
+    },
+    {
+      "date": "2026-07-28",
+      "kind": "full"
+    },
+    {
+      "date": "2026-07-25",
+      "kind": "full"
+    },
+    {
+      "date": "2026-07-21",
+      "kind": "full"
+    },
+    {
+      "date": "2026-07-18",
+      "kind": "full"
+    },
+    {
+      "date": "2026-07-16",
+      "kind": "full"
+    },
+    {
+      "date": "2026-07-14",
+      "kind": "full"
+    },
+    {
+      "date": "2026-07-13",
+      "kind": "banked"
+    },
+    {
+      "date": "2026-07-12",
+      "kind": "banked"
+    },
+    {
+      "date": "2026-07-11",
+      "kind": "full"
+    },
+    {
+      "date": "2026-07-10",
+      "kind": "full"
+    },
+    {
+      "date": "2026-07-09",
+      "kind": "full"
+    },
+    {
+      "date": "2026-06-29",
+      "kind": "full"
+    },
+    {
+      "date": "2026-06-28",
+      "kind": "full"
+    },
+    {
+      "date": "2026-06-26",
+      "kind": "full"
+    },
+    {
+      "date": "2026-06-18",
+      "kind": "banked"
+    },
+    {
+      "date": "2026-06-04",
+      "kind": "full"
+    },
+    {
+      "date": "2026-05-31",
+      "kind": "full"
+    },
+    {
+      "date": "2026-05-23",
+      "kind": "full"
+    },
+    {
+      "date": "2026-05-16",
+      "kind": "full"
+    },
+    {
+      "date": "2026-04-28",
+      "kind": "full"
+    },
+    {
+      "date": "2026-04-20",
+      "kind": "signal"
+    },
+    {
+      "date": "2026-04-17",
+      "kind": "full"
+    },
+    {
+      "date": "2026-04-09",
+      "kind": "full"
+    },
+    {
+      "date": "2026-04-07",
+      "kind": "full"
+    },
+    {
+      "date": "2026-04-01",
+      "kind": "full"
+    },
+    {
+      "date": "2026-03-27",
+      "kind": "full"
+    }
   ],
   "announcements": [
     {

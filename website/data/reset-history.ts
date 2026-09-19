@@ -28,7 +28,7 @@ type ResetFeed = {
     avatarUrl: string;
   };
   monitor: {
-    provider: 'codex-heartbeat';
+    provider: 'mac-fxtwitter';
     enabled: boolean;
     scheduleLabel: string;
     reviewRequired: boolean;

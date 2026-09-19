@@ -16,12 +16,16 @@ test('巡检状态与人工审查边界会被校验', () => {
   invalidFeed.monitor.reviewRequired = false;
   assert.throws(
     () => validateResetFeed(invalidFeed),
-    /公开信息必须经过审查后发布/,
+    /含糊信息必须经过审查后发布/,
   );
 });
 
 test('全量重置与重置卡可被确定性分类', () => {
   assert.equal(classifyResetPost('Reset all propagated.')?.kind, 'full');
+  assert.equal(
+    classifyResetPost('We reset usage for all paid subscriptions.')?.kind,
+    'full',
+  );
   assert.equal(classifyResetPost('A banked reset is ready.')?.kind, 'banked');
   assert.equal(classifyResetPost('Shipping a new editor theme.'), null);
 });
