@@ -142,18 +142,26 @@ export function SideHustleDirectory({ posts }: { posts: SideHustle[] }) {
       </div>
 
       <aside className="hustle-sidebar" aria-label="精选副业说明与体验入口">
-        <section className="hustle-sidebar-card hustle-curator-card">
-          <span className="hustle-sidebar-icon" aria-hidden="true">
-            <BadgeCheck />
-          </span>
-          <p className="hustle-sidebar-kicker">为什么只有这几篇？</p>
-          <h2>只收真实结果的个人复盘</h2>
+        <section className="hustle-sidebar-card hustle-trust-card">
+          <p className="hustle-sidebar-kicker">COMMUNITY PROOF</p>
+          <h2>一个经得起时间检验的社群</h2>
+          <dl>
+            <div>
+              <dt>持续运营</dt>
+              <dd>10 年</dd>
+            </div>
+            <div>
+              <dt>社群成员</dt>
+              <dd className="hustle-member-count">80,000+</dd>
+            </div>
+            <div>
+              <dt>无理由退款</dt>
+              <dd>72 小时</dd>
+            </div>
+          </dl>
           <p>
-            不凑数，不写虚构收益。每篇都会核对作者、数据、原帖和能解决的具体问题。
+            <ShieldCheck /> 社群数据与体验政策以生财官方当期规则为准。
           </p>
-          <a href="#case-directory" className="hustle-sidebar-link">
-            <BookOpenText /> 查看全部 {posts.length} 个案例
-          </a>
         </section>
 
         <a className="hustle-experience-card" href="/experience-card">
@@ -177,26 +185,18 @@ export function SideHustleDirectory({ posts }: { posts: SideHustle[] }) {
           </span>
         </a>
 
-        <section className="hustle-sidebar-card hustle-trust-card">
-          <p className="hustle-sidebar-kicker">COMMUNITY PROOF</p>
-          <h2>一个经得起时间检验的社群</h2>
-          <dl>
-            <div>
-              <dt>持续运营</dt>
-              <dd>10 年</dd>
-            </div>
-            <div>
-              <dt>社群成员</dt>
-              <dd>80000+</dd>
-            </div>
-            <div>
-              <dt>无理由退款</dt>
-              <dd>72 小时</dd>
-            </div>
-          </dl>
+        <section className="hustle-sidebar-card hustle-curator-card">
+          <span className="hustle-sidebar-icon" aria-hidden="true">
+            <BadgeCheck />
+          </span>
+          <p className="hustle-sidebar-kicker">为什么只有这几篇？</p>
+          <h2>只收真实结果的个人复盘</h2>
           <p>
-            <ShieldCheck /> 社群数据与体验政策以生财官方当期规则为准。
+            不凑数，不写虚构收益。每篇都会核对作者、数据、原帖和能解决的具体问题。
           </p>
+          <a href="#case-directory" className="hustle-sidebar-link">
+            <BookOpenText /> 查看全部 {posts.length} 个案例
+          </a>
         </section>
       </aside>
     </section>

@@ -2947,8 +2947,14 @@
 .hustle-trust-card dd {
   color: var(--hustle-accent);
   font-family: var(--font-geist-mono), monospace;
-  font-size: 12px;
+  font-size: 13px;
   font-weight: 800;
+}
+
+.hustle-trust-card .hustle-member-count {
+  color: #ffad6d;
+  font-size: 15px;
+  letter-spacing: 0.025em;
 }
 
 .hustle-trust-card > p:last-child {
