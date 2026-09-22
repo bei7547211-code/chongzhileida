@@ -4,8 +4,8 @@
   "status": "scheduled",
   "schedule": {
     "timezone": "Asia/Shanghai",
-    "dailyAt": "11:20",
-    "minimumPublishIntervalHours": 40
+    "weekday": "Monday",
+    "weeklyAt": "11:20"
   },
   "runtimeStatePath": "~/.reset-radar/side-hustle-curator-state.json",
   "lockPath": "~/.reset-radar/side-hustle-curator.lock",
