@@ -86,7 +86,7 @@ export function SideHustleDirectory({ posts }: { posts: SideHustle[] }) {
         </div>
 
         <div className="hustle-rank-list">
-          {visiblePosts.map((post) => {
+          {visiblePosts.map((post, visibleIndex) => {
             const originalRank = posts.findIndex(
               (candidate) => candidate.topic_id === post.topic_id,
             );
@@ -107,6 +107,7 @@ export function SideHustleDirectory({ posts }: { posts: SideHustle[] }) {
                   alt={`${post.author} 的头像`}
                   width={46}
                   height={46}
+                  loading={visibleIndex === 0 ? 'eager' : 'lazy'}
                 />
 
                 <div className="hustle-rank-copy">
@@ -167,6 +168,7 @@ export function SideHustleDirectory({ posts }: { posts: SideHustle[] }) {
               src="/side-hustles/experience-card.png"
               alt="生财有术三天体验卡"
               fill
+              loading="eager"
               sizes="(max-width: 980px) 320px, 280px"
             />
           </div>
