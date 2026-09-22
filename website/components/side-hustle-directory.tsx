@@ -176,23 +176,24 @@ export function SideHustleDirectory({ posts }: { posts: SideHustle[] }) {
         </a>
 
         <section className="hustle-sidebar-card hustle-trust-card">
-          <h2>收录承诺</h2>
+          <p className="hustle-sidebar-kicker">COMMUNITY PROOF</p>
+          <h2>一个经得起时间检验的社群</h2>
           <dl>
             <div>
-              <dt>真实案例</dt>
-              <dd>{posts.length} 篇</dd>
+              <dt>持续运营</dt>
+              <dd>10 年</dd>
             </div>
             <div>
-              <dt>原帖可核验</dt>
-              <dd>{posts.length} 篇</dd>
+              <dt>社群成员</dt>
+              <dd>80000+</dd>
             </div>
             <div>
-              <dt>虚构收益</dt>
-              <dd>0 篇</dd>
+              <dt>无理由退款</dt>
+              <dd>72 小时</dd>
             </div>
           </dl>
           <p>
-            <ShieldCheck /> 先看结果，再看问题，最后决定是否深入。
+            <ShieldCheck /> 社群数据与体验政策以生财官方当期规则为准。
           </p>
         </section>
       </aside>

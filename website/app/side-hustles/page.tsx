@@ -41,25 +41,25 @@ export default function SideHustlesPage() {
             <p className="hustle-hero-kicker">SELECTED SIDE HUSTLES</p>
             <div className="hustle-hero-title-row">
               <h1>精选副业</h1>
-              <span>除了做 X，还能做什么赚钱？</span>
+              <span>除了上班，还能做什么赚钱？</span>
             </div>
             <p>
-              只收录有真实结果、真实过程的个人复盘。一眼看懂谁做成了、做到什么程度，再决定要不要深入学。
+              从生财有术精华帖中筛选真实项目复盘。先看谁做成了、做到什么程度，再决定要不要深入学习。
             </p>
           </div>
 
-          <div className="hustle-hero-proof" aria-label="收录标准">
+          <div className="hustle-hero-proof" aria-label="生财有术社群信息">
             <span>
-              <ShieldCheck /> 站长逐篇筛选
+              <ShieldCheck /> 精华内容 · 逐篇核验
             </span>
             <div>
               <p>
-                <strong>{sideHustles.length}</strong>
-                <small>篇真实案例</small>
+                <strong>8万+</strong>
+                <small>社群成员</small>
               </p>
               <p>
-                <strong>100%</strong>
-                <small>原帖可核验</small>
+                <strong>10年</strong>
+                <small>持续运营</small>
               </p>
             </div>
           </div>

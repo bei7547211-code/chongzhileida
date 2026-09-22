@@ -1,9 +1,14 @@
 {
-  "schemaVersion": 1,
-  "enabled": false,
-  "status": "ready",
-  "lastRunAt": null,
-  "lastPublishedTopicId": null,
-  "lastResult": null,
-  "pendingRequirements": ["运行频率", "飞书 Webhook"]
+  "schemaVersion": 2,
+  "enabled": true,
+  "status": "scheduled",
+  "schedule": {
+    "timezone": "Asia/Shanghai",
+    "dailyAt": "11:20",
+    "minimumPublishIntervalHours": 40
+  },
+  "runtimeStatePath": "~/.reset-radar/side-hustle-curator-state.json",
+  "lockPath": "~/.reset-radar/side-hustle-curator.lock",
+  "automationId": "automation-2",
+  "pendingRequirements": []
 }

@@ -1,4 +1,5 @@
 import { readFile } from 'node:fs/promises';
+import { homedir } from 'node:os';
 import { resolve } from 'node:path';
 import { buildSideHustleNotification } from './side-hustle-notification-core.mjs';
 
@@ -19,8 +20,24 @@ if (dryRun) {
   process.exit(0);
 }
 
-const webhook = process.env.FEISHU_WEBHOOK_URL;
-if (!webhook) throw new Error('未配置 FEISHU_WEBHOOK_URL');
+let webhook = process.env.FEISHU_WEBHOOK_URL?.trim();
+if (!webhook) {
+  try {
+    webhook = (
+      await readFile(
+        resolve(homedir(), '.reset-radar/feishu-webhook-url'),
+        'utf8',
+      )
+    ).trim();
+  } catch (error) {
+    if (error.code !== 'ENOENT') throw error;
+  }
+}
+if (!webhook) {
+  throw new Error(
+    '未配置飞书 Webhook；请先运行 npm run monitor:feishu:configure',
+  );
+}
 
 const response = await fetch(webhook, {
   method: 'POST',

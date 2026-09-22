@@ -2426,7 +2426,7 @@
   border: 1px solid var(--hustle-accent-border);
   border-radius: 24px;
   background:
-    linear-gradient(108deg, rgb(255 138 61 / 12%), transparent 48%),
+    linear-gradient(108deg, rgb(255 138 61 / 15%), transparent 54%),
     linear-gradient(135deg, rgb(15 34 25 / 96%), rgb(10 25 18 / 98%));
   box-shadow:
     0 24px 70px rgb(0 0 0 / 24%),
@@ -2482,7 +2482,9 @@
 }
 
 .hustle-hero-title-row > span {
-  color: var(--hustle-accent-bright);
+  padding-left: 17px;
+  border-left: 1px solid rgb(255 138 61 / 42%);
+  color: #ff9a57;
   font-size: clamp(0.86rem, 1.4vw, 1rem);
   font-weight: 700;
 }
@@ -2496,8 +2498,10 @@
 }
 
 .hustle-hero-proof {
-  padding-left: 30px;
+  padding: 20px 0 20px 30px;
   border-left: 1px solid rgb(255 138 61 / 20%);
+  border-radius: 18px;
+  background: linear-gradient(120deg, transparent, rgb(255 138 61 / 7%));
 }
 
 .hustle-hero-proof > span {
@@ -2528,9 +2532,10 @@
 }
 
 .hustle-hero-proof strong {
-  color: var(--hustle-accent-bright);
+  color: #ff8a3d;
   font-family: var(--font-geist-mono), monospace;
-  font-size: 1.7rem;
+  font-size: 1.85rem;
+  font-weight: 800;
   line-height: 1;
 }
 
@@ -2916,12 +2921,13 @@
 }
 
 .hustle-trust-card h2 {
-  margin-top: 0;
+  margin-top: 8px;
 }
 
 .hustle-trust-card dl {
   display: grid;
-  margin-top: 13px;
+  margin-top: 16px;
+  border-bottom: 1px solid rgb(255 255 255 / 7%);
 }
 
 .hustle-trust-card dl div {
@@ -2929,7 +2935,7 @@
   align-items: center;
   justify-content: space-between;
   gap: 14px;
-  min-height: 39px;
+  min-height: 43px;
   border-top: 1px solid rgb(255 255 255 / 7%);
 }
 
@@ -2939,10 +2945,10 @@
 }
 
 .hustle-trust-card dd {
-  color: var(--hustle-accent-bright);
+  color: var(--hustle-accent);
   font-family: var(--font-geist-mono), monospace;
-  font-size: 11px;
-  font-weight: 700;
+  font-size: 12px;
+  font-weight: 800;
 }
 
 .hustle-trust-card > p:last-child {
@@ -3692,6 +3698,10 @@
   .hustle-hero-title-row h1 {
     font-size: 2.6rem;
   }
+  .hustle-hero-title-row > span {
+    padding-left: 0;
+    border-left: 0;
+  }
   .hustle-hero-copy > p:last-child {
     font-size: 12px;
   }
@@ -3699,6 +3709,8 @@
     padding: 20px 0 0;
     border-top: 1px solid rgb(255 138 61 / 20%);
     border-left: 0;
+    border-radius: 0;
+    background: transparent;
   }
   .hustle-hero-proof > div {
     max-width: 280px;

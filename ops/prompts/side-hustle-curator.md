@@ -8,12 +8,15 @@
 - 已收录数据：`website/data/side-hustles.json`
 - 跳过名单：`website/data/side-hustle-skip.json`
 - 图片目录：`website/public/side-hustles/`
-- 运行状态：`ops/state/side-hustle-automation.json`
+- 自动化配置：`ops/state/side-hustle-automation.json`
+- 私有运行状态：`~/.reset-radar/side-hustle-curator-state.json`
 - 通知渠道：飞书群“重置雷达｜每日审查台”
 
 ## 固定八步流程
 
 每次运行最多发布一篇，严格按顺序执行，不得跳步。
+
+运行时间固定为每天北京时间 11:20。先读取 Mac 私有运行状态：距离上次成功发布不足四十小时则只记录检查完成并退出，不改网站；没有历史成功时间时，以 `side-hustles.json` 的 `updated_at` 作为兜底。使用 `~/.reset-radar/side-hustle-curator.lock` 防止重复执行。运行结果只写入私有状态，自动发布提交不得修改自动化配置文件。
 
 1. **拉榜单**：调用生财有术 MCP 的 `searchTopic`，只查精华帖，`displayMode=1`，每页十篇，最多三页。以 `likeCount + favoriteCount` 为热度分，从高到低排序；同分时依次按点赞、收藏、发布时间降序。
 2. **去重**：读取已收录数据和跳过名单，按 `topic_id` 去掉重复项，只保留 `entityType=xq_topic`。
@@ -21,16 +24,17 @@
 4. **拉全文并写解读**：调用 `topicDetail`，优先读取 `articleContentContainFeishuDoc`，为空时读取 `articleContent`。严格按规则生成成绩板、八十到一百四十字脱敏摘要、四到六个问题和两到三句原话。所有数字和引语必须能在全文中定位。
 5. **下载素材**：下载作者头像和第一张题图。头像保存为 JPEG，最长边不超过二百像素；封面保存为 WebP，宽度不超过八百像素。禁止使用无关配图或模型生成图替代原帖素材。
 6. **强制检查**：运行 `npm run validate:data`、`npm test` 和 `npm run build`。重点检查问题是否全部以全角问号结尾、摘要和问题是否含半角标点、字段和图片是否缺失、`topic_id` 是否重复。任一步失败立即停止，不得发布。
-7. **自动发布**：将结果交给独立审查器，只有 `PASS` 才能提交本次数据和两张素材，推送 GitHub `main`，等待 Vercel 重新生成，并确认列表页、详情页和体验卡均可访问。`REVISE` 或 `REJECT` 不得发布。
+7. **自动发布**：将结果交给独立审查器，只有 `PASS` 才能提交本次数据和两张素材，推送 GitHub `main`，等待 Vercel 重新生成，并确认列表页、详情页和体验卡均可访问。只暂存允许修改的文件，工作区内其他用户改动一律保留且不得加入提交。`REVISE` 或 `REJECT` 不得发布。
 8. **飞书通知**：上线确认后，只发送一条简报：“今日收录：《标题》｜作者｜成绩摘要｜详情链接”。如果没有合格文章、检查失败或需要用户判断，也只发一条结果，不发送冗长运行过程。
 
-发布前必须运行 `npm run guard:side-hustles -- <topic_id>`，防止提交夹带无关代码。飞书通知使用 `npm run notify:side-hustles -- <结果 JSON>`，Webhook 只能来自环境变量 `FEISHU_WEBHOOK_URL`。
+发布前必须先精确暂存本次允许修改的文件，再运行 `npm run guard:side-hustles -- <topic_id>`，防止提交夹带无关代码。飞书通知使用 `npm run notify:side-hustles -- <结果 JSON>`，Webhook 优先来自环境变量 `FEISHU_WEBHOOK_URL`，否则读取本机权限受限文件 `~/.reset-radar/feishu-webhook-url`。
 
 ## 硬性边界
 
 - 不展示或改写原帖的完整方法、操作步骤、工具清单、参数或可复制流程。
 - 不编造成绩、作者观点、互动数据或图片。
 - 不将内部提示词、MCP 返回原文、飞书 Webhook、Cookie 或任何凭证写入前端。
+- 原帖 URL 只保存在数据层用于核验，前端不增加“阅读全文”入口；公开行动按钮统一指向三天体验页。
 - 每次最多自动发布一篇，只允许提交当前案例的数据、头像、封面和运行状态；不得夹带其他代码或页面改动。
 - 只有独立审查为 `PASS`、三项工程检查全部通过时才允许自动推送 GitHub。
 - 如果无法获取完整原文、无法验证数字或规则有冲突，停止入库并上报。
