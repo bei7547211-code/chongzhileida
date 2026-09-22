@@ -1,9 +1,54 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-09-22T05:19:10.126Z",
-  "verifiedAt": "2026-09-22T05:19:10.126Z",
+  "updatedAt": "2026-09-22T07:00:10.698Z",
+  "verifiedAt": "2026-09-22T07:00:10.698Z",
   "sourceUrl": "https://x.com/thsottiaux",
   "posts": [
+    {
+      "id": "2102290126344974551",
+      "publishedAt": "2026-09-22T06:53:19.000Z",
+      "title": "Tibo 回复：@FintechKristen @ajambrosino Negroni…",
+      "summary": "@FintechKristen @ajambrosino Negroni is on you",
+      "category": "回复",
+      "resetSignal": "none",
+      "url": "https://x.com/thsottiaux/status/2102290126344974551"
+    },
+    {
+      "id": "2102289624945352906",
+      "publishedAt": "2026-09-22T06:51:19.000Z",
+      "title": "Tibo 回复：@matteing Sergio is indeed on fire",
+      "summary": "@matteing Sergio is indeed on fire",
+      "category": "回复",
+      "resetSignal": "none",
+      "url": "https://x.com/thsottiaux/status/2102289624945352906"
+    },
+    {
+      "id": "2102289383068180659",
+      "publishedAt": "2026-09-22T06:50:22.000Z",
+      "title": "Tibo 回复：@thdxr ah yes, that elusive and unlim…",
+      "summary": "@thdxr ah yes, that elusive and unlimited ambient inference that they don’t want to know you about",
+      "category": "回复",
+      "resetSignal": "none",
+      "url": "https://x.com/thsottiaux/status/2102289383068180659"
+    },
+    {
+      "id": "2102284586713522193",
+      "publishedAt": "2026-09-22T06:31:18.000Z",
+      "title": "Tibo 回复：@Cch_Chichieh Burn those tokens",
+      "summary": "@Cch_Chichieh Burn those tokens",
+      "category": "回复",
+      "resetSignal": "none",
+      "url": "https://x.com/thsottiaux/status/2102284586713522193"
+    },
+    {
+      "id": "2102284352801427520",
+      "publishedAt": "2026-09-22T06:30:22.000Z",
+      "title": "Tibo 回复：@neogoose_btw Good choice, good choice",
+      "summary": "@neogoose_btw Good choice, good choice",
+      "category": "回复",
+      "resetSignal": "none",
+      "url": "https://x.com/thsottiaux/status/2102284352801427520"
+    },
     {
       "id": "2102254445082116335",
       "publishedAt": "2026-09-22T04:31:32.000Z",
@@ -236,51 +281,6 @@
       "category": "回复",
       "resetSignal": "none",
       "url": "https://x.com/thsottiaux/status/2101055411394904265"
-    },
-    {
-      "id": "2101054196703522861",
-      "publishedAt": "2026-09-18T21:02:10.000Z",
-      "title": "Tibo 回复：@6monthsAgoInAI I remember that",
-      "summary": "@6monthsAgoInAI I remember that",
-      "category": "回复",
-      "resetSignal": "none",
-      "url": "https://x.com/thsottiaux/status/2101054196703522861"
-    },
-    {
-      "id": "2101026876647170092",
-      "publishedAt": "2026-09-18T19:13:37.000Z",
-      "title": "Tibo 回复：@trq212 Yay! This is the way. Come to…",
-      "summary": "@trq212 Yay! This is the way. Come to the light",
-      "category": "回复",
-      "resetSignal": "none",
-      "url": "https://x.com/thsottiaux/status/2101026876647170092"
-    },
-    {
-      "id": "2100985777962537277",
-      "publishedAt": "2026-09-18T16:30:18.000Z",
-      "title": "Tibo 回复：@hegargarcia Good prompt",
-      "summary": "@hegargarcia Good prompt",
-      "category": "回复",
-      "resetSignal": "none",
-      "url": "https://x.com/thsottiaux/status/2100985777962537277"
-    },
-    {
-      "id": "2100821375812530458",
-      "publishedAt": "2026-09-18T05:37:02.000Z",
-      "title": "Tibo 回复：@RoCastilloF Thanks for having me and…",
-      "summary": "@RoCastilloF Thanks for having me and nice hoodie Rodrigo 👀",
-      "category": "回复",
-      "resetSignal": "none",
-      "url": "https://x.com/thsottiaux/status/2100821375812530458"
-    },
-    {
-      "id": "2100649624860254629",
-      "publishedAt": "2026-09-17T18:14:33.000Z",
-      "title": "Tibo 回复：@vlinx_soft See you at DevDay",
-      "summary": "@vlinx_soft See you at DevDay",
-      "category": "回复",
-      "resetSignal": "none",
-      "url": "https://x.com/thsottiaux/status/2100649624860254629"
     }
   ]
 }
