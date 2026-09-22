@@ -6,9 +6,9 @@ import Image from 'next/image';
 import { useMemo, useState } from 'react';
 import {
   ArrowUpRight,
-  BadgeCheck,
-  BookOpenText,
+  CheckCircle2,
   Gift,
+  ScanLine,
   ShieldCheck,
 } from 'lucide-react';
 import type { SideHustle } from '@/data/side-hustles';
@@ -49,156 +49,203 @@ export function SideHustleDirectory({ posts }: { posts: SideHustle[] }) {
   }, [activeFilter, posts]);
 
   return (
-    <section
-      className="hustle-directory-layout reveal reveal-3"
-      aria-label="精选副业案例"
-    >
-      <div className="hustle-directory-panel" id="case-directory">
-        <div className="hustle-directory-head">
-          <div>
-            <p className="hustle-directory-eyebrow">CURATED CASES</p>
-            <h2>真实成绩，按方向快速找</h2>
-          </div>
-          <span className="hustle-result-count" aria-live="polite">
-            {visiblePosts.length} 个案例
-          </span>
-        </div>
-
-        <div className="hustle-filter-bar" aria-label="按项目方向筛选">
-          {filters.map((filter) => {
-            const count = posts.filter((post) =>
-              postMatchesFilter(post, filter),
-            ).length;
-            if (count === 0) return null;
-
-            return (
-              <button
-                type="button"
-                key={filter.id}
-                className={activeFilter === filter.id ? 'is-active' : ''}
-                aria-pressed={activeFilter === filter.id}
-                onClick={() => setActiveFilter(filter.id)}
-              >
-                {filter.label}
-              </button>
-            );
-          })}
-        </div>
-
-        <div className="hustle-rank-list">
-          {visiblePosts.map((post, visibleIndex) => {
-            const originalRank = posts.findIndex(
-              (candidate) => candidate.topic_id === post.topic_id,
-            );
-            const primaryStat = post.hook_stats[0];
-
-            return (
-              <article className="hustle-rank-row" key={post.topic_id}>
-                <span
-                  className="hustle-rank-number"
-                  aria-label={`第 ${originalRank + 1} 个案例`}
-                >
-                  {String(originalRank + 1).padStart(2, '0')}
-                </span>
-
-                <Image
-                  className="hustle-rank-avatar"
-                  src={post.avatar}
-                  alt={`${post.author} 的头像`}
-                  width={46}
-                  height={46}
-                  loading={visibleIndex === 0 ? 'eager' : 'lazy'}
-                />
-
-                <div className="hustle-rank-copy">
-                  <h3>
-                    <a href={`/side-hustles/${post.slug}`}>{post.title}</a>
-                  </h3>
-                  <p>
-                    <strong>{post.author}</strong>
-                    <span>·</span>
-                    <span>{post.tags.slice(0, 2).join(' / ')}</span>
-                    <span>·</span>
-                    <span>{shorten(post.hook)}</span>
-                  </p>
-                </div>
-
-                <div className="hustle-rank-result">
-                  <strong>{primaryStat.num}</strong>
-                  <span>{primaryStat.label}</span>
-                </div>
-
-                <a
-                  className="hustle-rank-cta"
-                  href={`/side-hustles/${post.slug}`}
-                  aria-label={`查看${post.title}的案例解读`}
-                >
-                  查看解读 <ArrowUpRight />
-                </a>
-              </article>
-            );
-          })}
-        </div>
-      </div>
-
-      <aside className="hustle-sidebar" aria-label="精选副业说明与体验入口">
-        <section className="hustle-sidebar-card hustle-trust-card">
-          <p className="hustle-sidebar-kicker">COMMUNITY PROOF</p>
-          <h2>一个经得起时间检验的社群</h2>
-          <dl>
+    <>
+      <section
+        className="hustle-directory-layout reveal reveal-3"
+        aria-label="精选副业案例"
+      >
+        <div className="hustle-directory-panel" id="case-directory">
+          <div className="hustle-directory-head">
             <div>
-              <dt>持续运营</dt>
-              <dd>10 年</dd>
+              <p className="hustle-directory-eyebrow">CURATED CASES</p>
+              <h2>真实成绩，按方向快速找</h2>
             </div>
-            <div>
-              <dt>社群成员</dt>
-              <dd className="hustle-member-count">80,000+</dd>
-            </div>
-            <div>
-              <dt>无理由退款</dt>
-              <dd>72 小时</dd>
-            </div>
-          </dl>
-          <p>
-            <ShieldCheck /> 社群数据与体验政策以生财官方当期规则为准。
-          </p>
-        </section>
-
-        <a className="hustle-experience-card" href="/experience-card">
-          <div className="hustle-experience-heading">
-            <span>
-              <Gift /> 免费体验 3 天
+            <span className="hustle-result-count" aria-live="polite">
+              {visiblePosts.length} 个案例
             </span>
-            <strong>扫码添加，立即领取</strong>
           </div>
-          <div className="hustle-experience-poster">
-            <Image
-              src="/side-hustles/experience-card.png"
-              alt="生财有术三天体验卡"
-              fill
-              loading="eager"
-              sizes="(max-width: 980px) 320px, 280px"
-            />
+
+          <div className="hustle-filter-bar" aria-label="按项目方向筛选">
+            {filters.map((filter) => {
+              const count = posts.filter((post) =>
+                postMatchesFilter(post, filter),
+              ).length;
+              if (count === 0) return null;
+
+              return (
+                <button
+                  type="button"
+                  key={filter.id}
+                  className={activeFilter === filter.id ? 'is-active' : ''}
+                  aria-pressed={activeFilter === filter.id}
+                  onClick={() => setActiveFilter(filter.id)}
+                >
+                  {filter.label}
+                </button>
+              );
+            })}
           </div>
-          <span className="hustle-experience-action">
-            查看大图 <ArrowUpRight />
+
+          <div className="hustle-rank-list">
+            {visiblePosts.map((post, visibleIndex) => {
+              const originalRank = posts.findIndex(
+                (candidate) => candidate.topic_id === post.topic_id,
+              );
+              const primaryStat = post.hook_stats[0];
+
+              return (
+                <article className="hustle-rank-row" key={post.topic_id}>
+                  <span
+                    className="hustle-rank-number"
+                    aria-label={`第 ${originalRank + 1} 个案例`}
+                  >
+                    {String(originalRank + 1).padStart(2, '0')}
+                  </span>
+
+                  <Image
+                    className="hustle-rank-avatar"
+                    src={post.avatar}
+                    alt={`${post.author} 的头像`}
+                    width={46}
+                    height={46}
+                    loading={visibleIndex === 0 ? 'eager' : 'lazy'}
+                  />
+
+                  <div className="hustle-rank-copy">
+                    <h3>
+                      <a href={`/side-hustles/${post.slug}`}>{post.title}</a>
+                    </h3>
+                    <p>
+                      <strong>{post.author}</strong>
+                      <span>·</span>
+                      <span>{post.tags.slice(0, 2).join(' / ')}</span>
+                      <span>·</span>
+                      <span>{shorten(post.hook)}</span>
+                    </p>
+                  </div>
+
+                  <div className="hustle-rank-result">
+                    <strong>{primaryStat.num}</strong>
+                    <span>{primaryStat.label}</span>
+                  </div>
+
+                  <a
+                    className="hustle-rank-cta"
+                    href={`/side-hustles/${post.slug}`}
+                    aria-label={`查看${post.title}的案例解读`}
+                  >
+                    查看解读 <ArrowUpRight />
+                  </a>
+                </article>
+              );
+            })}
+          </div>
+        </div>
+
+        <aside className="hustle-sidebar" aria-label="精选副业说明与体验入口">
+          <section className="hustle-sidebar-card hustle-trust-card">
+            <p className="hustle-sidebar-kicker">COMMUNITY PROOF</p>
+            <h2>一个经得起时间检验的社群</h2>
+            <dl>
+              <div>
+                <dt>持续运营</dt>
+                <dd>10 年</dd>
+              </div>
+              <div>
+                <dt>社群成员</dt>
+                <dd className="hustle-member-count">80,000+</dd>
+              </div>
+              <div>
+                <dt>无理由退款</dt>
+                <dd>72 小时</dd>
+              </div>
+            </dl>
+            <p>
+              <ShieldCheck /> 社群数据与体验政策以生财官方当期规则为准。
+            </p>
+          </section>
+
+          <a className="hustle-experience-card" href="/experience-card">
+            <div className="hustle-experience-heading">
+              <span>
+                <Gift /> 免费体验 3 天
+              </span>
+              <strong>扫码添加，立即领取</strong>
+            </div>
+            <div className="hustle-experience-poster">
+              <Image
+                src="/side-hustles/experience-card.png"
+                alt="生财有术三天体验卡"
+                fill
+                loading="eager"
+                sizes="(max-width: 980px) 320px, 280px"
+              />
+            </div>
+            <span className="hustle-experience-action">
+              查看大图 <ArrowUpRight />
+            </span>
+          </a>
+        </aside>
+      </section>
+
+      <section
+        className="hustle-bottom-experience reveal reveal-3"
+        aria-labelledby="hustle-bottom-experience-title"
+      >
+        <div className="hustle-bottom-copy">
+          <span className="hustle-bottom-kicker">
+            <Gift /> 先体验，再决定
           </span>
+          <h2 id="hustle-bottom-experience-title">
+            免费体验 3 天，再决定要不要加入
+          </h2>
+          <ul>
+            <li>
+              <CheckCircle2 /> 扫码领取，不需要先付费
+            </li>
+            <li>
+              <CheckCircle2 /> 先看真实内容，再判断是否适合自己
+            </li>
+            <li>
+              <CheckCircle2 /> 正式加入前，规则与保障以官方说明为准
+            </li>
+          </ul>
+          <a className="hustle-bottom-cta" href="/experience-card">
+            免费领取体验卡 <ArrowUpRight />
+          </a>
+        </div>
+
+        <a
+          className="hustle-bottom-invite"
+          href="/experience-card"
+          aria-label="查看生财有术三天体验卡大图"
+        >
+          <span>
+            <ScanLine /> 扫码免费领
+          </span>
+          <Image
+            src="/side-hustles/experience-invite.png"
+            alt="北骁邀请你免费体验生财有术三天"
+            width={342}
+            height={189}
+            sizes="(max-width: 760px) calc(100vw - 68px), 340px"
+          />
+          <small>电脑直接扫码 · 手机点击查看大图</small>
         </a>
 
-        <section className="hustle-sidebar-card hustle-curator-card">
-          <span className="hustle-sidebar-icon" aria-hidden="true">
-            <BadgeCheck />
-          </span>
-          <p className="hustle-sidebar-kicker">为什么只有这几篇？</p>
-          <h2>只收真实结果的个人复盘</h2>
-          <p>
-            不凑数，不写虚构收益。每篇都会核对作者、数据、原帖和能解决的具体问题。
-          </p>
-          <a href="#case-directory" className="hustle-sidebar-link">
-            <BookOpenText /> 查看全部 {posts.length} 个案例
-          </a>
-        </section>
-      </aside>
-    </section>
+        <a
+          className="hustle-bottom-poster"
+          href="/experience-card"
+          aria-label="打开生财有术三天体验卡"
+        >
+          <Image
+            src="/side-hustles/experience-card.png"
+            alt="生财有术三天体验卡海报"
+            fill
+            sizes="180px"
+          />
+        </a>
+      </section>
+    </>
   );
 }
