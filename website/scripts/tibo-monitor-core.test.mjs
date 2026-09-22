@@ -32,25 +32,32 @@ function report(posts) {
   };
 }
 
+function hoursAfterLatestFeedPost(hours) {
+  const latestTime = Math.max(
+    ...postsFeedFixture.posts.map((item) => Date.parse(item.publishedAt)),
+  );
+  return new Date(latestTime + hours * 3_600_000).toISOString();
+}
+
 test('普通动态、明确重置和含糊信号走三条不同路径', () => {
   const sourceReport = report([
     post(
       '2101000000000000001',
-      '2026-09-20T08:00:00.000Z',
+      hoursAfterLatestFeedPost(1),
       'Shipping a faster editor today.',
     ),
     post(
       '2101000000000000002',
-      '2026-09-20T09:00:00.000Z',
+      hoursAfterLatestFeedPost(2),
       'Reset all propagated.',
     ),
     post(
       '2101000000000000003',
-      '2026-09-20T10:00:00.000Z',
+      hoursAfterLatestFeedPost(3),
       'We are discussing weekly quota changes.',
     ),
   ]);
-  const now = new Date('2026-09-21T03:00:00.000Z');
+  const now = new Date(hoursAfterLatestFeedPost(4));
   const plan = planTiboMonitorRun({
     sourceReport,
     resetFeed: structuredClone(resetFeedFixture),
@@ -85,7 +92,7 @@ test('普通动态、明确重置和含糊信号走三条不同路径', () => {
     sourceReport,
     plan,
     applied,
-    startedAt: '2026-09-21T02:59:00.000Z',
+    startedAt: new Date(now.getTime() - 60_000).toISOString(),
     finishedAt: now.toISOString(),
   });
   assert.equal(audit.status, 'attention');

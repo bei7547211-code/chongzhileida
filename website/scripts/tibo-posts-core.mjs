@@ -51,6 +51,19 @@ export function validateTiboPostsFeed(feed) {
       post.title?.trim() && post.summary?.trim(),
       `帖子文案为空: ${post.id}`,
     );
+    if (post.preview) {
+      invariant(
+        [
+          post.preview.headline,
+          post.preview.dateLabel,
+          post.preview.dayLabel,
+          post.preview.timingLabel,
+          post.preview.translation,
+          post.preview.originalExcerpt,
+        ].every((value) => typeof value === 'string' && value.trim()),
+        `预告展示字段不完整: ${post.id}`,
+      );
+    }
     validatePostUrl(post.url, post.id);
   }
   return true;

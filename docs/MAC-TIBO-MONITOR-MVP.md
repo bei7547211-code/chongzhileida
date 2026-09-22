@@ -85,7 +85,7 @@ npm run monitor:feishu:configure
 
 脚本只从 Mac 剪贴板读取并保存到私有文件。未配置飞书时，巡检仍然可以运行，但报告只保存在本机。
 
-## 安装每天 11:00 的任务
+## 安装每天 11:00、15:00、21:00 的任务
 
 先预览将要安装的配置：
 
@@ -99,7 +99,7 @@ node scripts/install-tibo-monitor.mjs --dry-run
 npm run monitor:tibo:install
 ```
 
-安装后由 macOS `launchd` 每天 11:00 执行自动发布。Mac 关机时无法运行；睡眠期间错过的任务通常会在唤醒后补跑，但不能承诺准点。
+安装后由 macOS `launchd` 每天 11:00、15:00、21:00 执行自动发布。Mac 关机时无法运行；睡眠期间错过的任务通常会在唤醒后补跑，但不能承诺准点。
 
 如需停用：
 

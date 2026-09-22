@@ -153,6 +153,10 @@ export function planTiboMonitorRun({
     const previousDecision = nextState.decisions[post.id];
     const alreadyPublic = publicPostIds.has(post.id);
 
+    if (alreadyPublic) {
+      delete nextState.pending[post.id];
+    }
+
     if (
       previousDecision?.contentHash === post.contentHash ||
       previous?.contentHash === post.contentHash ||

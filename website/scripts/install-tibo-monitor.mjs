@@ -17,6 +17,7 @@ const launchAgentPath = resolve(
   `Library/LaunchAgents/${label}.plist`,
 );
 const launchDomain = `gui/${process.getuid()}`;
+const scanHours = [11, 15, 21];
 
 function escapeXml(value) {
   return String(value)
@@ -30,6 +31,16 @@ function escapeXml(value) {
 function renderPlist() {
   const nodeDirectory = dirname(process.execPath);
   const pathValue = `${nodeDirectory}:/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin`;
+  const calendarIntervals = scanHours
+    .map(
+      (hour) => `    <dict>
+      <key>Hour</key>
+      <integer>${hour}</integer>
+      <key>Minute</key>
+      <integer>0</integer>
+    </dict>`,
+    )
+    .join('\n');
   return `<?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
@@ -50,12 +61,9 @@ function renderPlist() {
     <string>${escapeXml(pathValue)}</string>
   </dict>
   <key>StartCalendarInterval</key>
-  <dict>
-    <key>Hour</key>
-    <integer>11</integer>
-    <key>Minute</key>
-    <integer>0</integer>
-  </dict>
+  <array>
+${calendarIntervals}
+  </array>
   <key>StandardOutPath</key>
   <string>${escapeXml(resolve(logDirectory, 'tibo-monitor.log'))}</string>
   <key>StandardErrorPath</key>
@@ -111,7 +119,7 @@ try {
   if (error.code !== 'ENOENT') throw error;
 }
 
-console.log(`INSTALLED ${label} 每天 11:00（北京时间）`);
+console.log(`INSTALLED ${label} 每天 11:00、15:00、21:00（北京时间）`);
 console.log(
   feishuConfigured
     ? 'FEISHU_CONFIGURED'

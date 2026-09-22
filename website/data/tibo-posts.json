@@ -1,9 +1,170 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-09-19T06:52:23.505Z",
-  "verifiedAt": "2026-09-19T07:24:30.389Z",
+  "updatedAt": "2026-09-22T05:19:10.126Z",
+  "verifiedAt": "2026-09-22T05:19:10.126Z",
   "sourceUrl": "https://x.com/thsottiaux",
   "posts": [
+    {
+      "id": "2102254445082116335",
+      "publishedAt": "2026-09-22T04:31:32.000Z",
+      "title": "官方预告：Tibo 承诺周二重置",
+      "summary": "Tibo 表示已经承诺周二进行一次重置。目前仍是预告，尚未确认重置完成。",
+      "category": "预告",
+      "resetSignal": "related",
+      "url": "https://x.com/thsottiaux/status/2102254445082116335",
+      "preview": {
+        "headline": "预计周二出现重置",
+        "dateLabel": "9月22日",
+        "dayLabel": "周二",
+        "timingLabel": "具体时刻未公布",
+        "translation": "马上就到周二了，我承诺周二会有一次重置。",
+        "originalExcerpt": "We are almost Tuesday and I promised a reset for Tuesday."
+      }
+    },
+    {
+      "id": "2102253723879670183",
+      "publishedAt": "2026-09-22T04:28:40.000Z",
+      "title": "Tibo 回复：@prit4k @noahrshinn Probably nothing,…",
+      "summary": "@prit4k @noahrshinn Probably nothing, do not worry",
+      "category": "回复",
+      "resetSignal": "none",
+      "url": "https://x.com/thsottiaux/status/2102253723879670183"
+    },
+    {
+      "id": "2101921202436702657",
+      "publishedAt": "2026-09-21T06:27:21.000Z",
+      "title": "Tibo 回复：@melvindvivas 👁️codex👁️",
+      "summary": "@melvindvivas 👁️codex👁️",
+      "category": "回复",
+      "resetSignal": "none",
+      "url": "https://x.com/thsottiaux/status/2101921202436702657"
+    },
+    {
+      "id": "2101920928070562029",
+      "publishedAt": "2026-09-21T06:26:15.000Z",
+      "title": "Tibo 回复：@My_Ai_Bi 3am on a tuesday",
+      "summary": "@My_Ai_Bi 3am on a tuesday",
+      "category": "回复",
+      "resetSignal": "none",
+      "url": "https://x.com/thsottiaux/status/2101920928070562029"
+    },
+    {
+      "id": "2101920329346195690",
+      "publishedAt": "2026-09-21T06:23:52.000Z",
+      "title": "Tibo 回复：@h4nkdog That's cool!!!",
+      "summary": "@h4nkdog That's cool!!!",
+      "category": "回复",
+      "resetSignal": "none",
+      "url": "https://x.com/thsottiaux/status/2101920329346195690"
+    },
+    {
+      "id": "2101772015028130032",
+      "publishedAt": "2026-09-20T20:34:32.000Z",
+      "title": "Tibo 回复：@Ananth7e Most folks have been very n…",
+      "summary": "@Ananth7e Most folks have been very nice! Love this community",
+      "category": "回复",
+      "resetSignal": "none",
+      "url": "https://x.com/thsottiaux/status/2101772015028130032"
+    },
+    {
+      "id": "2101554478940070162",
+      "publishedAt": "2026-09-20T06:10:07.000Z",
+      "title": "Tibo 回复：@argofowl Mind sharing your instructi…",
+      "summary": "@argofowl Mind sharing your instructions?",
+      "category": "回复",
+      "resetSignal": "none",
+      "url": "https://x.com/thsottiaux/status/2101554478940070162"
+    },
+    {
+      "id": "2101531597820596462",
+      "publishedAt": "2026-09-20T04:39:12.000Z",
+      "title": "Tibo 回复：@_dylanga Billions",
+      "summary": "@_dylanga Billions",
+      "category": "回复",
+      "resetSignal": "none",
+      "url": "https://x.com/thsottiaux/status/2101531597820596462"
+    },
+    {
+      "id": "2101448279712207203",
+      "publishedAt": "2026-09-19T23:08:07.000Z",
+      "title": "Tibo 回复：@alexandr_wang You missed the long wa…",
+      "summary": "@alexandr_wang You missed the long way to go part of the quote",
+      "category": "回复",
+      "resetSignal": "none",
+      "url": "https://x.com/thsottiaux/status/2101448279712207203"
+    },
+    {
+      "id": "2101432860892901859",
+      "publishedAt": "2026-09-19T22:06:51.000Z",
+      "title": "Tibo 回复：@cherry_mx_reds Clearly not me",
+      "summary": "@cherry_mx_reds Clearly not me",
+      "category": "回复",
+      "resetSignal": "none",
+      "url": "https://x.com/thsottiaux/status/2101432860892901859"
+    },
+    {
+      "id": "2101432368682983749",
+      "publishedAt": "2026-09-19T22:04:54.000Z",
+      "title": "Tibo 回复：@Rubzem @TesanaAI People will do anyt…",
+      "summary": "@Rubzem @TesanaAI People will do anything instead of cleaning their house",
+      "category": "回复",
+      "resetSignal": "none",
+      "url": "https://x.com/thsottiaux/status/2101432368682983749"
+    },
+    {
+      "id": "2101431497437950458",
+      "publishedAt": "2026-09-19T22:01:26.000Z",
+      "title": "2026 is the year of linux desktop",
+      "summary": "2026 is the year of linux desktop",
+      "category": "动态",
+      "resetSignal": "none",
+      "url": "https://x.com/thsottiaux/status/2101431497437950458"
+    },
+    {
+      "id": "2101354419829010896",
+      "publishedAt": "2026-09-19T16:55:09.000Z",
+      "title": "Tibo 回复：@anah_sahh did you bail or at least s…",
+      "summary": "@anah_sahh did you bail or at least show him codex before?",
+      "category": "回复",
+      "resetSignal": "none",
+      "url": "https://x.com/thsottiaux/status/2101354419829010896"
+    },
+    {
+      "id": "2101353743275135306",
+      "publishedAt": "2026-09-19T16:52:28.000Z",
+      "title": "Tibo 回复：@hiarun02 Always improving",
+      "summary": "@hiarun02 Always improving",
+      "category": "回复",
+      "resetSignal": "none",
+      "url": "https://x.com/thsottiaux/status/2101353743275135306"
+    },
+    {
+      "id": "2101353058110480808",
+      "publishedAt": "2026-09-19T16:49:44.000Z",
+      "title": "Tibo 回复：@willcb I could see Astra and Jev bei…",
+      "summary": "@willcb I could see Astra and Jev being best friends in real life",
+      "category": "回复",
+      "resetSignal": "none",
+      "url": "https://x.com/thsottiaux/status/2101353058110480808"
+    },
+    {
+      "id": "2101352781219258527",
+      "publishedAt": "2026-09-19T16:48:38.000Z",
+      "title": "Tibo 回复：@udiWertheimer OK fine. But it’s also…",
+      "summary": "@udiWertheimer OK fine. But it’s also still coming in Tuesday",
+      "category": "回复",
+      "resetSignal": "none",
+      "url": "https://x.com/thsottiaux/status/2101352781219258527"
+    },
+    {
+      "id": "2101352396140278226",
+      "publishedAt": "2026-09-19T16:47:07.000Z",
+      "title": "Tibo 回复：@GergelyOrosz Let’s celebrate this ch…",
+      "summary": "@GergelyOrosz Let’s celebrate this change! Positive reinforcement!",
+      "category": "回复",
+      "resetSignal": "none",
+      "url": "https://x.com/thsottiaux/status/2101352396140278226"
+    },
     {
       "id": "2101158751290233190",
       "publishedAt": "2026-09-19T03:57:38.000Z",
@@ -120,159 +281,6 @@
       "category": "回复",
       "resetSignal": "none",
       "url": "https://x.com/thsottiaux/status/2100649624860254629"
-    },
-    {
-      "id": "2100645454245720513",
-      "publishedAt": "2026-09-17T17:57:59.000Z",
-      "title": "Has anyone yet tried to get Astra and Fable t…",
-      "summary": "Has anyone yet tried to get Astra and Fable to agree on the perfect styleguide? And then host it somewhere with a web mcp.",
-      "category": "动态",
-      "resetSignal": "none",
-      "url": "https://x.com/thsottiaux/status/2100645454245720513"
-    },
-    {
-      "id": "2100474870044016922",
-      "publishedAt": "2026-09-17T06:40:08.000Z",
-      "title": "Tibo 回复：@Yuchenj_UW Welcome to the shipping e…",
-      "summary": "@Yuchenj_UW Welcome to the shipping era",
-      "category": "回复",
-      "resetSignal": "none",
-      "url": "https://x.com/thsottiaux/status/2100474870044016922"
-    },
-    {
-      "id": "2100474737420111956",
-      "publishedAt": "2026-09-17T06:39:36.000Z",
-      "title": "Tibo 回复：@ben_issen Welcome",
-      "summary": "@ben_issen Welcome",
-      "category": "回复",
-      "resetSignal": "none",
-      "url": "https://x.com/thsottiaux/status/2100474737420111956"
-    },
-    {
-      "id": "2100473666635280768",
-      "publishedAt": "2026-09-17T06:35:21.000Z",
-      "title": "Tibo 回复：@zdogmode Revenue happened",
-      "summary": "@zdogmode Revenue happened",
-      "category": "回复",
-      "resetSignal": "none",
-      "url": "https://x.com/thsottiaux/status/2100473666635280768"
-    },
-    {
-      "id": "2100461944860020851",
-      "publishedAt": "2026-09-17T05:48:47.000Z",
-      "title": "Tibo 回复：@tlxue Pretty cool!",
-      "summary": "@tlxue Pretty cool!",
-      "category": "回复",
-      "resetSignal": "none",
-      "url": "https://x.com/thsottiaux/status/2100461944860020851"
-    },
-    {
-      "id": "2100461541145587999",
-      "publishedAt": "2026-09-17T05:47:10.000Z",
-      "title": "Tibo 回复：@theo @sama Fair",
-      "summary": "@theo @sama Fair",
-      "category": "回复",
-      "resetSignal": "none",
-      "url": "https://x.com/thsottiaux/status/2100461541145587999"
-    },
-    {
-      "id": "2100363668051603608",
-      "publishedAt": "2026-09-16T23:18:15.000Z",
-      "title": "Sometimes physics can't be cheated",
-      "summary": "Sometimes physics can't be cheated",
-      "category": "动态",
-      "resetSignal": "none",
-      "url": "https://x.com/thsottiaux/status/2100363668051603608"
-    },
-    {
-      "id": "2100297380968997327",
-      "publishedAt": "2026-09-16T18:54:51.000Z",
-      "title": "Astra ✅ Fast ✅ Frontier ✅ Efficient ✅ For eve…",
-      "summary": "Astra ✅ Fast ✅ Frontier ✅ Efficient ✅ For everyone",
-      "category": "动态",
-      "resetSignal": "none",
-      "url": "https://x.com/thsottiaux/status/2100297380968997327"
-    },
-    {
-      "id": "2100295443620007993",
-      "publishedAt": "2026-09-16T18:47:10.000Z",
-      "title": "What is ChatGPT",
-      "summary": "What is ChatGPT",
-      "category": "动态",
-      "resetSignal": "none",
-      "url": "https://x.com/thsottiaux/status/2100295443620007993"
-    },
-    {
-      "id": "2100122479947817059",
-      "publishedAt": "2026-09-16T07:19:52.000Z",
-      "title": "Astra, as seen by Imagegen",
-      "summary": "Astra, as seen by Imagegen",
-      "category": "动态",
-      "resetSignal": "none",
-      "url": "https://x.com/thsottiaux/status/2100122479947817059"
-    },
-    {
-      "id": "2100121084817502216",
-      "publishedAt": "2026-09-16T07:14:19.000Z",
-      "title": "11pm on a Tuesday, big startup energy",
-      "summary": "11pm on a Tuesday, big startup energy",
-      "category": "动态",
-      "resetSignal": "none",
-      "url": "https://x.com/thsottiaux/status/2100121084817502216"
-    },
-    {
-      "id": "2099923055636250714",
-      "publishedAt": "2026-09-15T18:07:25.000Z",
-      "title": "Tibo 回复：@AdamHoltererer Don’t you dare give p…",
-      "summary": "@AdamHoltererer Don’t you dare give pets. That’s not necessary",
-      "category": "回复",
-      "resetSignal": "none",
-      "url": "https://x.com/thsottiaux/status/2099923055636250714"
-    },
-    {
-      "id": "2099922755655479624",
-      "publishedAt": "2026-09-15T18:06:14.000Z",
-      "title": "2026：效率之年",
-      "summary": "Tibo 谈效率节奏与周二发布习惯，未提及额度或重置。",
-      "category": "观点",
-      "resetSignal": "none",
-      "url": "https://x.com/thsottiaux/status/2099922755655479624"
-    },
-    {
-      "id": "2099922535521693877",
-      "publishedAt": "2026-09-15T18:05:21.000Z",
-      "title": "Tibo 回复：@OpenRouter The power of the stars",
-      "summary": "@OpenRouter The power of the stars",
-      "category": "回复",
-      "resetSignal": "none",
-      "url": "https://x.com/thsottiaux/status/2099922535521693877"
-    },
-    {
-      "id": "2099887016569876809",
-      "publishedAt": "2026-09-15T15:44:13.000Z",
-      "title": "Tibo 回复：@Jaytel Hi 👋",
-      "summary": "@Jaytel Hi 👋",
-      "category": "回复",
-      "resetSignal": "none",
-      "url": "https://x.com/thsottiaux/status/2099887016569876809"
-    },
-    {
-      "id": "2099886695525281923",
-      "publishedAt": "2026-09-15T15:42:56.000Z",
-      "title": "Tibo 回复：@adonis_singh Just to make sure you’r…",
-      "summary": "@adonis_singh Just to make sure you’re aware, it consumes things faster, beware adi, beware. Not for the faint of heart",
-      "category": "回复",
-      "resetSignal": "none",
-      "url": "https://x.com/thsottiaux/status/2099886695525281923"
-    },
-    {
-      "id": "2099886370319978506",
-      "publishedAt": "2026-09-15T15:41:39.000Z",
-      "title": "Tibo 回复：@nicoletang0717 Can’t believe this wa…",
-      "summary": "@nicoletang0717 Can’t believe this was filmed this weekend, neck tattoos and all",
-      "category": "回复",
-      "resetSignal": "none",
-      "url": "https://x.com/thsottiaux/status/2099886370319978506"
     }
   ]
 }

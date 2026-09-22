@@ -11,7 +11,7 @@
   "monitor": {
     "provider": "mac-fxtwitter",
     "enabled": true,
-    "scheduleLabel": "每天 11:00",
+    "scheduleLabel": "每天 11:00、15:00、21:00",
     "reviewRequired": true,
     "lastIngestedPostId": "2098685367058612394"
   },

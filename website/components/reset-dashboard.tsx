@@ -5,6 +5,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import {
   ArrowUpRight,
+  Bookmark,
   Check,
   Copy,
   ExternalLink,
@@ -57,9 +58,12 @@ const publicRssUrl = 'https://www.resetrelay.com/feed.xml';
 const prayerStorageKey = 'reset-relay-prayer-count';
 const shanghaiOffsetMs = 8 * 60 * 60 * 1000;
 const dayMs = 24 * 60 * 60 * 1000;
-const scheduleMatch = monitor.scheduleLabel.match(/(\d{1,2}):(\d{2})/);
-const dailyScanHour = Number(scheduleMatch?.[1] ?? 15);
-const dailyScanMinute = Number(scheduleMatch?.[2] ?? 0);
+const dailyScanTimes = [...monitor.scheduleLabel.matchAll(/(\d{1,2}):(\d{2})/g)]
+  .map((match) => ({ hour: Number(match[1]), minute: Number(match[2]) }))
+  .sort((a, b) => a.hour * 60 + a.minute - (b.hour * 60 + b.minute));
+const scanTimes = dailyScanTimes.length
+  ? dailyScanTimes
+  : [{ hour: 15, minute: 0 }];
 const probabilityModel = calculateResetProbability(
   resetEvents,
   tiboPosts,
@@ -71,6 +75,7 @@ type ScanCountdown = {
   minutes: string;
   seconds: string;
   targetDate: string;
+  targetTime: string;
 };
 
 const emptyCountdown: ScanCountdown = {
@@ -78,6 +83,7 @@ const emptyCountdown: ScanCountdown = {
   minutes: '--',
   seconds: '--',
   targetDate: '下一次',
+  targetTime: '--:--',
 };
 
 const signalMeta: Record<
@@ -138,19 +144,18 @@ function formatPublishedTime(publishedAt: string) {
 
 function getNextScanCountdown(now: Date): ScanCountdown {
   const shanghaiNow = new Date(now.getTime() + shanghaiOffsetMs);
-  let targetLocalTime = Date.UTC(
+  const todayStart = Date.UTC(
     shanghaiNow.getUTCFullYear(),
     shanghaiNow.getUTCMonth(),
     shanghaiNow.getUTCDate(),
-    dailyScanHour,
-    dailyScanMinute,
   );
-  let targetTime = targetLocalTime - shanghaiOffsetMs;
-
-  if (targetTime <= now.getTime()) {
-    targetLocalTime += dayMs;
-    targetTime = targetLocalTime - shanghaiOffsetMs;
-  }
+  const todayCandidates = scanTimes.map(
+    ({ hour, minute }) =>
+      todayStart + (hour * 60 + minute) * 60_000 - shanghaiOffsetMs,
+  );
+  const targetTime =
+    todayCandidates.find((candidate) => candidate > now.getTime()) ??
+    todayCandidates[0] + dayMs;
 
   const totalSeconds = Math.max(
     0,
@@ -164,12 +169,19 @@ function getNextScanCountdown(now: Date): ScanCountdown {
     month: 'numeric',
     day: 'numeric',
   }).format(new Date(targetTime));
+  const targetTimeLabel = new Intl.DateTimeFormat('zh-CN', {
+    timeZone: 'Asia/Shanghai',
+    hour: '2-digit',
+    minute: '2-digit',
+    hour12: false,
+  }).format(new Date(targetTime));
 
   return {
     hours: String(hours).padStart(2, '0'),
     minutes: String(minutes).padStart(2, '0'),
     seconds: String(seconds).padStart(2, '0'),
     targetDate,
+    targetTime: targetTimeLabel,
   };
 }
 
@@ -196,11 +208,22 @@ export function ResetDashboard() {
   );
   const [rssCopied, setRssCopied] = useState(false);
   const [wechatCopied, setWechatCopied] = useState(false);
+  const [previewCopied, setPreviewCopied] = useState(false);
+  const [bookmarkHint, setBookmarkHint] = useState(false);
   const [prayerCount, setPrayerCount] = useState(0);
   const [prayerReady, setPrayerReady] = useState(false);
   const [countdown, setCountdown] = useState<ScanCountdown>(emptyCountdown);
   const heatmapWeeks = useMemo(() => createHeatmapWeeks(), []);
   const latestRelative = getRelativeTime(latestAnnouncement.publishedAt);
+  const latestRelatedSignal = tiboPosts.find(
+    (post) => post.resetSignal === 'related',
+  );
+  const activeOfficialPreview =
+    latestRelatedSignal &&
+    Date.parse(latestRelatedSignal.publishedAt) >
+      Date.parse(latestAnnouncement.publishedAt)
+      ? latestRelatedSignal
+      : null;
   const latestThreeSignalCount = tiboPosts
     .slice(0, 3)
     .filter((post) => post.resetSignal !== 'none').length;
@@ -239,6 +262,20 @@ export function ResetDashboard() {
     await navigator.clipboard.writeText(publicRssUrl);
     setRssCopied(true);
     window.setTimeout(() => setRssCopied(false), 2200);
+  }
+
+  async function copyOfficialPreview() {
+    if (!activeOfficialPreview) return;
+    await navigator.clipboard.writeText(
+      `${activeOfficialPreview.title}\n${activeOfficialPreview.summary}\n${activeOfficialPreview.url}`,
+    );
+    setPreviewCopied(true);
+    window.setTimeout(() => setPreviewCopied(false), 2200);
+  }
+
+  function showBookmarkHint() {
+    setBookmarkHint(true);
+    window.setTimeout(() => setBookmarkHint(false), 3200);
   }
 
   function chooseFilter(nextFilter: FilterKind) {
@@ -465,10 +502,93 @@ export function ResetDashboard() {
         </section>
 
         <section
-          className="latest-card reveal reveal-3"
+          className={`latest-card reveal reveal-3${
+            activeOfficialPreview ? ' has-official-preview' : ''
+          }`}
           aria-labelledby="latest-title"
         >
           <div className="card-grid-pattern" aria-hidden="true" />
+          {activeOfficialPreview ? (
+            <article className="official-preview">
+              <header className="official-preview-head">
+                <span className="official-preview-kicker">
+                  <Sparkles aria-hidden="true" /> TIBO OFFICIAL SIGNAL
+                </span>
+                <span className="official-preview-verified">
+                  <span aria-hidden="true" />
+                  {formatPublishedTime(activeOfficialPreview.publishedAt)} 核验
+                </span>
+              </header>
+
+              <div className="official-preview-layout">
+                <section className="official-preview-forecast">
+                  <span className="official-preview-label">官方预告信号</span>
+                  <h2>
+                    {activeOfficialPreview.preview?.headline ??
+                      activeOfficialPreview.title}
+                  </h2>
+                  <div className="official-preview-date">
+                    <strong>
+                      {activeOfficialPreview.preview?.dateLabel ?? '近期'}
+                    </strong>
+                    <span>
+                      {activeOfficialPreview.preview?.dayLabel ?? '待确认'}
+                    </span>
+                  </div>
+                  <p>
+                    {activeOfficialPreview.preview?.timingLabel ??
+                      '尚未公布具体时刻'}
+                    ，雷达会继续核对完成公告。
+                  </p>
+                  <div className="official-preview-status">
+                    <span aria-hidden="true" />
+                    等待完成确认
+                  </div>
+                </section>
+
+                <section className="official-preview-evidence">
+                  <header className="official-preview-author">
+                    <TiboAvatar compact />
+                    <span>
+                      <strong>Thibault “Tibo” Sottiaux</strong>
+                      <small>{tibo.handle} · 官方原帖</small>
+                    </span>
+                    <time dateTime={activeOfficialPreview.publishedAt}>
+                      {formatPublishedTime(activeOfficialPreview.publishedAt)}
+                    </time>
+                  </header>
+                  <blockquote>
+                    “
+                    {activeOfficialPreview.preview?.translation ??
+                      activeOfficialPreview.summary}
+                    ”
+                  </blockquote>
+                  {activeOfficialPreview.preview?.originalExcerpt ? (
+                    <p className="official-preview-original">
+                      {activeOfficialPreview.preview.originalExcerpt}
+                    </p>
+                  ) : null}
+                  <footer className="official-preview-actions">
+                    <a
+                      href={activeOfficialPreview.url}
+                      target="_blank"
+                      rel="noreferrer"
+                    >
+                      查看 X 原帖 <ExternalLink aria-hidden="true" />
+                    </a>
+                    <button type="button" onClick={copyOfficialPreview}>
+                      {previewCopied ? <Check /> : <Copy />}
+                      {previewCopied ? '已复制' : '复制预告'}
+                    </button>
+                    <button type="button" onClick={showBookmarkHint}>
+                      <Bookmark aria-hidden="true" />
+                      {bookmarkHint ? '请按 ⌘D / Ctrl+D' : '收藏雷达'}
+                    </button>
+                  </footer>
+                </section>
+              </div>
+            </article>
+          ) : null}
           <div className="signal-monitor">
             <div className="signal-monitor-copy">
               <span className="monitor-kicker">
@@ -496,8 +616,10 @@ export function ResetDashboard() {
                 </span>
               </div>
               <p className="scan-schedule">
-                <span>{countdown.targetDate}</span>
-                {monitor.scheduleLabel.replace('每天 ', '')} · 北京时间
+                <span>
+                  {countdown.targetDate} {countdown.targetTime}
+                </span>
+                {monitor.scheduleLabel} · 北京时间
               </p>
             </div>
 

@@ -10,6 +10,14 @@ export type TiboPost = {
   category: string;
   resetSignal: TiboResetSignal;
   url: string;
+  preview?: {
+    headline: string;
+    dateLabel: string;
+    dayLabel: string;
+    timingLabel: string;
+    translation: string;
+    originalExcerpt: string;
+  };
 };
 
 type TiboPostsFeed = {
