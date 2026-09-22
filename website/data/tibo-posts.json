@@ -1,9 +1,18 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-09-22T07:00:10.698Z",
-  "verifiedAt": "2026-09-22T07:00:10.698Z",
+  "updatedAt": "2026-09-22T13:00:15.822Z",
+  "verifiedAt": "2026-09-22T13:00:15.822Z",
   "sourceUrl": "https://x.com/thsottiaux",
   "posts": [
+    {
+      "id": "2102292452329820272",
+      "publishedAt": "2026-09-22T07:02:33.000Z",
+      "title": "Tibo 回复：@steipete Huge!!",
+      "summary": "@steipete Huge!!",
+      "category": "回复",
+      "resetSignal": "none",
+      "url": "https://x.com/thsottiaux/status/2102292452329820272"
+    },
     {
       "id": "2102290126344974551",
       "publishedAt": "2026-09-22T06:53:19.000Z",
@@ -272,15 +281,6 @@
       "category": "回复",
       "resetSignal": "none",
       "url": "https://x.com/thsottiaux/status/2101124031567262054"
-    },
-    {
-      "id": "2101055411394904265",
-      "publishedAt": "2026-09-18T21:07:00.000Z",
-      "title": "Tibo 回复：@argofowl 👋",
-      "summary": "@argofowl 👋",
-      "category": "回复",
-      "resetSignal": "none",
-      "url": "https://x.com/thsottiaux/status/2101055411394904265"
     }
   ]
 }
