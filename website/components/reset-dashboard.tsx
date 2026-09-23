@@ -19,6 +19,7 @@ import {
   Sparkles,
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import { ResetShareCard } from '@/components/reset-share-card';
 import {
   Dialog,
   DialogContent,
@@ -556,13 +557,25 @@ export function ResetDashboard() {
                     : '雷达会继续核对 Tibo 原帖，普通动态不会被误报为重置。'}
                 </p>
               </div>
-              <a
-                href={latestAnnouncement.xUrl}
-                target="_blank"
-                rel="noreferrer"
-              >
-                查看原帖 <ExternalLink aria-hidden="true" />
-              </a>
+              <div className="public-reset-actions">
+                {publicResetState.kind === 'confirmed' &&
+                latestAnnouncement.screenshotUrl ? (
+                  <ResetShareCard
+                    kind={latestAnnouncement.kind}
+                    publishedAt={latestAnnouncement.publishedAt}
+                    sourceScreenshotUrl={latestAnnouncement.screenshotUrl}
+                    sourceUrl={latestAnnouncement.xUrl}
+                    verifiedAt={tiboPostsVerifiedAt}
+                  />
+                ) : null}
+                <a
+                  href={latestAnnouncement.xUrl}
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  查看原帖 <ExternalLink aria-hidden="true" />
+                </a>
+              </div>
             </section>
           ) : null}
           {activeOfficialPreview ? (

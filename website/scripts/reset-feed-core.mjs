@@ -144,6 +144,12 @@ export function validateResetFeed(feed) {
       typeof post.summary === 'string' && post.summary.trim(),
       `公告摘要为空: ${post.id}`,
     );
+    if (post.screenshot !== undefined) {
+      invariant(
+        /^\/share\/[a-zA-Z0-9._-]+\.(?:png|jpe?g|webp)$/.test(post.screenshot),
+        `原帖截图路径无效: ${post.id}`,
+      );
+    }
     validatePostUrl(post.url, post.id);
   }
 
