@@ -5,8 +5,8 @@ import Image from 'next/image';
 import Link from 'next/link';
 import {
   ArrowUpRight,
-  Bookmark,
   Check,
+  CheckCircle2,
   Copy,
   ExternalLink,
   Gauge,
@@ -43,6 +43,8 @@ import {
   type TiboResetSignal,
 } from '@/data/tibo-posts';
 import { calculateResetProbability } from '@/lib/reset-probability';
+import { getPublicResetState } from '@/lib/public-reset-state';
+import { toShanghaiDateKey } from '@/lib/time';
 
 type FilterKind = 'all' | ResetKind;
 
@@ -102,8 +104,12 @@ function toDateKey(date: Date) {
   return `${year}-${month}-${day}`;
 }
 
-function createHeatmapWeeks() {
-  const start = new Date('2026-03-16T00:00:00.000Z');
+function createHeatmapWeeks(asOf: string) {
+  const currentDay = new Date(`${toShanghaiDateKey(asOf)}T00:00:00.000Z`);
+  const daysSinceMonday = (currentDay.getUTCDay() + 6) % 7;
+  const start = new Date(currentDay);
+  start.setUTCDate(currentDay.getUTCDate() - daysSinceMonday - 25 * 7);
+
   return Array.from({ length: 26 }, (_, weekIndex) =>
     Array.from({ length: 7 }, (_, dayIndex) => {
       const date = new Date(start);
@@ -209,24 +215,45 @@ export function ResetDashboard() {
   const [rssCopied, setRssCopied] = useState(false);
   const [wechatCopied, setWechatCopied] = useState(false);
   const [previewCopied, setPreviewCopied] = useState(false);
-  const [bookmarkHint, setBookmarkHint] = useState(false);
   const [prayerCount, setPrayerCount] = useState(0);
   const [prayerReady, setPrayerReady] = useState(false);
+  const [showAllPosts, setShowAllPosts] = useState(false);
   const [countdown, setCountdown] = useState<ScanCountdown>(emptyCountdown);
-  const heatmapWeeks = useMemo(() => createHeatmapWeeks(), []);
-  const latestRelative = getRelativeTime(latestAnnouncement.publishedAt);
+  const heatmapWeeks = useMemo(
+    () => createHeatmapWeeks(tiboPostsVerifiedAt),
+    [],
+  );
+  const heatmapMonths = useMemo(
+    () =>
+      [...new Set(heatmapWeeks.flat().map((date) => date.slice(0, 7)))].map(
+        (month) => `${Number(month.slice(5, 7))}月`,
+      ),
+    [heatmapWeeks],
+  );
   const latestRelatedSignal = tiboPosts.find(
     (post) => post.resetSignal === 'related',
   );
+  const publicResetState = getPublicResetState({
+    latestAnnouncementAt: latestAnnouncement.publishedAt,
+    latestRelatedSignal,
+    verifiedAt: tiboPostsVerifiedAt,
+  });
   const activeOfficialPreview =
-    latestRelatedSignal &&
-    Date.parse(latestRelatedSignal.publishedAt) >
-      Date.parse(latestAnnouncement.publishedAt)
+    publicResetState.kind === 'scheduled' || publicResetState.kind === 'overdue'
       ? latestRelatedSignal
       : null;
-  const latestThreeSignalCount = tiboPosts
-    .slice(0, 3)
-    .filter((post) => post.resetSignal !== 'none').length;
+  const recentSignalCount = tiboPosts.filter(
+    (post) =>
+      post.resetSignal !== 'none' &&
+      Date.parse(tiboPostsVerifiedAt) - Date.parse(post.publishedAt) <= dayMs,
+  ).length;
+  const highlightedPosts = useMemo(() => {
+    const ids = new Set(tiboPosts.slice(0, 5).map((post) => post.id));
+    const notablePost = tiboPosts.find((post) => post.resetSignal !== 'none');
+    if (notablePost) ids.add(notablePost.id);
+    return tiboPosts.filter((post) => ids.has(post.id));
+  }, []);
+  const visibleTiboPosts = showAllPosts ? tiboPosts : highlightedPosts;
   const eventMap = useMemo(
     () => new Map(resetEvents.map((event) => [event.date, event])),
     [],
@@ -273,11 +300,6 @@ export function ResetDashboard() {
     window.setTimeout(() => setPreviewCopied(false), 2200);
   }
 
-  function showBookmarkHint() {
-    setBookmarkHint(true);
-    window.setTimeout(() => setBookmarkHint(false), 3200);
-  }
-
   function chooseFilter(nextFilter: FilterKind) {
     setFilter(nextFilter);
   }
@@ -320,14 +342,14 @@ export function ResetDashboard() {
             aria-label="在 X 查看 Tibo 的主页"
           >
             <TiboAvatar />
-            <span>
-              <span className="brand-title">Codex 重置雷达</span>
+            <div>
+              <h1 className="brand-title">Codex 重置雷达</h1>
               <span className="profile-line">
                 <strong>Tibo</strong>
                 <span>{tibo.handle}</span>
                 <ArrowUpRight aria-hidden="true" />
               </span>
-            </span>
+            </div>
           </a>
 
           <Link
@@ -508,6 +530,41 @@ export function ResetDashboard() {
           aria-labelledby="latest-title"
         >
           <div className="card-grid-pattern" aria-hidden="true" />
+          {!activeOfficialPreview ? (
+            <section
+              className={`public-reset-state state-${publicResetState.kind}`}
+            >
+              <span className="public-reset-icon" aria-hidden="true">
+                {publicResetState.kind === 'confirmed' ? (
+                  <CheckCircle2 />
+                ) : (
+                  <Radio />
+                )}
+              </span>
+              <div className="public-reset-copy">
+                <span>
+                  当前结论 · {formatPublishedTime(tiboPostsVerifiedAt)} 核验
+                </span>
+                <h2 id="latest-title">
+                  {publicResetState.kind === 'confirmed'
+                    ? `${kindMeta[latestAnnouncement.kind].label}已发放 · ${formatRelativeTime(latestAnnouncement.publishedAt)}`
+                    : '暂未发现新的公开重置'}
+                </h2>
+                <p>
+                  {publicResetState.kind === 'confirmed'
+                    ? 'Tibo 已明确发布公告。现在请到 Usage 页面核对你的个人额度。'
+                    : '雷达会继续核对 Tibo 原帖，普通动态不会被误报为重置。'}
+                </p>
+              </div>
+              <a
+                href={latestAnnouncement.xUrl}
+                target="_blank"
+                rel="noreferrer"
+              >
+                查看原帖 <ExternalLink aria-hidden="true" />
+              </a>
+            </section>
+          ) : null}
           {activeOfficialPreview ? (
             <article className="official-preview">
               <header className="official-preview-head">
@@ -523,7 +580,7 @@ export function ResetDashboard() {
               <div className="official-preview-layout">
                 <section className="official-preview-forecast">
                   <span className="official-preview-label">官方预告信号</span>
-                  <h2>
+                  <h2 id="latest-title">
                     {activeOfficialPreview.preview?.headline ??
                       activeOfficialPreview.title}
                   </h2>
@@ -542,7 +599,9 @@ export function ResetDashboard() {
                   </p>
                   <div className="official-preview-status">
                     <span aria-hidden="true" />
-                    等待完成确认
+                    {publicResetState.kind === 'overdue'
+                      ? '预告日期已到，等待完成确认'
+                      : '等待完成确认'}
                   </div>
                 </section>
 
@@ -580,10 +639,6 @@ export function ResetDashboard() {
                       {previewCopied ? <Check /> : <Copy />}
                       {previewCopied ? '已复制' : '复制预告'}
                     </button>
-                    <button type="button" onClick={showBookmarkHint}>
-                      <Bookmark aria-hidden="true" />
-                      {bookmarkHint ? '请按 ⌘D / Ctrl+D' : '收藏雷达'}
-                    </button>
                   </footer>
                 </section>
               </div>
@@ -594,7 +649,7 @@ export function ResetDashboard() {
               <span className="monitor-kicker">
                 <Radio aria-hidden="true" /> 雷达在线
               </span>
-              <h2 id="latest-title">距离下一次信号扫描</h2>
+              <h2>距离下一次信号扫描</h2>
               <div
                 className="scan-countdown"
                 role="timer"
@@ -639,7 +694,9 @@ export function ResetDashboard() {
           </div>
 
           <aside
-            className="hero-probability"
+            className={`hero-probability${
+              probabilityModel.isCooldown ? ' is-cooldown' : ''
+            }`}
             aria-labelledby="hero-probability-title"
           >
             <div className="hero-probability-head">
@@ -647,7 +704,11 @@ export function ResetDashboard() {
                 <span className="probability-kicker">
                   <ScanLine aria-hidden="true" /> 历史模型预判
                 </span>
-                <h3 id="hero-probability-title">未来 24 小时重置可能性</h3>
+                <h3 id="hero-probability-title">
+                  {probabilityModel.isCooldown
+                    ? '本轮已确认，进入冷却观察'
+                    : '未来 24 小时重置可能性'}
+                </h3>
               </div>
               <span className="hero-probability-live">
                 <span aria-hidden="true" /> 已更新
@@ -656,38 +717,61 @@ export function ResetDashboard() {
 
             <div className="hero-probability-body">
               <div
-                className="hero-probability-dial"
+                className={`hero-probability-dial${
+                  probabilityModel.isCooldown ? ' is-cooldown' : ''
+                }`}
                 style={
                   {
                     '--probability': `${probabilityModel.probability * 3.6}deg`,
                   } as CSSProperties
                 }
-                aria-label={`未来 24 小时重置可能性 ${probabilityModel.probability}%`}
+                aria-label={
+                  probabilityModel.isCooldown
+                    ? '本轮重置已确认，当前为冷却观察期'
+                    : `未来 24 小时重置可能性 ${probabilityModel.probability}%`
+                }
               >
-                <div>
-                  <strong>{probabilityModel.probability}</strong>
-                  <span>%</span>
-                </div>
+                {probabilityModel.isCooldown ? (
+                  <div className="probability-confirmed-mark">
+                    <Check aria-hidden="true" />
+                    <span>已确认</span>
+                  </div>
+                ) : (
+                  <div>
+                    <strong>{probabilityModel.probability}</strong>
+                    <span>%</span>
+                  </div>
+                )}
               </div>
 
               <div className="hero-probability-copy">
                 <strong>
-                  {probabilityModel.probability < 35
-                    ? '偏低，但已进入常见重置间隔。'
-                    : '正在升高，建议留意新的明确表述。'}
+                  {probabilityModel.isCooldown
+                    ? '刚完成重置，本轮不再预测“还会不会重置”。'
+                    : probabilityModel.probability < 35
+                      ? '概率偏低，继续观察明确公告。'
+                      : '正在升高，建议留意新的明确表述。'}
                 </strong>
-                <p>基于已核验的公开重置记录，不把普通动态当作重置信号。</p>
+                <p>
+                  {probabilityModel.isCooldown
+                    ? '下一轮预测会在进入新的自然日后恢复。'
+                    : '基于已核验的公开重置记录，不把普通动态当作重置信号。'}
+                </p>
               </div>
             </div>
 
             <div className="hero-probability-factors">
               <div>
                 <span>距上次确认</span>
-                <strong>{probabilityModel.elapsedDays} 天</strong>
+                <strong>
+                  {probabilityModel.elapsedDays === 0
+                    ? '今天'
+                    : `${probabilityModel.elapsedDays} 天`}
+                </strong>
               </div>
               <div>
-                <span>最近 3 条信号</span>
-                <strong>{latestThreeSignalCount} 条</strong>
+                <span>近 24 小时信号</span>
+                <strong>{recentSignalCount} 条</strong>
               </div>
               <div>
                 <span>历史样本</span>
@@ -697,38 +781,18 @@ export function ResetDashboard() {
 
             <details className="hero-probability-method">
               <summary>
-                <Info aria-hidden="true" /> 这个概率怎么算？
+                <Info aria-hidden="true" />
+                {probabilityModel.isCooldown
+                  ? '为什么现在不显示概率？'
+                  : '这个概率怎么算？'}
               </summary>
               <p>
-                在“已经等待至少 {probabilityModel.elapsedDays}{' '}
-                天”的历史样本中，统计接下来 24
-                小时发生重置的比例。这是趋势参考，不是 OpenAI 承诺。
+                {probabilityModel.isCooldown
+                  ? '网站已经核验到本轮重置。此时继续显示升高概率会造成误导，所以改为冷却观察。'
+                  : `在已经等待至少 ${probabilityModel.elapsedDays} 天的历史样本中，统计接下来 24 小时发生重置的比例。这是趋势参考，不是 OpenAI 承诺。`}
               </p>
             </details>
           </aside>
-
-          <div className="latest-card-footer">
-            <div className="latest-reset-summary">
-              <span>最近一次 Codex 重置</span>
-              <strong>
-                {latestRelative.value}
-                {latestRelative.unit}
-              </strong>
-              <em>{latestAnnouncement.emoji} 额度重置</em>
-            </div>
-            <a
-              className="latest-source"
-              href={latestAnnouncement.xUrl}
-              target="_blank"
-              rel="noreferrer"
-            >
-              <span>
-                {formatPublishedTime(latestAnnouncement.publishedAt)} GMT+8
-              </span>
-              查看原帖
-              <ExternalLink aria-hidden="true" />
-            </a>
-          </div>
         </section>
 
         <section
@@ -826,13 +890,9 @@ export function ResetDashboard() {
               </div>
               <div className="heatmap-scroll">
                 <div className="heatmap-months" aria-hidden="true">
-                  <span>3月</span>
-                  <span>4月</span>
-                  <span>5月</span>
-                  <span>6月</span>
-                  <span>7月</span>
-                  <span>8月</span>
-                  <span>9月</span>
+                  {heatmapMonths.map((month) => (
+                    <span key={month}>{month}</span>
+                  ))}
                 </div>
                 <div className="heatmap-weeks">
                   {heatmapWeeks.map((week, weekIndex) => (
@@ -912,7 +972,10 @@ export function ResetDashboard() {
               </div>
 
               <div className="tibo-post-list">
-                {tiboPosts.map((post, index) => {
+                {visibleTiboPosts.map((post) => {
+                  const index = tiboPosts.findIndex(
+                    (candidate) => candidate.id === post.id,
+                  );
                   const signal = signalMeta[post.resetSignal];
                   return (
                     <article className="tibo-post-row" key={post.id}>
@@ -946,6 +1009,17 @@ export function ResetDashboard() {
                   );
                 })}
               </div>
+              <button
+                className="tibo-feed-toggle"
+                type="button"
+                aria-expanded={showAllPosts}
+                onClick={() => setShowAllPosts((current) => !current)}
+              >
+                {showAllPosts
+                  ? '收起，只看重点动态'
+                  : `查看全部 ${tiboPosts.length} 条动态`}
+                <ArrowUpRight aria-hidden="true" />
+              </button>
             </div>
           </div>
         </section>
@@ -954,8 +1028,8 @@ export function ResetDashboard() {
           <div className="footer-primary">
             <p>
               公开记录均可直达原帖 · 最近数据{' '}
-              {formatChineseDate(tiboPostsVerifiedAt.slice(0, 10))} · 与 OpenAI
-              无隶属关系
+              {formatChineseDate(toShanghaiDateKey(tiboPostsVerifiedAt))} · 与
+              OpenAI 无隶属关系
             </p>
             <button
               className="footer-contact"

@@ -10,7 +10,16 @@ export const metadata: Metadata = {
     '从生财有术精华帖中筛选个人实战案例，只展示真实成绩和问题，完整方法留在原帖。',
 };
 
-export default function SideHustlesPage() {
+type PageProps = {
+  searchParams: Promise<{ category?: string | string[] }>;
+};
+
+export default async function SideHustlesPage({ searchParams }: PageProps) {
+  const rawCategory = (await searchParams).category;
+  const initialFilter = Array.isArray(rawCategory)
+    ? rawCategory[0]
+    : rawCategory;
+
   return (
     <main className="radar-page hustle-page hustle-index-page">
       <div className="ambient-glow ambient-glow-a" aria-hidden="true" />
@@ -65,7 +74,10 @@ export default function SideHustlesPage() {
           </div>
         </section>
 
-        <SideHustleDirectory posts={sideHustles} />
+        <SideHustleDirectory
+          posts={sideHustles}
+          initialFilter={initialFilter}
+        />
       </div>
     </main>
   );

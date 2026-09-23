@@ -1,4 +1,5 @@
 import feedJson from './reset-feed.json';
+import { toShanghaiDateKey } from '../lib/time.ts';
 
 export type ResetKind = 'full' | 'banked' | 'signal';
 
@@ -98,7 +99,7 @@ export const announcements: ResetAnnouncement[] = feed.announcements
   .map((announcement) => ({
     id: announcement.id,
     publishedAt: announcement.publishedAt,
-    date: announcement.publishedAt.slice(0, 10),
+    date: toShanghaiDateKey(announcement.publishedAt),
     kind: announcement.kind,
     emoji: kindMeta[announcement.kind].emoji,
     title: announcement.title,

@@ -4,6 +4,7 @@ import feed from '../data/reset-feed.json' with { type: 'json' };
 import {
   classifyResetPost,
   ingestTiboPost,
+  toShanghaiDateKey,
   validateResetFeed,
 } from './reset-feed-core.mjs';
 
@@ -65,4 +66,19 @@ test('相同推文 ID 不会重复入库', () => {
   });
   assert.equal(result.changed, false);
   assert.equal(result.reason, 'duplicate');
+});
+
+test('自动入库按北京时间落到正确自然日', () => {
+  assert.equal(toShanghaiDateKey('2026-10-01T18:30:00.000Z'), '2026-10-02');
+
+  const result = ingestTiboPost(feed, {
+    id: '2100000000000000099',
+    authorHandle: '@thsottiaux',
+    publishedAt: '2026-10-01T18:30:00.000Z',
+    text: 'Reset all propagated.',
+    url: 'https://x.com/thsottiaux/status/2100000000000000099',
+  });
+
+  assert.equal(result.changed, true);
+  assert.equal(result.feed.events[0].date, '2026-10-02');
 });

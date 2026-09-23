@@ -40,3 +40,15 @@ void test('最新确认重置帖子优先于历史预测', () => {
   assert.equal(result.hasNewConfirmedPost, true);
   assert.equal(result.probability, 100);
 });
+
+void test('北京午夜后的同日重置进入冷却观察，不再显示升高概率', () => {
+  const result = calculateResetProbability(
+    [...events, { date: '2026-09-23', kind: 'banked' as const }],
+    [],
+    '2026-09-23T03:00:00.000Z',
+  );
+
+  assert.equal(result.elapsedDays, 0);
+  assert.equal(result.isCooldown, true);
+  assert.equal(result.probability, 0);
+});

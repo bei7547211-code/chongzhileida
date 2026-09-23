@@ -1,6 +1,22 @@
 const RESET_KINDS = new Set(['full', 'banked', 'signal']);
 const KIND_PRIORITY = { signal: 1, banked: 2, full: 3 };
 
+export function toShanghaiDateKey(value) {
+  const date = value instanceof Date ? value : new Date(value);
+  invariant(Number.isFinite(date.getTime()), '日期无效');
+  const parts = new Intl.DateTimeFormat('en-US', {
+    timeZone: 'Asia/Shanghai',
+    year: 'numeric',
+    month: '2-digit',
+    day: '2-digit',
+  }).formatToParts(date);
+  const year = parts.find((part) => part.type === 'year')?.value;
+  const month = parts.find((part) => part.type === 'month')?.value;
+  const day = parts.find((part) => part.type === 'day')?.value;
+  invariant(year && month && day, '无法生成北京时间日期');
+  return `${year}-${month}-${day}`;
+}
+
 function invariant(condition, message) {
   if (!condition) throw new Error(message);
 }
@@ -167,7 +183,7 @@ export function ingestTiboPost(feed, payload, now = new Date()) {
   }
 
   const nextFeed = structuredClone(feed);
-  const date = new Date(payload.publishedAt).toISOString().slice(0, 10);
+  const date = toShanghaiDateKey(payload.publishedAt);
   const existingEvent = nextFeed.events.find((event) => event.date === date);
 
   if (!existingEvent) {

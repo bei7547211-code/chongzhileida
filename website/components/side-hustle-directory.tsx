@@ -38,8 +38,19 @@ function shorten(text: string, maxLength = 82) {
   return text.length > maxLength ? `${text.slice(0, maxLength)}…` : text;
 }
 
-export function SideHustleDirectory({ posts }: { posts: SideHustle[] }) {
-  const [activeFilter, setActiveFilter] = useState('all');
+export function SideHustleDirectory({
+  posts,
+  initialFilter = 'all',
+}: {
+  posts: SideHustle[];
+  initialFilter?: string;
+}) {
+  const normalizedInitialFilter = filters.some(
+    (filter) => filter.id === initialFilter,
+  )
+    ? initialFilter
+    : 'all';
+  const [activeFilter, setActiveFilter] = useState(normalizedInitialFilter);
 
   const visiblePosts = useMemo(() => {
     const selected = filters.find((filter) => filter.id === activeFilter);
@@ -47,6 +58,25 @@ export function SideHustleDirectory({ posts }: { posts: SideHustle[] }) {
       ? posts.filter((post) => postMatchesFilter(post, selected))
       : posts;
   }, [activeFilter, posts]);
+
+  function chooseFilter(nextFilter: string) {
+    setActiveFilter(nextFilter);
+    const params = new URLSearchParams(window.location.search);
+    if (nextFilter === 'all') params.delete('category');
+    else params.set('category', nextFilter);
+    const query = params.toString();
+    window.history.replaceState(
+      null,
+      '',
+      `${window.location.pathname}${query ? `?${query}` : ''}`,
+    );
+  }
+
+  function getDetailHref(slug: string) {
+    return activeFilter === 'all'
+      ? `/side-hustles/${slug}`
+      : `/side-hustles/${slug}?category=${encodeURIComponent(activeFilter)}`;
+  }
 
   return (
     <>
@@ -78,7 +108,7 @@ export function SideHustleDirectory({ posts }: { posts: SideHustle[] }) {
                   key={filter.id}
                   className={activeFilter === filter.id ? 'is-active' : ''}
                   aria-pressed={activeFilter === filter.id}
-                  onClick={() => setActiveFilter(filter.id)}
+                  onClick={() => chooseFilter(filter.id)}
                 >
                   {filter.label}
                 </button>
@@ -113,7 +143,7 @@ export function SideHustleDirectory({ posts }: { posts: SideHustle[] }) {
 
                   <div className="hustle-rank-copy">
                     <h3>
-                      <a href={`/side-hustles/${post.slug}`}>{post.title}</a>
+                      <a href={getDetailHref(post.slug)}>{post.title}</a>
                     </h3>
                     <p>
                       <strong>{post.author}</strong>
@@ -131,7 +161,7 @@ export function SideHustleDirectory({ posts }: { posts: SideHustle[] }) {
 
                   <a
                     className="hustle-rank-cta"
-                    href={`/side-hustles/${post.slug}`}
+                    href={getDetailHref(post.slug)}
                     aria-label={`查看${post.title}的案例解读`}
                   >
                     查看解读 <ArrowUpRight />
@@ -215,11 +245,7 @@ export function SideHustleDirectory({ posts }: { posts: SideHustle[] }) {
           </a>
         </div>
 
-        <a
-          className="hustle-bottom-invite"
-          href="/experience-card"
-          aria-label="查看生财有术三天体验卡大图"
-        >
+        <div className="hustle-bottom-invite">
           <span>
             <ScanLine /> 扫码免费领
           </span>
@@ -230,21 +256,17 @@ export function SideHustleDirectory({ posts }: { posts: SideHustle[] }) {
             height={189}
             sizes="(max-width: 760px) calc(100vw - 68px), 340px"
           />
-          <small>电脑直接扫码 · 手机点击查看大图</small>
-        </a>
+          <small>扫码领取 · 也可点击左侧按钮查看大图</small>
+        </div>
 
-        <a
-          className="hustle-bottom-poster"
-          href="/experience-card"
-          aria-label="打开生财有术三天体验卡"
-        >
+        <div className="hustle-bottom-poster">
           <Image
             src="/side-hustles/experience-card.png"
             alt="生财有术三天体验卡海报"
             fill
             sizes="180px"
           />
-        </a>
+        </div>
       </section>
     </>
   );

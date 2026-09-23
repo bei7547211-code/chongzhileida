@@ -1,10 +1,32 @@
 import type { Metadata } from 'next';
+import Image from 'next/image';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
-import { ArrowLeft, ArrowUpRight, Gift } from 'lucide-react';
+import {
+  ArrowLeft,
+  ArrowUpRight,
+  Bookmark,
+  Eye,
+  Gift,
+  Heart,
+  MessageCircle,
+} from 'lucide-react';
 import { getSideHustle, sideHustles } from '@/data/side-hustles';
 
-type PageProps = { params: Promise<{ slug: string }> };
+type PageProps = {
+  params: Promise<{ slug: string }>;
+  searchParams: Promise<{ category?: string | string[] }>;
+};
+
+const directoryFilters = new Set([
+  'all',
+  'ai',
+  'xiaohongshu',
+  'youtube',
+  'x',
+  'seo',
+  'overseas',
+]);
 
 export function generateStaticParams() {
   return sideHustles.map((post) => ({ slug: post.slug }));
@@ -26,16 +48,31 @@ export async function generateMetadata({
   };
 }
 
-export default async function SideHustleDetailPage({ params }: PageProps) {
+export default async function SideHustleDetailPage({
+  params,
+  searchParams,
+}: PageProps) {
   const post = getSideHustle((await params).slug);
   if (!post) notFound();
+  const rawCategory = (await searchParams).category;
+  const requestedCategory = Array.isArray(rawCategory)
+    ? rawCategory[0]
+    : rawCategory;
+  const category =
+    requestedCategory && directoryFilters.has(requestedCategory)
+      ? requestedCategory
+      : 'all';
+  const backHref =
+    category === 'all'
+      ? '/side-hustles'
+      : `/side-hustles?category=${encodeURIComponent(category)}`;
 
   return (
     <main className="radar-page hustle-page">
       <div className="ambient-glow ambient-glow-a" aria-hidden="true" />
       <article className="page-shell hustle-detail">
         <nav className="hustle-nav reveal reveal-1">
-          <Link href="/side-hustles" className="hustle-back">
+          <Link href={backHref} className="hustle-back">
             <ArrowLeft /> 精选副业
           </Link>
           <div className="hustle-nav-actions">
@@ -62,10 +99,66 @@ export default async function SideHustleDetailPage({ params }: PageProps) {
             ))}
           </div>
           <h1>{post.title}</h1>
-          <p className="hustle-byline">
-            作者 {post.author} · 发布于 {post.published_at} · 阅读{' '}
-            {post.stats.reads.toLocaleString('zh-CN')}
-          </p>
+          <section className="hustle-evidence-card" aria-label="案例来源信息">
+            <div className="hustle-evidence-author">
+              <Image
+                src={post.avatar}
+                alt={`${post.author} 的头像`}
+                width={58}
+                height={58}
+                priority
+              />
+              <div>
+                <strong>{post.author}</strong>
+                <span>
+                  发布于 {post.published_at} · 原帖{' '}
+                  {post.word_count.toLocaleString('zh-CN')} 字
+                </span>
+              </div>
+            </div>
+
+            <dl className="hustle-evidence-stats">
+              <div>
+                <dt>
+                  <Eye /> 阅读
+                </dt>
+                <dd>{post.stats.reads.toLocaleString('zh-CN')}</dd>
+              </div>
+              <div>
+                <dt>
+                  <Heart /> 点赞
+                </dt>
+                <dd>{post.stats.likes.toLocaleString('zh-CN')}</dd>
+              </div>
+              <div>
+                <dt>
+                  <Bookmark /> 收藏
+                </dt>
+                <dd>{post.stats.favorites.toLocaleString('zh-CN')}</dd>
+              </div>
+              <div>
+                <dt>
+                  <MessageCircle /> 评论
+                </dt>
+                <dd>{post.stats.comments.toLocaleString('zh-CN')}</dd>
+              </div>
+            </dl>
+
+            <figure
+              className={`hustle-evidence-cover${
+                post.slug === 'ai-tiktok-video-1596-orders' ? ' is-banner' : ''
+              }`}
+            >
+              <Image
+                src={post.cover}
+                alt={`${post.title}原帖封面`}
+                fill
+                priority
+                sizes="(max-width: 760px) calc(100vw - 48px), 760px"
+              />
+              <figcaption>原帖封面 · 已核验作者与公开数据</figcaption>
+            </figure>
+          </section>
         </header>
 
         <section

@@ -1,18 +1,11 @@
 import type { ResetEvent } from '@/data/reset-history';
 import type { TiboPost } from '@/data/tibo-posts';
+import { toShanghaiDateKey } from './time.ts';
 
 const DAY_MS = 86_400_000;
 
 function parseDay(date: string) {
   return Date.parse(`${date}T00:00:00.000Z`);
-}
-
-function shanghaiDay(value: string) {
-  const date = new Date(value);
-  const year = date.getUTCFullYear();
-  const month = String(date.getUTCMonth() + 1).padStart(2, '0');
-  const day = String(date.getUTCDate()).padStart(2, '0');
-  return `${year}-${month}-${day}`;
 }
 
 export function calculateResetProbability(
@@ -24,12 +17,11 @@ export function calculateResetProbability(
     .filter((date) => Number.isFinite(parseDay(date)))
     .sort();
 
-  const latestResetDate = dates.at(-1) ?? shanghaiDay(asOf);
+  const asOfDate = toShanghaiDateKey(asOf);
+  const latestResetDate = dates.at(-1) ?? asOfDate;
   const elapsedDays = Math.max(
     0,
-    Math.floor(
-      (parseDay(shanghaiDay(asOf)) - parseDay(latestResetDate)) / DAY_MS,
-    ),
+    Math.floor((parseDay(asOfDate) - parseDay(latestResetDate)) / DAY_MS),
   );
   const gaps = dates
     .slice(1)
@@ -45,17 +37,21 @@ export function calculateResetProbability(
       post.resetSignal === 'confirmed' &&
       Date.parse(post.publishedAt) > latestResetAt + DAY_MS,
   );
-  const probability = hasNewConfirmedPost
-    ? 100
-    : comparableGaps.length
-      ? Math.min(
-          85,
-          Math.round((nextDayGaps.length / comparableGaps.length) * 100),
-        )
-      : 0;
+  const isCooldown = elapsedDays === 0;
+  const probability = isCooldown
+    ? 0
+    : hasNewConfirmedPost
+      ? 100
+      : comparableGaps.length
+        ? Math.min(
+            85,
+            Math.round((nextDayGaps.length / comparableGaps.length) * 100),
+          )
+        : 0;
 
   return {
     probability,
+    isCooldown,
     elapsedDays,
     sampleSize: comparableGaps.length,
     latestResetDate,
