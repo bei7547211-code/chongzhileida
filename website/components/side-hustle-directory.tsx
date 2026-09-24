@@ -81,7 +81,7 @@ export function SideHustleDirectory({
   return (
     <>
       <section
-        className="hustle-directory-layout reveal reveal-3"
+        className={`hustle-directory-layout reveal reveal-3${visiblePosts.length < 4 ? ' is-compact' : ''}`}
         aria-label="精选副业案例"
       >
         <div className="hustle-directory-panel" id="case-directory">

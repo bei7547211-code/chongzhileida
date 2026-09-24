@@ -187,7 +187,9 @@ async function fetchPage(url, fetchImpl) {
 export async function fetchTiboTimeline({
   fetchImpl = globalThis.fetch,
   maxPages = 3,
+  handle = TIBO_HANDLE,
 } = {}) {
+  invariant(/^[a-zA-Z0-9_]{1,20}$/.test(handle), '公开账号名称无效');
   invariant(typeof fetchImpl === 'function', '当前环境不支持网络请求');
   invariant(
     Number.isInteger(maxPages) && maxPages >= 1 && maxPages <= 5,
@@ -206,13 +208,13 @@ export async function fetchTiboTimeline({
   let hasMore = false;
 
   for (let pageIndex = 0; pageIndex < maxPages; pageIndex += 1) {
-    const url = new URL(FX_TIMELINE_ENDPOINT);
+    const url = new URL(`https://api.fxtwitter.com/2/profile/${handle}/statuses`);
     url.searchParams.set('count', '100');
     url.searchParams.set('with_replies', '1');
     if (cursor) url.searchParams.set('cursor', cursor);
 
     const payload = await fetchPage(url, fetchImpl);
-    const page = parseFxTimelinePage(payload);
+    const page = parseFxTimelinePage(payload, handle);
     pagesFetched += 1;
     returnedCount += page.returnedCount;
     contextEntries += page.contextEntries;
@@ -231,7 +233,7 @@ export async function fetchTiboTimeline({
   );
   return {
     provider: 'fxtwitter-json',
-    handle: `@${TIBO_HANDLE}`,
+    handle: `@${handle}`,
     startedAt,
     finishedAt: new Date().toISOString(),
     pagesFetched,

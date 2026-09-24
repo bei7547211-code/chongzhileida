@@ -1,9 +1,9 @@
 import type { Metadata } from 'next';
+import { EditorialHeader, EditorialFooter } from '@/components/editorial-dashboard';
 import Image from 'next/image';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import {
-  ArrowLeft,
   ArrowUpRight,
   Bookmark,
   Eye,
@@ -71,26 +71,8 @@ export default async function SideHustleDetailPage({
     <main className="radar-page hustle-page">
       <div className="ambient-glow ambient-glow-a" aria-hidden="true" />
       <article className="page-shell hustle-detail">
-        <nav className="hustle-nav reveal reveal-1">
-          <Link href={backHref} className="hustle-back">
-            <ArrowLeft /> 精选副业
-          </Link>
-          <div className="hustle-nav-actions">
-            <span className="hustle-nav-meta">
-              原帖 {post.word_count.toLocaleString('zh-CN')} 字
-            </span>
-            <Link
-              href="/experience-card"
-              className="hustle-nav-cta"
-              aria-label="免费体验生财有术三天"
-            >
-              <Gift />
-              <span className="hustle-cta-label-long">直接体验</span>
-              <span className="hustle-cta-label-short">体验</span>
-              <ArrowUpRight />
-            </Link>
-          </div>
-        </nav>
+        <EditorialHeader active="side-hustles" />
+        <Link href={backHref} className="ed-breadcrumb">← 返回案例列表</Link>
 
         <header className="hustle-detail-head reveal reveal-2">
           <div className="hustle-tags">
@@ -221,6 +203,7 @@ export default async function SideHustleDetailPage({
             </Link>
           </div>
         </section>
+        <EditorialFooter />
       </article>
     </main>
   );

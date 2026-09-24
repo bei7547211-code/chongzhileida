@@ -1,8 +1,9 @@
 /* oxlint-disable next/no-html-link-for-pages -- plain anchors avoid a hydration conflict in the local preview runtime */
 import type { Metadata } from 'next';
-import { ArrowLeft, ArrowUpRight, Gift, ShieldCheck } from 'lucide-react';
+import { EditorialHeader, EditorialFooter } from '@/components/editorial-dashboard';
+import { ShieldCheck } from 'lucide-react';
 import { SideHustleDirectory } from '@/components/side-hustle-directory';
-import { sideHustles, sideHustlesUpdatedAt } from '@/data/side-hustles';
+import { sideHustles } from '@/data/side-hustles';
 
 export const metadata: Metadata = {
   title: '精选副业 · 真实成绩与完整案例',
@@ -24,26 +25,7 @@ export default async function SideHustlesPage({ searchParams }: PageProps) {
     <main className="radar-page hustle-page hustle-index-page">
       <div className="ambient-glow ambient-glow-a" aria-hidden="true" />
       <div className="page-shell hustle-shell">
-        <header className="hustle-nav reveal reveal-1">
-          <a href="/" className="hustle-back">
-            <ArrowLeft /> 重置雷达
-          </a>
-          <div className="hustle-nav-actions">
-            <span className="hustle-nav-meta">
-              更新于 {sideHustlesUpdatedAt}
-            </span>
-            <a
-              href="/experience-card"
-              className="hustle-nav-cta"
-              aria-label="免费体验生财有术三天"
-            >
-              <Gift />
-              <span className="hustle-cta-label-long">直接体验</span>
-              <span className="hustle-cta-label-short">体验</span>
-              <ArrowUpRight />
-            </a>
-          </div>
-        </header>
+        <EditorialHeader active="side-hustles" />
 
         <section className="hustle-hero-banner reveal reveal-2">
           <div className="hustle-hero-copy">
@@ -78,6 +60,7 @@ export default async function SideHustlesPage({ searchParams }: PageProps) {
           posts={sideHustles}
           initialFilter={initialFilter}
         />
+        <EditorialFooter />
       </div>
     </main>
   );

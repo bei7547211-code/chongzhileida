@@ -160,59 +160,64 @@ async function renderShareCard({
   const date = getShanghaiDateParts(publishedAt);
   const status = getStatusCopy(kind);
 
-  context.fillStyle = '#06110d';
+  context.fillStyle = '#f8edda';
   context.fillRect(0, 0, canvas.width, canvas.height);
   context.save();
-  context.globalAlpha = 0.62;
+  context.globalAlpha = 0.12;
   drawCover(context, background, canvas.width, canvas.height);
   context.restore();
 
   const veil = context.createLinearGradient(0, 0, canvas.width, canvas.height);
-  veil.addColorStop(0, 'rgba(2, 13, 8, 0.12)');
-  veil.addColorStop(0.52, 'rgba(2, 15, 9, 0.68)');
-  veil.addColorStop(1, 'rgba(2, 12, 7, 0.90)');
+  veil.addColorStop(0, 'rgba(255, 251, 240, 0.18)');
+  veil.addColorStop(0.52, 'rgba(248, 236, 214, 0.58)');
+  veil.addColorStop(1, 'rgba(238, 213, 174, 0.90)');
   context.fillStyle = veil;
   context.fillRect(0, 0, canvas.width, canvas.height);
 
-  context.fillStyle = '#55e6ba';
+  context.fillStyle = '#b9572c';
   context.font = '600 26px ui-monospace, SFMono-Regular, Menlo, monospace';
   context.letterSpacing = '3px';
   context.fillText('CODEX RESET RELAY', 72, 82);
   context.letterSpacing = '0px';
 
   context.textAlign = 'right';
-  context.fillStyle = '#eef7f1';
+  context.fillStyle = '#342a22';
   context.font = '650 28px system-ui, -apple-system, "PingFang SC", sans-serif';
   context.fillText(`${date.year}.${date.month}.${date.day}`, 1008, 82);
   context.textAlign = 'left';
 
-  context.fillStyle = '#b7ff2a';
+  context.fillStyle = '#f2c84b';
   context.font =
     '900 224px system-ui, -apple-system, "PingFang SC", sans-serif';
   context.fillText('重', 55, 328);
 
-  context.fillStyle = '#55e6ba';
+  context.fillStyle = '#b9572c';
   context.font = '650 22px ui-monospace, SFMono-Regular, Menlo, monospace';
   context.letterSpacing = '2px';
   context.fillText(status.label, 310, 168);
   context.letterSpacing = '0px';
 
-  context.fillStyle = '#eef7f1';
+  context.fillStyle = '#342a22';
   context.font = '800 62px system-ui, -apple-system, "PingFang SC", sans-serif';
   context.fillText(status.title, 306, 242);
 
-  context.fillStyle = '#b7c8bd';
+  context.fillStyle = '#74675b';
   context.font = '430 27px system-ui, -apple-system, "PingFang SC", sans-serif';
   const actionLines = wrapCanvasText(context, status.action, 650, 2);
   actionLines.forEach((line, index) =>
     context.fillText(line, 310, 291 + index * 42),
   );
 
-  context.fillStyle = '#55e6ba';
+  context.fillStyle = '#b9572c';
   context.font = '650 19px ui-monospace, SFMono-Regular, Menlo, monospace';
   context.letterSpacing = '2px';
   context.fillText('TIBO ORIGINAL POST · SOURCE SCREENSHOT', 95, 356);
   context.letterSpacing = '0px';
+
+  context.beginPath();
+  context.roundRect(107, 388, 890, 812, 30);
+  context.fillStyle = '#3d3026';
+  context.fill();
 
   context.save();
   context.beginPath();
@@ -224,22 +229,25 @@ async function renderShareCard({
   context.restore();
   context.beginPath();
   context.roundRect(95, 376, 890, 812, 30);
-  context.strokeStyle = 'rgba(238, 247, 241, 0.52)';
-  context.lineWidth = 2;
+  context.strokeStyle = '#3d3026';
+  context.lineWidth = 4;
   context.stroke();
 
   context.beginPath();
   context.roundRect(72, 1212, 936, 158, 28);
-  context.fillStyle = 'rgba(238, 247, 241, 0.96)';
+  context.fillStyle = '#ffdf66';
   context.fill();
+  context.strokeStyle = '#3d3026';
+  context.lineWidth = 3;
+  context.stroke();
 
-  context.fillStyle = '#102018';
+  context.fillStyle = '#342a22';
   context.font = '800 30px system-ui, -apple-system, "PingFang SC", sans-serif';
   context.fillText('扫码看原帖与最新状态', 106, 1264);
-  context.fillStyle = '#4c6457';
+  context.fillStyle = '#665648';
   context.font = '500 21px system-ui, -apple-system, "PingFang SC", sans-serif';
   context.fillText('真实来源 · 历史记录 · 下一次公开信号', 106, 1302);
-  context.fillStyle = '#0c7e5f';
+  context.fillStyle = '#9f4824';
   context.font = '750 22px ui-monospace, SFMono-Regular, Menlo, monospace';
   context.fillText('resetrelay.com', 106, 1340);
 

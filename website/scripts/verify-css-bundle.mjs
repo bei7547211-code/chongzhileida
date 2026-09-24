@@ -14,6 +14,10 @@ const requiredSelectors = [
   '.footer-contact',
   '.tibo-post-card',
   '.hustle-directory-panel',
+  '.editorial-site',
+  '.ed-platforms',
+  '.ed-header',
+  '.ed-share-dialog',
 ];
 
 async function collectCssFiles(directory) {
@@ -34,6 +38,7 @@ for (const directory of candidateBuildDirectories) {
   try {
     await access(directory);
     availableBuildDirectories.push(directory);
+    break; // Verify the current Next build, never let a stale Vercel cache mask missing CSS.
   } catch {
     // The local Next.js build does not create Vercel's output directory.
   }

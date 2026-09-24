@@ -1,5 +1,5 @@
-import { ResetDashboard } from '@/components/reset-dashboard';
+import { EditorialDashboard } from '@/components/editorial-dashboard';
 
 export default function Home() {
-  return <ResetDashboard />;
+  return <EditorialDashboard />;
 }

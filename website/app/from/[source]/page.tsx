@@ -1,6 +1,6 @@
 import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
-import { ResetDashboard } from '@/components/reset-dashboard';
+import { EditorialDashboard } from '@/components/editorial-dashboard';
 
 const trafficSources = ['wechat', 'x'] as const;
 
@@ -28,5 +28,5 @@ export default async function TrafficSourceEntryPage({ params }: PageProps) {
   const { source } = await params;
   if (!isTrafficSource(source)) notFound();
 
-  return <ResetDashboard />;
+  return <EditorialDashboard />;
 }

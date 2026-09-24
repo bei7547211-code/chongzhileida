@@ -22,6 +22,7 @@ import {
 import { fetchTiboTimeline } from './tibo-source-core.mjs';
 
 const argumentsList = process.argv.slice(2);
+const noNotify = argumentsList.includes('--no-notify');
 const mode = argumentsList.includes('--publish')
   ? 'publish'
   : argumentsList.includes('--write')
@@ -37,6 +38,7 @@ const websiteRoot = resolve(fileURLToPath(new URL('..', import.meta.url)));
 const repositoryRoot = resolve(websiteRoot, '..');
 const resetFeedPath = resolve(websiteRoot, 'data/reset-feed.json');
 const postsFeedPath = resolve(websiteRoot, 'data/tibo-posts.json');
+const providerFeedPath = resolve(websiteRoot, 'data/provider-feeds.json');
 const stateDirectory = process.env.RESET_RADAR_STATE_DIR
   ? resolve(process.env.RESET_RADAR_STATE_DIR)
   : resolve(homedir(), '.reset-radar');
@@ -45,6 +47,7 @@ const lockPath = resolve(stateDirectory, 'tibo-monitor.lock');
 const trackedDataPaths = [
   'website/data/reset-feed.json',
   'website/data/tibo-posts.json',
+  'website/data/provider-feeds.json',
 ];
 
 function run(command, args, cwd = repositoryRoot, options = {}) {
@@ -167,7 +170,11 @@ function commitData() {
   const dateLabel = new Intl.DateTimeFormat('en-CA', {
     timeZone: 'Asia/Shanghai',
   }).format(new Date());
-  run('git', ['commit', '-m', `data: sync Tibo posts ${dateLabel}`]);
+  run('git', [
+    'commit',
+    '-m',
+    `data: sync public AI reset sources ${dateLabel}`,
+  ]);
   return true;
 }
 
@@ -189,6 +196,8 @@ async function main() {
   let lockHandle;
   let originalResetFeed;
   let originalPostsFeed;
+  let originalProviderFeed;
+  let providerReport;
   let dataWritten = false;
   let committed = false;
 
@@ -197,6 +206,7 @@ async function main() {
     stage = '读取现有数据';
     originalResetFeed = await readFile(resetFeedPath, 'utf8');
     originalPostsFeed = await readFile(postsFeedPath, 'utf8');
+    originalProviderFeed = await readFile(providerFeedPath, 'utf8');
     const resetFeed = JSON.parse(originalResetFeed);
     const postsFeed = JSON.parse(originalPostsFeed);
     const state = await readState();
@@ -223,6 +233,7 @@ async function main() {
     applied = applyTiboMonitorPlan(resetFeed, postsFeed, plan, now);
 
     if (mode === 'dry-run') {
+      run(process.execPath, ['scripts/run-provider-monitor.mjs'], websiteRoot);
       const audit = buildMonitorAudit({
         sourceReport,
         plan,
@@ -241,6 +252,18 @@ async function main() {
     await atomicWriteJson(resetFeedPath, applied.resetFeed, 0o644);
     await atomicWriteJson(postsFeedPath, applied.postsFeed, 0o644);
     dataWritten = true;
+
+    stage = '读取 Claude 与 Grok 官方公开动态';
+    // The existing Mac job now covers all three platforms. Partial failures keep
+    // historical data and publish a visible freshness/error state, never fake success.
+    run(
+      process.execPath,
+      ['scripts/run-provider-monitor.mjs', '--write', '--allow-partial'],
+      websiteRoot,
+    );
+    providerReport = await readJson(
+      resolve(stateDirectory, 'provider-last-run.json'),
+    );
 
     stage = '网站质量检查';
     verifyWebsite();
@@ -264,16 +287,52 @@ async function main() {
       applied,
       startedAt,
     });
-    const delivery = await deliverMonitorAudit(audit, { stateDirectory });
+    if (providerReport) {
+      audit.checkedPosts += providerReport.checkedPosts;
+      audit.ingestedPostIds.push(...providerReport.newIds);
+      audit.summary += `；Claude / Grok：${providerReport.summaries.join('；')}。${mode === 'publish' ? '已通过质量检查并同步 GitHub。' : '仅更新本地，尚未发布。'}`;
+      audit.judgmentNeeded.push(
+        ...providerReport.pending.slice(0, 8).map((p) => ({
+          question: `${p.provider} 原帖是否明确宣布重置？`,
+          reason: p.reason,
+          options: [
+            { id: 'A', label: '继续保留待审' },
+            { id: 'B', label: '核验原帖后确认类型及范围' },
+          ],
+          recommendation: 'A',
+          recommendationReason: '模糊信息不自动公开；需核验原文与产品范围',
+          safeDefault: '保留私有待审队列，不进入公开历史或 RSS',
+          url: p.url,
+        })),
+      );
+      if (providerReport.errors.length) {
+        audit.status = 'error';
+        audit.error = {
+          stage: 'Claude / Grok 采集',
+          message: `${providerReport.errors.join('、')} 来源失败，页面保留历史并标记数据待更新`,
+        };
+      } else if (audit.judgmentNeeded.length) audit.status = 'attention';
+      else if (providerReport.newIds.length) audit.status = 'updated';
+    }
+    const delivery = await deliverMonitorAudit(audit, {
+      stateDirectory,
+      dryRun: noNotify,
+    });
     console.log(delivery.text);
     console.log(
-      delivery.sent
-        ? 'MONITOR_OK FEISHU_SENT'
-        : `MONITOR_OK FEISHU_NOT_CONFIGURED audit=${delivery.auditLogPath}`,
+      noNotify
+        ? 'MONITOR_OK LOCAL_ONLY NO_EXTERNAL_NOTIFICATION'
+        : delivery.sent
+          ? 'MONITOR_OK FEISHU_SENT'
+          : `MONITOR_OK FEISHU_NOT_CONFIGURED audit=${delivery.auditLogPath}`,
     );
   } catch (error) {
     if (dataWritten && !committed && originalResetFeed && originalPostsFeed) {
       await restoreData(originalResetFeed, originalPostsFeed).catch(() => {});
+      if (originalProviderFeed)
+        await writeFile(providerFeedPath, originalProviderFeed, 'utf8').catch(
+          () => {},
+        );
       if (mode === 'publish') {
         try {
           run('git', ['add', '--', ...trackedDataPaths]);
@@ -295,7 +354,7 @@ async function main() {
     });
     try {
       const delivery = await deliverMonitorAudit(audit, {
-        dryRun: mode === 'dry-run',
+        dryRun: mode === 'dry-run' || noNotify,
         stateDirectory,
       });
       console.error(delivery.text);

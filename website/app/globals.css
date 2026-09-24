@@ -2811,6 +2811,22 @@
   -webkit-backdrop-filter: blur(18px);
 }
 
+.hustle-nav .site-category-nav {
+  border-color: rgb(255 255 255 / 12%);
+  background: rgb(255 255 255 / 5%);
+  box-shadow: inset 0 1px 0 rgb(255 255 255 / 5%);
+}
+
+.hustle-nav .site-category-nav a {
+  color: #aec1b7;
+  font-family: var(--font-geist-sans), sans-serif;
+}
+
+.hustle-nav .site-category-nav a:hover {
+  background: rgb(255 255 255 / 8%);
+  color: #ffffff;
+}
+
 .hustle-nav-actions {
   display: flex;
   align-items: center;
@@ -4570,8 +4586,27 @@
     width: min(100% - 24px, 680px);
   }
   .hustle-nav {
+    display: grid;
+    grid-template-columns: 1fr auto;
     top: 8px;
     gap: 8px;
+    border-radius: 20px;
+  }
+  .hustle-nav .site-category-nav {
+    grid-column: 1 / -1;
+    grid-row: 2;
+    width: 100%;
+    justify-self: stretch;
+    justify-content: flex-start;
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+  .hustle-nav .site-category-nav::-webkit-scrollbar {
+    display: none;
+  }
+  .hustle-nav .site-category-nav a {
+    flex: 0 0 auto;
+    padding: 8px 12px;
   }
   .hustle-nav-actions {
     gap: 8px;
@@ -4993,5 +5028,431 @@
     animation-iteration-count: 1 !important;
     scroll-behavior: auto !important;
     transition-duration: 0.01ms !important;
+  }
+}
+
+/* Warm editorial system shared by Selected Side Hustles and Share Card. */
+.hustle-index-page {
+  --hustle-paper: #fbf3e3;
+  --hustle-surface: #fffaf0;
+  --hustle-ink: #392f27;
+  --hustle-muted: #7b6d60;
+  --hustle-line: #493b30;
+  --hustle-yellow: #f4cb4f;
+  --hustle-orange: #e66f36;
+  --background: var(--hustle-paper);
+  --foreground: var(--hustle-ink);
+  --primary: var(--hustle-yellow);
+  --primary-foreground: var(--hustle-ink);
+  --muted-foreground: var(--hustle-muted);
+  --border: #cfbfa9;
+  --accent: var(--hustle-orange);
+  color: var(--hustle-ink);
+  background:
+    radial-gradient(circle at 84% 7%, rgb(244 203 79 / 24%), transparent 28rem),
+    radial-gradient(circle at 9% 48%, rgb(230 111 54 / 9%), transparent 25rem),
+    var(--hustle-paper);
+}
+
+.hustle-index-page::before {
+  background-image:
+    linear-gradient(rgb(73 59 48 / 4%) 1px, transparent 1px),
+    linear-gradient(90deg, rgb(73 59 48 / 4%) 1px, transparent 1px);
+  background-size: 56px 56px;
+  mask-image: linear-gradient(#000, transparent 72%);
+}
+
+.hustle-index-page .ambient-glow-a {
+  background: radial-gradient(circle, rgb(244 203 79 / 20%), transparent 64%);
+}
+
+.hustle-index-page .hustle-nav {
+  margin: 0;
+  padding: 8px 10px;
+  border: 2px solid var(--hustle-line);
+  border-radius: 18px;
+  background: rgb(255 250 240 / 94%);
+  box-shadow: 4px 5px 0 var(--hustle-line);
+  color: var(--hustle-muted);
+  backdrop-filter: blur(16px);
+}
+
+.hustle-index-page .hustle-back {
+  border-color: transparent;
+  color: var(--hustle-ink);
+}
+
+.hustle-index-page .hustle-back:hover {
+  border-color: var(--hustle-line);
+  color: var(--hustle-orange);
+}
+
+.hustle-index-page .hustle-nav .site-category-nav {
+  border: 1px solid #cdbda7;
+  background: #f6ead5;
+  box-shadow: none;
+}
+
+.hustle-index-page .hustle-nav .site-category-nav a {
+  color: #65584c;
+}
+
+.hustle-index-page .hustle-nav .site-category-nav a:hover,
+.hustle-index-page .hustle-nav .site-category-nav a.is-active {
+  background: var(--hustle-yellow);
+  color: var(--hustle-ink);
+}
+
+.hustle-index-page .hustle-nav-cta {
+  border: 2px solid var(--hustle-line);
+  background: var(--hustle-orange);
+  box-shadow: 2px 3px 0 var(--hustle-line);
+  color: #fffaf0;
+}
+
+.hustle-index-page .hustle-nav-cta:hover {
+  background: #f18147;
+  box-shadow: 3px 4px 0 var(--hustle-line);
+}
+
+.hustle-index-page .hustle-hero-banner {
+  border: 2px solid var(--hustle-line);
+  border-radius: 18px;
+  background:
+    linear-gradient(105deg, rgb(255 255 255 / 42%), transparent 58%),
+    #f4e4c7;
+  box-shadow: 6px 7px 0 var(--hustle-line);
+}
+
+.hustle-index-page .hustle-hero-banner::before {
+  border-top-color: rgb(230 111 54 / 44%);
+}
+
+.hustle-index-page .hustle-hero-kicker,
+.hustle-index-page .hustle-directory-eyebrow,
+.hustle-index-page .hustle-sidebar-kicker {
+  color: #a94c27;
+}
+
+.hustle-index-page .hustle-hero-title-row h1 {
+  background: none;
+  color: var(--hustle-ink);
+}
+
+.hustle-index-page .hustle-hero-title-row > span {
+  border-left-color: rgb(169 76 39 / 44%);
+  color: #a94c27;
+}
+
+.hustle-index-page .hustle-hero-copy > p:last-child {
+  color: #6f6256;
+}
+
+.hustle-index-page .hustle-hero-proof {
+  border: 1px solid #cfb58f;
+  border-radius: 14px;
+  background: rgb(255 250 240 / 58%);
+}
+
+.hustle-index-page .hustle-hero-proof > span {
+  color: var(--hustle-ink);
+}
+
+.hustle-index-page .hustle-hero-proof > span svg,
+.hustle-index-page .hustle-hero-proof strong {
+  color: var(--hustle-orange);
+}
+
+.hustle-index-page .hustle-hero-proof small {
+  color: var(--hustle-muted);
+}
+
+.hustle-index-page .hustle-directory-panel,
+.hustle-index-page .hustle-sidebar-card,
+.hustle-index-page .hustle-experience-card {
+  border: 2px solid var(--hustle-line);
+  background: var(--hustle-surface);
+  box-shadow: 5px 6px 0 var(--hustle-line);
+}
+
+.hustle-index-page .hustle-directory-panel,
+.hustle-index-page .hustle-sidebar-card,
+.hustle-index-page .hustle-experience-card {
+  border-radius: 17px;
+}
+
+.hustle-index-page .hustle-directory-head h2,
+.hustle-index-page .hustle-sidebar-card h2 {
+  color: var(--hustle-ink);
+}
+
+.hustle-index-page .hustle-result-count {
+  color: #a94c27;
+  font-weight: 760;
+}
+
+.hustle-index-page .hustle-filter-bar button {
+  border-color: #d6c7b2;
+  background: #f5ead7;
+  color: #6f6256;
+}
+
+.hustle-index-page .hustle-filter-bar button:hover {
+  border-color: var(--hustle-orange);
+  color: #a94c27;
+}
+
+.hustle-index-page .hustle-filter-bar button.is-active {
+  border-color: var(--hustle-line);
+  background: var(--hustle-yellow);
+  color: var(--hustle-ink);
+}
+
+.hustle-index-page .hustle-rank-list {
+  border-top-color: #d9cab6;
+}
+
+.hustle-index-page .hustle-rank-row {
+  border-bottom-color: #dfd1bd;
+}
+
+.hustle-index-page .hustle-rank-row:hover {
+  background: linear-gradient(90deg, rgb(244 203 79 / 19%), transparent 78%);
+}
+
+.hustle-index-page .hustle-rank-number {
+  color: #ad9274;
+}
+
+.hustle-index-page .hustle-rank-avatar {
+  border-color: #b99d7e;
+  box-shadow: 0 0 0 4px rgb(230 111 54 / 8%);
+}
+
+.hustle-index-page .hustle-rank-copy h3 a {
+  color: var(--hustle-ink);
+}
+
+.hustle-index-page .hustle-rank-copy h3 a:hover,
+.hustle-index-page .hustle-rank-result strong {
+  color: #b54e23;
+}
+
+.hustle-index-page .hustle-rank-copy p,
+.hustle-index-page .hustle-rank-result span,
+.hustle-index-page .hustle-sidebar-card > p:not(.hustle-sidebar-kicker) {
+  color: var(--hustle-muted);
+}
+
+.hustle-index-page .hustle-rank-copy p strong {
+  color: #51463c;
+}
+
+.hustle-index-page .hustle-rank-cta {
+  border: 1px solid #b75b32;
+  color: #a94c27;
+}
+
+.hustle-index-page .hustle-rank-cta:hover {
+  background: var(--hustle-orange);
+  color: #fffaf0;
+}
+
+.hustle-index-page .hustle-trust-card dl,
+.hustle-index-page .hustle-trust-card dl div {
+  border-color: #dfd1bd;
+}
+
+.hustle-index-page .hustle-trust-card dt {
+  color: var(--hustle-muted);
+}
+
+.hustle-index-page .hustle-trust-card dd,
+.hustle-index-page .hustle-trust-card .hustle-member-count {
+  color: #a94c27;
+}
+
+.hustle-index-page .hustle-experience-card {
+  color: var(--hustle-ink);
+}
+
+.hustle-index-page .hustle-experience-heading span {
+  color: var(--hustle-ink);
+}
+
+.hustle-index-page .hustle-experience-heading span svg,
+.hustle-index-page .hustle-experience-heading strong,
+.hustle-index-page .hustle-experience-action {
+  color: #a94c27;
+}
+
+.hustle-index-page .hustle-bottom-experience {
+  border: 2px solid var(--hustle-line);
+  border-radius: 18px;
+  background:
+    radial-gradient(circle at 76% 12%, rgb(244 203 79 / 28%), transparent 21rem),
+    linear-gradient(112deg, #fffaf0, #f5e5ca);
+  box-shadow: 6px 7px 0 var(--hustle-line);
+}
+
+.hustle-index-page .hustle-bottom-copy h2,
+.hustle-index-page .hustle-bottom-copy ul {
+  color: var(--hustle-ink);
+}
+
+.hustle-index-page .hustle-bottom-kicker {
+  border-color: #caa67d;
+  background: #fffaf0;
+  color: #a94c27;
+}
+
+.hustle-index-page .hustle-bottom-cta {
+  border: 2px solid var(--hustle-line);
+  background: var(--hustle-orange);
+  box-shadow: 3px 4px 0 var(--hustle-line);
+  color: #fffaf0;
+}
+
+.hustle-index-page .hustle-bottom-cta:hover {
+  background: #f18147;
+}
+
+.share-card-dialog {
+  border: 2px solid #493b30;
+  border-radius: 18px;
+  background:
+    radial-gradient(circle at 12% 8%, rgb(244 203 79 / 22%), transparent 30%),
+    #f8edda;
+  box-shadow: 8px 10px 0 #493b30;
+}
+
+.share-card-dialog-head [data-slot='dialog-title'],
+.share-card-actions h3 {
+  color: #392f27;
+}
+
+.share-card-dialog-head [data-slot='dialog-description'],
+.share-card-actions > p:not(.share-card-feedback),
+.share-card-feedback {
+  color: #77695c;
+}
+
+.share-card-eyebrow,
+.share-card-actions-kicker,
+.share-card-actions > a {
+  color: #a94c27;
+}
+
+.share-card-stage {
+  border: 1px solid #cdbb9f;
+  border-radius: 15px;
+  background:
+    linear-gradient(rgb(73 59 48 / 5%) 1px, transparent 1px),
+    linear-gradient(90deg, rgb(73 59 48 / 5%) 1px, transparent 1px),
+    #f4e4c8;
+  background-size: 26px 26px;
+}
+
+.share-card-preview {
+  border: 2px solid #493b30;
+  border-radius: 15px;
+  background:
+    linear-gradient(145deg, rgb(255 250 240 / 78%), rgb(238 213 174 / 94%)),
+    url('/share/reset-card-background-v1.png') center / cover;
+  box-shadow: 7px 8px 0 #493b30;
+}
+
+.share-card-preview::after {
+  background: linear-gradient(
+    115deg,
+    transparent 25%,
+    rgb(244 203 79 / 13%),
+    transparent 66%
+  );
+}
+
+.share-card-preview-topline {
+  color: #392f27;
+}
+
+.share-card-preview-topline > span,
+.share-card-preview-hero > div > span,
+.share-card-tweet-shot > span,
+.share-card-preview-footer div > span {
+  color: #a94c27;
+}
+
+.share-card-preview-hero > strong {
+  color: var(--hustle-yellow, #f4cb4f);
+  text-shadow: none;
+}
+
+.share-card-preview-hero h3 {
+  color: #392f27;
+}
+
+.share-card-preview-hero p {
+  color: #77695c;
+}
+
+.share-card-tweet-shot > span {
+  border-color: #b75b32;
+  background: rgb(255 250 240 / 92%);
+}
+
+.share-card-tweet-window {
+  border: 2px solid #493b30;
+  box-shadow: 5px 6px 0 #493b30;
+}
+
+.share-card-preview-footer {
+  border: 1px solid #493b30;
+  background: #ffdf66;
+  color: #392f27;
+}
+
+.share-card-preview-footer p {
+  color: #66584b;
+}
+
+.share-card-proof-row {
+  border-color: #c8a57d;
+  background: #fff7e7;
+  color: #5f5145;
+}
+
+.share-card-proof-row svg {
+  color: #a94c27;
+}
+
+.share-card-primary-action {
+  border: 2px solid #493b30;
+  background: #f4cb4f;
+  box-shadow: 3px 4px 0 #493b30;
+  color: #392f27;
+}
+
+.share-card-secondary-action {
+  border: 2px solid #493b30;
+  background: #fffaf0;
+  color: #392f27;
+}
+
+@media (max-width: 760px) {
+  .hustle-index-page .hustle-nav {
+    border-radius: 15px;
+    box-shadow: 3px 4px 0 var(--hustle-line);
+  }
+
+  .hustle-index-page .hustle-hero-banner,
+  .hustle-index-page .hustle-directory-panel,
+  .hustle-index-page .hustle-sidebar-card,
+  .hustle-index-page .hustle-bottom-experience {
+    border-radius: 14px;
+    box-shadow: 4px 5px 0 var(--hustle-line);
+  }
+
+  .hustle-index-page .hustle-hero-proof {
+    border-top-color: #cfb58f;
   }
 }
