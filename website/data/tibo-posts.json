@@ -1,9 +1,18 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-09-24T07:08:54.537Z",
-  "verifiedAt": "2026-09-25T03:00:14.740Z",
+  "updatedAt": "2026-09-25T07:00:12.503Z",
+  "verifiedAt": "2026-09-25T07:00:12.503Z",
   "sourceUrl": "https://x.com/thsottiaux",
   "posts": [
+    {
+      "id": "2103375711797211460",
+      "publishedAt": "2026-09-25T06:47:03.000Z",
+      "title": "Been a bit quiet here because internal Slack…",
+      "summary": "Been a bit quiet here because internal Slack has been hilarious lately and because we are all locked in on DevDay. Tuesday will be fun.",
+      "category": "动态",
+      "resetSignal": "none",
+      "url": "https://x.com/thsottiaux/status/2103375711797211460"
+    },
     {
       "id": "2102996313780736363",
       "publishedAt": "2026-09-24T05:39:27.000Z",
@@ -272,15 +281,6 @@
       "category": "回复",
       "resetSignal": "none",
       "url": "https://x.com/thsottiaux/status/2101772015028130032"
-    },
-    {
-      "id": "2101554478940070162",
-      "publishedAt": "2026-09-20T06:10:07.000Z",
-      "title": "Tibo 回复：@argofowl Mind sharing your instructi…",
-      "summary": "@argofowl Mind sharing your instructions?",
-      "category": "回复",
-      "resetSignal": "none",
-      "url": "https://x.com/thsottiaux/status/2101554478940070162"
     }
   ]
 }
