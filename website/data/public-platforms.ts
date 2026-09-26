@@ -1,4 +1,5 @@
 import extra from './provider-feeds.json';
+import tiboFeed from './tibo-posts.json';
 import evidenceJson from './provider-evidence.json';
 import { matchedEvidence } from '../lib/evidence';
 import { announcements } from './reset-history';
@@ -16,6 +17,9 @@ export type PublicAnnouncement = {
   scope: string;
   screenshot?: string;
   screenshotNote?: string;
+  reviewPending?: boolean;
+  revision?: number;
+  revisedAt?: string;
 };
 export type PublicPlatform = {
   id: PlatformId;
@@ -25,6 +29,7 @@ export type PublicPlatform = {
   officialUrl: string;
   checkedAt: string | null;
   error: string | null;
+  attemptedAt?: string | null;
   coverage: string;
   announcements: PublicAnnouncement[];
   posts: { id: string; text: string; publishedAt: string; url: string }[];
@@ -37,7 +42,11 @@ export const publicPlatforms: PublicPlatform[] = [
     portrait: '/images/platform-cards/codex-engraving-v2.jpg',
     officialUrl: 'https://x.com/thsottiaux',
     checkedAt: tiboPostsVerifiedAt,
-    error: null,
+    error:
+      (tiboFeed as typeof tiboFeed & { lastError?: string | null }).lastError ||
+      null,
+    attemptedAt: (tiboFeed as typeof tiboFeed & { lastAttemptAt?: string })
+      .lastAttemptAt,
     coverage: '已核验公告与近期公开动态；不代表个人账户余额',
     announcements: announcements.map((a) => ({
       id: a.id,
@@ -49,6 +58,9 @@ export const publicPlatforms: PublicPlatform[] = [
       url: a.xUrl,
       scope: a.scope || '适用范围以原帖和个人账户为准',
       screenshot: a.screenshotUrl,
+      reviewPending: a.reviewPending,
+      revision: a.revision,
+      revisedAt: a.revisedAt,
     })),
     posts: tiboPosts.map((p) => ({
       id: p.id,

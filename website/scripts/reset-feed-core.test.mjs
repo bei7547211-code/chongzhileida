@@ -22,8 +22,10 @@ test('未来式、否定和疑问不能自动宣布完成，包括弯引号', ()
   ]) {
     assert.equal(classifyResetPost(text)?.requiresJudgment, true, text);
     const result = ingestTiboPost(feed, {
-      id: '2100000000000000088', authorHandle: '@thsottiaux',
-      publishedAt: '2026-09-26T00:07:13.000Z', text,
+      id: '2100000000000000088',
+      authorHandle: '@thsottiaux',
+      publishedAt: '2026-09-26T00:07:13.000Z',
+      text,
       url: 'https://x.com/thsottiaux/status/2100000000000000088',
     });
     assert.equal(result.reason, 'needs-judgment');
@@ -31,11 +33,45 @@ test('未来式、否定和疑问不能自动宣布完成，包括弯引号', ()
   }
 });
 
-test('9月26日预告不计入已完成历史和统计', () => {
-  const post = feed.announcements.find(p => p.id === '2103637477760311522');
-  assert.equal(post.kind, 'signal');
-  assert.match(post.title, /等待完成确认/);
-  assert.equal(feed.events.some(e => e.date === '2026-09-26' && e.kind === 'full'), false);
+test('同一天可以先预告、后完成，不用实时日期限制发布', () => {
+  const fixture = structuredClone(feed);
+  fixture.events = [];
+  fixture.announcements = [];
+  const payload = {
+    id: '2100000000000000081',
+    authorHandle: '@thsottiaux',
+    publishedAt: '2026-01-01T01:00:00Z',
+    url: 'https://x.com/thsottiaux/status/2100000000000000081',
+    text: "We'll reset usage limits.",
+  };
+  const preview = ingestTiboPost(fixture, payload);
+  assert.equal(preview.reason, 'needs-judgment');
+  assert.equal(preview.feed.events.length, 0);
+  const completed = ingestTiboPost(preview.feed, {
+    ...payload,
+    text: 'Reset all propagated.',
+  });
+  assert.equal(completed.changed, true);
+  assert.deepEqual(completed.feed.events, [
+    { date: '2026-01-01', kind: 'full' },
+  ]);
+});
+
+test('请求、愿望、他方转述不自动发布，非重置句中的 Not only 不误拦', () => {
+  for (const text of [
+    'I wish we could reset usage limits for everyone.',
+    'Users are asking us to reset usage limits.',
+    'Yesterday another service announced a full reset.',
+    'Someone said "We reset usage for all paid subscriptions."',
+  ]) {
+    assert.equal(classifyResetPost(text)?.requiresJudgment, true, text);
+  }
+  assert.equal(
+    classifyResetPost(
+      'Not only are models better, they are cheaper. We are loading a banked reset into all accounts of our Plus, Pro and Business users.',
+    )?.kind,
+    'banked',
+  );
 });
 
 test('巡检状态与人工审查边界会被校验', () => {

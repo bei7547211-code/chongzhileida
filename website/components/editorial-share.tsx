@@ -29,13 +29,13 @@ export function EditorialShare({
 }) {
   const [feedback, setFeedback] = useState('');
   const [busy, setBusy] = useState(false);
+  const screenshot = a.reviewPending ? undefined : a.screenshot;
   const copy = `${name}：${a.title}\n适用范围：${a.scope}\n原帖：${a.url}\nhttps://www.resetrelay.com/`;
   async function createImage() {
-    if (!a.screenshot)
-      throw new Error('缺少此公告的真实截图，暂不能生成证据卡');
+    if (!screenshot) throw new Error('缺少此公告的真实截图，暂不能生成证据卡');
     await document.fonts.ready;
     const [img, qr] = await Promise.all([
-      loadImage(a.screenshot),
+      loadImage(screenshot),
       loadImage('/share/reset-relay-qr.png'),
     ]);
     const scale = Math.min(900 / img.width, 720 / img.height);
@@ -144,7 +144,11 @@ export function EditorialShare({
     <Dialog>
       <DialogTrigger className="ed-button">
         <Share2 size={16} />
-        生成分享卡
+        {screenshot
+          ? '生成分享卡'
+          : a.reviewPending
+            ? '消息复核中 · 查看原帖'
+            : '分享文字 · 截图待补'}
       </DialogTrigger>
       <DialogContent className="ed-dialog ed-share-dialog">
         <DialogHeader>
@@ -158,10 +162,10 @@ export function EditorialShare({
             <small>RESET RELAY · {name}</small>
             <h3>{a.title}</h3>
             <p>{a.scope}</p>
-            {a.screenshot ? (
+            {screenshot ? (
               <>
                 <small>{a.screenshotNote || '真实原帖截图'}</small>
-                <img src={a.screenshot} alt={name + ' 公告原帖截图'} />
+                <img src={screenshot} alt={name + ' 公告原帖截图'} />
               </>
             ) : (
               <blockquote>
@@ -181,9 +185,11 @@ export function EditorialShare({
             </div>
           </div>
           <div className="ed-share-actions">
-            {!a.screenshot && (
+            {!screenshot && (
               <p className="ed-validation">
-                暂缺对应原帖截图，不能生成证据卡。你仍可复制配文或打开原帖。
+                {a.reviewPending
+                  ? '原帖变更，原结论暂停使用。审核前不能导出证据卡，请查看原帖。'
+                  : '暂缺对应原帖截图，不能生成证据卡。你仍可复制配文或打开原帖。'}
               </p>
             )}
             <h3>可靠的消息，值得转发。</h3>
@@ -192,7 +198,7 @@ export function EditorialShare({
             </a>
             <button
               className="ed-button ed-primary"
-              disabled={busy || !a.screenshot}
+              disabled={busy || !screenshot}
               onClick={() => exportCard(false)}
             >
               <Download size={16} />
@@ -200,7 +206,7 @@ export function EditorialShare({
             </button>
             <button
               className="ed-button"
-              disabled={busy || !a.screenshot}
+              disabled={busy || !screenshot}
               onClick={() => exportCard(true)}
             >
               <Share2 size={16} />

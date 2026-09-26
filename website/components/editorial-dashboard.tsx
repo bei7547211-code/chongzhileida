@@ -10,6 +10,7 @@ import {
   ArrowUpRight,
   CheckCircle2,
   Clock3,
+  AlertTriangle,
   Calculator,
   Rss,
   Search,
@@ -32,7 +33,11 @@ import {
 } from '@/data/public-platforms';
 import { computeModels, pricingSourceUrl } from '@/data/compute-hub';
 import { calculateTokenCost } from '@/lib/token-cost';
-import { platformFreshness, platformHeadline } from '@/lib/platform-state';
+import {
+  platformFreshness,
+  platformHeadline,
+  nextScheduledCheck,
+} from '@/lib/platform-state';
 import { sideHustles } from '@/data/side-hustles';
 import { EditorialShare } from './editorial-share';
 
@@ -140,6 +145,7 @@ function Freshness({
   now: number | null;
 }) {
   const stale = now !== null && platformFreshness(p.checkedAt, now) !== 'fresh';
+  const next = nextScheduledCheck(p.checkedAt);
   return (
     <div className={'ed-freshness ' + (stale || p.error ? 'is-stale' : '')}>
       <Clock3 size={14} />
@@ -147,9 +153,19 @@ function Freshness({
         {p.error
           ? '本次采集失败 · 保留历史记录'
           : stale
-            ? '数据待更新 · 请同时查看官方来源'
+            ? '未收到本轮更新 · 请同时查看官方来源'
             : '最近成功采集'}{' '}
         · {time(p.checkedAt)} <small>北京时间</small>
+        {p.error && p.attemptedAt && (
+          <small> · 最近尝试 {time(p.attemptedAt)}</small>
+        )}
+        {next && (
+          <small>
+            {' '}
+            · {stale ? '原定巡检' : '下次预计'}{' '}
+            {time(new Date(next).toISOString())}
+          </small>
+        )}
       </span>
     </div>
   );
@@ -172,7 +188,8 @@ export function SubscriptionDialog({
           <Rss className="ed-dialog-icon" />
           <DialogTitle>订阅重置提醒</DialogTitle>
           <DialogDescription>
-            提醒会出现在你的 RSS 阅读器中；只收录已核验的公开公告。
+            提醒会出现在你的 RSS
+            阅读器中；包含官方预告、已确认重置和更正。预告不等于已完成。
           </DialogDescription>
         </DialogHeader>
         <ol className="ed-steps">
@@ -182,7 +199,7 @@ export function SubscriptionDialog({
               <strong>复制订阅地址</strong>
               <p>
                 {platform === 'all'
-                  ? '包含三个平台的已确认公告。'
+                  ? '包含三个平台的公开消息，留意每条的状态。'
                   : '只订阅当前平台。'}
               </p>
             </div>
@@ -280,12 +297,22 @@ function PlatformCards({ now }: { now: number | null }) {
               </Link>
               <div className="ed-platform-caption">
                 <Link href={'/' + p.id}>
-                  <CheckCircle2 size={23} />
+                  {p.error ||
+                  (now !== null &&
+                    platformFreshness(p.checkedAt, now) !== 'fresh') ? (
+                    <AlertTriangle size={23} className="ed-status-warning" />
+                  ) : !last || last.kind === 'signal' ? (
+                    <Clock3 size={23} className="ed-status-pending" />
+                  ) : (
+                    <CheckCircle2 size={23} />
+                  )}
                   <strong>
                     {last
                       ? p.id === 'grok' && last.scope.includes('Grok Bot')
                         ? 'Grok Bot 重置记录'
-                        : platformHeadline(last.kind)
+                        : last.reviewPending
+                          ? '原帖变更 · 重新核验中'
+                          : platformHeadline(last.kind)
                       : '尚无已核验重置'}
                   </strong>
                   <ArrowUpRight size={18} />
@@ -334,7 +361,11 @@ function HistoryTable({
               </td>
               <td>
                 <span className={'ed-kind ' + a.kind}>
-                  {a.kind === 'signal' ? '待确认消息' : a.kind === 'banked' ? '重置次数' : '额度重置'}
+                  {a.kind === 'signal'
+                    ? '待确认消息'
+                    : a.kind === 'banked'
+                      ? '重置次数'
+                      : '额度重置'}
                 </span>
               </td>
               <td>
@@ -385,6 +416,45 @@ function Home({ now }: { now: number | null }) {
           <small>通过 RSS 接收已核验公告</small>
         </div>
       </section>
+      <nav className="ed-mobile-status" aria-label="三平台状态速览">
+        {publicPlatforms.map((p) => {
+          const a = p.announcements[0];
+          const stale =
+            !!p.error ||
+            (now !== null && platformFreshness(p.checkedAt, now) !== 'fresh');
+          const pending = !a || a.kind === 'signal';
+          return (
+            <Link key={p.id} href={'/' + p.id}>
+              <strong>{p.name}</strong>
+              <span
+                className={
+                  stale
+                    ? 'ed-status-warning'
+                    : pending
+                      ? 'ed-status-pending'
+                      : ''
+                }
+              >
+                {stale ? (
+                  <AlertTriangle size={16} />
+                ) : pending ? (
+                  <Clock3 size={16} />
+                ) : (
+                  <CheckCircle2 size={16} />
+                )}
+                {stale
+                  ? '数据待更新'
+                  : a?.reviewPending
+                    ? '原帖重新核验中'
+                    : p.id === 'grok' && a?.scope.includes('Grok Bot')
+                      ? 'Grok Bot 重置记录'
+                      : platformHeadline(a?.kind)}
+              </span>
+              <ArrowUpRight size={16} />
+            </Link>
+          );
+        })}
+      </nav>
       <PlatformCards now={now} />
       <div className="ed-home-bottom">
         <section className="ed-panel">
@@ -446,7 +516,13 @@ function ProviderPage({
         <img src={p.portrait} alt="" />
         <div>
           <span className="ed-kicker">最近官方消息 · 不代表个人余额</span>
-          <h2>{last ? platformHeadline(last.kind) : '尚无已核验重置'}</h2>
+          <h2>
+            {last?.reviewPending
+              ? '原帖变更 · 重新核验中'
+              : last
+                ? platformHeadline(last.kind)
+                : '尚无已核验重置'}
+          </h2>
           <p>{last?.scope || '采集流程已接入，等待明确公告。'}</p>
           <Freshness platform={p} now={now} />
         </div>
@@ -477,6 +553,11 @@ function ProviderPage({
           </div>
           {selected ? (
             <article className="ed-evidence">
+              {selected.reviewPending && (
+                <output className="ed-validation">
+                  原帖已变更，原结论暂停使用；审核完成前不生成证据卡。
+                </output>
+              )}
               <div className="ed-section-head">
                 <strong>{selected.title}</strong>
                 <small>{time(selected.publishedAt)}</small>
@@ -618,6 +699,16 @@ function ProviderPage({
 }
 const faq = [
   {
+    category: '个人额度',
+    q: 'Claude 和 Grok 的公告适用于谁？',
+    a: 'Claude 以原帖列出的套餐为准；Grok Bot 的重置不等于 Grok Chat 或其他产品的额度恢复。请查看公告适用范围，再检查自己的账户。',
+  },
+  {
+    category: '重置规则',
+    q: '官方宣布将重置，是不是已经完成？',
+    a: '不是。预告表示官方承诺或计划；只有明确的完成公告才按已确认重置记录。原帖更正时会暂停旧结论并发布更正消息。',
+  },
+  {
     category: '重置规则',
     q: '网站显示重置，我的额度一定恢复了吗？',
     a: '不一定。这里记录官方公开公告，你的个人余额和重置时间仍以账户里的用量页面为准。',
@@ -664,7 +755,10 @@ function Knowledge() {
   const items = faq.filter(
     (f) =>
       (category === '全部' || f.category === category) &&
-      (f.q + f.a).includes(query.trim()),
+      (f.q + f.a)
+        .toLocaleLowerCase()
+        .replaceAll('余额', '额度')
+        .includes(query.trim().toLocaleLowerCase().replaceAll('余额', '额度')),
   );
   return (
     <>
@@ -701,7 +795,19 @@ function Knowledge() {
           </details>
         ))}
         {!items.length && (
-          <p className="ed-empty">没有匹配的问题，换个关键词试试。</p>
+          <div className="ed-empty">
+            <p>没有匹配的问题，可以试试“额度”“重置”或“RSS”。</p>
+            <button
+              className="ed-button"
+              onClick={() => {
+                setQuery('');
+                setCategory('全部');
+              }}
+            >
+              查看全部问题
+            </button>
+            <p>仍有疑问？可通过页底微信联系站长。</p>
+          </div>
         )}
       </div>
       <section className="ed-prayer">
@@ -735,7 +841,10 @@ function Tools() {
   const [model, setModel] = useState(computeModels[0]);
   const [values, setValues] = useState(['100000', '20000', '10']);
   const [provider, setProvider] = useState('codex');
+  const [shareId, setShareId] = useState('');
   const p = publicPlatforms.find((x) => x.id === provider)!;
+  const shareAnnouncement =
+    p.announcements.find((a) => a.id === shareId) || p.announcements[0];
   const valid = values.every(
     (v, i) =>
       v.trim() !== '' &&
@@ -846,7 +955,10 @@ function Tools() {
           <select
             aria-label="选择分享平台"
             value={provider}
-            onChange={(e) => setProvider(e.target.value)}
+            onChange={(e) => {
+              setProvider(e.target.value);
+              setShareId('');
+            }}
           >
             {publicPlatforms.map((x) => (
               <option key={x.id} value={x.id}>
@@ -854,8 +966,26 @@ function Tools() {
               </option>
             ))}
           </select>
-          {p.announcements[0] ? (
-            <EditorialShare name={p.name} announcement={p.announcements[0]} />
+          {shareAnnouncement ? (
+            <>
+              <select
+                aria-label="选择分享公告"
+                value={shareAnnouncement.id}
+                onChange={(e) => setShareId(e.target.value)}
+              >
+                {p.announcements.map((a) => (
+                  <option key={a.id} value={a.id}>
+                    {time(a.publishedAt)} · {a.title} ·{' '}
+                    {a.screenshot && !a.reviewPending ? '可生成图片' : '仅文字'}
+                  </option>
+                ))}
+              </select>
+              <EditorialShare
+                key={shareAnnouncement.id}
+                name={p.name}
+                announcement={shareAnnouncement}
+              />
+            </>
           ) : (
             <p>暂无已核验公告，暂不能生成分享卡。</p>
           )}

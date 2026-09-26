@@ -54,20 +54,28 @@ export function classifyResetPost(text) {
     .trim();
   if (!normalized) return null;
 
-  // Future, conditional and negative statements are not completed resets.
-  // Normalize curly apostrophes before checking contractions such as “we’ll”.
-  const tenseText = normalized.replace(/[’‘]/g, "'");
-  if (/\breset\b/i.test(tenseText) &&
-      /\b(will|\w+'ll|going to|plan(?:ning)? to|soon|tomorrow|would|might|may|if|not|never|won't|haven't|hasn't|didn't)\b|\?/i.test(tenseText)) {
-    return {
-      kind: 'signal',
-      requiresJudgment: true,
-      title: 'Tibo 重置消息待确认',
-      summary: '原文包含未来、条件、否定或疑问表述，不能作为已完成重置自动发布。',
-    };
-  }
-
-  if (/\b(banked reset|reset cards?)\b/i.test(normalized)) {
+  // Only narrow, first-person completed actions can auto-publish. Check the
+  // reset sentence, not unrelated clauses such as “Not only are models better”.
+  const sentences =
+    normalized.replace(/[’‘]/g, "'").match(/[^.!?]+[.!?]?/g) || [];
+  const resetSentences = sentences.filter((s) => /\breset\b/i.test(s));
+  const unsafe =
+    /\b(will|\w+'ll|going to|plan(?:ning)? to|soon|tomorrow|would|could|should|wish|hope|might|may|if|not|never|won't|haven't|hasn't|didn't|asking|requested|another|other platform)\b|[?"“”]/i;
+  const eligible = resetSentences.filter((s) => !unsafe.test(s));
+  // A conflicting reset sentence keeps the entire message in review.
+  const safe = eligible.length > 0 && eligible.length === resetSentences.length;
+  if (
+    safe &&
+    eligible.some(
+      (s) =>
+        /^\s*(?:and\s+)?(?:we (?:are loading|have (?:loaded|provided)|provided|are providing)|we're (?:loading|providing)).*\b(?:banked reset|reset cards?)\b/i.test(
+          s,
+        ) ||
+        /^\s*(?:a |the )?(?:banked reset|reset card) is (?:ready|available)[.!]?\s*$/i.test(
+          s,
+        ),
+    )
+  ) {
     return {
       kind: 'banked',
       requiresJudgment: false,
@@ -77,8 +85,15 @@ export function classifyResetPost(text) {
   }
 
   if (
-    /\b(reset all|all reset|full reset|reset (?:has )?propagated|reset usage|usage (?:has been )?reset|reset for everyone|reset (?:usage )?for all|reset completed|completed the reset)\b/i.test(
-      normalized,
+    safe &&
+    eligible.some(
+      (s) =>
+        /^\s*(?:and\s+)?(?:we (?:have |just )?reset|we've (?:just )?reset) (?:codex )?usage (?:limits? )?(?:for|across) (?:all|every)\b/i.test(
+          s,
+        ) ||
+        /^\s*reset (?:all (?:has )?)?(?:propagated|completed)[.!]?\s*$/i.test(
+          s,
+        ),
     )
   ) {
     return {
@@ -145,6 +160,20 @@ export function validateResetFeed(feed) {
       `无效发布时间: ${post.id}`,
     );
     invariant(RESET_KINDS.has(post.kind), `无效公告类型: ${post.id}`);
+    if (post.reviewPending !== undefined) {
+      invariant(typeof post.reviewPending === 'boolean', '待审状态无效');
+      invariant(
+        !post.reviewPending || (post.kind === 'signal' && !post.screenshot),
+        '待审公告不能显示完成状态或旧截图',
+      );
+    }
+    if (post.revision !== undefined) {
+      invariant(
+        Number.isSafeInteger(post.revision) && post.revision > 0,
+        '更正版本无效',
+      );
+      invariant(Number.isFinite(Date.parse(post.revisedAt)), '更正时间无效');
+    }
     invariant(
       typeof post.text === 'string' && post.text.trim(),
       `推文原文为空: ${post.id}`,

@@ -1,5 +1,8 @@
 import type { Metadata } from 'next';
-import { EditorialHeader, EditorialFooter } from '@/components/editorial-dashboard';
+import {
+  EditorialHeader,
+  EditorialFooter,
+} from '@/components/editorial-dashboard';
 import Image from 'next/image';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
@@ -72,7 +75,9 @@ export default async function SideHustleDetailPage({
       <div className="ambient-glow ambient-glow-a" aria-hidden="true" />
       <article className="page-shell hustle-detail">
         <EditorialHeader active="side-hustles" />
-        <Link href={backHref} className="ed-breadcrumb">← 返回案例列表</Link>
+        <Link href={backHref} className="ed-breadcrumb">
+          ← 返回案例列表
+        </Link>
 
         <header className="hustle-detail-head reveal reveal-2">
           <div className="hustle-tags">
@@ -198,6 +203,14 @@ export default async function SideHustleDetailPage({
             这里刻意不复述方法、步骤和工具。完整答案属于原作者，也留在生财有术。
           </p>
           <div>
+            <a
+              href={post.url}
+              target="_blank"
+              rel="noreferrer"
+              className="ed-button"
+            >
+              已是会员？查看原帖 ↗
+            </a>
             <Link href="/experience-card" className="hustle-primary-cta">
               <Gift /> 免费体验三天 <ArrowUpRight />
             </Link>

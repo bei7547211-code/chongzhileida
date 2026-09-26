@@ -39,6 +39,52 @@ function hoursAfterLatestFeedPost(hours) {
   return new Date(latestTime + hours * 3_600_000).toISOString();
 }
 
+test('原帖更正暂停旧结论，连续三次巡检仍待审，且不重复产生更正', () => {
+  const id = '2101000000000000099';
+  let feed = structuredClone(resetFeedFixture);
+  feed.events = [{ date: '2026-01-01', kind: 'full' }];
+  feed.announcements = [
+    {
+      id,
+      publishedAt: '2026-01-01T01:00:00Z',
+      kind: 'full',
+      title: '已完成',
+      text: 'Reset all propagated.',
+      summary: '已完成',
+      url: `https://x.com/thsottiaux/status/${id}`,
+      screenshot: '/share/test.png',
+    },
+  ];
+  let posts = structuredClone(postsFeedFixture);
+  let state = createEmptyMonitorState();
+  state.seen[id] = {
+    contentHash: 'old',
+    publishedAt: '2026-01-01T01:00:00Z',
+    lastSeenAt: '2026-01-01T01:00:00Z',
+  };
+  const sourceReport = report([
+    post(id, '2026-01-01T01:00:00Z', 'Correction: no reset happened.', 'new'),
+  ]);
+  for (let i = 0; i < 3; i++) {
+    const plan = planTiboMonitorRun({
+      sourceReport,
+      resetFeed: feed,
+      postsFeed: posts,
+      state,
+    });
+    assert.equal(plan.pendingItems.length, 1);
+    const applied = applyTiboMonitorPlan(feed, posts, plan);
+    feed = applied.resetFeed;
+    posts = applied.postsFeed;
+    state = plan.nextState;
+    assert.equal(feed.announcements[0].kind, 'signal');
+    assert.equal(feed.announcements[0].reviewPending, true);
+    assert.equal(feed.announcements[0].screenshot, undefined);
+    assert.equal(feed.announcements[0].revision, 1);
+    assert.equal(feed.events.length, 0);
+  }
+});
+
 test('普通动态、明确重置和含糊信号走三条不同路径', () => {
   const sourceReport = report([
     post(

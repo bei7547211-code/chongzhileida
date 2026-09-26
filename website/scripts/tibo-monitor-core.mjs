@@ -1,4 +1,8 @@
-import { classifyResetPost, ingestTiboPost } from './reset-feed-core.mjs';
+import {
+  classifyResetPost,
+  ingestTiboPost,
+  toShanghaiDateKey,
+} from './reset-feed-core.mjs';
 import {
   ingestRecentTiboPost,
   validateTiboPostsFeed,
@@ -140,6 +144,7 @@ export function planTiboMonitorRun({
     ? Date.parse(latestPublishedAt) - overlapWindowMs
     : Number.NEGATIVE_INFINITY;
   const publicActions = [];
+  const quarantines = [];
   let ignoredBaselinePosts = 0;
   let unchangedPosts = 0;
   let editedPosts = 0;
@@ -153,7 +158,7 @@ export function planTiboMonitorRun({
     const previousDecision = nextState.decisions[post.id];
     const alreadyPublic = publicPostIds.has(post.id);
 
-    if (alreadyPublic) {
+    if (previousDecision?.contentHash === post.contentHash) {
       delete nextState.pending[post.id];
     }
 
@@ -171,6 +176,7 @@ export function planTiboMonitorRun({
         now,
         '这条已经处理过的帖子内容发生了变化，更新公开数据前需要重新确认。',
       );
+      if (alreadyPublic) quarantines.push(post);
     } else if (!alreadyPublic && Date.parse(post.publishedAt) < cutoffTime) {
       ignoredBaselinePosts += 1;
     } else if (!alreadyPublic) {
@@ -220,6 +226,7 @@ export function planTiboMonitorRun({
       publicActions.length +
       Object.keys(nextState.pending).filter((id) => !state.pending[id]).length,
     publicActions,
+    quarantines,
     pendingItems: Object.values(nextState.pending).sort((a, b) =>
       b.publishedAt.localeCompare(a.publishedAt),
     ),
@@ -240,6 +247,64 @@ export function applyTiboMonitorPlan(
   let nextPostsFeed = structuredClone(postsFeed);
   const ingestedPostIds = [];
   const resetPostIds = [];
+  let corrections = 0;
+  for (const post of plan.quarantines || []) {
+    const announcement = nextResetFeed.announcements.find(
+      (a) => a.id === post.id,
+    );
+    if (announcement) {
+      const previousKind = announcement.kind;
+      const date = toShanghaiDateKey(announcement.publishedAt);
+      Object.assign(announcement, {
+        kind: 'signal',
+        reviewPending: true,
+        title: '原帖已变更 · 原结论暂停使用',
+        summary: '原帖内容发生变更，正在重新核验；此前结论暂不作为重置依据。',
+        text: post.text,
+        revision: (announcement.revision || 0) + 1,
+        revisedAt: now.toISOString(),
+      });
+      delete announcement.screenshot;
+      // Remove only this announcement's event when no other confirmed source
+      // still supports that date and kind. Never erase unrelated history.
+      const supported = nextResetFeed.announcements.some(
+        (a) =>
+          a.id !== post.id &&
+          a.kind === previousKind &&
+          toShanghaiDateKey(a.publishedAt) === date,
+      );
+      if (!supported)
+        nextResetFeed.events = nextResetFeed.events.filter(
+          (e) => e.date !== date || e.kind !== previousKind,
+        );
+      if (!supported && !nextResetFeed.events.some((e) => e.date === date)) {
+        const remaining = nextResetFeed.announcements.filter(
+          (a) =>
+            a.kind !== 'signal' && toShanghaiDateKey(a.publishedAt) === date,
+        );
+        if (remaining.length)
+          nextResetFeed.events.push({
+            date,
+            kind: remaining.some((a) => a.kind === 'full') ? 'full' : 'banked',
+          });
+        nextResetFeed.events.sort((a, b) => b.date.localeCompare(a.date));
+      }
+      nextResetFeed.updatedAt = now.toISOString();
+      corrections++;
+    }
+    const recent = nextPostsFeed.posts.find((p) => p.id === post.id);
+    if (recent) {
+      Object.assign(recent, {
+        resetSignal: 'related',
+        category: '相关',
+        title: '原帖已变更 · 等待重新核验',
+        summary: '原结论暂停使用，请查看原帖并等待重新核验。',
+      });
+      delete recent.preview;
+      nextPostsFeed.updatedAt = now.toISOString();
+      corrections++;
+    }
+  }
 
   for (const action of plan.publicActions) {
     const recentResult = ingestRecentTiboPost(
@@ -271,8 +336,10 @@ export function applyTiboMonitorPlan(
     postsFeed: nextPostsFeed,
     ingestedPostIds,
     resetPostIds,
-    contentChanged: ingestedPostIds.length > 0 || resetPostIds.length > 0,
+    contentChanged:
+      corrections > 0 || ingestedPostIds.length > 0 || resetPostIds.length > 0,
     changed:
+      corrections > 0 ||
       ingestedPostIds.length > 0 ||
       resetPostIds.length > 0 ||
       nextPostsFeed.verifiedAt !== postsFeed.verifiedAt,

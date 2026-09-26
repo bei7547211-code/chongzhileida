@@ -220,7 +220,21 @@ async function main() {
     }
 
     stage = '读取 Tibo 公开动态';
-    sourceReport = await fetchTiboTimeline({ maxPages });
+    let sourceFailed = false;
+    try {
+      sourceReport = await fetchTiboTimeline({ maxPages });
+    } catch {
+      // Publish only a generic health notice; never expose raw network errors
+      // or replace the previous successful snapshot with empty data.
+      sourceFailed = true;
+      sourceReport = {
+        provider: 'fxtwitter-json',
+        posts: [],
+        coverageStatus: 'failed',
+        pagesFetched: 0,
+        parseFailures: 0,
+      };
+    }
     const now = new Date();
     stage = '判断新内容';
     plan = planTiboMonitorRun({
@@ -231,6 +245,16 @@ async function main() {
       now,
     });
     applied = applyTiboMonitorPlan(resetFeed, postsFeed, plan, now);
+    applied.postsFeed.lastAttemptAt = now.toISOString();
+    applied.postsFeed.lastError = sourceFailed
+      ? '本次 Tibo 来源读取失败'
+      : null;
+    if (sourceFailed) {
+      applied.postsFeed.verifiedAt = postsFeed.verifiedAt;
+      plan.nextState = { ...state, updatedAt: now.toISOString() };
+      applied.contentChanged =
+        postsFeed.lastError !== applied.postsFeed.lastError;
+    }
 
     if (mode === 'dry-run') {
       run(process.execPath, ['scripts/run-provider-monitor.mjs'], websiteRoot);
@@ -239,6 +263,12 @@ async function main() {
         plan,
         applied,
         startedAt,
+        error: sourceFailed
+          ? {
+              stage: '读取 Tibo 公开动态',
+              message: '来源读取失败，本次为只读预演。',
+            }
+          : undefined,
       });
       const delivery = await deliverMonitorAudit(audit, { dryRun: true });
       console.log(delivery.text);
@@ -287,6 +317,15 @@ async function main() {
       applied,
       startedAt,
     });
+    if (sourceFailed) {
+      audit.status = 'error';
+      audit.summary =
+        '本次 Tibo 来源读取失败，保留上次成功数据并公开异常提示。';
+      audit.error = {
+        stage: '读取 Tibo 公开动态',
+        message: '来源暂不可用，请稍后重试。',
+      };
+    }
     if (providerReport) {
       audit.checkedPosts += providerReport.checkedPosts;
       audit.ingestedPostIds.push(...providerReport.newIds);
@@ -311,8 +350,10 @@ async function main() {
           stage: 'Claude / Grok 采集',
           message: `${providerReport.errors.join('、')} 来源失败，页面保留历史并标记数据待更新`,
         };
-      } else if (audit.judgmentNeeded.length) audit.status = 'attention';
-      else if (providerReport.newIds.length) audit.status = 'updated';
+      } else if (!sourceFailed && audit.judgmentNeeded.length)
+        audit.status = 'attention';
+      else if (!sourceFailed && providerReport.newIds.length)
+        audit.status = 'updated';
     }
     const delivery = await deliverMonitorAudit(audit, {
       stateDirectory,
