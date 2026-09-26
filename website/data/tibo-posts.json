@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "updatedAt": "2026-09-26T03:00:13.118Z",
-  "verifiedAt": "2026-09-26T03:00:13.118Z",
+  "verifiedAt": "2026-09-26T13:00:12.652Z",
   "sourceUrl": "https://x.com/thsottiaux",
   "posts": [
     {
@@ -282,5 +282,7 @@
       "resetSignal": "none",
       "url": "https://x.com/thsottiaux/status/2101921202436702657"
     }
-  ]
+  ],
+  "lastAttemptAt": "2026-09-26T13:00:12.652Z",
+  "lastError": null
 }
