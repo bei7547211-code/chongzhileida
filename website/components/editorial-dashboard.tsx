@@ -334,7 +334,7 @@ function HistoryTable({
               </td>
               <td>
                 <span className={'ed-kind ' + a.kind}>
-                  {a.kind === 'banked' ? '重置次数' : '额度重置'}
+                  {a.kind === 'signal' ? '待确认消息' : a.kind === 'banked' ? '重置次数' : '额度重置'}
                 </span>
               </td>
               <td>
@@ -445,7 +445,7 @@ function ProviderPage({
       <section className={'ed-provider-status ed-' + p.id}>
         <img src={p.portrait} alt="" />
         <div>
-          <span className="ed-kicker">最近已确认公告</span>
+          <span className="ed-kicker">最近官方消息 · 不代表个人余额</span>
           <h2>{last ? platformHeadline(last.kind) : '尚无已核验重置'}</h2>
           <p>{last?.scope || '采集流程已接入，等待明确公告。'}</p>
           <Freshness platform={p} now={now} />
@@ -546,6 +546,7 @@ function ProviderPage({
               ['all', '全部'],
               ['full', '额度重置'],
               ['banked', '重置次数'],
+              ['signal', '待确认消息'],
             ].map(([v, l]) => (
               <button
                 key={v}

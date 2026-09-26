@@ -47,7 +47,7 @@ export const publicPlatforms: PublicPlatform[] = [
       verifiedAt: tiboPostsVerifiedAt,
       kind: a.kind,
       url: a.xUrl,
-      scope: '适用范围以原帖和个人账户为准',
+      scope: a.scope || '适用范围以原帖和个人账户为准',
       screenshot: a.screenshotUrl,
     })),
     posts: tiboPosts.map((p) => ({

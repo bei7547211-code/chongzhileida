@@ -54,6 +54,19 @@ export function classifyResetPost(text) {
     .trim();
   if (!normalized) return null;
 
+  // Future, conditional and negative statements are not completed resets.
+  // Normalize curly apostrophes before checking contractions such as “we’ll”.
+  const tenseText = normalized.replace(/[’‘]/g, "'");
+  if (/\breset\b/i.test(tenseText) &&
+      /\b(will|\w+'ll|going to|plan(?:ning)? to|soon|tomorrow|would|might|may|if|not|never|won't|haven't|hasn't|didn't)\b|\?/i.test(tenseText)) {
+    return {
+      kind: 'signal',
+      requiresJudgment: true,
+      title: 'Tibo 重置消息待确认',
+      summary: '原文包含未来、条件、否定或疑问表述，不能作为已完成重置自动发布。',
+    };
+  }
+
   if (/\b(banked reset|reset cards?)\b/i.test(normalized)) {
     return {
       kind: 'banked',

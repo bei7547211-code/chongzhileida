@@ -12,6 +12,32 @@ test('数据源结构合法', () => {
   assert.equal(validateResetFeed(feed), true);
 });
 
+test('未来式、否定和疑问不能自动宣布完成，包括弯引号', () => {
+  for (const text of [
+    'we’ll reset usage limits for all paid users across codex and ChatGPT work',
+    "We'll reset usage limits tomorrow.",
+    'We will provide a banked reset.',
+    'We have not reset usage limits.',
+    'Should we reset usage limits?',
+  ]) {
+    assert.equal(classifyResetPost(text)?.requiresJudgment, true, text);
+    const result = ingestTiboPost(feed, {
+      id: '2100000000000000088', authorHandle: '@thsottiaux',
+      publishedAt: '2026-09-26T00:07:13.000Z', text,
+      url: 'https://x.com/thsottiaux/status/2100000000000000088',
+    });
+    assert.equal(result.reason, 'needs-judgment');
+    assert.deepEqual(result.feed.events, feed.events);
+  }
+});
+
+test('9月26日预告不计入已完成历史和统计', () => {
+  const post = feed.announcements.find(p => p.id === '2103637477760311522');
+  assert.equal(post.kind, 'signal');
+  assert.match(post.title, /等待完成确认/);
+  assert.equal(feed.events.some(e => e.date === '2026-09-26' && e.kind === 'full'), false);
+});
+
 test('巡检状态与人工审查边界会被校验', () => {
   const invalidFeed = structuredClone(feed);
   invalidFeed.monitor.reviewRequired = false;

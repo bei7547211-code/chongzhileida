@@ -5,7 +5,6 @@ export function publicRss(provider?: string) {
   );
   const items = platforms
     .flatMap((p) => p.announcements.map((a) => ({ ...a, platform: p.name })))
-    .filter((a) => a.kind !== 'signal')
     .sort((a, b) => b.publishedAt.localeCompare(a.publishedAt));
   const escape = (v: string) =>
     v

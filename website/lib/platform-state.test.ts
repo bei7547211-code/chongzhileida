@@ -11,3 +11,6 @@ void test('Successful collection freshness is separate from announcement age', (
 void test('Banked reset does not claim account balance restored', () => {
   assert.equal(platformHeadline('banked'), '重置次数已公布');
 });
+void test('A signal never claims reset completion', () => {
+  assert.equal(platformHeadline('signal'), '等待重置完成确认');
+});

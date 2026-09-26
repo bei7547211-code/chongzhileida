@@ -16,6 +16,7 @@ export type ResetAnnouncement = ResetEvent & {
   original: string;
   summary: string;
   screenshotUrl?: string;
+  scope?: string;
   xUrl: string;
 };
 
@@ -45,6 +46,7 @@ type ResetFeed = {
     text: string;
     summary: string;
     screenshot?: string;
+    scope?: string;
     url: string;
   }>;
 };
@@ -108,6 +110,7 @@ export const announcements: ResetAnnouncement[] = feed.announcements
     original: announcement.text,
     summary: announcement.summary,
     screenshotUrl: announcement.screenshot,
+    scope: announcement.scope,
     xUrl: announcement.url,
   }))
   .sort((a, b) => b.publishedAt.localeCompare(a.publishedAt));

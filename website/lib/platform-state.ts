@@ -7,5 +7,7 @@ export function platformHeadline(kind: string | undefined) {
     ? '重置次数已公布'
     : kind === 'full'
       ? '公开重置已确认'
-      : '尚无已核验重置';
+      : kind === 'signal'
+        ? '等待重置完成确认'
+        : '尚无已核验重置';
 }
