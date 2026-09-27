@@ -1,9 +1,27 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-09-27T03:00:12.625Z",
-  "verifiedAt": "2026-09-27T03:00:12.625Z",
+  "updatedAt": "2026-09-27T07:00:13.220Z",
+  "verifiedAt": "2026-09-27T07:00:13.220Z",
   "sourceUrl": "https://x.com/thsottiaux",
   "posts": [
+    {
+      "id": "2104101496606618082",
+      "publishedAt": "2026-09-27T06:51:03.000Z",
+      "title": "Tibo 回复：@yacineMTB We’re perma locked in. No…",
+      "summary": "@yacineMTB We’re perma locked in. No code red necessary.",
+      "category": "回复",
+      "resetSignal": "none",
+      "url": "https://x.com/thsottiaux/status/2104101496606618082"
+    },
+    {
+      "id": "2104100881100890402",
+      "publishedAt": "2026-09-27T06:48:37.000Z",
+      "title": "Tibo 回复：@anthdm Tell me more. Didn’t see your…",
+      "summary": "@anthdm Tell me more. Didn’t see your message, was probably too small and for ants.",
+      "category": "回复",
+      "resetSignal": "none",
+      "url": "https://x.com/thsottiaux/status/2104100881100890402"
+    },
     {
       "id": "2103963215885701493",
       "publishedAt": "2026-09-26T21:41:35.000Z",
@@ -255,26 +273,8 @@
       "category": "动态",
       "resetSignal": "none",
       "url": "https://x.com/thsottiaux/status/2102440619616682120"
-    },
-    {
-      "id": "2102292452329820272",
-      "publishedAt": "2026-09-22T07:02:33.000Z",
-      "title": "Tibo 回复：@steipete Huge!!",
-      "summary": "@steipete Huge!!",
-      "category": "回复",
-      "resetSignal": "none",
-      "url": "https://x.com/thsottiaux/status/2102292452329820272"
-    },
-    {
-      "id": "2102290126344974551",
-      "publishedAt": "2026-09-22T06:53:19.000Z",
-      "title": "Tibo 回复：@FintechKristen @ajambrosino Negroni…",
-      "summary": "@FintechKristen @ajambrosino Negroni is on you",
-      "category": "回复",
-      "resetSignal": "none",
-      "url": "https://x.com/thsottiaux/status/2102290126344974551"
     }
   ],
-  "lastAttemptAt": "2026-09-27T03:00:12.625Z",
+  "lastAttemptAt": "2026-09-27T07:00:13.220Z",
   "lastError": null
 }
