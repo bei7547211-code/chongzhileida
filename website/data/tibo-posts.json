@@ -1,9 +1,72 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-09-26T03:00:13.118Z",
-  "verifiedAt": "2026-09-26T13:00:12.652Z",
+  "updatedAt": "2026-09-27T03:00:12.625Z",
+  "verifiedAt": "2026-09-27T03:00:12.625Z",
   "sourceUrl": "https://x.com/thsottiaux",
   "posts": [
+    {
+      "id": "2103963215885701493",
+      "publishedAt": "2026-09-26T21:41:35.000Z",
+      "title": "Tibo 回复：@giadotai Sorry Gia. More resets comi…",
+      "summary": "@giadotai Sorry Gia. More resets coming next week",
+      "category": "回复",
+      "resetSignal": "none",
+      "url": "https://x.com/thsottiaux/status/2103963215885701493"
+    },
+    {
+      "id": "2103962250885390436",
+      "publishedAt": "2026-09-26T21:37:44.000Z",
+      "title": "Tibo 回复：@angelbrodin Are those Udon or just p…",
+      "summary": "@angelbrodin Are those Udon or just plain Noodles",
+      "category": "回复",
+      "resetSignal": "none",
+      "url": "https://x.com/thsottiaux/status/2103962250885390436"
+    },
+    {
+      "id": "2103961852153913371",
+      "publishedAt": "2026-09-26T21:36:09.000Z",
+      "title": "Tibo 回复：@jorilallo Truth is, there isn’t an o…",
+      "summary": "@jorilallo Truth is, there isn’t an org chart",
+      "category": "回复",
+      "resetSignal": "none",
+      "url": "https://x.com/thsottiaux/status/2103961852153913371"
+    },
+    {
+      "id": "2103954577817260036",
+      "publishedAt": "2026-09-26T21:07:15.000Z",
+      "title": "Tibo 回复：@antigravity Plan mode was cool in 20…",
+      "summary": "@antigravity Plan mode was cool in 2025, might still be cool, but was particularly cool in 2025",
+      "category": "回复",
+      "resetSignal": "none",
+      "url": "https://x.com/thsottiaux/status/2103954577817260036"
+    },
+    {
+      "id": "2103954313068642787",
+      "publishedAt": "2026-09-26T21:06:12.000Z",
+      "title": "Tibo 回复：@kunchenguid 👋",
+      "summary": "@kunchenguid 👋",
+      "category": "回复",
+      "resetSignal": "none",
+      "url": "https://x.com/thsottiaux/status/2103954313068642787"
+    },
+    {
+      "id": "2103953907278045548",
+      "publishedAt": "2026-09-26T21:04:35.000Z",
+      "title": "Tibo 回复：@NicolasZu DevDay",
+      "summary": "@NicolasZu DevDay",
+      "category": "回复",
+      "resetSignal": "none",
+      "url": "https://x.com/thsottiaux/status/2103953907278045548"
+    },
+    {
+      "id": "2103911959544610829",
+      "publishedAt": "2026-09-26T18:17:54.000Z",
+      "title": "Resets all propagated. That will be all. Have…",
+      "summary": "Resets all propagated. That will be all. Have a fantastic weekend.",
+      "category": "动态",
+      "resetSignal": "none",
+      "url": "https://x.com/thsottiaux/status/2103911959544610829"
+    },
     {
       "id": "2103637477760311522",
       "publishedAt": "2026-09-26T00:07:13.000Z",
@@ -210,79 +273,8 @@
       "category": "回复",
       "resetSignal": "none",
       "url": "https://x.com/thsottiaux/status/2102290126344974551"
-    },
-    {
-      "id": "2102289624945352906",
-      "publishedAt": "2026-09-22T06:51:19.000Z",
-      "title": "Tibo 回复：@matteing Sergio is indeed on fire",
-      "summary": "@matteing Sergio is indeed on fire",
-      "category": "回复",
-      "resetSignal": "none",
-      "url": "https://x.com/thsottiaux/status/2102289624945352906"
-    },
-    {
-      "id": "2102289383068180659",
-      "publishedAt": "2026-09-22T06:50:22.000Z",
-      "title": "Tibo 回复：@thdxr ah yes, that elusive and unlim…",
-      "summary": "@thdxr ah yes, that elusive and unlimited ambient inference that they don’t want to know you about",
-      "category": "回复",
-      "resetSignal": "none",
-      "url": "https://x.com/thsottiaux/status/2102289383068180659"
-    },
-    {
-      "id": "2102284586713522193",
-      "publishedAt": "2026-09-22T06:31:18.000Z",
-      "title": "Tibo 回复：@Cch_Chichieh Burn those tokens",
-      "summary": "@Cch_Chichieh Burn those tokens",
-      "category": "回复",
-      "resetSignal": "none",
-      "url": "https://x.com/thsottiaux/status/2102284586713522193"
-    },
-    {
-      "id": "2102284352801427520",
-      "publishedAt": "2026-09-22T06:30:22.000Z",
-      "title": "Tibo 回复：@neogoose_btw Good choice, good choice",
-      "summary": "@neogoose_btw Good choice, good choice",
-      "category": "回复",
-      "resetSignal": "none",
-      "url": "https://x.com/thsottiaux/status/2102284352801427520"
-    },
-    {
-      "id": "2102254445082116335",
-      "publishedAt": "2026-09-22T04:31:32.000Z",
-      "title": "官方预告：Tibo 承诺周二重置",
-      "summary": "Tibo 表示已经承诺周二进行一次重置。目前仍是预告，尚未确认重置完成。",
-      "category": "预告",
-      "resetSignal": "related",
-      "url": "https://x.com/thsottiaux/status/2102254445082116335",
-      "preview": {
-        "headline": "预计周二出现重置",
-        "dateLabel": "9月22日",
-        "dayLabel": "周二",
-        "timingLabel": "具体时刻未公布",
-        "translation": "马上就到周二了，我承诺周二会有一次重置。",
-        "originalExcerpt": "We are almost Tuesday and I promised a reset for Tuesday."
-      }
-    },
-    {
-      "id": "2102253723879670183",
-      "publishedAt": "2026-09-22T04:28:40.000Z",
-      "title": "Tibo 回复：@prit4k @noahrshinn Probably nothing,…",
-      "summary": "@prit4k @noahrshinn Probably nothing, do not worry",
-      "category": "回复",
-      "resetSignal": "none",
-      "url": "https://x.com/thsottiaux/status/2102253723879670183"
-    },
-    {
-      "id": "2101921202436702657",
-      "publishedAt": "2026-09-21T06:27:21.000Z",
-      "title": "Tibo 回复：@melvindvivas 👁️codex👁️",
-      "summary": "@melvindvivas 👁️codex👁️",
-      "category": "回复",
-      "resetSignal": "none",
-      "url": "https://x.com/thsottiaux/status/2101921202436702657"
     }
   ],
-  "lastAttemptAt": "2026-09-26T13:00:12.652Z",
+  "lastAttemptAt": "2026-09-27T03:00:12.625Z",
   "lastError": null
 }
