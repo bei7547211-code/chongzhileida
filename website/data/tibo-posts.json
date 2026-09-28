@@ -1,9 +1,63 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-09-28T03:00:08.360Z",
-  "verifiedAt": "2026-09-28T03:00:08.360Z",
+  "updatedAt": "2026-09-28T13:00:19.130Z",
+  "verifiedAt": "2026-09-28T13:00:19.130Z",
   "sourceUrl": "https://x.com/thsottiaux",
   "posts": [
+    {
+      "id": "2104467346945675347",
+      "publishedAt": "2026-09-28T07:04:49.000Z",
+      "title": "Tibo 回复：Taken by none other than the incredib…",
+      "summary": "Taken by none other than the incredible @ah20im",
+      "category": "回复",
+      "resetSignal": "none",
+      "url": "https://x.com/thsottiaux/status/2104467346945675347"
+    },
+    {
+      "id": "2104465709384491519",
+      "publishedAt": "2026-09-28T06:58:18.000Z",
+      "title": "Sunday vibes. See you at Fort Mason soon 🎮👩…",
+      "summary": "Sunday vibes. See you at Fort Mason soon 🎮👩‍💻",
+      "category": "动态",
+      "resetSignal": "none",
+      "url": "https://x.com/thsottiaux/status/2104465709384491519"
+    },
+    {
+      "id": "2104462923661988233",
+      "publishedAt": "2026-09-28T06:47:14.000Z",
+      "title": "Tibo 回复：@imjustnewatai 007 even",
+      "summary": "@imjustnewatai 007 even",
+      "category": "回复",
+      "resetSignal": "none",
+      "url": "https://x.com/thsottiaux/status/2104462923661988233"
+    },
+    {
+      "id": "2104462713296683467",
+      "publishedAt": "2026-09-28T06:46:24.000Z",
+      "title": "Tibo 回复：@mark_k DevDay",
+      "summary": "@mark_k DevDay",
+      "category": "回复",
+      "resetSignal": "none",
+      "url": "https://x.com/thsottiaux/status/2104462713296683467"
+    },
+    {
+      "id": "2104462572644888780",
+      "publishedAt": "2026-09-28T06:45:50.000Z",
+      "title": "Tibo 回复：@maria_rcks Please don't die",
+      "summary": "@maria_rcks Please don't die",
+      "category": "回复",
+      "resetSignal": "none",
+      "url": "https://x.com/thsottiaux/status/2104462572644888780"
+    },
+    {
+      "id": "2104451970983768270",
+      "publishedAt": "2026-09-28T06:03:43.000Z",
+      "title": "Tibo 回复：@melvindvivas olalala",
+      "summary": "@melvindvivas olalala",
+      "category": "回复",
+      "resetSignal": "none",
+      "url": "https://x.com/thsottiaux/status/2104451970983768270"
+    },
     {
       "id": "2104388401218932888",
       "publishedAt": "2026-09-28T01:51:07.000Z",
@@ -219,62 +273,8 @@
       "category": "回复",
       "resetSignal": "none",
       "url": "https://x.com/thsottiaux/status/2102884039145521487"
-    },
-    {
-      "id": "2102814202117411196",
-      "publishedAt": "2026-09-23T17:35:48.000Z",
-      "title": "Voice! I've gotten so used to just call ChatG…",
-      "summary": "Voice! I've gotten so used to just call ChatGPT and talk about all the work, check on emails, do some coding, manage my calendar and it works across the full e…",
-      "category": "动态",
-      "resetSignal": "none",
-      "url": "https://x.com/thsottiaux/status/2102814202117411196"
-    },
-    {
-      "id": "2102509629536346422",
-      "publishedAt": "2026-09-22T21:25:33.000Z",
-      "title": "Tibo 回复：@PawelHuryn Interesting results!",
-      "summary": "@PawelHuryn Interesting results!",
-      "category": "回复",
-      "resetSignal": "none",
-      "url": "https://x.com/thsottiaux/status/2102509629536346422"
-    },
-    {
-      "id": "2102509507415048245",
-      "publishedAt": "2026-09-22T21:25:03.000Z",
-      "title": "Maybe our cutest launch so far. But still pac…",
-      "summary": "Maybe our cutest launch so far. But still packing the biggest punch.",
-      "category": "动态",
-      "resetSignal": "none",
-      "url": "https://x.com/thsottiaux/status/2102509507415048245"
-    },
-    {
-      "id": "2102501670647472147",
-      "publishedAt": "2026-09-22T20:53:55.000Z",
-      "title": "Tibo 回复：@weswinder No benchmaxxing here, just…",
-      "summary": "@weswinder No benchmaxxing here, just a better model all around.",
-      "category": "回复",
-      "resetSignal": "none",
-      "url": "https://x.com/thsottiaux/status/2102501670647472147"
-    },
-    {
-      "id": "2102501432884891720",
-      "publishedAt": "2026-09-22T20:52:58.000Z",
-      "title": "Tibo 回复：@theo It’s a good day sir",
-      "summary": "@theo It’s a good day sir",
-      "category": "回复",
-      "resetSignal": "none",
-      "url": "https://x.com/thsottiaux/status/2102501432884891720"
-    },
-    {
-      "id": "2102497184805720459",
-      "publishedAt": "2026-09-22T20:36:06.000Z",
-      "title": "Tibo 回复：@viticci It’s good to want it all",
-      "summary": "@viticci It’s good to want it all",
-      "category": "回复",
-      "resetSignal": "none",
-      "url": "https://x.com/thsottiaux/status/2102497184805720459"
     }
   ],
-  "lastAttemptAt": "2026-09-28T03:00:08.360Z",
+  "lastAttemptAt": "2026-09-28T13:00:19.130Z",
   "lastError": null
 }
