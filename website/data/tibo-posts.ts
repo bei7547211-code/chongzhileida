@@ -1,4 +1,4 @@
-import postsJson from './tibo-posts.json';
+import postsJson from './tibo-posts.json' with { type: 'json' };
 
 export type TiboResetSignal = 'confirmed' | 'related' | 'none';
 

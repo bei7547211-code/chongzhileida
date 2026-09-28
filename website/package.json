@@ -30,7 +30,9 @@
     "monitor:feishu:remove": "node scripts/configure-monitor-feishu.mjs --remove",
     "guard:private-prompts": "node scripts/guard-private-prompts.mjs",
     "lint": "oxlint",
-    "format": "oxfmt"
+    "format": "oxfmt",
+    "prebuild": "node scripts/export-public-snapshot.mjs --write",
+    "export:snapshot": "node scripts/export-public-snapshot.mjs"
   },
   "dependencies": {
     "next": "16.3.5",

@@ -1,14 +1,16 @@
-import extra from './provider-feeds.json';
-import tiboFeed from './tibo-posts.json';
-import evidenceJson from './provider-evidence.json';
-import { matchedEvidence } from '../lib/evidence';
-import { announcements } from './reset-history';
-import { tiboPostsVerifiedAt, tiboPosts } from './tibo-posts';
+import { isPublicRecord } from '../lib/public-visibility.ts';
+import extra from './provider-feeds.json' with { type: 'json' };
+import tiboFeed from './tibo-posts.json' with { type: 'json' };
+import evidenceJson from './provider-evidence.json' with { type: 'json' };
+import { matchedEvidence } from '../lib/evidence.ts';
+import { announcements } from './reset-history.ts';
+import { tiboPostsVerifiedAt, tiboPosts } from './tibo-posts.ts';
 
 export type PlatformId = 'codex' | 'claude' | 'grok';
 export type PublicAnnouncement = {
   id: string;
   title: string;
+  summary?: string;
   text: string;
   publishedAt: string;
   verifiedAt: string;
@@ -30,6 +32,7 @@ export type PublicPlatform = {
   checkedAt: string | null;
   error: string | null;
   attemptedAt?: string | null;
+  lastAttemptAt?: string | null;
   coverage: string;
   announcements: PublicAnnouncement[];
   posts: { id: string; text: string; publishedAt: string; url: string }[];
@@ -52,6 +55,7 @@ export const publicPlatforms: PublicPlatform[] = [
       id: a.id,
       title: a.title,
       text: a.original,
+      summary: a.summary,
       publishedAt: a.publishedAt,
       verifiedAt: tiboPostsVerifiedAt,
       kind: a.kind,
@@ -78,7 +82,7 @@ export const publicPlatforms: PublicPlatform[] = [
       id === 'claude' ? 'https://x.com/claudeai' : 'https://x.com/grok',
     ...extra[id],
     coverage: '近期官方时间线＋核验原帖；不代表全部历史',
-    announcements: extra[id].announcements.map((a) => {
+    announcements: extra[id].announcements.filter(a => isPublicRecord('event', id + '-' + a.id, (a as { reviewPending?: boolean }).reviewPending)).map((a) => {
       return { ...a, ...matchedEvidence(a, evidenceJson) };
     }) as PublicAnnouncement[],
   })),

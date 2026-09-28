@@ -1,4 +1,5 @@
-import feedJson from './reset-feed.json';
+import { isPublicRecord } from '../lib/public-visibility.ts';
+import feedJson from './reset-feed.json' with { type: 'json' };
 import { toShanghaiDateKey } from '../lib/time.ts';
 
 export type ResetKind = 'full' | 'banked' | 'signal';
@@ -106,6 +107,7 @@ export const resetStats = {
 };
 
 export const announcements: ResetAnnouncement[] = feed.announcements
+  .filter(a => isPublicRecord('event', 'codex-' + a.id, a.reviewPending))
   .map((announcement) => ({
     id: announcement.id,
     publishedAt: announcement.publishedAt,

@@ -1,4 +1,5 @@
-import feedJson from './side-hustles.json';
+import { isPublicRecord } from '../lib/public-visibility.ts';
+import feedJson from './side-hustles.json' with { type: 'json' };
 
 export type SideHustle = {
   topic_id: string;
@@ -26,7 +27,7 @@ export type SideHustle = {
 
 const feed = feedJson as { updated_at: string; posts: SideHustle[] };
 
-export const sideHustles = feed.posts;
+export const sideHustles = feed.posts.filter(p => isPublicRecord('article', p.topic_id, (p as SideHustle & { reviewPending?: boolean }).reviewPending));
 export const sideHustlesUpdatedAt = feed.updated_at;
 
 export function getSideHustle(slug: string) {
