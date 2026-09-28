@@ -1,9 +1,54 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-09-27T13:00:12.965Z",
-  "verifiedAt": "2026-09-27T13:00:12.965Z",
+  "updatedAt": "2026-09-28T03:00:08.360Z",
+  "verifiedAt": "2026-09-28T03:00:08.360Z",
   "sourceUrl": "https://x.com/thsottiaux",
   "posts": [
+    {
+      "id": "2104388401218932888",
+      "publishedAt": "2026-09-28T01:51:07.000Z",
+      "title": "Tibo 回复：@ZainManji Sup Arjun",
+      "summary": "@ZainManji Sup Arjun",
+      "category": "回复",
+      "resetSignal": "none",
+      "url": "https://x.com/thsottiaux/status/2104388401218932888"
+    },
+    {
+      "id": "2104383749723128052",
+      "publishedAt": "2026-09-28T01:32:38.000Z",
+      "title": ". . . . . .",
+      "summary": ". . . . . .",
+      "category": "动态",
+      "resetSignal": "none",
+      "url": "https://x.com/thsottiaux/status/2104383749723128052"
+    },
+    {
+      "id": "2104313777013526880",
+      "publishedAt": "2026-09-27T20:54:35.000Z",
+      "title": "Tibo 回复：@Vincent_AINotes Hitting the gym, brb…",
+      "summary": "@Vincent_AINotes Hitting the gym, brb on Tuesday",
+      "category": "回复",
+      "resetSignal": "none",
+      "url": "https://x.com/thsottiaux/status/2104313777013526880"
+    },
+    {
+      "id": "2104313502697660428",
+      "publishedAt": "2026-09-27T20:53:29.000Z",
+      "title": "Tibo 回复：@yacineMTB O really",
+      "summary": "@yacineMTB O really",
+      "category": "回复",
+      "resetSignal": "none",
+      "url": "https://x.com/thsottiaux/status/2104313502697660428"
+    },
+    {
+      "id": "2104313314901958706",
+      "publishedAt": "2026-09-27T20:52:45.000Z",
+      "title": "Tibo 回复：@scottstts 🙈",
+      "summary": "@scottstts 🙈",
+      "category": "回复",
+      "resetSignal": "none",
+      "url": "https://x.com/thsottiaux/status/2104313314901958706"
+    },
     {
       "id": "2104108167806550046",
       "publishedAt": "2026-09-27T07:17:34.000Z",
@@ -228,53 +273,8 @@
       "category": "回复",
       "resetSignal": "none",
       "url": "https://x.com/thsottiaux/status/2102497184805720459"
-    },
-    {
-      "id": "2102484207163584745",
-      "publishedAt": "2026-09-22T19:44:31.000Z",
-      "title": "Tibo 回复：@amorriscode u2!",
-      "summary": "@amorriscode u2!",
-      "category": "回复",
-      "resetSignal": "none",
-      "url": "https://x.com/thsottiaux/status/2102484207163584745"
-    },
-    {
-      "id": "2102466463156285686",
-      "publishedAt": "2026-09-22T18:34:01.000Z",
-      "title": "Tibo 回复：@omarbnjl pizza plutot",
-      "summary": "@omarbnjl pizza plutot",
-      "category": "回复",
-      "resetSignal": "none",
-      "url": "https://x.com/thsottiaux/status/2102466463156285686"
-    },
-    {
-      "id": "2102466361398378912",
-      "publishedAt": "2026-09-22T18:33:37.000Z",
-      "title": "Tibo 回复：@TokenGremlin @sama Models are out ht…",
-      "summary": "@TokenGremlin @sama Models are out https://openai.com/index/introducing-gpt-6-sol-and-luna/",
-      "category": "回复",
-      "resetSignal": "none",
-      "url": "https://x.com/thsottiaux/status/2102466361398378912"
-    },
-    {
-      "id": "2102464575790854290",
-      "publishedAt": "2026-09-22T18:26:31.000Z",
-      "title": "Tibo 回复：@haydenderrico Luna, but better",
-      "summary": "@haydenderrico Luna, but better",
-      "category": "回复",
-      "resetSignal": "none",
-      "url": "https://x.com/thsottiaux/status/2102464575790854290"
-    },
-    {
-      "id": "2102463847714247142",
-      "publishedAt": "2026-09-22T18:23:37.000Z",
-      "title": "Tibo 发布重置卡公告",
-      "summary": "检测到 Tibo 发布与 banked reset 或重置卡相关的公开信号。",
-      "category": "重置",
-      "resetSignal": "confirmed",
-      "url": "https://x.com/thsottiaux/status/2102463847714247142"
     }
   ],
-  "lastAttemptAt": "2026-09-27T13:00:12.965Z",
+  "lastAttemptAt": "2026-09-28T03:00:08.360Z",
   "lastError": null
 }
