@@ -58,7 +58,7 @@ export function classifyResetPost(text) {
   // reset sentence, not unrelated clauses such as “Not only are models better”.
   const sentences =
     normalized.replace(/[’‘]/g, "'").match(/[^.!?]+[.!?]?/g) || [];
-  const resetSentences = sentences.filter((s) => /\breset\b/i.test(s));
+  const resetSentences = sentences.filter((s) => /\bresets?\b/i.test(s));
   const unsafe =
     /\b(will|\w+'ll|going to|plan(?:ning)? to|soon|tomorrow|would|could|should|wish|hope|might|may|if|not|never|won't|haven't|hasn't|didn't|asking|requested|another|other platform)\b|[?"“”]/i;
   const eligible = resetSentences.filter((s) => !unsafe.test(s));
@@ -91,7 +91,7 @@ export function classifyResetPost(text) {
         /^\s*(?:and\s+)?(?:we (?:have |just )?reset|we've (?:just )?reset) (?:codex )?usage (?:limits? )?(?:for|across) (?:all|every)\b/i.test(
           s,
         ) ||
-        /^\s*reset (?:all (?:has )?)?(?:propagated|completed)[.!]?\s*$/i.test(
+        /^\s*resets? (?:all (?:has )?)?(?:propagated|completed)[.!]?\s*$/i.test(
           s,
         ),
     )
@@ -105,7 +105,7 @@ export function classifyResetPost(text) {
   }
 
   if (
-    /\b(reset|usage|quota|rate limits?|message limits?)\b/i.test(normalized)
+    /\b(resets?|usage|quota|rate limits?|message limits?)\b/i.test(normalized)
   ) {
     return {
       kind: 'signal',

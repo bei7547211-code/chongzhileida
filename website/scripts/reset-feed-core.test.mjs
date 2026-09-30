@@ -86,6 +86,12 @@ test('巡检状态与人工审查边界会被校验', () => {
 test('全量重置与重置卡可被确定性分类', () => {
   assert.equal(classifyResetPost('Reset all propagated.')?.kind, 'full');
   assert.equal(
+    classifyResetPost(
+      'Resets all propagated. That will be all. Have a fantastic weekend.',
+    )?.kind,
+    'full',
+  );
+  assert.equal(
     classifyResetPost('We reset usage for all paid subscriptions.')?.kind,
     'full',
   );
