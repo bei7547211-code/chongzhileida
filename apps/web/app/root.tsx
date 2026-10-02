@@ -7,6 +7,7 @@ import {
 import type { ReactNode } from "react";
 import type { Route } from "./+types/root";
 import "./app.css";
+import "./features/relay/chrome.css";
 import { Sidebar } from "./components/shell/Sidebar";
 import { MobileTabBar } from "./components/shell/MobileTabBar";
 import { BackToTop, NavigationProgress } from "./components/shell/Chrome";
@@ -17,9 +18,7 @@ import { apiGet } from "./lib/api.server";
 import { useHydratedFlag } from "./lib/hydration";
 
 export const links: Route.LinksFunction = () => [
-  { rel: "icon", href: "/favicon.ico", sizes: "any" },
-  { rel: "icon", type: "image/png", href: "/icon.png" },
-  { rel: "apple-touch-icon", href: "/apple-icon.png" },
+  { rel: "icon", type: "image/svg+xml", href: "/relay-mark.svg" },
   { rel: "manifest", href: "/manifest.webmanifest" },
   { rel: "alternate", type: "application/rss+xml", title: `${SITE.name} — 精选`, href: "/feed.xml" },
 ];
@@ -95,6 +94,7 @@ export default function App() {
   if (pathname === "/admin" || pathname.startsWith("/admin/")) return <Outlet />;
   return (
     <SiteShell changelogVersion={meta.changelogVersion}>
+      {/^\/(discover|all|daily|weekly|monthly|topics)(\/|$)/.test(pathname) && <div className="relay-setup-note"><b>内容模块已恢复</b><span>这些栏目的自动采集尚未启用，不代表今天没有新闻。热点榜可查看已同步的公开资讯。</span><Link to="/hot">查看资讯 ↗</Link></div>}
       <Outlet />
     </SiteShell>
   );
@@ -113,14 +113,15 @@ export function ErrorBoundary() {
         <div className="mono text-[12px] text-ink-4">{status}</div>
         <h1 className="mt-1.5 text-[20px] font-bold text-ink">{notFound ? "这里没有内容" : "暂时无法加载"}</h1>
         <p className="mt-2 text-[13.5px] leading-relaxed text-ink-3">
-          {notFound ? "你访问的页面不存在，或内容已不再公开。" : "服务暂时繁忙，请稍后再试。已经加载过的内容不受影响。"}
+          {notFound ? "你访问的页面不存在，或内容已不再公开。" : "页面或数据加载失败。请重新加载当前页面；若仍失败，可先访问其他栏目。"}
         </p>
         <div className="mt-6 flex justify-center gap-2.5">
+          {!notFound && <a href={pathname} className={buttonClass("primary")}>重新加载页面</a>}
           <Link to="/" className={buttonClass("primary")}>
-            回到精选
+            回到雷达
           </Link>
-          <Link to="/all" className={buttonClass("secondary")}>
-            浏览全部动态
+          <Link to="/history" className={buttonClass("secondary")}>
+            查看历史记录
           </Link>
         </div>
       </div>

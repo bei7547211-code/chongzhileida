@@ -7,7 +7,7 @@ import { FEATURES } from "@aihot/industry/features";
 const at = process.argv.indexOf("--base");
 const base = (at > 0 ? process.argv[at + 1] : process.env.SITE_URL) ?? "http://localhost:3000";
 
-const PAGES = ["/", "/all", "/hot", "/daily", "/daily/archive", "/topics", "/starred", "/agent", "/about", "/changelog", "/feedback", "/terms", "/privacy", "/more", "/admin/login"];
+const PAGES = ["/", "/discover", "/history", "/side-hustles", "/guide", "/platform/codex", "/platform/claude", "/platform/grok", "/codex-reset", "/all", "/hot", "/daily", "/daily/archive", "/topics", "/starred", "/agent", "/about", "/changelog", "/feedback", "/terms", "/privacy", "/more", "/admin/login"];
 const MACHINE: Array<[path: string, type: RegExp]> = [
   ["/api/health", /json/],
   ["/api/v1/items", /json/],
@@ -24,21 +24,26 @@ const MACHINE: Array<[path: string, type: RegExp]> = [
   ["/icon.png", /image\/png/],
   ["/favicon.ico", /icon/],
 ];
-// The leaderboard pages answer 503 until the first round is published (a fresh site computes it when
-// the worker starts; with collection off there is nothing to compute).
+PAGES.push("/monitor", "/monitor/codex", "/monitor/claude", "/monitor/grok");
+const legacyMonitor: Record<string, string> = {
+  "/platform/codex": "/monitor/codex", "/platform/claude": "/monitor/claude",
+  "/platform/grok": "/monitor/grok", "/codex-reset": "/monitor/codex",
+};
+// A fresh leaderboard has an explicit setup state and must still render successfully.
 const LEADERBOARD = FEATURES.leaderboard ? ["/leaderboard", "/leaderboard/rules", "/leaderboard/sources"] : [];
 PAGES.push(...LEADERBOARD);
-if (FEATURES.codexResetMonitor) PAGES.push("/codex-reset");
 
 let failed = 0;
 async function check(path: string, expect: (res: Response, body: string) => string | null) {
   try {
     const res = await fetch(base + path, { redirect: "manual", signal: AbortSignal.timeout(30_000) });
-    const body = res.headers.get("content-type")?.startsWith("image/") ? "" : await res.text();
-    if (res.status === 503 && LEADERBOARD.includes(path)) {
-      console.log(`– ${path}  no leaderboard round published yet`);
+    if (legacyMonitor[path]) {
+      const ok = res.status === 302 && res.headers.get("location") === legacyMonitor[path];
+      console.log(`${ok ? "✓" : "✗"} ${path} redirect`);
+      if (!ok) failed += 1;
       return;
     }
+    const body = res.headers.get("content-type")?.startsWith("image/") ? "" : await res.text();
     const problem = res.status !== 200 ? `HTTP ${res.status}` : expect(res, body);
     console.log(`${problem ? "✗" : "✓"} ${path}${problem ? `  ${problem}` : ""}`);
     if (problem) failed += 1;
@@ -48,7 +53,11 @@ async function check(path: string, expect: (res: Response, body: string) => stri
   }
 }
 
-for (const path of PAGES) await check(path, (_res, body) => (body.includes(SITE.name) ? null : `the page does not name ${SITE.name}`));
+for (const path of PAGES) await check(path, (_res, body) => {
+  if (/暂时无法加载|热点榜暂时无法加载/.test(body)) return "page rendered an error boundary";
+  return body.includes(SITE.name) ? null : `the page does not name ${SITE.name}`;
+});
+await check("/hot.data?_routes=routes%2Fhot", (_res, body) => body.includes("windowHours") ? null : "hot navigation data missing");
 for (const [path, type] of MACHINE) await check(path, (res) => (type.test(res.headers.get("content-type") ?? "") ? null : `content-type ${res.headers.get("content-type")}`));
 // MCP: the handshake answers with the site's server name.
 const mcp = await fetch(`${base}/api/mcp`, {

@@ -1,0 +1,8 @@
+.relay-sidebar { background:var(--surface); }
+.relay-sidebar nav { scrollbar-width:thin; scrollbar-color:var(--line-strong) transparent; }
+.relay-sidebar nav a[aria-current="page"] { background:var(--accent); color:var(--accent-contrast); box-shadow:0 4px 12px color-mix(in srgb,var(--accent) 15%,transparent); }
+.relay-sidebar nav a[aria-current="page"]>span { color:inherit; }
+.relay-sidebar nav a:focus-visible { outline:2px solid var(--accent); outline-offset:2px; }
+.relay-setup-note { display:flex; align-items:center; flex-wrap:wrap; gap:8px 16px; margin:8px 0 24px; padding:14px 18px; border:1px solid var(--line); border-radius:12px; background:var(--accent-softer); color:var(--ink-3); font-size:12px; line-height:1.8; }
+.relay-setup-note b,.relay-setup-note a { color:var(--accent-ink); }
+.relay-setup-note a { margin-left:auto; }

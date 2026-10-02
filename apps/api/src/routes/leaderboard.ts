@@ -14,7 +14,7 @@ export function registerLeaderboard(app: FastifyInstance) {
         return await fn(req, reply);
       } catch (error) {
         if (error instanceof NoLeaderboardRun) {
-          return sendProblem(req, reply, { status: 503, code: "temporarily_unavailable", detail: "leaderboard not computed yet", retryAfter: 300 });
+          return sendProblem(req, reply, { status: 503, code: "leaderboard_not_ready", detail: "leaderboard not computed yet", retryAfter: 300 });
         }
         throw error;
       }

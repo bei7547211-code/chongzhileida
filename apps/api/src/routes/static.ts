@@ -80,8 +80,7 @@ function manifest() {
     background_color: "#13191c",
     theme_color: "#13191c",
     icons: [
-      { src: "/icon-192.png", sizes: "192x192", type: "image/png" },
-      { src: "/icon.png", sizes: "512x512", type: "image/png" },
+      { src: "/relay-mark.svg", sizes: "any", type: "image/svg+xml" },
     ],
   };
 }
@@ -148,7 +147,7 @@ export function registerStatic(app: FastifyInstance) {
   }
 
   // Icons from the industry pack (industry/brand/).
-  for (const icon of ["favicon.ico", "icon.png", "icon-192.png", "apple-icon.png", "logo.svg"]) {
+  for (const icon of ["relay-mark.svg", "icon.png", "icon-192.png", "apple-icon.png", "favicon.ico"]) {
     app.get(`/${icon}`, (req, reply) => sendFile(req, reply, path.join(BRAND, icon), { cacheControl: "public, max-age=86400, stale-while-revalidate=604800" }));
   }
 

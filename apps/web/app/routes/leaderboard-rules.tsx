@@ -3,7 +3,8 @@
 import { SITE, withSubject } from "@aihot/industry/site";
 import { Link, useLoaderData } from "react-router";
 import type { LbRunInfo } from "@aihot/contracts/leaderboard";
-import { loadOr404 } from "../lib/api.server";
+import { loadLeaderboard } from "../features/leaderboard/availability.server";
+import { LeaderboardNotReady } from "../features/leaderboard/NotReady";
 import { breadcrumbLd, pageMeta } from "../lib/seo";
 import { pct } from "../features/leaderboard/format";
 import { fullDateTime } from "../lib/format";
@@ -17,7 +18,7 @@ interface RulesData {
 }
 
 export async function loader({ request }: { request: Request }) {
-  return loadOr404<RulesData>("/api/site/leaderboard/rules", { signal: request.signal });
+  return loadLeaderboard<RulesData>("/api/site/leaderboard/rules", { signal: request.signal });
 }
 
 export function meta() {
@@ -122,7 +123,9 @@ function Eyebrow({ children }: { children: React.ReactNode }) {
 }
 
 export default function LeaderboardRulesPage() {
-  const { run, budgets, anchors } = useLoaderData<typeof loader>();
+  const result = useLoaderData<typeof loader>();
+  if (!result) return <LeaderboardNotReady />;
+  const { run, budgets, anchors } = result;
   const aside = (
     <>
       <AsideCard title="本页内容" className="hidden lg:block">

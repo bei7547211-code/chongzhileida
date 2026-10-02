@@ -1,7 +1,11 @@
 import { SITE, withSubject } from "@aihot/industry/site";
-import { Link, useLoaderData } from "react-router";
+import { data, Link, useLoaderData } from "react-router";
+import { validHot, validNews } from "../features/hot/validate";
+import { buttonClass } from "../components/ui/Controls";
+import type { NewsResponse } from "@aihot/contracts/ai-news";
+import { useState } from "react";
 import type { HotEntryView, HotResponse } from "@aihot/contracts/site";
-import { loadOr404 } from "../lib/api.server";
+import { apiGet, loadOr404 } from "../lib/api.server";
 import { pageMeta } from "../lib/seo";
 import { monthDayTime, shortSourceName } from "../lib/format";
 import { Badge } from "../components/ui/Badge";
@@ -12,7 +16,22 @@ import { Faces } from "../features/hot/Faces";
 import { Delta } from "../features/hot/Delta";
 
 export async function loader({ request }: { request: Request }) {
-  return { hot: await loadOr404<HotResponse>("/api/site/hot", { signal: request.signal }) };
+  const hot = await loadOr404<HotResponse>("/api/site/hot", { signal: request.signal });
+  if (!validHot(hot)) throw data({ message: "invalid_hot_response" }, { status: 503 });
+  const news = await apiGet<NewsResponse>("/api/site/ai-news", { signal: request.signal }).catch(error => {
+    if (request.signal.aborted) throw error;
+    return null;
+  });
+  return { hot, news: validNews(news) ? news : null };
+}
+
+export function ErrorBoundary() {
+  return <section className="card my-6 p-6" role="alert">
+    <h1 className="text-xl font-bold">热点榜暂时无法加载</h1>
+    <p className="my-3 text-ink-3">榜单数据暂时不可用，不代表没有热点。其他栏目仍可访问，请稍后重新加载。</p>
+    <a href="/hot" className={buttonClass("primary")}>重新加载热点榜</a>
+    <Link to="/monitor" className="ml-4 text-accent">查看重置监控 →</Link>
+  </section>;
 }
 
 export function meta() {
@@ -25,7 +44,7 @@ export function meta() {
 }
 
 export function headers() {
-  return { "Cache-Control": "public, max-age=0, s-maxage=120, stale-while-revalidate=60" };
+  return { "Cache-Control": "no-store" };
 }
 
 const BADGES: Record<HotEntryView["badges"][number], { label: string; tone: "hot" | "accent" | "amber"; hint: string }> = {
@@ -222,7 +241,10 @@ function Row({ e }: { e: HotEntryView }) {
 }
 
 export default function HotPage() {
-  const { hot } = useLoaderData<typeof loader>();
+  const { hot, news } = useLoaderData<typeof loader>();
+  const [category, setCategory] = useState("全部");
+  const latest = news?.items ?? [];
+  const visible = latest.filter(item => category === "全部" || item.category === category);
   const [lead, ...rest] = hot.entries;
   const runners = rest.slice(0, 2);
   const others = rest.slice(2);
@@ -235,10 +257,10 @@ export default function HotPage() {
               <span className="absolute inline-flex size-full animate-ping rounded-full bg-hot opacity-30" />
               <span className="relative inline-flex size-2 rounded-full bg-hot" />
             </span>
-            实时热度
+            {hot.computedAt ? "讨论热度" : latest.length ? "公开信源 · 最新收录" : "等待数据"}
           </div>
           <h1 className="mt-1.5 text-[24px] font-bold leading-[1.3] tracking-[-0.01em] text-ink lg:text-[26px]">{withSubject("热点榜")}</h1>
-          <p className="mt-1.5 text-[13.5px] text-ink-3">过去 {hot.windowHours} 小时，AI 圈讨论最多的 {hot.entries.length || 10} 件事</p>
+          <p className="mt-1.5 text-[13.5px] text-ink-3">{hot.entries.length ? `过去 ${hot.windowHours} 小时，已收录来源中的 ${hot.entries.length} 个热门事件` : latest.length ? "先看最新资讯：按原文发布时间排序，尚未生成多来源热度排名。" : `统计窗口：过去 ${hot.windowHours} 小时 · 暂无可展示的榜单`}</p>
         </div>
         {hot.computedAt && (
           <p className="text-[12px] text-ink-4">
@@ -247,9 +269,30 @@ export default function HotPage() {
         )}
       </header>
 
-      {!lead ? (
+      {!lead && latest.length > 0 ? (
+        <section aria-label="AI 行业最新资讯">
+          <div className="mb-4 flex flex-wrap gap-2">
+            {["全部", "官方 / 产品更新", "技术媒体"].map(value => <button key={value} onClick={() => setCategory(value)} aria-pressed={category === value} className={buttonClass(category === value ? "primary" : "secondary")}>{value}</button>)}
+          </div>
+          <p className="mb-4 text-[13px] text-ink-3">原文标题与短摘要，不代表本站核验或背书。暂无自动翻译；点击查看原文。</p>
+          <div className="card divide-y divide-line-soft">
+            {visible.map(item => <article key={item.id} className="p-5">
+              <div className="mb-2 flex flex-wrap gap-3 text-xs text-ink-4"><span>{item.source}</span><time dateTime={item.publishedAt}>{monthDayTime(item.publishedAt)}</time><span>{item.category}</span></div>
+              <h2 className="break-words text-lg font-semibold"><a href={item.url} target="_blank" rel="noopener noreferrer" className="hover:text-accent">{item.title} ↗</a></h2>
+              {item.summary && <p className="mt-2 break-words text-sm leading-relaxed text-ink-3">{item.summary}</p>}
+            </article>)}
+            {!visible.length && <EmptyState title="此分类暂无收录">可切换其他分类。</EmptyState>}
+          </div>
+          <details className="mt-5 text-sm text-ink-3"><summary className="cursor-pointer">信源同步状态 · 手动更新</summary>
+            <ul className="mt-2 space-y-1">{news?.sources.map(source => <li key={source.id}>{source.id.replace(/^rss-/, "")}：{source.failed ? "同步失败，保留上次记录" : "已同步"} · {source.checkedAt ? monthDayTime(source.checkedAt) : "尚无成功记录"}</li>)}</ul>
+          </details>
+        </section>
+      ) : !lead ? (
         <div className="card rounded-sheet">
-          <EmptyState title="暂时没有热点">还没有足够多来源共同讨论的事件。</EmptyState>
+          <EmptyState title={hot.computedAt ? "暂时没有符合条件的热点" : "榜单尚未生成"}>
+            {hot.computedAt ? "当前收录范围内，还没有足够多来源共同讨论的事件。" : news === null ? "资讯接口暂时不可用，请重新加载。这里不会用空榜冒充正常更新。" : "需要先接入资讯信源并完成处理，才能生成榜单；这里不会用模拟新闻填充。"}
+            <div className="mt-4 flex justify-center gap-4"><a href="/hot" className="text-accent">刷新榜单</a><Link to="/monitor" className="text-accent">先看重置监控 →</Link></div>
+          </EmptyState>
         </div>
       ) : (
         <>

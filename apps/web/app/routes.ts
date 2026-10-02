@@ -2,6 +2,14 @@ import { type RouteConfig, index, layout, route } from "@react-router/dev/routes
 
 export default [
   index("routes/home.tsx"),
+  route("discover", "routes/discover.tsx"),
+  route("monitor", "routes/reset-monitor.tsx", { id: "relay-monitor" }),
+  route("monitor/:provider", "routes/reset-monitor.tsx", { id: "relay-monitor-platform" }),
+  route("platform/:provider", "routes/home.tsx", { id: "relay-platform" }),
+  route("history", "routes/home.tsx", { id: "relay-history" }),
+  route("reset-events/:eventId", "routes/home.tsx", { id: "relay-event" }),
+  route("side-hustles", "routes/home.tsx", { id: "relay-cases" }),
+  route("guide", "routes/home.tsx", { id: "relay-guide" }),
   route("all", "routes/all.tsx"),
   route("all/search-busy", "routes/search-busy.tsx", { id: "all-search-busy" }),
   route("search-busy", "routes/search-busy.tsx", { id: "search-busy" }),
@@ -27,7 +35,7 @@ export default [
   route("more", "routes/more.tsx"),
   route("starred", "routes/starred.tsx"),
   route("agent", "routes/agent.tsx"),
-  route("codex-reset", "routes/codex-reset.tsx"),
+  route("codex-reset", "routes/home.tsx", { id: "relay-tibo" }),
   route("codex-reset/history/:date", "routes/codex-reset.tsx", { id: "codex-reset-day" }),
   layout("routes/leaderboard-boards.tsx", [
     route("leaderboard", "routes/leaderboard.tsx", { id: "leaderboard" }),

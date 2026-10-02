@@ -1,7 +1,8 @@
 import { SITE, withSubject } from "@aihot/industry/site";
 import { Link, useLoaderData } from "react-router";
 import type { LbSourcesResponse } from "@aihot/contracts/leaderboard";
-import { loadOr404 } from "../lib/api.server";
+import { loadLeaderboard } from "../features/leaderboard/availability.server";
+import { LeaderboardNotReady } from "../features/leaderboard/NotReady";
 import { breadcrumbLd, pageMeta } from "../lib/seo";
 import { BrandMark } from "../features/leaderboard/BrandMark";
 import { StatusChip } from "../features/leaderboard/StatusChip";
@@ -9,7 +10,7 @@ import { pct } from "../features/leaderboard/format";
 import { IconArrowLeft, IconArrowUpRight } from "../components/icons";
 
 export async function loader({ request }: { request: Request }) {
-  return loadOr404<LbSourcesResponse>("/api/site/leaderboard/sources", { signal: request.signal });
+  return loadLeaderboard<LbSourcesResponse>("/api/site/leaderboard/sources", { signal: request.signal });
 }
 
 export function meta() {
@@ -30,7 +31,9 @@ export function headers() {
 }
 
 export default function LeaderboardSourcesPage() {
-  const { groups, rankedCount, totalCount } = useLoaderData<typeof loader>();
+  const result = useLoaderData<typeof loader>();
+  if (!result) return <LeaderboardNotReady />;
+  const { groups, rankedCount, totalCount } = result;
   return (
     <div className="pb-12">
       <Link to="/leaderboard" className="mt-4 inline-flex items-center gap-1.5 py-2 text-[13px] text-ink-3 transition-colors hover:text-accent lg:mt-0">

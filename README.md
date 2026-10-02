@@ -1,3 +1,17 @@
+# 重置雷达 · 新版开发
+
+这是基于 AIHOT 底座重建的重置雷达，目标是完整替代旧站。当前为开发预览，尚未切换生产站点；下方上游说明中的自动化能力不代表本站已启用。
+
+- 开发顺序：统一内容库 → 自动采集与失败重试 → 精选和主题 → 日报 → 热度排名。
+- [开发与替换计划](docs/CONTENT-AUTOMATION-ROADMAP.md)
+- [小程序同步 MVP](docs/MINI-PROGRAM-MVP.md)
+- [迁移说明](docs/RESET-RELAY-MIGRATION.md)
+- 本机预览：先安装依赖并构建网页，再运行 `node scripts/local-preview.ts`，访问 `http://localhost:3210`。默认不启动采集、模型调用和通知任务。
+
+代码底座来自 [KKKKhazix/AIHOT](https://github.com/KKKKhazix/AIHOT)，保留 MIT 许可与 NOTICE。以下为上游框架说明。
+
+---
+
 <p align="center">
   <picture>
     <source media="(prefers-color-scheme: dark)" srcset="docs/assets/banner-dark.png">

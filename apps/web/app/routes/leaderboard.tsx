@@ -2,7 +2,8 @@ import { SITE, withSubject } from "@aihot/industry/site";
 import { Link, data, useLoaderData } from "react-router";
 import type { Route } from "./+types/leaderboard";
 import type { LbBoardResponse } from "@aihot/contracts/leaderboard";
-import { loadOr404 } from "../lib/api.server";
+import { loadLeaderboard } from "../features/leaderboard/availability.server";
+import { LeaderboardNotReady } from "../features/leaderboard/NotReady";
 import { breadcrumbLd, pageMeta, siteUrl, titled } from "../lib/seo";
 import { BoardTable } from "../features/leaderboard/BoardTable";
 import { Podium } from "../features/leaderboard/Podium";
@@ -15,11 +16,11 @@ const CATEGORY_KEYS = new Set(["coding", "reasoning", "knowledge", "professional
 export async function loader({ params, request }: Route.LoaderArgs) {
   const key = params.key ?? "overall";
   if (params.key !== undefined && !CATEGORY_KEYS.has(params.key)) throw data({ message: "not_found" }, { status: 404 });
-  return loadOr404<LbBoardResponse>(`/api/site/leaderboard/boards/${key}`, { signal: request.signal });
+  return loadLeaderboard<LbBoardResponse>(`/api/site/leaderboard/boards/${key}`, { signal: request.signal });
 }
 
 export function meta({ loaderData }: Route.MetaArgs) {
-  if (!loaderData) return [{ title: titled("页面不存在") }];
+  if (!loaderData) return pageMeta({ title: "模型榜 · 数据准备中", path: "/leaderboard", noindex: true });
   const { board, entries } = loaderData;
   const path = board.key === "overall" ? "/leaderboard" : `/leaderboard/category/${board.key}`;
   return pageMeta({
@@ -47,12 +48,14 @@ export function meta({ loaderData }: Route.MetaArgs) {
 }
 
 export function headers() {
-  return { "Cache-Control": "public, max-age=0, s-maxage=600, stale-while-revalidate=600" };
+  return { "Cache-Control": "no-store" };
 }
 
 export default function LeaderboardPage() {
-  const { board, entries, run } = useLoaderData<typeof loader>();
+  const result = useLoaderData<typeof loader>();
   const entrance = useEntrance();
+  if (!result) return <LeaderboardNotReady />;
+  const { board, entries, run } = result;
   return (
     <div key={board.key} className={entrance ? "animate-fade-up" : undefined}>
       <div className="mt-3 flex flex-col gap-1 lg:flex-row lg:items-center lg:justify-between">
