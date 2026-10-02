@@ -7,6 +7,8 @@
 - [小程序同步 MVP](docs/MINI-PROGRAM-MVP.md)
 - [迁移说明](docs/RESET-RELAY-MIGRATION.md)
 - 本机预览：先安装依赖并构建网页，再运行 `node scripts/local-preview.ts`，访问 `http://localhost:3210`。默认不启动采集、模型调用和通知任务。
+- 资讯库迁移：预览运行后执行 `node scripts/prepare-content-local.ts`；原始 RSS 快照保留作回滚，公开读取统一使用内容库。
+- 免费采集：执行 `node scripts/news-worker-local.ts --enable-rss`；只采集已配置的免费 RSS，默认每源 60 分钟，失败退避至最长 6 小时。该进程必须保持运行，不代表安装了 Mac 开机任务或部署到生产服务器。
 
 代码底座来自 [KKKKhazix/AIHOT](https://github.com/KKKKhazix/AIHOT)，保留 MIT 许可与 NOTICE。以下为上游框架说明。
 

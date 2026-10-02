@@ -11,6 +11,8 @@ import { unsupportedConfig } from "./config-keys.ts";
 import { fetchJsonList } from "./json-list.ts";
 import { fetchXSearch, planXShards, readXSearch, shardHandle, shardQuery, SHARDABLE_SQL, tweetToCandidate, type XBacklog, type XRead } from "./x.ts";
 import { FetchError, type Candidate, type SourceRow } from "./types.ts";
+import { newsItems } from '../publication/ai-news.ts';
+import { publishArticleTx } from '../publication/publish.ts';
 
 export interface CollectResult {
   sourceId: string;
@@ -61,7 +63,7 @@ const DAY_MS = 86_400_000;
 /** A listing title that is no headline: a label that swallowed its summary, or a call to action. */
 const needsTitle = (title: string) => title.length > 100 || /^(read more|learn more|continue reading|more|阅读全文|阅读更多|查看详情|了解更多)$/i.test(title.trim());
 
-async function store(sourceId: string, candidates: Candidate[], backfill: string | null): Promise<{ created: number; revised: number }> {
+async function store(sourceId: string, candidates: Candidate[], backfill: string | null, feedPreview = false): Promise<{ created: number; revised: number }> {
   let created = 0;
   let revised = 0;
   const seen = new Set<string>();
@@ -72,11 +74,16 @@ async function store(sourceId: string, candidates: Candidate[], backfill: string
     const key = identityKeyFor(material);
     if (seen.has(key)) continue;
     seen.add(key);
-    const res = await upsertMaterial(material);
+    const res = feedPreview ? await sql.begin(async tx => {
+      const result = await upsertMaterial(material, tx);
+      await tx`UPDATE articles SET processing_state='skipped', processing_queued_at=NULL WHERE id=${result.articleId}`;
+      await publishArticleTx(tx, result.articleId);
+      return result;
+    }) : await upsertMaterial(material);
     if (res.created) created += 1;
     if (res.revised) revised += 1;
     // Extraction first when the source wants full text and none came with the listing, else analysis.
-    if (res.created || res.revised) await queueProcessing(res.articleId);
+    if (!feedPreview && (res.created || res.revised)) await queueProcessing(res.articleId);
   }
   return { created, revised };
 }
@@ -179,7 +186,9 @@ export async function collectSource(sourceId: string, opts: { force?: boolean } 
       }
     }
 
-    ({ created, revised } = await store(sourceId, candidates, firstImport ? "first-import" : null));
+    const feedPreview = source.kind === 'rss' && source.config.publishFeedSummary === true;
+    if (feedPreview) candidates = newsItems(candidates, {name:source.name,category:''}, Date.now(), MAX_ITEMS_PER_RUN).map(i => ({title:i.title,url:i.url,excerpt:i.summary,publishedAt:new Date(i.publishedAt),bodyStatus:'none'}));
+    ({ created, revised } = await store(sourceId, candidates, firstImport ? "first-import" : null, feedPreview));
 
     if (firstImport) nextCursor.initializedAt = new Date().toISOString();
     nextCursor.lastOkAt = new Date().toISOString();

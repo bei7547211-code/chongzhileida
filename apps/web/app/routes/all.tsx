@@ -75,6 +75,7 @@ export default function AllPage() {
 
   return (
     <div className="pb-6">
+      <p className="mb-4 text-[13px] leading-relaxed text-ink-3">收录官方博客、产品更新和技术媒体。部分内容保留原文标题与短摘要，尚未经过精选评审；点击可查看来源。</p>
       {/* Desktop, as on 精选: the title, then one filter row with the search field aligned on the right. */}
       <div className="hidden lg:block">
         <h1 className="text-[24px] font-semibold leading-[1.3] text-ink">{title ?? `全部${withSubject("动态")}`}</h1>

@@ -94,7 +94,7 @@ export default function App() {
   if (pathname === "/admin" || pathname.startsWith("/admin/")) return <Outlet />;
   return (
     <SiteShell changelogVersion={meta.changelogVersion}>
-      {/^\/(discover|all|daily|weekly|monthly|topics)(\/|$)/.test(pathname) && <div className="relay-setup-note"><b>内容模块已恢复</b><span>这些栏目的自动采集尚未启用，不代表今天没有新闻。热点榜可查看已同步的公开资讯。</span><Link to="/hot">查看资讯 ↗</Link></div>}
+      {/^\/(discover|daily|weekly|monthly|topics)(\/|$)/.test(pathname) && <div className="relay-setup-note"><b>内容处理逐步接入中</b><span>公开资讯已接入统一内容库。精选评审、主题归类和日报尚未启用，不代表没有新资讯。</span><Link to="/all">查看全部资讯 ↗</Link></div>}
       <Outlet />
     </SiteShell>
   );
