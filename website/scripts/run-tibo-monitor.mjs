@@ -39,6 +39,7 @@ const repositoryRoot = resolve(websiteRoot, '..');
 const resetFeedPath = resolve(websiteRoot, 'data/reset-feed.json');
 const postsFeedPath = resolve(websiteRoot, 'data/tibo-posts.json');
 const providerFeedPath = resolve(websiteRoot, 'data/provider-feeds.json');
+const publicSnapshotPath = resolve(websiteRoot, 'data/public-snapshot.json');
 const stateDirectory = process.env.RESET_RADAR_STATE_DIR
   ? resolve(process.env.RESET_RADAR_STATE_DIR)
   : resolve(homedir(), '.reset-radar');
@@ -48,6 +49,7 @@ const trackedDataPaths = [
   'website/data/reset-feed.json',
   'website/data/tibo-posts.json',
   'website/data/provider-feeds.json',
+  'website/data/public-snapshot.json',
 ];
 
 function run(command, args, cwd = repositoryRoot, options = {}) {
@@ -182,9 +184,14 @@ function pushCommittedData() {
   run('git', ['push', 'origin', 'main']);
 }
 
-async function restoreData(originalResetFeed, originalPostsFeed) {
+async function restoreData(
+  originalResetFeed,
+  originalPostsFeed,
+  originalPublicSnapshot,
+) {
   await writeFile(resetFeedPath, originalResetFeed, 'utf8');
   await writeFile(postsFeedPath, originalPostsFeed, 'utf8');
+  await writeFile(publicSnapshotPath, originalPublicSnapshot, 'utf8');
 }
 
 async function main() {
@@ -197,6 +204,7 @@ async function main() {
   let originalResetFeed;
   let originalPostsFeed;
   let originalProviderFeed;
+  let originalPublicSnapshot;
   let providerReport;
   let dataWritten = false;
   let committed = false;
@@ -207,6 +215,7 @@ async function main() {
     originalResetFeed = await readFile(resetFeedPath, 'utf8');
     originalPostsFeed = await readFile(postsFeedPath, 'utf8');
     originalProviderFeed = await readFile(providerFeedPath, 'utf8');
+    originalPublicSnapshot = await readFile(publicSnapshotPath, 'utf8');
     const resetFeed = JSON.parse(originalResetFeed);
     const postsFeed = JSON.parse(originalPostsFeed);
     const state = await readState();
@@ -368,8 +377,18 @@ async function main() {
           : `MONITOR_OK FEISHU_NOT_CONFIGURED audit=${delivery.auditLogPath}`,
     );
   } catch (error) {
-    if (dataWritten && !committed && originalResetFeed && originalPostsFeed) {
-      await restoreData(originalResetFeed, originalPostsFeed).catch(() => {});
+    if (
+      dataWritten &&
+      !committed &&
+      originalResetFeed &&
+      originalPostsFeed &&
+      originalPublicSnapshot
+    ) {
+      await restoreData(
+        originalResetFeed,
+        originalPostsFeed,
+        originalPublicSnapshot,
+      ).catch(() => {});
       if (originalProviderFeed)
         await writeFile(providerFeedPath, originalProviderFeed, 'utf8').catch(
           () => {},
