@@ -148,5 +148,9 @@ test('自动入库按北京时间落到正确自然日', () => {
   });
 
   assert.equal(result.changed, true);
-  assert.equal(result.feed.events[0].date, '2026-10-02');
+  assert.ok(
+    result.feed.events.some(
+      (event) => event.date === '2026-10-02' && event.kind === 'full',
+    ),
+  );
 });
