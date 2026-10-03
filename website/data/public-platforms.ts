@@ -22,6 +22,14 @@ export type PublicAnnouncement = {
   reviewPending?: boolean;
   revision?: number;
   revisedAt?: string;
+  followUps?: Array<{
+    id: string;
+    publishedAt: string;
+    title: string;
+    text: string;
+    summary: string;
+    url: string;
+  }>;
 };
 export type PublicPlatform = {
   id: PlatformId;
@@ -65,6 +73,14 @@ export const publicPlatforms: PublicPlatform[] = [
       reviewPending: a.reviewPending,
       revision: a.revision,
       revisedAt: a.revisedAt,
+      followUps: a.followUps?.map((followUp) => ({
+        id: followUp.id,
+        publishedAt: followUp.publishedAt,
+        title: followUp.title,
+        text: followUp.original,
+        summary: followUp.summary,
+        url: followUp.xUrl,
+      })),
     })),
     posts: tiboPosts.map((p) => ({
       id: p.id,

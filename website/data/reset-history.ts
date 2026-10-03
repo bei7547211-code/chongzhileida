@@ -9,6 +9,15 @@ export type ResetEvent = {
   kind: ResetKind;
 };
 
+export type ResetFollowUp = {
+  id: string;
+  publishedAt: string;
+  title: string;
+  original: string;
+  summary: string;
+  xUrl: string;
+};
+
 export type ResetAnnouncement = ResetEvent & {
   id: string;
   publishedAt: string;
@@ -21,6 +30,7 @@ export type ResetAnnouncement = ResetEvent & {
   reviewPending?: boolean;
   revision?: number;
   revisedAt?: string;
+  followUps?: ResetFollowUp[];
   xUrl: string;
 };
 
@@ -54,6 +64,14 @@ type ResetFeed = {
     reviewPending?: boolean;
     revision?: number;
     revisedAt?: string;
+    followUps?: Array<{
+      id: string;
+      publishedAt: string;
+      title: string;
+      text: string;
+      summary: string;
+      url: string;
+    }>;
     url: string;
   }>;
 };
@@ -122,6 +140,14 @@ export const announcements: ResetAnnouncement[] = feed.announcements
     reviewPending: announcement.reviewPending,
     revision: announcement.revision,
     revisedAt: announcement.revisedAt,
+    followUps: announcement.followUps?.map((followUp) => ({
+      id: followUp.id,
+      publishedAt: followUp.publishedAt,
+      title: followUp.title,
+      original: followUp.text,
+      summary: followUp.summary,
+      xUrl: followUp.url,
+    })),
     xUrl: announcement.url,
   }))
   .sort((a, b) => b.publishedAt.localeCompare(a.publishedAt));

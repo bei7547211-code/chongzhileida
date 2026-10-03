@@ -20,18 +20,40 @@
         "id": "codex-2106131810921136451",
         "provider": "codex",
         "providerName": "Codex",
-        "title": "Tibo 发布额度重置公告",
-        "summary": "检测到 Tibo 发布面向用户的 Codex 额度重置公告。",
+        "title": "全量重置已完成",
+        "summary": "Tibo 确认本轮全量重置已经完成；随后发现部分 Pro 500 用户没有按预期收到重置，并在北京时间 12:26 明确表示已修复。",
         "text": "Reset all propagated. Enjoy.",
-        "scope": "适用范围以原帖和个人账户为准",
+        "scope": "所有付费 ChatGPT 账户；Pro 500 漏重置已于北京时间 12:26 修复",
         "kind": "full",
         "kindLabel": "额度重置",
         "publishedAt": "2026-10-02T21:18:48.000Z",
         "verifiedAt": "2026-10-03T07:00:12.796Z",
         "sourceUrl": "https://x.com/thsottiaux/status/2106131810921136451",
         "url": "https://x.com/thsottiaux/status/2106131810921136451",
-        "revision": 0,
-        "revisedAt": null,
+        "revision": 1,
+        "revisedAt": "2026-10-03T07:10:43.000Z",
+        "followUps": [
+          {
+            "id": "2106233145163141249",
+            "title": "Pro 500 漏重置正在调查",
+            "summary": "Tibo 表示部分 Pro 500 用户没有按预期收到重置，正在调查并会补救。",
+            "text": "Seeing some reports that the Pro 500 didn’t get the reset as expected earlier. Investigating and will make up for it",
+            "publishedAt": "2026-10-03T04:01:28.000Z",
+            "sourceUrl": "https://x.com/thsottiaux/status/2106233145163141249",
+            "url": "https://x.com/thsottiaux/status/2106233145163141249",
+            "dateLabel": "2026-10-03 12:01"
+          },
+          {
+            "id": "2106239435461579088",
+            "title": "Pro 500 漏重置已修复",
+            "summary": "Tibo 明确表示问题已经修复；这是本轮重置的后续补充，不计为新一轮重置。",
+            "text": "All fixed. Surprising number of Pro 500 users on here.",
+            "publishedAt": "2026-10-03T04:26:28.000Z",
+            "sourceUrl": "https://x.com/thsottiaux/status/2106239435461579088",
+            "url": "https://x.com/thsottiaux/status/2106239435461579088",
+            "dateLabel": "2026-10-03 12:26"
+          }
+        ],
         "dateLabel": "2026-10-03 05:18"
       },
       "eventCount": 9
@@ -61,6 +83,7 @@
         "url": "https://x.com/claudeai/status/2102435538120691886",
         "revision": 0,
         "revisedAt": null,
+        "followUps": [],
         "dateLabel": "2026-09-23 00:31"
       },
       "eventCount": 1
@@ -90,6 +113,7 @@
         "url": "https://x.com/bot/status/2106083136002310193",
         "revision": 0,
         "revisedAt": null,
+        "followUps": [],
         "dateLabel": "2026-10-03 02:05"
       },
       "eventCount": 2
@@ -100,18 +124,40 @@
       "id": "codex-2106131810921136451",
       "provider": "codex",
       "providerName": "Codex",
-      "title": "Tibo 发布额度重置公告",
-      "summary": "检测到 Tibo 发布面向用户的 Codex 额度重置公告。",
+      "title": "全量重置已完成",
+      "summary": "Tibo 确认本轮全量重置已经完成；随后发现部分 Pro 500 用户没有按预期收到重置，并在北京时间 12:26 明确表示已修复。",
       "text": "Reset all propagated. Enjoy.",
-      "scope": "适用范围以原帖和个人账户为准",
+      "scope": "所有付费 ChatGPT 账户；Pro 500 漏重置已于北京时间 12:26 修复",
       "kind": "full",
       "kindLabel": "额度重置",
       "publishedAt": "2026-10-02T21:18:48.000Z",
       "verifiedAt": "2026-10-03T07:00:12.796Z",
       "sourceUrl": "https://x.com/thsottiaux/status/2106131810921136451",
       "url": "https://x.com/thsottiaux/status/2106131810921136451",
-      "revision": 0,
-      "revisedAt": null,
+      "revision": 1,
+      "revisedAt": "2026-10-03T07:10:43.000Z",
+      "followUps": [
+        {
+          "id": "2106233145163141249",
+          "title": "Pro 500 漏重置正在调查",
+          "summary": "Tibo 表示部分 Pro 500 用户没有按预期收到重置，正在调查并会补救。",
+          "text": "Seeing some reports that the Pro 500 didn’t get the reset as expected earlier. Investigating and will make up for it",
+          "publishedAt": "2026-10-03T04:01:28.000Z",
+          "sourceUrl": "https://x.com/thsottiaux/status/2106233145163141249",
+          "url": "https://x.com/thsottiaux/status/2106233145163141249",
+          "dateLabel": "2026-10-03 12:01"
+        },
+        {
+          "id": "2106239435461579088",
+          "title": "Pro 500 漏重置已修复",
+          "summary": "Tibo 明确表示问题已经修复；这是本轮重置的后续补充，不计为新一轮重置。",
+          "text": "All fixed. Surprising number of Pro 500 users on here.",
+          "publishedAt": "2026-10-03T04:26:28.000Z",
+          "sourceUrl": "https://x.com/thsottiaux/status/2106239435461579088",
+          "url": "https://x.com/thsottiaux/status/2106239435461579088",
+          "dateLabel": "2026-10-03 12:26"
+        }
+      ],
       "dateLabel": "2026-10-03 05:18"
     },
     {
@@ -130,6 +176,7 @@
       "url": "https://x.com/bot/status/2106083136002310193",
       "revision": 0,
       "revisedAt": null,
+      "followUps": [],
       "dateLabel": "2026-10-03 02:05"
     },
     {
@@ -148,6 +195,7 @@
       "url": "https://x.com/thsottiaux/status/2103911959544610829",
       "revision": 0,
       "revisedAt": null,
+      "followUps": [],
       "dateLabel": "2026-09-27 02:17"
     },
     {
@@ -166,6 +214,7 @@
       "url": "https://x.com/thsottiaux/status/2103637477760311522",
       "revision": 1,
       "revisedAt": "2026-09-26T06:48:15.000Z",
+      "followUps": [],
       "dateLabel": "2026-09-26 08:07"
     },
     {
@@ -184,6 +233,7 @@
       "url": "https://x.com/thsottiaux/status/2102463847714247142",
       "revision": 0,
       "revisedAt": null,
+      "followUps": [],
       "dateLabel": "2026-09-23 02:23"
     },
     {
@@ -202,6 +252,7 @@
       "url": "https://x.com/claudeai/status/2102435538120691886",
       "revision": 0,
       "revisedAt": null,
+      "followUps": [],
       "dateLabel": "2026-09-23 00:31"
     },
     {
@@ -220,6 +271,7 @@
       "url": "https://x.com/thsottiaux/status/2098685367058612394",
       "revision": 0,
       "revisedAt": null,
+      "followUps": [],
       "dateLabel": "2026-09-12 16:09"
     },
     {
@@ -238,6 +290,7 @@
       "url": "https://x.com/thsottiaux/status/2097174560412246215",
       "revision": 0,
       "revisedAt": null,
+      "followUps": [],
       "dateLabel": "2026-09-08 09:56"
     },
     {
@@ -256,6 +309,7 @@
       "url": "https://x.com/bot/status/2096303514230423629",
       "revision": 0,
       "revisedAt": null,
+      "followUps": [],
       "dateLabel": "2026-09-06 02:24"
     },
     {
@@ -274,6 +328,7 @@
       "url": "https://x.com/thsottiaux/status/2096035437299237298",
       "revision": 0,
       "revisedAt": null,
+      "followUps": [],
       "dateLabel": "2026-09-05 08:39"
     },
     {
@@ -292,6 +347,7 @@
       "url": "https://x.com/thsottiaux/status/2095651088502591861",
       "revision": 0,
       "revisedAt": null,
+      "followUps": [],
       "dateLabel": "2026-09-04 07:12"
     },
     {
@@ -310,6 +366,7 @@
       "url": "https://x.com/thsottiaux/status/2094251180121854309",
       "revision": 0,
       "revisedAt": null,
+      "followUps": [],
       "dateLabel": "2026-08-31 10:29"
     }
   ],
@@ -420,6 +477,7 @@
     "codex-rss-https%3A%2F%2Fx.com%2Fthsottiaux%2Fstatus%2F2103637477760311522%23correction-1": "codex-2103637477760311522",
     "codex-rss-https%3A%2F%2Fx.com%2Fthsottiaux%2Fstatus%2F2103911959544610829": "codex-2103911959544610829",
     "codex-rss-https%3A%2F%2Fx.com%2Fthsottiaux%2Fstatus%2F2106131810921136451": "codex-2106131810921136451",
+    "codex-rss-https%3A%2F%2Fx.com%2Fthsottiaux%2Fstatus%2F2106131810921136451%23correction-1": "codex-2106131810921136451",
     "grok-rss-https%3A%2F%2Fx.com%2Fbot%2Fstatus%2F2096303514230423629": "grok-2096303514230423629",
     "grok-rss-https%3A%2F%2Fx.com%2Fbot%2Fstatus%2F2106083136002310193": "grok-2106083136002310193",
     "https://x.com/bot/status/2096303514230423629": "grok-2096303514230423629",
@@ -435,7 +493,7 @@
     "https://x.com/thsottiaux/status/2103911959544610829": "codex-2103911959544610829",
     "https://x.com/thsottiaux/status/2106131810921136451": "codex-2106131810921136451"
   },
-  "revision": "4301180bb6d06b94e1264d1376db0ef6551e78dd1643152988262eec01fcdb4f",
-  "generatedAt": "2026-10-03T07:00:20.828Z",
-  "releaseId": "4301180bb6d06b94e1264d1376db0ef6551e78dd1643152988262eec01fcdb4f"
+  "revision": "9e5327fde082ea9d6dc0365011c859c8d79e9b78248f0451d74225b3ec0a6e79",
+  "generatedAt": "2026-10-03T07:12:30.820Z",
+  "releaseId": "9e5327fde082ea9d6dc0365011c859c8d79e9b78248f0451d74225b3ec0a6e79"
 }

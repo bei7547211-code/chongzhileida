@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-10-03T00:58:36.060Z",
+  "updatedAt": "2026-10-03T07:10:43.000Z",
   "source": {
     "name": "Thibault “Tibo” Sottiaux",
     "handle": "@thsottiaux",
@@ -198,10 +198,31 @@
       "id": "2106131810921136451",
       "publishedAt": "2026-10-02T21:18:48.000Z",
       "kind": "full",
-      "title": "Tibo 发布额度重置公告",
+      "title": "全量重置已完成",
+      "scope": "所有付费 ChatGPT 账户；Pro 500 漏重置已于北京时间 12:26 修复",
       "text": "Reset all propagated. Enjoy.",
-      "summary": "检测到 Tibo 发布面向用户的 Codex 额度重置公告。",
-      "url": "https://x.com/thsottiaux/status/2106131810921136451"
+      "summary": "Tibo 确认本轮全量重置已经完成；随后发现部分 Pro 500 用户没有按预期收到重置，并在北京时间 12:26 明确表示已修复。",
+      "url": "https://x.com/thsottiaux/status/2106131810921136451",
+      "revision": 1,
+      "revisedAt": "2026-10-03T07:10:43.000Z",
+      "followUps": [
+        {
+          "id": "2106233145163141249",
+          "publishedAt": "2026-10-03T04:01:28.000Z",
+          "title": "Pro 500 漏重置正在调查",
+          "text": "Seeing some reports that the Pro 500 didn’t get the reset as expected earlier. Investigating and will make up for it",
+          "summary": "Tibo 表示部分 Pro 500 用户没有按预期收到重置，正在调查并会补救。",
+          "url": "https://x.com/thsottiaux/status/2106233145163141249"
+        },
+        {
+          "id": "2106239435461579088",
+          "publishedAt": "2026-10-03T04:26:28.000Z",
+          "title": "Pro 500 漏重置已修复",
+          "text": "All fixed. Surprising number of Pro 500 users on here.",
+          "summary": "Tibo 明确表示问题已经修复；这是本轮重置的后续补充，不计为新一轮重置。",
+          "url": "https://x.com/thsottiaux/status/2106239435461579088"
+        }
+      ]
     },
     {
       "id": "2103911959544610829",

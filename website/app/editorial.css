@@ -1005,6 +1005,64 @@
   color: #716450;
   margin: 16px 0;
 }
+.ed-follow-ups {
+  display: grid;
+  gap: 9px;
+  margin: 18px 0;
+  padding: 15px;
+  border: 1px solid #d9c8ad;
+  border-radius: 9px;
+  background: linear-gradient(135deg, #fbf2df, #fffdf8);
+}
+.ed-follow-ups > div {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  color: #8e5a2e;
+  font-size: 11px;
+}
+.ed-follow-ups > div span {
+  font-weight: 760;
+  letter-spacing: 0.08em;
+}
+.ed-follow-ups > div strong {
+  padding: 4px 8px;
+  border-radius: 999px;
+  background: #f2e2c5;
+  font-size: 10px;
+  font-weight: 650;
+}
+.ed-follow-ups > a {
+  display: grid;
+  grid-template-columns: 106px minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 12px;
+  padding: 11px 0 0;
+  border-top: 1px solid #e5d8c5;
+  color: #3f382f;
+  text-decoration: none;
+}
+.ed-follow-ups time {
+  color: #8a7863;
+  font-size: 10px;
+  font-variant-numeric: tabular-nums;
+}
+.ed-follow-ups > a > span {
+  display: grid;
+  gap: 3px;
+}
+.ed-follow-ups > a strong {
+  font-size: 12px;
+}
+.ed-follow-ups > a small {
+  color: #716450;
+  font-size: 11px;
+  line-height: 1.55;
+}
+.ed-follow-ups > a > svg {
+  color: #9a6437;
+}
 .ed-evidence .ed-hint {
   display: block;
   margin-top: 12px;
@@ -1736,6 +1794,12 @@
   }
   .ed-evidence blockquote p {
     font-size: 14px;
+  }
+  .ed-follow-ups > a {
+    grid-template-columns: 1fr auto;
+  }
+  .ed-follow-ups time {
+    grid-column: 1 / -1;
   }
   .ed-source-picker label {
     display: block;

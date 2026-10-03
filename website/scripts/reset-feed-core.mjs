@@ -151,6 +151,7 @@ export function validateResetFeed(feed) {
   }
 
   const postIds = new Set();
+  const followUpIds = new Set();
   for (const post of feed.announcements) {
     invariant(/^\d{10,25}$/.test(post.id), `无效推文 ID: ${post.id}`);
     invariant(!postIds.has(post.id), `重复推文 ID: ${post.id}`);
@@ -193,6 +194,37 @@ export function validateResetFeed(feed) {
       );
     }
     validatePostUrl(post.url, post.id);
+    if (post.followUps !== undefined) {
+      invariant(Array.isArray(post.followUps), '后续核验必须是数组');
+      for (const followUp of post.followUps) {
+        invariant(
+          /^\d{10,25}$/.test(String(followUp.id ?? '')),
+          `无效后续推文 ID: ${followUp.id}`,
+        );
+        invariant(
+          !postIds.has(followUp.id) && !followUpIds.has(followUp.id),
+          `重复后续推文 ID: ${followUp.id}`,
+        );
+        followUpIds.add(followUp.id);
+        invariant(
+          Number.isFinite(Date.parse(followUp.publishedAt)),
+          `无效后续发布时间: ${followUp.id}`,
+        );
+        invariant(
+          typeof followUp.title === 'string' && followUp.title.trim(),
+          `后续标题为空: ${followUp.id}`,
+        );
+        invariant(
+          typeof followUp.text === 'string' && followUp.text.trim(),
+          `后续原文为空: ${followUp.id}`,
+        );
+        invariant(
+          typeof followUp.summary === 'string' && followUp.summary.trim(),
+          `后续摘要为空: ${followUp.id}`,
+        );
+        validatePostUrl(followUp.url, followUp.id);
+      }
+    }
   }
 
   return true;

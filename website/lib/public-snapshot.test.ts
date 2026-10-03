@@ -14,6 +14,9 @@ test('public snapshot uses same public source, all AI tags and stable RSS aliase
   for (const e of s.events) assert.equal(s.idAliases[e.provider + '-rss-' + encodeURIComponent(e.url)], e.id);
   for (const p of s.platforms) assert.equal(p.latestEventId, s.events.find(e => e.provider === p.id)?.id || null);
   assert.ok(s.platforms.find(p => p.id === 'claude')?.lastAttemptAt);
+  const latestCodex = s.events.find(e => e.id === 'codex-2106131810921136451');
+  assert.equal(latestCodex?.followUps.length, 2);
+  assert.equal(latestCodex?.followUps[1]?.id, '2106239435461579088');
 });
 test('revision is stable across source order and build metadata, changes with content or checks', () => {
   const original = build();

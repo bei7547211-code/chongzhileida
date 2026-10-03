@@ -584,8 +584,33 @@ function ProviderPage({
                 </details>
               )}
               <p className="ed-scope">适用范围：{selected.scope}</p>
+              {!!selected.followUps?.length && (
+                <section className="ed-follow-ups" aria-label="公告后续核验">
+                  <div>
+                    <span>后续核验</span>
+                    <strong>不是新一轮重置</strong>
+                  </div>
+                  {selected.followUps.map((followUp) => (
+                    <a
+                      href={followUp.url}
+                      target="_blank"
+                      rel="noreferrer"
+                      key={followUp.id}
+                    >
+                      <time dateTime={followUp.publishedAt}>
+                        {time(followUp.publishedAt)}
+                      </time>
+                      <span>
+                        <strong>{followUp.title}</strong>
+                        <small>{followUp.summary}</small>
+                      </span>
+                      <ArrowUpRight size={16} aria-hidden="true" />
+                    </a>
+                  ))}
+                </section>
+              )}
               <a href={selected.url} target="_blank" rel="noreferrer">
-                打开完整原帖核验 ↗
+                打开完成公告原帖核验 ↗
               </a>
               {!selected.screenshot && (
                 <small className="ed-hint">

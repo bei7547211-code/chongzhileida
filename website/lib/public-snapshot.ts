@@ -36,7 +36,8 @@ export function buildPublicSnapshot(input: { platforms: PublicPlatform[]; articl
     idAliases[p.id + '-rss-' + encodeURIComponent(url)] = id;
     idAliases[url] = id;
     if (a.revision) idAliases[p.id + '-rss-' + encodeURIComponent(url + '#correction-' + a.revision)] = id;
-    return { id, provider: p.id, providerName: p.name, title: a.title, summary: a.summary || a.scope, text: a.text, scope: a.scope, kind: a.kind, kindLabel: labels[a.kind], publishedAt: iso(a.publishedAt), verifiedAt: a.verifiedAt ? iso(a.verifiedAt) : null, sourceUrl: url, url, revision: a.revision || 0, revisedAt: a.revisedAt ? iso(a.revisedAt) : null, dateLabel: dateLabel(a.publishedAt) };
+    const followUps = (a.followUps || []).map(followUp => ({ id: followUp.id, title: followUp.title, summary: followUp.summary, text: followUp.text, publishedAt: iso(followUp.publishedAt), sourceUrl: https(followUp.url), url: https(followUp.url), dateLabel: dateLabel(followUp.publishedAt) }));
+    return { id, provider: p.id, providerName: p.name, title: a.title, summary: a.summary || a.scope, text: a.text, scope: a.scope, kind: a.kind, kindLabel: labels[a.kind], publishedAt: iso(a.publishedAt), verifiedAt: a.verifiedAt ? iso(a.verifiedAt) : null, sourceUrl: url, url, revision: a.revision || 0, revisedAt: a.revisedAt ? iso(a.revisedAt) : null, followUps, dateLabel: dateLabel(a.publishedAt) };
   })).sort(byDate);
   const platforms = input.platforms.map(p => {
     const own = events.filter(e => e.provider === p.id);
