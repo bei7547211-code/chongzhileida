@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-09-30T05:53:14.000Z",
+  "updatedAt": "2026-10-03T00:58:36.060Z",
   "source": {
     "name": "Thibault “Tibo” Sottiaux",
     "handle": "@thsottiaux",
@@ -13,9 +13,13 @@
     "enabled": true,
     "scheduleLabel": "每天 11:00、15:00、21:00",
     "reviewRequired": true,
-    "lastIngestedPostId": "2103911959544610829"
+    "lastIngestedPostId": "2106131810921136451"
   },
   "events": [
+    {
+      "date": "2026-10-03",
+      "kind": "full"
+    },
     {
       "date": "2026-09-27",
       "kind": "full"
@@ -190,6 +194,15 @@
     }
   ],
   "announcements": [
+    {
+      "id": "2106131810921136451",
+      "publishedAt": "2026-10-02T21:18:48.000Z",
+      "kind": "full",
+      "title": "Tibo 发布额度重置公告",
+      "text": "Reset all propagated. Enjoy.",
+      "summary": "检测到 Tibo 发布面向用户的 Codex 额度重置公告。",
+      "url": "https://x.com/thsottiaux/status/2106131810921136451"
+    },
     {
       "id": "2103911959544610829",
       "publishedAt": "2026-09-26T18:17:54.000Z",
