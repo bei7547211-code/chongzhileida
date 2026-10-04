@@ -1,9 +1,81 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-10-03T07:00:12.796Z",
-  "verifiedAt": "2026-10-03T13:00:11.714Z",
+  "updatedAt": "2026-10-04T03:00:13.144Z",
+  "verifiedAt": "2026-10-04T03:00:13.144Z",
   "sourceUrl": "https://x.com/thsottiaux",
   "posts": [
+    {
+      "id": "2106546689012281771",
+      "publishedAt": "2026-10-04T00:47:23.000Z",
+      "title": "Tibo 回复：@Baconbrix Interesting position you’r…",
+      "summary": "@Baconbrix Interesting position you’re taking there mister Bacon. Now let’s see what someone can do with the ChatGPT subscription or the Grok subscription. 👀",
+      "category": "回复",
+      "resetSignal": "none",
+      "url": "https://x.com/thsottiaux/status/2106546689012281771"
+    },
+    {
+      "id": "2106544544892518815",
+      "publishedAt": "2026-10-04T00:38:51.000Z",
+      "title": "Tibo 回复：@atelicinvest Dots are persistent age…",
+      "summary": "@atelicinvest Dots are persistent agents that carry context across the single conversation. You can call it in the middle of work and then catch it later via s…",
+      "category": "回复",
+      "resetSignal": "none",
+      "url": "https://x.com/thsottiaux/status/2106544544892518815"
+    },
+    {
+      "id": "2106543375088488596",
+      "publishedAt": "2026-10-04T00:34:12.000Z",
+      "title": "Tibo 回复：@davis7 6.1 coming soon",
+      "summary": "@davis7 6.1 coming soon",
+      "category": "回复",
+      "resetSignal": "none",
+      "url": "https://x.com/thsottiaux/status/2106543375088488596"
+    },
+    {
+      "id": "2106541589007114420",
+      "publishedAt": "2026-10-04T00:27:07.000Z",
+      "title": "Tibo 回复：@Voxyz_ai Glad you like it! Anything…",
+      "summary": "@Voxyz_ai Glad you like it! Anything we can improve?",
+      "category": "回复",
+      "resetSignal": "none",
+      "url": "https://x.com/thsottiaux/status/2106541589007114420"
+    },
+    {
+      "id": "2106501204285239560",
+      "publishedAt": "2026-10-03T21:46:38.000Z",
+      "title": "If we were to add one more sidebar, what shou…",
+      "summary": "If we were to add one more sidebar, what should be in it",
+      "category": "动态",
+      "resetSignal": "none",
+      "url": "https://x.com/thsottiaux/status/2106501204285239560"
+    },
+    {
+      "id": "2106500823253754004",
+      "publishedAt": "2026-10-03T21:45:07.000Z",
+      "title": "Tibo 回复：@maria_rcks wait",
+      "summary": "@maria_rcks wait",
+      "category": "回复",
+      "resetSignal": "none",
+      "url": "https://x.com/thsottiaux/status/2106500823253754004"
+    },
+    {
+      "id": "2106499926956060984",
+      "publishedAt": "2026-10-03T21:41:34.000Z",
+      "title": "Tibo 回复：@poteto i had french fries for lunch",
+      "summary": "@poteto i had french fries for lunch",
+      "category": "回复",
+      "resetSignal": "none",
+      "url": "https://x.com/thsottiaux/status/2106499926956060984"
+    },
+    {
+      "id": "2106439068557144179",
+      "publishedAt": "2026-10-03T17:39:44.000Z",
+      "title": "What’s one thing that’s missing in codex that…",
+      "summary": "What’s one thing that’s missing in codex that you wish we had?",
+      "category": "动态",
+      "resetSignal": "none",
+      "url": "https://x.com/thsottiaux/status/2106439068557144179"
+    },
     {
       "id": "2106257453679808676",
       "publishedAt": "2026-10-03T05:38:03.000Z",
@@ -201,80 +273,8 @@
       "category": "动态",
       "resetSignal": "none",
       "url": "https://x.com/thsottiaux/status/2105718728658993153"
-    },
-    {
-      "id": "2105689875655897093",
-      "publishedAt": "2026-10-01T16:02:42.000Z",
-      "title": "Tibo 回复：@The_Alex We’re going to fix this but…",
-      "summary": "@The_Alex We’re going to fix this but it’s a bit funny as your dot literally has to decide whether to pick up or not and sometimes it might just be busy with s…",
-      "category": "回复",
-      "resetSignal": "none",
-      "url": "https://x.com/thsottiaux/status/2105689875655897093"
-    },
-    {
-      "id": "2105689002905153761",
-      "publishedAt": "2026-10-01T15:59:14.000Z",
-      "title": "Tibo 回复：@rileybrown Love it thank you",
-      "summary": "@rileybrown Love it thank you",
-      "category": "回复",
-      "resetSignal": "none",
-      "url": "https://x.com/thsottiaux/status/2105689002905153761"
-    },
-    {
-      "id": "2105670256094326849",
-      "publishedAt": "2026-10-01T14:44:45.000Z",
-      "title": "Tibo 回复：@_simonsmith We built dots to help ge…",
-      "summary": "@_simonsmith We built dots to help get real work done. Lots to come that will improve them further over the days and weeks.",
-      "category": "回复",
-      "resetSignal": "none",
-      "url": "https://x.com/thsottiaux/status/2105670256094326849"
-    },
-    {
-      "id": "2105522533139452359",
-      "publishedAt": "2026-10-01T04:57:45.000Z",
-      "title": "Tibo 回复：@jxnlco I was going to say, last year…",
-      "summary": "@jxnlco I was going to say, last year. But no… it was this year.",
-      "category": "回复",
-      "resetSignal": "none",
-      "url": "https://x.com/thsottiaux/status/2105522533139452359"
-    },
-    {
-      "id": "2105519686280790252",
-      "publishedAt": "2026-10-01T04:46:26.000Z",
-      "title": "Tibo 回复：@imjustnewatai For the Pro 200 shenan…",
-      "summary": "@imjustnewatai For the Pro 200 shenanigans",
-      "category": "回复",
-      "resetSignal": "none",
-      "url": "https://x.com/thsottiaux/status/2105519686280790252"
-    },
-    {
-      "id": "2105519215092584786",
-      "publishedAt": "2026-10-01T04:44:34.000Z",
-      "title": "One more thing, you can now build and deploy…",
-      "summary": "One more thing, you can now build and deploy MCP servers right through ChatGPT. And restrict its access to anyone you want or share it with the world.",
-      "category": "动态",
-      "resetSignal": "none",
-      "url": "https://x.com/thsottiaux/status/2105519215092584786"
-    },
-    {
-      "id": "2105489877727064272",
-      "publishedAt": "2026-10-01T02:47:59.000Z",
-      "title": "Tibo 回复：@_bgian @OpenAI Thanks for playing",
-      "summary": "@_bgian @OpenAI Thanks for playing",
-      "category": "回复",
-      "resetSignal": "none",
-      "url": "https://x.com/thsottiaux/status/2105489877727064272"
-    },
-    {
-      "id": "2105464274747527543",
-      "publishedAt": "2026-10-01T01:06:15.000Z",
-      "title": "GPT-6.1 Sol is our most demanded model pretty…",
-      "summary": "GPT-6.1 Sol is our most demanded model pretty much ever both across both the API and subscriptions. Within ChatGPT & Codex, we were under heavy load, but have…",
-      "category": "动态",
-      "resetSignal": "none",
-      "url": "https://x.com/thsottiaux/status/2105464274747527543"
     }
   ],
-  "lastAttemptAt": "2026-10-03T13:00:11.714Z",
+  "lastAttemptAt": "2026-10-04T03:00:13.144Z",
   "lastError": null
 }
