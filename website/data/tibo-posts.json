@@ -1,9 +1,54 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-10-04T03:00:13.144Z",
-  "verifiedAt": "2026-10-04T03:00:13.144Z",
+  "updatedAt": "2026-10-04T07:00:12.589Z",
+  "verifiedAt": "2026-10-04T07:00:12.589Z",
   "sourceUrl": "https://x.com/thsottiaux",
   "posts": [
+    {
+      "id": "2106607456130592861",
+      "publishedAt": "2026-10-04T04:48:51.000Z",
+      "title": "Tibo 回复：@_ak_111 6.1 sol ultrafast",
+      "summary": "@_ak_111 6.1 sol ultrafast",
+      "category": "回复",
+      "resetSignal": "none",
+      "url": "https://x.com/thsottiaux/status/2106607456130592861"
+    },
+    {
+      "id": "2106605571168510149",
+      "publishedAt": "2026-10-04T04:41:21.000Z",
+      "title": "Tibo 回复：@davis7 6.1 sol ultrafast that is",
+      "summary": "@davis7 6.1 sol ultrafast that is",
+      "category": "回复",
+      "resetSignal": "none",
+      "url": "https://x.com/thsottiaux/status/2106605571168510149"
+    },
+    {
+      "id": "2106603980386394123",
+      "publishedAt": "2026-10-04T04:35:02.000Z",
+      "title": "Tibo 回复：What it did - delete all categories o…",
+      "summary": "What it did - delete all categories of email that were not needed for me to keep, validating them in batch - identify labels for types of work that I do and la…",
+      "category": "回复",
+      "resetSignal": "none",
+      "url": "https://x.com/thsottiaux/status/2106603980386394123"
+    },
+    {
+      "id": "2106602729875685780",
+      "publishedAt": "2026-10-04T04:30:04.000Z",
+      "title": "I have never in my life achieved inbox zero u…",
+      "summary": "I have never in my life achieved inbox zero until I just made it an active goal for my dot to help get it done. Let’s see how long it lasts, but it’s a great f…",
+      "category": "动态",
+      "resetSignal": "none",
+      "url": "https://x.com/thsottiaux/status/2106602729875685780"
+    },
+    {
+      "id": "2106593009806815429",
+      "publishedAt": "2026-10-04T03:51:26.000Z",
+      "title": "Tibo 回复：@macintogdev Ah, perfection",
+      "summary": "@macintogdev Ah, perfection",
+      "category": "回复",
+      "resetSignal": "none",
+      "url": "https://x.com/thsottiaux/status/2106593009806815429"
+    },
     {
       "id": "2106546689012281771",
       "publishedAt": "2026-10-04T00:47:23.000Z",
@@ -228,53 +273,8 @@
       "category": "回复",
       "resetSignal": "none",
       "url": "https://x.com/thsottiaux/status/2105844753522938214"
-    },
-    {
-      "id": "2105843550936302055",
-      "publishedAt": "2026-10-02T02:13:21.000Z",
-      "title": "Tibo 回复：@_simonsmith Codex Manhattan Project…",
-      "summary": "@_simonsmith Codex Manhattan Project 👀",
-      "category": "回复",
-      "resetSignal": "none",
-      "url": "https://x.com/thsottiaux/status/2105843550936302055"
-    },
-    {
-      "id": "2105828364879876207",
-      "publishedAt": "2026-10-02T01:13:01.000Z",
-      "title": "Tibo 回复：@QuinnyPig And it will get better eve…",
-      "summary": "@QuinnyPig And it will get better every day",
-      "category": "回复",
-      "resetSignal": "none",
-      "url": "https://x.com/thsottiaux/status/2105828364879876207"
-    },
-    {
-      "id": "2105727933579137159",
-      "publishedAt": "2026-10-01T18:33:56.000Z",
-      "title": "Tibo 回复：@vigyso Good thread on details of Sig…",
-      "summary": "@vigyso Good thread on details of Sign in with ChatGPT and how the subscription can be used in my partner products",
-      "category": "回复",
-      "resetSignal": "none",
-      "url": "https://x.com/thsottiaux/status/2105727933579137159"
-    },
-    {
-      "id": "2105718931235508277",
-      "publishedAt": "2026-10-01T17:58:10.000Z",
-      "title": "Tibo 回复：@midotalks He gets it",
-      "summary": "@midotalks He gets it",
-      "category": "回复",
-      "resetSignal": "none",
-      "url": "https://x.com/thsottiaux/status/2105718931235508277"
-    },
-    {
-      "id": "2105718728658993153",
-      "publishedAt": "2026-10-01T17:57:21.000Z",
-      "title": "Damn WiFi",
-      "summary": "Damn WiFi",
-      "category": "动态",
-      "resetSignal": "none",
-      "url": "https://x.com/thsottiaux/status/2105718728658993153"
     }
   ],
-  "lastAttemptAt": "2026-10-04T03:00:13.144Z",
+  "lastAttemptAt": "2026-10-04T07:00:12.589Z",
   "lastError": null
 }
