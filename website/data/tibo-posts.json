@@ -1,9 +1,81 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-10-04T07:00:12.589Z",
-  "verifiedAt": "2026-10-04T13:00:12.862Z",
+  "updatedAt": "2026-10-05T03:00:12.048Z",
+  "verifiedAt": "2026-10-05T03:00:12.048Z",
   "sourceUrl": "https://x.com/thsottiaux",
   "posts": [
+    {
+      "id": "2106894683523928229",
+      "publishedAt": "2026-10-04T23:50:11.000Z",
+      "title": "Tibo 回复：@Yuchenj_UW We're still early indeed!",
+      "summary": "@Yuchenj_UW We're still early indeed!",
+      "category": "回复",
+      "resetSignal": "none",
+      "url": "https://x.com/thsottiaux/status/2106894683523928229"
+    },
+    {
+      "id": "2106894238541918707",
+      "publishedAt": "2026-10-04T23:48:25.000Z",
+      "title": "Tibo 回复：@mattlam_ > some easy wins: it takes…",
+      "summary": "@mattlam_ > some easy wins: it takes 3 clicks on my phone to open dots from ChatGPT app, and there should be shortcut to dictation to it. Team is on it",
+      "category": "回复",
+      "resetSignal": "none",
+      "url": "https://x.com/thsottiaux/status/2106894238541918707"
+    },
+    {
+      "id": "2106893863663321520",
+      "publishedAt": "2026-10-04T23:46:55.000Z",
+      "title": "Tibo 回复：@karrisaarinen Always loved linear!",
+      "summary": "@karrisaarinen Always loved linear!",
+      "category": "回复",
+      "resetSignal": "none",
+      "url": "https://x.com/thsottiaux/status/2106893863663321520"
+    },
+    {
+      "id": "2106893559962144962",
+      "publishedAt": "2026-10-04T23:45:43.000Z",
+      "title": "Tibo 回复：@ZryMiller Interestingly, user and su…",
+      "summary": "@ZryMiller Interestingly, user and sub count is growing nicely. But feedback was clear.",
+      "category": "回复",
+      "resetSignal": "none",
+      "url": "https://x.com/thsottiaux/status/2106893559962144962"
+    },
+    {
+      "id": "2106858787151995288",
+      "publishedAt": "2026-10-04T21:27:33.000Z",
+      "title": "Tibo 回复：@buildwithsid You're hired",
+      "summary": "@buildwithsid You're hired",
+      "category": "回复",
+      "resetSignal": "none",
+      "url": "https://x.com/thsottiaux/status/2106858787151995288"
+    },
+    {
+      "id": "2106858395370389784",
+      "publishedAt": "2026-10-04T21:25:59.000Z",
+      "title": "Tibo 回复：@poteto that was a really quick fold",
+      "summary": "@poteto that was a really quick fold",
+      "category": "回复",
+      "resetSignal": "none",
+      "url": "https://x.com/thsottiaux/status/2106858395370389784"
+    },
+    {
+      "id": "2106842998214717876",
+      "publishedAt": "2026-10-04T20:24:48.000Z",
+      "title": "Tibo 回复：@nabeelqu Locked in",
+      "summary": "@nabeelqu Locked in",
+      "category": "回复",
+      "resetSignal": "none",
+      "url": "https://x.com/thsottiaux/status/2106842998214717876"
+    },
+    {
+      "id": "2106769163620671823",
+      "publishedAt": "2026-10-04T15:31:25.000Z",
+      "title": "Tibo 回复：@argofowl Heard",
+      "summary": "@argofowl Heard",
+      "category": "回复",
+      "resetSignal": "none",
+      "url": "https://x.com/thsottiaux/status/2106769163620671823"
+    },
     {
       "id": "2106607456130592861",
       "publishedAt": "2026-10-04T04:48:51.000Z",
@@ -201,80 +273,8 @@
       "category": "动态",
       "resetSignal": "none",
       "url": "https://x.com/thsottiaux/status/2106226725428572371"
-    },
-    {
-      "id": "2106224612271112207",
-      "publishedAt": "2026-10-03T03:27:33.000Z",
-      "title": "Tibo 回复：@charliermarsh Good dot",
-      "summary": "@charliermarsh Good dot",
-      "category": "回复",
-      "resetSignal": "none",
-      "url": "https://x.com/thsottiaux/status/2106224612271112207"
-    },
-    {
-      "id": "2106131810921136451",
-      "publishedAt": "2026-10-02T21:18:48.000Z",
-      "title": "Tibo 发布额度重置公告",
-      "summary": "检测到 Tibo 发布面向用户的 Codex 额度重置公告。",
-      "category": "重置",
-      "resetSignal": "confirmed",
-      "url": "https://x.com/thsottiaux/status/2106131810921136451"
-    },
-    {
-      "id": "2106046594277954010",
-      "publishedAt": "2026-10-02T15:40:11.000Z",
-      "title": "Tibo 回复：@koltregaskes Team is working on most…",
-      "summary": "@koltregaskes Team is working on most of these, stay tuned!",
-      "category": "回复",
-      "resetSignal": "none",
-      "url": "https://x.com/thsottiaux/status/2106046594277954010"
-    },
-    {
-      "id": "2105899634032025682",
-      "publishedAt": "2026-10-02T05:56:13.000Z",
-      "title": "Down to 6110 unread from the over 9000 unread…",
-      "summary": "Down to 6110 unread from the over 9000 unread emails just earlier. Will get to inbox zero with clean filters within the next 48 hours. Dot has accepted the cha…",
-      "category": "动态",
-      "resetSignal": "none",
-      "url": "https://x.com/thsottiaux/status/2105899634032025682"
-    },
-    {
-      "id": "2105863620433453166",
-      "publishedAt": "2026-10-02T03:33:06.000Z",
-      "title": "Tibo 回复：@hugospdx Wrong strategy?",
-      "summary": "@hugospdx Wrong strategy?",
-      "category": "回复",
-      "resetSignal": "none",
-      "url": "https://x.com/thsottiaux/status/2105863620433453166"
-    },
-    {
-      "id": "2105863294267560169",
-      "publishedAt": "2026-10-02T03:31:49.000Z",
-      "title": "Tibo 回复：@dextune Please bask",
-      "summary": "@dextune Please bask",
-      "category": "回复",
-      "resetSignal": "none",
-      "url": "https://x.com/thsottiaux/status/2105863294267560169"
-    },
-    {
-      "id": "2105862010521219406",
-      "publishedAt": "2026-10-02T03:26:42.000Z",
-      "title": "You can ask your dot to \"create a pet and set…",
-      "summary": "You can ask your dot to \"create a pet and set it as your avatar\". It can be based on an idea, an image or pretty much anything. Here is my dot",
-      "category": "动态",
-      "resetSignal": "none",
-      "url": "https://x.com/thsottiaux/status/2105862010521219406"
-    },
-    {
-      "id": "2105844753522938214",
-      "publishedAt": "2026-10-02T02:18:08.000Z",
-      "title": "Tibo 回复：@ziwenxu_ Sir Dot Claw",
-      "summary": "@ziwenxu_ Sir Dot Claw",
-      "category": "回复",
-      "resetSignal": "none",
-      "url": "https://x.com/thsottiaux/status/2105844753522938214"
     }
   ],
-  "lastAttemptAt": "2026-10-04T13:00:12.862Z",
+  "lastAttemptAt": "2026-10-05T03:00:12.048Z",
   "lastError": null
 }
