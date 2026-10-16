@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-10-03T07:10:43.000Z",
+  "updatedAt": "2026-10-16T02:03:18.000Z",
   "source": {
     "name": "Thibault “Tibo” Sottiaux",
     "handle": "@thsottiaux",
@@ -13,9 +13,13 @@
     "enabled": true,
     "scheduleLabel": "每天 11:00、15:00、21:00",
     "reviewRequired": true,
-    "lastIngestedPostId": "2106131810921136451"
+    "lastIngestedPostId": "2110618732666257557"
   },
   "events": [
+    {
+      "date": "2026-10-15",
+      "kind": "full"
+    },
     {
       "date": "2026-10-03",
       "kind": "full"
@@ -194,6 +198,34 @@
     }
   ],
   "announcements": [
+    {
+      "id": "2110618732666257557",
+      "publishedAt": "2026-10-15T06:28:13.000Z",
+      "kind": "full",
+      "title": "Day 10 重置已完成",
+      "scope": "本组公告未明确适用账号及额度窗口；请以个人账户为准",
+      "text": "Done and dusted",
+      "summary": "Tibo 在 Day 10 重置主帖及两小时内落地预告之后，引用预告确认执行完成。三条帖子对应同一次重置；原文未重申适用账号或额度窗口。",
+      "url": "https://x.com/thsottiaux/status/2110618732666257557",
+      "followUps": [
+        {
+          "id": "2110595484180214059",
+          "publishedAt": "2026-10-15T04:55:51.000Z",
+          "title": "前序证据：Day 10 重置主帖",
+          "text": "The reports of my reset button being lost are greatly exaggerated\n\nDay 10/ Reset",
+          "summary": "Tibo 宣布 Day 10 为重置；这是本次完成确认的前序证据，不另计一次重置。",
+          "url": "https://x.com/thsottiaux/status/2110595484180214059"
+        },
+        {
+          "id": "2110595554036400151",
+          "publishedAt": "2026-10-15T04:56:07.000Z",
+          "title": "前序证据：两小时内落地预告",
+          "text": "Landing within the next 2 hours",
+          "summary": "同线程预告两小时内落地，随后被完成确认帖引用；预告不再作为待完成状态展示。",
+          "url": "https://x.com/thsottiaux/status/2110595554036400151"
+        }
+      ]
+    },
     {
       "id": "2106131810921136451",
       "publishedAt": "2026-10-02T21:18:48.000Z",

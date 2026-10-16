@@ -1,9 +1,18 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-10-05T03:00:12.048Z",
-  "verifiedAt": "2026-10-05T03:00:12.048Z",
+  "updatedAt": "2026-10-16T02:03:18.000Z",
+  "verifiedAt": "2026-10-16T02:03:18.000Z",
   "sourceUrl": "https://x.com/thsottiaux",
   "posts": [
+    {
+      "id": "2110618732666257557",
+      "publishedAt": "2026-10-15T06:28:13.000Z",
+      "title": "Day 10 重置已完成",
+      "summary": "Done and dusted — Tibo 引用 Day 10 的落地预告确认重置完成；适用账号及额度窗口未明确，请以个人账户为准。",
+      "category": "重置",
+      "resetSignal": "confirmed",
+      "url": "https://x.com/thsottiaux/status/2110618732666257557"
+    },
     {
       "id": "2106894683523928229",
       "publishedAt": "2026-10-04T23:50:11.000Z",
@@ -275,6 +284,6 @@
       "url": "https://x.com/thsottiaux/status/2106226725428572371"
     }
   ],
-  "lastAttemptAt": "2026-10-05T03:00:12.048Z",
+  "lastAttemptAt": "2026-10-16T02:03:18.000Z",
   "lastError": null
 }
