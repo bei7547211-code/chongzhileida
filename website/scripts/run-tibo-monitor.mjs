@@ -23,6 +23,7 @@ import { fetchTiboTimeline } from './tibo-source-core.mjs';
 
 const argumentsList = process.argv.slice(2);
 const noNotify = argumentsList.includes('--no-notify');
+const syncReleaseCheckout = argumentsList.includes('--sync-release-checkout'); // 只有专用于发布的副本才启用自动同步。
 const mode = argumentsList.includes('--publish')
   ? 'publish'
   : argumentsList.includes('--write')
@@ -146,9 +147,15 @@ function ensurePublishReady() {
   run('git', ['fetch', '--quiet', 'origin', 'main']);
   const localHead = runCaptured('git', ['rev-parse', 'HEAD']);
   const remoteHead = runCaptured('git', ['rev-parse', 'origin/main']);
-  if (localHead !== remoteHead) {
+  if (localHead === remoteHead) return; // 两边已处在同一提交，直接开始读取公告。
+  if (!syncReleaseCheckout) { // 原有开发目录的手动发布仍由开发者处理提交差异。
     throw new Error('本地 main 与 GitHub 不一致，请先人工同步后再运行');
-  }
+  } // 自动同步仅对明确启动的发布副本生效。
+  const [localOnly, remoteOnly] = runCaptured('git', ['rev-list', '--left-right', '--count', 'HEAD...origin/main']).split(/\s+/).map(Number); // 分别统计两边独有的提交数。
+  if (localOnly !== 0 || !(remoteOnly > 0)) { // 发布副本有自己的提交或历史分叉时，保留现场给人工核对。
+    throw new Error('发布副本含有未推送的提交，请核对后再运行'); // 报告停下的原因以便维护人员处理。
+  } // 通过检查才可推进本地分支。
+  run('git', ['merge', '--ff-only', 'origin/main']); // 本地只向 GitHub 已有的提交快进，Git 会拒绝强制覆盖或产生合并提交。
 }
 
 function verifyWebsite() {
@@ -211,6 +218,10 @@ async function main() {
 
   try {
     if (mode !== 'dry-run') lockHandle = await acquireLock();
+    if (mode === 'publish') { // 自动发布必须先确认发布副本可以使用，再读取其中的旧快照。
+      stage = '发布前同步检查'; // 记录这一步的名称，报错时能知道问题出在同步而非公告来源。
+      ensurePublishReady(); // 检查干净程度并同步远端后，读取的才是最新数据。
+    } // 其余运行模式继续从当前的文件读取。
     stage = '读取现有数据';
     originalResetFeed = await readFile(resetFeedPath, 'utf8');
     originalPostsFeed = await readFile(postsFeedPath, 'utf8');
@@ -220,13 +231,7 @@ async function main() {
     const postsFeed = JSON.parse(originalPostsFeed);
     const state = await readState();
 
-    if (mode !== 'dry-run') {
-      if (!allowDirtyData) ensureDataFilesAreClean();
-      if (mode === 'publish') {
-        stage = '发布前同步检查';
-        ensurePublishReady();
-      }
-    }
+    if (mode !== 'dry-run' && !allowDirtyData) ensureDataFilesAreClean(); // 保留对本地公告文件的防覆盖检查。
 
     stage = '读取 Tibo 公开动态';
     let sourceFailed = false;

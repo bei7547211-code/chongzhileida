@@ -1,9 +1,63 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-10-16T02:03:18.000Z",
-  "verifiedAt": "2026-10-16T02:03:18.000Z",
+  "updatedAt": "2026-11-18T07:24:59.983Z",
+  "verifiedAt": "2026-11-18T07:24:59.983Z",
   "sourceUrl": "https://x.com/thsottiaux",
   "posts": [
+    {
+      "id": "2120999993079451919",
+      "publishedAt": "2026-11-12T21:59:39.000Z",
+      "title": "Codex 重置卡发放已启动",
+      "summary": "Tibo 表示新一批重置卡已启动发放，将逐步进入账户。公告未给出每个账户的到账时间。",
+      "category": "相关",
+      "resetSignal": "related",
+      "url": "https://x.com/thsottiaux/status/2120999993079451919"
+    },
+    {
+      "id": "2117035794678546764",
+      "publishedAt": "2026-11-01T23:27:20.000Z",
+      "title": "Codex 第 2 批重置卡",
+      "summary": "Tibo 发布两批重置卡中的第 2 批。",
+      "category": "重置",
+      "resetSignal": "confirmed",
+      "url": "https://x.com/thsottiaux/status/2117035794678546764"
+    },
+    {
+      "id": "2116692529970311254",
+      "publishedAt": "2026-11-01T00:43:20.000Z",
+      "title": "Codex 第 1 批重置卡",
+      "summary": "Tibo 发布两批重置卡中的第 1 批。",
+      "category": "重置",
+      "resetSignal": "confirmed",
+      "url": "https://x.com/thsottiaux/status/2116692529970311254"
+    },
+    {
+      "id": "2115330127886463244",
+      "publishedAt": "2026-10-28T06:29:38.000Z",
+      "title": "Codex 额度重置已完成",
+      "summary": "Tibo 引用此前的 Day 23 时间说明并确认重置完成。以上为原帖发布时间。",
+      "category": "重置",
+      "resetSignal": "confirmed",
+      "url": "https://x.com/thsottiaux/status/2115330127886463244"
+    },
+    {
+      "id": "2114237083652882932",
+      "publishedAt": "2026-10-25T06:06:16.000Z",
+      "title": "Codex 额度重置已完成",
+      "summary": "Tibo 引用此前的 Day 20 时间说明并确认重置已完成发布。以上为原帖发布时间。",
+      "category": "重置",
+      "resetSignal": "confirmed",
+      "url": "https://x.com/thsottiaux/status/2114237083652882932"
+    },
+    {
+      "id": "2112432076767289678",
+      "publishedAt": "2026-10-20T06:33:48.000Z",
+      "title": "Codex Day 15 额度重置",
+      "summary": "Tibo 在 Day 15 动态中发布重置消息。以上为原帖发布时间。",
+      "category": "重置",
+      "resetSignal": "confirmed",
+      "url": "https://x.com/thsottiaux/status/2112432076767289678"
+    },
     {
       "id": "2110618732666257557",
       "publishedAt": "2026-10-15T06:28:13.000Z",
@@ -219,71 +273,8 @@
       "category": "回复",
       "resetSignal": "none",
       "url": "https://x.com/thsottiaux/status/2106255580772061332"
-    },
-    {
-      "id": "2106253534132089110",
-      "publishedAt": "2026-10-03T05:22:29.000Z",
-      "title": "Tibo 回复：@Shekswess Unlimited atm",
-      "summary": "@Shekswess Unlimited atm",
-      "category": "回复",
-      "resetSignal": "none",
-      "url": "https://x.com/thsottiaux/status/2106253534132089110"
-    },
-    {
-      "id": "2106252868307271752",
-      "publishedAt": "2026-10-03T05:19:50.000Z",
-      "title": "Fortunately our future models will be much be…",
-      "summary": "Fortunately our future models will be much better at code deletion and simplification. Just in time",
-      "category": "动态",
-      "resetSignal": "none",
-      "url": "https://x.com/thsottiaux/status/2106252868307271752"
-    },
-    {
-      "id": "2106250124863389920",
-      "publishedAt": "2026-10-03T05:08:56.000Z",
-      "title": "Tibo 回复：@rileybrown You’re hired",
-      "summary": "@rileybrown You’re hired",
-      "category": "回复",
-      "resetSignal": "none",
-      "url": "https://x.com/thsottiaux/status/2106250124863389920"
-    },
-    {
-      "id": "2106239912932692085",
-      "publishedAt": "2026-10-03T04:28:21.000Z",
-      "title": "Tibo 回复：@_architected Yeah no, that was my ba…",
-      "summary": "@_architected Yeah no, that was my bad for not propagating it at 10am quite perfectly. This is something that will be better planned next time, apologies.",
-      "category": "回复",
-      "resetSignal": "none",
-      "url": "https://x.com/thsottiaux/status/2106239912932692085"
-    },
-    {
-      "id": "2106239435461579088",
-      "publishedAt": "2026-10-03T04:26:28.000Z",
-      "title": "All fixed. Surprising number of Pro 500 users…",
-      "summary": "All fixed. Surprising number of Pro 500 users on here.",
-      "category": "动态",
-      "resetSignal": "none",
-      "url": "https://x.com/thsottiaux/status/2106239435461579088"
-    },
-    {
-      "id": "2106227571088392653",
-      "publishedAt": "2026-10-03T03:39:19.000Z",
-      "title": "Tibo 回复：@atelicinvest Pretty bad for the GPUs…",
-      "summary": "@atelicinvest Pretty bad for the GPUs. We’re going to need more compute",
-      "category": "回复",
-      "resetSignal": "none",
-      "url": "https://x.com/thsottiaux/status/2106227571088392653"
-    },
-    {
-      "id": "2106226725428572371",
-      "publishedAt": "2026-10-03T03:35:57.000Z",
-      "title": "Pretty sure there are more dots than bots alr…",
-      "summary": "Pretty sure there are more dots than bots already in this little world. Cool thing is that we’re improving them everyday and they learn directly from your feed…",
-      "category": "动态",
-      "resetSignal": "none",
-      "url": "https://x.com/thsottiaux/status/2106226725428572371"
     }
   ],
-  "lastAttemptAt": "2026-10-16T02:03:18.000Z",
+  "lastAttemptAt": "2026-11-18T07:24:59.983Z",
   "lastError": null
 }

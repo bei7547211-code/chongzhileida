@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-10-16T02:03:18.000Z",
+  "updatedAt": "2026-11-18T07:24:59.983Z",
   "source": {
     "name": "Thibault “Tibo” Sottiaux",
     "handle": "@thsottiaux",
@@ -13,9 +13,29 @@
     "enabled": true,
     "scheduleLabel": "每天 11:00、15:00、21:00",
     "reviewRequired": true,
-    "lastIngestedPostId": "2110618732666257557"
+    "lastIngestedPostId": "2117035794678546764"
   },
   "events": [
+    {
+      "date": "2026-11-02",
+      "kind": "banked"
+    },
+    {
+      "date": "2026-11-01",
+      "kind": "banked"
+    },
+    {
+      "date": "2026-10-28",
+      "kind": "full"
+    },
+    {
+      "date": "2026-10-25",
+      "kind": "full"
+    },
+    {
+      "date": "2026-10-20",
+      "kind": "full"
+    },
     {
       "date": "2026-10-15",
       "kind": "full"
@@ -198,6 +218,66 @@
     }
   ],
   "announcements": [
+    {
+      "id": "2120999993079451919",
+      "publishedAt": "2026-11-12T21:59:39.000Z",
+      "kind": "signal",
+      "title": "Codex 重置卡发放已启动",
+      "text": "We shipped some good updates to dots today and the banked reset has been activated and should land in everyones accounts sometime soon!",
+      "summary": "Tibo 表示新一批重置卡已启动发放，将逐步进入账户。公告未给出每个账户的到账时间。",
+      "scope": "重置卡到账后需自行使用。前往 Codex 用量页查看是否可领取。",
+      "url": "https://x.com/thsottiaux/status/2120999993079451919"
+    },
+    {
+      "id": "2117035794678546764",
+      "publishedAt": "2026-11-01T23:27:20.000Z",
+      "kind": "banked",
+      "title": "Codex 第 2 批重置卡",
+      "text": "Day 28/ Banked 2/2",
+      "summary": "Tibo 发布两批重置卡中的第 2 批。",
+      "scope": "重置卡需自行使用，适用范围及到期时间以 Codex 用量页为准。",
+      "url": "https://x.com/thsottiaux/status/2117035794678546764"
+    },
+    {
+      "id": "2116692529970311254",
+      "publishedAt": "2026-11-01T00:43:20.000Z",
+      "kind": "banked",
+      "title": "Codex 第 1 批重置卡",
+      "text": "Banked 1/2",
+      "summary": "Tibo 发布两批重置卡中的第 1 批。",
+      "scope": "重置卡需自行使用，适用范围及到期时间以 Codex 用量页为准。",
+      "url": "https://x.com/thsottiaux/status/2116692529970311254"
+    },
+    {
+      "id": "2115330127886463244",
+      "publishedAt": "2026-10-28T06:29:38.000Z",
+      "kind": "full",
+      "title": "Codex 额度重置已完成",
+      "text": "And it's done. See you tomorrow for some good news.",
+      "summary": "Tibo 引用此前的 Day 23 时间说明并确认重置完成。以上为原帖发布时间。",
+      "scope": "Tibo 公告未列明适用计划，个人结果以 Codex 用量页为准。",
+      "url": "https://x.com/thsottiaux/status/2115330127886463244"
+    },
+    {
+      "id": "2114237083652882932",
+      "publishedAt": "2026-10-25T06:06:16.000Z",
+      "kind": "full",
+      "title": "Codex 额度重置已完成",
+      "text": "It is all propagated. Enjoy some mad codexing tomorrow. Fun week ahead too.",
+      "summary": "Tibo 引用此前的 Day 20 时间说明并确认重置已完成发布。以上为原帖发布时间。",
+      "scope": "Tibo 公告未列明适用计划，个人结果以 Codex 用量页为准。",
+      "url": "https://x.com/thsottiaux/status/2114237083652882932"
+    },
+    {
+      "id": "2112432076767289678",
+      "publishedAt": "2026-10-20T06:33:48.000Z",
+      "kind": "full",
+      "title": "Codex Day 15 额度重置",
+      "text": "Day 15/ Nevermind, we're still cooking... and reset. Enjoy.",
+      "summary": "Tibo 在 Day 15 动态中发布重置消息。以上为原帖发布时间。",
+      "scope": "Tibo 公告未列明适用计划，个人结果以 Codex 用量页为准。",
+      "url": "https://x.com/thsottiaux/status/2112432076767289678"
+    },
     {
       "id": "2110618732666257557",
       "publishedAt": "2026-10-15T06:28:13.000Z",

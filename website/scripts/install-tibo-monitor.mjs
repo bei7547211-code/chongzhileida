@@ -8,6 +8,9 @@ const label = 'com.beixiao.reset-radar.tibo-monitor';
 const argumentsList = process.argv.slice(2);
 const dryRun = argumentsList.includes('--dry-run');
 const uninstall = argumentsList.includes('--uninstall');
+const monitorArguments = ['--publish']; // 定时任务默认使用现有的发布模式。
+if (argumentsList.includes('--sync-release-checkout')) monitorArguments.push('--sync-release-checkout'); // 安装在专用发布副本时允许自动快进。
+if (argumentsList.includes('--no-notify')) monitorArguments.push('--no-notify'); // 该选项让巡检结果只进入本机日志。
 const websiteRoot = resolve(fileURLToPath(new URL('..', import.meta.url)));
 const runnerPath = resolve(websiteRoot, 'scripts/run-tibo-monitor.mjs');
 const stateDirectory = resolve(homedir(), '.reset-radar');
@@ -30,6 +33,7 @@ function escapeXml(value) {
 
 function renderPlist() {
   const nodeDirectory = dirname(process.execPath);
+  // 将定时任务收到的选项写进下面的 XML，并保持每项为独立的命令参数。
   const pathValue = `${nodeDirectory}:/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin`;
   const calendarIntervals = scanHours
     .map(
@@ -51,7 +55,7 @@ function renderPlist() {
   <array>
     <string>${escapeXml(process.execPath)}</string>
     <string>${escapeXml(runnerPath)}</string>
-    <string>--publish</string>
+${monitorArguments.map((argument) => `    <string>${escapeXml(argument)}</string>`).join('\n')}
   </array>
   <key>WorkingDirectory</key>
   <string>${escapeXml(websiteRoot)}</string>
