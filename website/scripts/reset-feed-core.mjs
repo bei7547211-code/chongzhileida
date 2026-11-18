@@ -194,6 +194,10 @@ export function validateResetFeed(feed) {
       );
     }
     validatePostUrl(post.url, post.id);
+    if (post.notification !== undefined) { // 明确填写资格时必须在写入真源阶段就发现错填，不能等到通知发送才报错。
+      invariant(!post.reviewPending, '待审公告不能保留通知确认资格'); // 原文修订进入待审时，旧人工资格不能继续有效。
+      projectResetNotification(post.notification, { provider: 'codex', id: 'codex-' + post.id, publishedAt: post.publishedAt, sourceUrl: post.url, revisedAt: post.revisedAt }); // 核对官方原帖、证据、完成和核验的时间关系。
+    } // 未填写资格的历史公告继续走原校验，不自动回填任何时间。
     if (post.followUps !== undefined) {
       invariant(Array.isArray(post.followUps), '后续核验必须是数组');
       for (const followUp of post.followUps) {
@@ -297,3 +301,4 @@ export function ingestTiboPost(feed, payload, now = new Date()) {
   validateResetFeed(nextFeed);
   return { changed: true, reason: classification.kind, feed: nextFeed };
 }
+import { projectResetNotification } from '../lib/reset-notification.ts'; // 既有公告校验同步检查可选人工通知契约，不给自动分类添加资格。

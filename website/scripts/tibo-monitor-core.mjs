@@ -265,6 +265,7 @@ export function applyTiboMonitorPlan(
         revisedAt: now.toISOString(),
       });
       delete announcement.screenshot;
+      delete announcement.notification; // 原帖内容改变后撤销该版本人工通知资格，必须重新核验才能再次标明完成。
       // Remove only this announcement's event when no other confirmed source
       // still supports that date and kind. Never erase unrelated history.
       const supported = nextResetFeed.announcements.some(

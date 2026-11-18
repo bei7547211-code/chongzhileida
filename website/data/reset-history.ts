@@ -1,6 +1,7 @@
 import { isPublicRecord } from '../lib/public-visibility.ts';
 import feedJson from './reset-feed.json' with { type: 'json' };
 import { toShanghaiDateKey } from '../lib/time.ts';
+import type { ResetNotification } from '../lib/reset-notification.ts'; // 使用可选的逐事件人工确认类型，不给历史数据生成资格。
 
 export type ResetKind = 'full' | 'banked' | 'signal';
 
@@ -19,6 +20,7 @@ export type ResetFollowUp = {
 };
 
 export type ResetAnnouncement = ResetEvent & {
+  notification?: ResetNotification; // 人工完成核验后才填写，和整批帖子核验时间分开。
   id: string;
   publishedAt: string;
   emoji: string;
@@ -53,6 +55,7 @@ type ResetFeed = {
   };
   events: ResetEvent[];
   announcements: Array<{
+    notification?: ResetNotification; // 公告JSON真源可携带明确通知资格，缺失时继续兼容旧记录。
     id: string;
     publishedAt: string;
     kind: ResetKind;
@@ -140,6 +143,7 @@ export const announcements: ResetAnnouncement[] = feed.announcements
     reviewPending: announcement.reviewPending,
     revision: announcement.revision,
     revisedAt: announcement.revisedAt,
+    ...(announcement.notification === undefined ? {} : { notification: announcement.notification }), // 只透传真实填写的契约，不根据full或标题推断。
     followUps: announcement.followUps?.map((followUp) => ({
       id: followUp.id,
       publishedAt: followUp.publishedAt,

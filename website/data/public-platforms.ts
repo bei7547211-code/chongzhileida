@@ -5,9 +5,11 @@ import evidenceJson from './provider-evidence.json' with { type: 'json' };
 import { matchedEvidence } from '../lib/evidence.ts';
 import { announcements } from './reset-history.ts';
 import { tiboPostsVerifiedAt, tiboPosts } from './tibo-posts.ts';
+import type { ResetNotification } from '../lib/reset-notification.ts'; // 公开类型保留逐事件资格，整批verifiedAt仍仅代表巡检。
 
 export type PlatformId = 'codex' | 'claude' | 'grok';
 export type PublicAnnouncement = {
+  notification?: ResetNotification; // 可选人工确认字段仅用于明确完成阶段，不给普通公告自动补齐。
   id: string;
   title: string;
   summary?: string;
@@ -73,6 +75,7 @@ export const publicPlatforms: PublicPlatform[] = [
       reviewPending: a.reviewPending,
       revision: a.revision,
       revisedAt: a.revisedAt,
+      ...(a.notification === undefined ? {} : { notification: a.notification }), // 从公告真源原样传递，后续公开投影统一校验证据和时间。
       followUps: a.followUps?.map((followUp) => ({
         id: followUp.id,
         publishedAt: followUp.publishedAt,

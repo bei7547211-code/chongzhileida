@@ -1,6 +1,7 @@
 import { createHash } from 'node:crypto';
 import type { PublicPlatform } from '../data/public-platforms.ts';
 import type { SideHustle } from '../data/side-hustles.ts';
+import { projectResetNotification } from './reset-notification.ts'; // 发布前校验并白名单保留人工通知契约，避免只传标题而丢失完成证据。
 
 export type Removal = { type: 'event' | 'article'; id: string; reason: string; withdrawnAt: string };
 const labels: Record<string, string> = { full: '额度重置', banked: '重置卡', signal: '待确认', announcement: '公开公告', correction: '更正' };
@@ -33,11 +34,13 @@ export function buildPublicSnapshot(input: { platforms: PublicPlatform[]; articl
     if (!labels[a.kind]) throw new Error('Unknown announcement kind');
     const id = p.id + '-' + a.id;
     const url = https(a.url);
+    const notification = projectResetNotification(a.notification, { provider: p.id, id, publishedAt: a.publishedAt, sourceUrl: url, revisedAt: a.revisedAt }); // 绑定公告身份与最近修订，不使用整批核验或构建时间代替完成时刻。
+    if (notification && Date.parse(notification.reviewedAt) > Date.parse(metadata.generatedAt)) throw new Error('Notification review must precede snapshot generation'); // 真实审核必须已发生，再导出快照；不能靠未来审核时刻给公告预先赋权。
     idAliases[p.id + '-rss-' + encodeURIComponent(url)] = id;
     idAliases[url] = id;
     if (a.revision) idAliases[p.id + '-rss-' + encodeURIComponent(url + '#correction-' + a.revision)] = id;
     const followUps = (a.followUps || []).map(followUp => ({ id: followUp.id, title: followUp.title, summary: followUp.summary, text: followUp.text, publishedAt: iso(followUp.publishedAt), sourceUrl: https(followUp.url), url: https(followUp.url), dateLabel: dateLabel(followUp.publishedAt) }));
-    return { id, provider: p.id, providerName: p.name, title: a.title, summary: a.summary || a.scope, text: a.text, scope: a.scope, kind: a.kind, kindLabel: labels[a.kind], publishedAt: iso(a.publishedAt), verifiedAt: a.verifiedAt ? iso(a.verifiedAt) : null, sourceUrl: url, url, revision: a.revision || 0, revisedAt: a.revisedAt ? iso(a.revisedAt) : null, followUps, dateLabel: dateLabel(a.publishedAt) };
+    return { id, provider: p.id, providerName: p.name, title: a.title, summary: a.summary || a.scope, text: a.text, scope: a.scope, kind: a.kind, kindLabel: labels[a.kind], publishedAt: iso(a.publishedAt), verifiedAt: a.verifiedAt ? iso(a.verifiedAt) : null, sourceUrl: url, url, revision: a.revision || 0, revisedAt: a.revisedAt ? iso(a.revisedAt) : null, followUps, dateLabel: dateLabel(a.publishedAt), ...(notification === undefined ? {} : { notification }) }; // 只有已明确填写并通过校验的契约进入公开快照和内容版本摘要。
   })).sort(byDate);
   const platforms = input.platforms.map(p => {
     const own = events.filter(e => e.provider === p.id);
