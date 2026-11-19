@@ -1,9 +1,72 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-11-18T13:00:18.735Z",
-  "verifiedAt": "2026-11-18T13:00:18.735Z",
+  "updatedAt": "2026-11-19T03:00:11.736Z",
+  "verifiedAt": "2026-11-19T03:00:11.736Z",
   "sourceUrl": "https://x.com/thsottiaux",
   "posts": [
+    {
+      "id": "2123179276199735535",
+      "publishedAt": "2026-11-18T22:19:20.000Z",
+      "title": "Tibo 回复：@DannyIO It does like math",
+      "summary": "@DannyIO It does like math",
+      "category": "回复",
+      "resetSignal": "none",
+      "url": "https://x.com/thsottiaux/status/2123179276199735535"
+    },
+    {
+      "id": "2123175166519992652",
+      "publishedAt": "2026-11-18T22:03:01.000Z",
+      "title": "GPT-6.2 Astra is pretty good at hard things.…",
+      "summary": "GPT-6.2 Astra is pretty good at hard things. Here the team shared some results on AMD and Jalapeño chip optimizations. I do get the feedback on its communicati…",
+      "category": "动态",
+      "resetSignal": "none",
+      "url": "https://x.com/thsottiaux/status/2123175166519992652"
+    },
+    {
+      "id": "2123151267002503570",
+      "publishedAt": "2026-11-18T20:28:02.000Z",
+      "title": "Tibo 回复：@AdamHoltererer Climbing",
+      "summary": "@AdamHoltererer Climbing",
+      "category": "回复",
+      "resetSignal": "none",
+      "url": "https://x.com/thsottiaux/status/2123151267002503570"
+    },
+    {
+      "id": "2123150581321883811",
+      "publishedAt": "2026-11-18T20:25:19.000Z",
+      "title": "Tibo 回复：@Leapofcode GG",
+      "summary": "@Leapofcode GG",
+      "category": "回复",
+      "resetSignal": "none",
+      "url": "https://x.com/thsottiaux/status/2123150581321883811"
+    },
+    {
+      "id": "2123113107048501273",
+      "publishedAt": "2026-11-18T17:56:24.000Z",
+      "title": "How is 6.2 Sol treating you today?",
+      "summary": "How is 6.2 Sol treating you today?",
+      "category": "动态",
+      "resetSignal": "none",
+      "url": "https://x.com/thsottiaux/status/2123113107048501273"
+    },
+    {
+      "id": "2123112903809318994",
+      "publishedAt": "2026-11-18T17:55:36.000Z",
+      "title": "Tibo 回复：@Yampeleg What are you using it for?",
+      "summary": "@Yampeleg What are you using it for?",
+      "category": "回复",
+      "resetSignal": "none",
+      "url": "https://x.com/thsottiaux/status/2123112903809318994"
+    },
+    {
+      "id": "2123112623294320913",
+      "publishedAt": "2026-11-18T17:54:29.000Z",
+      "title": "Tibo 回复：@theo Thank you Theo ❤️",
+      "summary": "@theo Thank you Theo ❤️",
+      "category": "回复",
+      "resetSignal": "none",
+      "url": "https://x.com/thsottiaux/status/2123112623294320913"
+    },
     {
       "id": "2122954129094111394",
       "publishedAt": "2026-11-18T07:24:41.000Z",
@@ -210,71 +273,8 @@
       "category": "回复",
       "resetSignal": "none",
       "url": "https://x.com/thsottiaux/status/2121134582527594929"
-    },
-    {
-      "id": "2121132369696747608",
-      "publishedAt": "2026-11-13T06:45:40.000Z",
-      "title": "Tibo 回复：@snowy_smile_ Sounds like bliss",
-      "summary": "@snowy_smile_ Sounds like bliss",
-      "category": "回复",
-      "resetSignal": "none",
-      "url": "https://x.com/thsottiaux/status/2121132369696747608"
-    },
-    {
-      "id": "2121132035653894561",
-      "publishedAt": "2026-11-13T06:44:20.000Z",
-      "title": "Tibo 回复：@ajambrosino sino",
-      "summary": "@ajambrosino sino",
-      "category": "回复",
-      "resetSignal": "none",
-      "url": "https://x.com/thsottiaux/status/2121132035653894561"
-    },
-    {
-      "id": "2121062974161092792",
-      "publishedAt": "2026-11-13T02:09:55.000Z",
-      "title": "How can codex be improved? Try not to say mod…",
-      "summary": "How can codex be improved? Try not to say model.",
-      "category": "动态",
-      "resetSignal": "none",
-      "url": "https://x.com/thsottiaux/status/2121062974161092792"
-    },
-    {
-      "id": "2121036562058400200",
-      "publishedAt": "2026-11-13T00:24:58.000Z",
-      "title": "We announced new tools we're developing for c…",
-      "summary": "We announced new tools we're developing for cybersecurity today across automated patching and automated red teaming. Watch the recording here https://openai.co…",
-      "category": "动态",
-      "resetSignal": "none",
-      "url": "https://x.com/thsottiaux/status/2121036562058400200"
-    },
-    {
-      "id": "2120999993079451919",
-      "publishedAt": "2026-11-12T21:59:39.000Z",
-      "title": "Codex 重置卡发放已启动",
-      "summary": "Tibo 表示新一批重置卡已启动发放，将逐步进入账户。公告未给出每个账户的到账时间。",
-      "category": "相关",
-      "resetSignal": "related",
-      "url": "https://x.com/thsottiaux/status/2120999993079451919"
-    },
-    {
-      "id": "2117035794678546764",
-      "publishedAt": "2026-11-01T23:27:20.000Z",
-      "title": "Codex 第 2 批重置卡",
-      "summary": "Tibo 发布两批重置卡中的第 2 批。",
-      "category": "重置",
-      "resetSignal": "confirmed",
-      "url": "https://x.com/thsottiaux/status/2117035794678546764"
-    },
-    {
-      "id": "2116692529970311254",
-      "publishedAt": "2026-11-01T00:43:20.000Z",
-      "title": "Codex 第 1 批重置卡",
-      "summary": "Tibo 发布两批重置卡中的第 1 批。",
-      "category": "重置",
-      "resetSignal": "confirmed",
-      "url": "https://x.com/thsottiaux/status/2116692529970311254"
     }
   ],
-  "lastAttemptAt": "2026-11-18T13:00:18.735Z",
+  "lastAttemptAt": "2026-11-19T03:00:11.736Z",
   "lastError": null
 }
