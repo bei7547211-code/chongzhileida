@@ -1,9 +1,72 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-11-19T03:00:11.736Z",
-  "verifiedAt": "2026-11-19T13:00:15.417Z",
+  "updatedAt": "2026-11-20T03:00:15.485Z",
+  "verifiedAt": "2026-11-20T03:00:15.485Z",
   "sourceUrl": "https://x.com/thsottiaux",
   "posts": [
+    {
+      "id": "2123557171321561133",
+      "publishedAt": "2026-11-19T23:20:58.000Z",
+      "title": "We’re also working on a new mobile experience…",
+      "summary": "We’re also working on a new mobile experience for ChatGPT! It’s easier to get to your favorite features and discover what you can do in ChatGPT. We’re starting…",
+      "category": "动态",
+      "resetSignal": "none",
+      "url": "https://x.com/thsottiaux/status/2123557171321561133"
+    },
+    {
+      "id": "2123556256392847657",
+      "publishedAt": "2026-11-19T23:17:19.000Z",
+      "title": "Heads up, we’re starting to test dots with a…",
+      "summary": "Heads up, we’re starting to test dots with a small number of ChatGPT Plus users. Looking forward to the continued feedback as we expand and I’m recently seeing…",
+      "category": "动态",
+      "resetSignal": "none",
+      "url": "https://x.com/thsottiaux/status/2123556256392847657"
+    },
+    {
+      "id": "2123527849403674729",
+      "publishedAt": "2026-11-19T21:24:27.000Z",
+      "title": "Tibo 回复：@theo I still count 6 weeks in the ye…",
+      "summary": "@theo I still count 6 weeks in the year",
+      "category": "回复",
+      "resetSignal": "none",
+      "url": "https://x.com/thsottiaux/status/2123527849403674729"
+    },
+    {
+      "id": "2123527632700747862",
+      "publishedAt": "2026-11-19T21:23:35.000Z",
+      "title": "Tibo 回复：@AdamHoltererer Why did I turn into D…",
+      "summary": "@AdamHoltererer Why did I turn into Dario",
+      "category": "回复",
+      "resetSignal": "none",
+      "url": "https://x.com/thsottiaux/status/2123527632700747862"
+    },
+    {
+      "id": "2123505661741084830",
+      "publishedAt": "2026-11-19T19:56:17.000Z",
+      "title": "Tibo 回复：New Sol being particularly popular.",
+      "summary": "New Sol being particularly popular.",
+      "category": "回复",
+      "resetSignal": "none",
+      "url": "https://x.com/thsottiaux/status/2123505661741084830"
+    },
+    {
+      "id": "2123505331531882923",
+      "publishedAt": "2026-11-19T19:54:58.000Z",
+      "title": "Tokens go brrrrrr. Going to need more compute.",
+      "summary": "Tokens go brrrrrr. Going to need more compute.",
+      "category": "动态",
+      "resetSignal": "none",
+      "url": "https://x.com/thsottiaux/status/2123505331531882923"
+    },
+    {
+      "id": "2123498899298210201",
+      "publishedAt": "2026-11-19T19:29:24.000Z",
+      "title": "Tibo 回复：@_simonsmith Max is for benchmaxxxing",
+      "summary": "@_simonsmith Max is for benchmaxxxing",
+      "category": "回复",
+      "resetSignal": "none",
+      "url": "https://x.com/thsottiaux/status/2123498899298210201"
+    },
     {
       "id": "2123179276199735535",
       "publishedAt": "2026-11-18T22:19:20.000Z",
@@ -210,71 +273,8 @@
       "category": "回复",
       "resetSignal": "none",
       "url": "https://x.com/thsottiaux/status/2122816458711548126"
-    },
-    {
-      "id": "2122816053348847795",
-      "publishedAt": "2026-11-17T22:16:01.000Z",
-      "title": "Tibo 回复：@Conor_D_Dart Much faster too",
-      "summary": "@Conor_D_Dart Much faster too",
-      "category": "回复",
-      "resetSignal": "none",
-      "url": "https://x.com/thsottiaux/status/2122816053348847795"
-    },
-    {
-      "id": "2122815564821434613",
-      "publishedAt": "2026-11-17T22:14:05.000Z",
-      "title": "Tibo 回复：@AdamHoltererer What is ClutterBench",
-      "summary": "@AdamHoltererer What is ClutterBench",
-      "category": "回复",
-      "resetSignal": "none",
-      "url": "https://x.com/thsottiaux/status/2122815564821434613"
-    },
-    {
-      "id": "2122753991000133943",
-      "publishedAt": "2026-11-17T18:09:24.000Z",
-      "title": "GPT-6.2 Sol & Astra are *finally* here. We've…",
-      "summary": "GPT-6.2 Sol & Astra are *finally* here. We've also expanded ultrafast to Pro 200 plans for GPT-6.2 Sol, it's my go-to model for most day to day things.",
-      "category": "动态",
-      "resetSignal": "none",
-      "url": "https://x.com/thsottiaux/status/2122753991000133943"
-    },
-    {
-      "id": "2122534533216268747",
-      "publishedAt": "2026-11-17T03:37:22.000Z",
-      "title": "Tibo 回复：@AdamHoltererer 6.1 Sol forever",
-      "summary": "@AdamHoltererer 6.1 Sol forever",
-      "category": "回复",
-      "resetSignal": "none",
-      "url": "https://x.com/thsottiaux/status/2122534533216268747"
-    },
-    {
-      "id": "2122206990101536852",
-      "publishedAt": "2026-11-16T05:55:49.000Z",
-      "title": "Codex team might have actually fixed the \"mod…",
-      "summary": "Codex team might have actually fixed the \"model at capacity\" errors that have been pestering you.",
-      "category": "动态",
-      "resetSignal": "none",
-      "url": "https://x.com/thsottiaux/status/2122206990101536852"
-    },
-    {
-      "id": "2121845965997101118",
-      "publishedAt": "2026-11-15T06:01:14.000Z",
-      "title": "Cyber team wants your feedback on Daybreak. M…",
-      "summary": "Cyber team wants your feedback on Daybreak. Models, codex plugins, blue/red access, documentation, red teaming & defense factory... What can we do better or im…",
-      "category": "动态",
-      "resetSignal": "none",
-      "url": "https://x.com/thsottiaux/status/2121845965997101118"
-    },
-    {
-      "id": "2121134582527594929",
-      "publishedAt": "2026-11-13T06:54:27.000Z",
-      "title": "Tibo 回复：@argofowl Hi 👋 Doing well. Team is b…",
-      "summary": "@argofowl Hi 👋 Doing well. Team is busy",
-      "category": "回复",
-      "resetSignal": "none",
-      "url": "https://x.com/thsottiaux/status/2121134582527594929"
     }
   ],
-  "lastAttemptAt": "2026-11-19T13:00:15.417Z",
+  "lastAttemptAt": "2026-11-20T03:00:15.485Z",
   "lastError": null
 }
