@@ -1,9 +1,72 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-11-20T13:00:13.697Z",
-  "verifiedAt": "2026-11-20T13:00:13.697Z",
+  "updatedAt": "2026-11-21T13:07:27.251Z",
+  "verifiedAt": "2026-11-21T13:07:27.251Z",
   "sourceUrl": "https://x.com/thsottiaux",
   "posts": [
+    {
+      "id": "2123998117561532424",
+      "publishedAt": "2026-11-21T04:33:07.000Z",
+      "title": "Tibo 回复：@DylanMcD8 DYLAN, HI! 👋",
+      "summary": "@DylanMcD8 DYLAN, HI! 👋",
+      "category": "回复",
+      "resetSignal": "none",
+      "url": "https://x.com/thsottiaux/status/2123998117561532424"
+    },
+    {
+      "id": "2123997735326232775",
+      "publishedAt": "2026-11-21T04:31:36.000Z",
+      "title": "We’ve been messing around a bit and inadverte…",
+      "summary": "We’ve been messing around a bit and inadvertently created an experience that’s a bit too fun internally and now everyone is just having fun instead of working.…",
+      "category": "动态",
+      "resetSignal": "none",
+      "url": "https://x.com/thsottiaux/status/2123997735326232775"
+    },
+    {
+      "id": "2123901067272618336",
+      "publishedAt": "2026-11-20T22:07:29.000Z",
+      "title": "Tibo 回复：@theo @maria_rcks But is it true",
+      "summary": "@theo @maria_rcks But is it true",
+      "category": "回复",
+      "resetSignal": "none",
+      "url": "https://x.com/thsottiaux/status/2123901067272618336"
+    },
+    {
+      "id": "2123867163345961285",
+      "publishedAt": "2026-11-20T19:52:45.000Z",
+      "title": "Tibo 回复：@DallenFrutchey IS THIS HOW WE COMMUN…",
+      "summary": "@DallenFrutchey IS THIS HOW WE COMMUNICATE NOW?",
+      "category": "回复",
+      "resetSignal": "none",
+      "url": "https://x.com/thsottiaux/status/2123867163345961285"
+    },
+    {
+      "id": "2123864112694509995",
+      "publishedAt": "2026-11-20T19:40:38.000Z",
+      "title": "First tweet from Akshay. Be nice to this one,…",
+      "summary": "First tweet from Akshay. Be nice to this one, he’s special.",
+      "category": "动态",
+      "resetSignal": "none",
+      "url": "https://x.com/thsottiaux/status/2123864112694509995"
+    },
+    {
+      "id": "2123861214644347122",
+      "publishedAt": "2026-11-20T19:29:07.000Z",
+      "title": "Team is locked in, upgrade your desktop app.…",
+      "summary": "Team is locked in, upgrade your desktop app. Faster, simpler and a lot more pleasant to use.",
+      "category": "动态",
+      "resetSignal": "none",
+      "url": "https://x.com/thsottiaux/status/2123861214644347122"
+    },
+    {
+      "id": "2123859787079426435",
+      "publishedAt": "2026-11-20T19:23:27.000Z",
+      "title": "Tibo 回复：@charliermarsh Actual engineering goi…",
+      "summary": "@charliermarsh Actual engineering going on here.",
+      "category": "回复",
+      "resetSignal": "none",
+      "url": "https://x.com/thsottiaux/status/2123859787079426435"
+    },
     {
       "id": "2123693044465906132",
       "publishedAt": "2026-11-20T08:20:52.000Z",
@@ -210,71 +273,8 @@
       "category": "回复",
       "resetSignal": "none",
       "url": "https://x.com/thsottiaux/status/2122953161921196052"
-    },
-    {
-      "id": "2122952910137135379",
-      "publishedAt": "2026-11-18T07:19:50.000Z",
-      "title": "Tibo 回复：@MiaAI_lab Yes, that's the whole poin…",
-      "summary": "@MiaAI_lab Yes, that's the whole point of getting feedback",
-      "category": "回复",
-      "resetSignal": "none",
-      "url": "https://x.com/thsottiaux/status/2122952910137135379"
-    },
-    {
-      "id": "2122950072623350250",
-      "publishedAt": "2026-11-18T07:08:34.000Z",
-      "title": "Tibo 回复：@Wilf_Lin Yes",
-      "summary": "@Wilf_Lin Yes",
-      "category": "回复",
-      "resetSignal": "none",
-      "url": "https://x.com/thsottiaux/status/2122950072623350250"
-    },
-    {
-      "id": "2122949739708809619",
-      "publishedAt": "2026-11-18T07:07:15.000Z",
-      "title": "Tibo 回复：@theo Try this in codex > Add this to…",
-      "summary": "@theo Try this in codex > Add this to my custom instructions \"Talk to me ELI5 by default and go deeper if I ask.\" but also, team is on it.",
-      "category": "回复",
-      "resetSignal": "none",
-      "url": "https://x.com/thsottiaux/status/2122949739708809619"
-    },
-    {
-      "id": "2122938155225752015",
-      "publishedAt": "2026-11-18T06:21:13.000Z",
-      "title": "Tibo 回复：@iruletheworldmo 👀",
-      "summary": "@iruletheworldmo 👀",
-      "category": "回复",
-      "resetSignal": "none",
-      "url": "https://x.com/thsottiaux/status/2122938155225752015"
-    },
-    {
-      "id": "2122929634916679820",
-      "publishedAt": "2026-11-18T05:47:21.000Z",
-      "title": "One of the funny reasons for the difference i…",
-      "summary": "One of the funny reasons for the difference in vibes between the influencers and the crowd today on 6.2 Sol/Astra is that we gave a few folks access a while ag…",
-      "category": "动态",
-      "resetSignal": "none",
-      "url": "https://x.com/thsottiaux/status/2122929634916679820"
-    },
-    {
-      "id": "2122903687949688912",
-      "publishedAt": "2026-11-18T04:04:15.000Z",
-      "title": "Tibo 回复：@swyx It's that is the only critique…",
-      "summary": "@swyx It's that is the only critique of the launch, I'm glad. It is indeed truly all about efficiency and topline capabilities. We'll highlight more interestin…",
-      "category": "回复",
-      "resetSignal": "none",
-      "url": "https://x.com/thsottiaux/status/2122903687949688912"
-    },
-    {
-      "id": "2122902327443300537",
-      "publishedAt": "2026-11-18T03:58:51.000Z",
-      "title": "Tibo 回复：@adonis_singh What are they getting w…",
-      "summary": "@adonis_singh What are they getting wrong? Curious",
-      "category": "回复",
-      "resetSignal": "none",
-      "url": "https://x.com/thsottiaux/status/2122902327443300537"
     }
   ],
-  "lastAttemptAt": "2026-11-20T13:00:13.697Z",
+  "lastAttemptAt": "2026-11-21T13:07:27.251Z",
   "lastError": null
 }
