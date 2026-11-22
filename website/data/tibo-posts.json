@@ -1,9 +1,27 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-11-21T13:07:27.251Z",
-  "verifiedAt": "2026-11-21T13:07:27.251Z",
+  "updatedAt": "2026-11-22T03:00:11.840Z",
+  "verifiedAt": "2026-11-22T03:00:11.840Z",
   "sourceUrl": "https://x.com/thsottiaux",
   "posts": [
+    {
+      "id": "2124322968499282388",
+      "publishedAt": "2026-11-22T02:03:58.000Z",
+      "title": "Team is already preparing another big update,…",
+      "summary": "Team is already preparing another big update, but how are things since yesterday’s update to the ChatGPT/Codex desktop app? What still requires attention and i…",
+      "category": "动态",
+      "resetSignal": "none",
+      "url": "https://x.com/thsottiaux/status/2124322968499282388"
+    },
+    {
+      "id": "2124277855131664869",
+      "publishedAt": "2026-11-21T23:04:42.000Z",
+      "title": "Going to check out this threads thing",
+      "summary": "Going to check out this threads thing",
+      "category": "动态",
+      "resetSignal": "none",
+      "url": "https://x.com/thsottiaux/status/2124277855131664869"
+    },
     {
       "id": "2123998117561532424",
       "publishedAt": "2026-11-21T04:33:07.000Z",
@@ -255,26 +273,8 @@
       "category": "回复",
       "resetSignal": "none",
       "url": "https://x.com/thsottiaux/status/2122954129094111394"
-    },
-    {
-      "id": "2122953953851879880",
-      "publishedAt": "2026-11-18T07:23:59.000Z",
-      "title": "Tibo 回复：@The_Alex Alex, let's go, sorry you h…",
-      "summary": "@The_Alex Alex, let's go, sorry you have to adapt a bit, but it pays off. Next generation will make it all more natural, in the meantime the raw power is indee…",
-      "category": "回复",
-      "resetSignal": "none",
-      "url": "https://x.com/thsottiaux/status/2122953953851879880"
-    },
-    {
-      "id": "2122953161921196052",
-      "publishedAt": "2026-11-18T07:20:51.000Z",
-      "title": "Tibo 回复：@JamesMalsawm You need to share the p…",
-      "summary": "@JamesMalsawm You need to share the prompt for that one, that's beautiful",
-      "category": "回复",
-      "resetSignal": "none",
-      "url": "https://x.com/thsottiaux/status/2122953161921196052"
     }
   ],
-  "lastAttemptAt": "2026-11-21T13:07:27.251Z",
+  "lastAttemptAt": "2026-11-22T03:00:11.840Z",
   "lastError": null
 }
