@@ -1,9 +1,18 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-11-24T03:00:12.098Z",
-  "verifiedAt": "2026-11-24T07:00:11.749Z",
+  "updatedAt": "2026-11-24T13:00:15.882Z",
+  "verifiedAt": "2026-11-24T13:00:15.882Z",
   "sourceUrl": "https://x.com/thsottiaux",
   "posts": [
+    {
+      "id": "2125141302501417232",
+      "publishedAt": "2026-11-24T08:15:44.000Z",
+      "title": "We’re working with Cisco on what we think are…",
+      "summary": "We’re working with Cisco on what we think are going to be key infrastructure primitives in the new era of cybersecurity. Everything needs to be built to be ope…",
+      "category": "动态",
+      "resetSignal": "none",
+      "url": "https://x.com/thsottiaux/status/2125141302501417232"
+    },
     {
       "id": "2125027477877887231",
       "publishedAt": "2026-11-24T00:43:26.000Z",
@@ -264,17 +273,8 @@
       "category": "动态",
       "resetSignal": "none",
       "url": "https://x.com/thsottiaux/status/2123175166519992652"
-    },
-    {
-      "id": "2123151267002503570",
-      "publishedAt": "2026-11-18T20:28:02.000Z",
-      "title": "Tibo 回复：@AdamHoltererer Climbing",
-      "summary": "@AdamHoltererer Climbing",
-      "category": "回复",
-      "resetSignal": "none",
-      "url": "https://x.com/thsottiaux/status/2123151267002503570"
     }
   ],
-  "lastAttemptAt": "2026-11-24T07:00:11.749Z",
+  "lastAttemptAt": "2026-11-24T13:00:15.882Z",
   "lastError": null
 }
