@@ -1,9 +1,54 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-11-22T03:00:11.840Z",
-  "verifiedAt": "2026-11-23T13:00:12.333Z",
+  "updatedAt": "2026-11-24T03:00:12.098Z",
+  "verifiedAt": "2026-11-24T03:00:12.098Z",
   "sourceUrl": "https://x.com/thsottiaux",
   "posts": [
+    {
+      "id": "2125027477877887231",
+      "publishedAt": "2026-11-24T00:43:26.000Z",
+      "title": "Worth listening to if you're curious what goe…",
+      "summary": "Worth listening to if you're curious what goes on in the minds of the people at OpenAI who are obsessively trying to patch all the flaws in OSS software and in…",
+      "category": "动态",
+      "resetSignal": "none",
+      "url": "https://x.com/thsottiaux/status/2125027477877887231"
+    },
+    {
+      "id": "2124998553856844186",
+      "publishedAt": "2026-11-23T22:48:30.000Z",
+      "title": "You should feel a significant jump in quality…",
+      "summary": "You should feel a significant jump in quality of answers on ChatGPT once rolled out to you. Together with all the investments we are making across simplifying…",
+      "category": "动态",
+      "resetSignal": "none",
+      "url": "https://x.com/thsottiaux/status/2124998553856844186"
+    },
+    {
+      "id": "2124923142762361133",
+      "publishedAt": "2026-11-23T17:48:51.000Z",
+      "title": "Tibo 回复：@charliermarsh Charlie is in the hunt",
+      "summary": "@charliermarsh Charlie is in the hunt",
+      "category": "回复",
+      "resetSignal": "none",
+      "url": "https://x.com/thsottiaux/status/2124923142762361133"
+    },
+    {
+      "id": "2124923055072043052",
+      "publishedAt": "2026-11-23T17:48:30.000Z",
+      "title": "Inside OpenAI, dots are quickly becoming the…",
+      "summary": "Inside OpenAI, dots are quickly becoming the primary way to get things done. We have dots building the dots system.",
+      "category": "动态",
+      "resetSignal": "none",
+      "url": "https://x.com/thsottiaux/status/2124923055072043052"
+    },
+    {
+      "id": "2124922412219486443",
+      "publishedAt": "2026-11-23T17:45:56.000Z",
+      "title": "Tibo 回复：Sign up for ChatGPT Business: https:/…",
+      "summary": "Sign up for ChatGPT Business: https://chatgpt.com/pricing/?type=team",
+      "category": "回复",
+      "resetSignal": "none",
+      "url": "https://x.com/thsottiaux/status/2124922412219486443"
+    },
     {
       "id": "2124322968499282388",
       "publishedAt": "2026-11-22T02:03:58.000Z",
@@ -228,53 +273,8 @@
       "category": "回复",
       "resetSignal": "none",
       "url": "https://x.com/thsottiaux/status/2123151267002503570"
-    },
-    {
-      "id": "2123150581321883811",
-      "publishedAt": "2026-11-18T20:25:19.000Z",
-      "title": "Tibo 回复：@Leapofcode GG",
-      "summary": "@Leapofcode GG",
-      "category": "回复",
-      "resetSignal": "none",
-      "url": "https://x.com/thsottiaux/status/2123150581321883811"
-    },
-    {
-      "id": "2123113107048501273",
-      "publishedAt": "2026-11-18T17:56:24.000Z",
-      "title": "How is 6.2 Sol treating you today?",
-      "summary": "How is 6.2 Sol treating you today?",
-      "category": "动态",
-      "resetSignal": "none",
-      "url": "https://x.com/thsottiaux/status/2123113107048501273"
-    },
-    {
-      "id": "2123112903809318994",
-      "publishedAt": "2026-11-18T17:55:36.000Z",
-      "title": "Tibo 回复：@Yampeleg What are you using it for?",
-      "summary": "@Yampeleg What are you using it for?",
-      "category": "回复",
-      "resetSignal": "none",
-      "url": "https://x.com/thsottiaux/status/2123112903809318994"
-    },
-    {
-      "id": "2123112623294320913",
-      "publishedAt": "2026-11-18T17:54:29.000Z",
-      "title": "Tibo 回复：@theo Thank you Theo ❤️",
-      "summary": "@theo Thank you Theo ❤️",
-      "category": "回复",
-      "resetSignal": "none",
-      "url": "https://x.com/thsottiaux/status/2123112623294320913"
-    },
-    {
-      "id": "2122954129094111394",
-      "publishedAt": "2026-11-18T07:24:41.000Z",
-      "title": "Tibo 回复：@mattshumer_ I do think you all coord…",
-      "summary": "@mattshumer_ I do think you all coordinated on a slack channel 👀",
-      "category": "回复",
-      "resetSignal": "none",
-      "url": "https://x.com/thsottiaux/status/2122954129094111394"
     }
   ],
-  "lastAttemptAt": "2026-11-23T13:00:12.333Z",
+  "lastAttemptAt": "2026-11-24T03:00:12.098Z",
   "lastError": null
 }
