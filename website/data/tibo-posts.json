@@ -1,9 +1,63 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-11-24T13:00:15.882Z",
-  "verifiedAt": "2026-11-24T13:00:15.882Z",
+  "updatedAt": "2026-11-25T03:07:11.262Z",
+  "verifiedAt": "2026-11-25T03:07:11.262Z",
   "sourceUrl": "https://x.com/thsottiaux",
   "posts": [
+    {
+      "id": "2125388306842255694",
+      "publishedAt": "2026-11-25T00:37:14.000Z",
+      "title": "Tibo 回复：@TokenGremlin @amorriscode @trq212 Wa…",
+      "summary": "@TokenGremlin @amorriscode @trq212 Wait, is that true?",
+      "category": "回复",
+      "resetSignal": "none",
+      "url": "https://x.com/thsottiaux/status/2125388306842255694"
+    },
+    {
+      "id": "2125387147633189101",
+      "publishedAt": "2026-11-25T00:32:38.000Z",
+      "title": "Tibo 回复：@danshipper @every 👀",
+      "summary": "@danshipper @every 👀",
+      "category": "回复",
+      "resetSignal": "none",
+      "url": "https://x.com/thsottiaux/status/2125387147633189101"
+    },
+    {
+      "id": "2125353693474365742",
+      "publishedAt": "2026-11-24T22:19:42.000Z",
+      "title": "Tibo 回复：@AzianMike Team is shipping",
+      "summary": "@AzianMike Team is shipping",
+      "category": "回复",
+      "resetSignal": "none",
+      "url": "https://x.com/thsottiaux/status/2125353693474365742"
+    },
+    {
+      "id": "2125299467691987445",
+      "publishedAt": "2026-11-24T18:44:13.000Z",
+      "title": "Tibo 回复：Sign up for ChatGPT Business: https:/…",
+      "summary": "Sign up for ChatGPT Business: https://chatgpt.com/pricing/?type=team",
+      "category": "回复",
+      "resetSignal": "none",
+      "url": "https://x.com/thsottiaux/status/2125299467691987445"
+    },
+    {
+      "id": "2125299436964479474",
+      "publishedAt": "2026-11-24T18:44:06.000Z",
+      "title": "Tibo 回复：这条动态主要包含图片或视频，请查看原帖。",
+      "summary": "这条动态主要包含图片或视频，请查看原帖。",
+      "category": "回复",
+      "resetSignal": "none",
+      "url": "https://x.com/thsottiaux/status/2125299436964479474"
+    },
+    {
+      "id": "2125284868414394550",
+      "publishedAt": "2026-11-24T17:46:13.000Z",
+      "title": "Hi. We’re beginning to roll out the combined…",
+      "summary": "Hi. We’re beginning to roll out the combined Chat and Work experience to a small group of Pro users to learn from feedback before we roll out more broadly. Let…",
+      "category": "动态",
+      "resetSignal": "none",
+      "url": "https://x.com/thsottiaux/status/2125284868414394550"
+    },
     {
       "id": "2125141302501417232",
       "publishedAt": "2026-11-24T08:15:44.000Z",
@@ -219,62 +273,8 @@
       "category": "回复",
       "resetSignal": "none",
       "url": "https://x.com/thsottiaux/status/2123527849403674729"
-    },
-    {
-      "id": "2123527632700747862",
-      "publishedAt": "2026-11-19T21:23:35.000Z",
-      "title": "Tibo 回复：@AdamHoltererer Why did I turn into D…",
-      "summary": "@AdamHoltererer Why did I turn into Dario",
-      "category": "回复",
-      "resetSignal": "none",
-      "url": "https://x.com/thsottiaux/status/2123527632700747862"
-    },
-    {
-      "id": "2123505661741084830",
-      "publishedAt": "2026-11-19T19:56:17.000Z",
-      "title": "Tibo 回复：New Sol being particularly popular.",
-      "summary": "New Sol being particularly popular.",
-      "category": "回复",
-      "resetSignal": "none",
-      "url": "https://x.com/thsottiaux/status/2123505661741084830"
-    },
-    {
-      "id": "2123505331531882923",
-      "publishedAt": "2026-11-19T19:54:58.000Z",
-      "title": "Tokens go brrrrrr. Going to need more compute.",
-      "summary": "Tokens go brrrrrr. Going to need more compute.",
-      "category": "动态",
-      "resetSignal": "none",
-      "url": "https://x.com/thsottiaux/status/2123505331531882923"
-    },
-    {
-      "id": "2123498899298210201",
-      "publishedAt": "2026-11-19T19:29:24.000Z",
-      "title": "Tibo 回复：@_simonsmith Max is for benchmaxxxing",
-      "summary": "@_simonsmith Max is for benchmaxxxing",
-      "category": "回复",
-      "resetSignal": "none",
-      "url": "https://x.com/thsottiaux/status/2123498899298210201"
-    },
-    {
-      "id": "2123179276199735535",
-      "publishedAt": "2026-11-18T22:19:20.000Z",
-      "title": "Tibo 回复：@DannyIO It does like math",
-      "summary": "@DannyIO It does like math",
-      "category": "回复",
-      "resetSignal": "none",
-      "url": "https://x.com/thsottiaux/status/2123179276199735535"
-    },
-    {
-      "id": "2123175166519992652",
-      "publishedAt": "2026-11-18T22:03:01.000Z",
-      "title": "GPT-6.2 Astra is pretty good at hard things.…",
-      "summary": "GPT-6.2 Astra is pretty good at hard things. Here the team shared some results on AMD and Jalapeño chip optimizations. I do get the feedback on its communicati…",
-      "category": "动态",
-      "resetSignal": "none",
-      "url": "https://x.com/thsottiaux/status/2123175166519992652"
     }
   ],
-  "lastAttemptAt": "2026-11-24T13:00:15.882Z",
+  "lastAttemptAt": "2026-11-25T03:07:11.262Z",
   "lastError": null
 }
