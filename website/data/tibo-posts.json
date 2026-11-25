@@ -1,9 +1,18 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-11-25T03:07:11.262Z",
-  "verifiedAt": "2026-11-25T07:00:14.966Z",
+  "updatedAt": "2026-11-25T13:09:09.809Z",
+  "verifiedAt": "2026-11-25T13:09:09.809Z",
   "sourceUrl": "https://x.com/thsottiaux",
   "posts": [
+    {
+      "id": "2125494608826372329",
+      "publishedAt": "2026-11-25T07:39:39.000Z",
+      "title": "Tibo 回复：@jxnlco very tool of you",
+      "summary": "@jxnlco very tool of you",
+      "category": "回复",
+      "resetSignal": "none",
+      "url": "https://x.com/thsottiaux/status/2125494608826372329"
+    },
     {
       "id": "2125388306842255694",
       "publishedAt": "2026-11-25T00:37:14.000Z",
@@ -264,17 +273,8 @@
       "category": "动态",
       "resetSignal": "none",
       "url": "https://x.com/thsottiaux/status/2123556256392847657"
-    },
-    {
-      "id": "2123527849403674729",
-      "publishedAt": "2026-11-19T21:24:27.000Z",
-      "title": "Tibo 回复：@theo I still count 6 weeks in the ye…",
-      "summary": "@theo I still count 6 weeks in the year",
-      "category": "回复",
-      "resetSignal": "none",
-      "url": "https://x.com/thsottiaux/status/2123527849403674729"
     }
   ],
-  "lastAttemptAt": "2026-11-25T07:00:14.966Z",
+  "lastAttemptAt": "2026-11-25T13:09:09.809Z",
   "lastError": null
 }
