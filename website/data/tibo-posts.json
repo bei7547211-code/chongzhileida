@@ -1,9 +1,27 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-11-25T13:09:09.809Z",
-  "verifiedAt": "2026-11-25T13:09:09.809Z",
+  "updatedAt": "2026-11-26T03:00:17.950Z",
+  "verifiedAt": "2026-11-26T03:00:17.950Z",
   "sourceUrl": "https://x.com/thsottiaux",
   "posts": [
+    {
+      "id": "2125678401541583217",
+      "publishedAt": "2026-11-25T19:49:58.000Z",
+      "title": "Tibo 回复：@charliermarsh This man is unstoppable",
+      "summary": "@charliermarsh This man is unstoppable",
+      "category": "回复",
+      "resetSignal": "none",
+      "url": "https://x.com/thsottiaux/status/2125678401541583217"
+    },
+    {
+      "id": "2125678021848019454",
+      "publishedAt": "2026-11-25T19:48:28.000Z",
+      "title": "Tibo 回复：@trq212 Welcome to the team! So much…",
+      "summary": "@trq212 Welcome to the team! So much to do 👀",
+      "category": "回复",
+      "resetSignal": "none",
+      "url": "https://x.com/thsottiaux/status/2125678021848019454"
+    },
     {
       "id": "2125494608826372329",
       "publishedAt": "2026-11-25T07:39:39.000Z",
@@ -255,26 +273,8 @@
       "category": "动态",
       "resetSignal": "none",
       "url": "https://x.com/thsottiaux/status/2123612433923051976"
-    },
-    {
-      "id": "2123557171321561133",
-      "publishedAt": "2026-11-19T23:20:58.000Z",
-      "title": "We’re also working on a new mobile experience…",
-      "summary": "We’re also working on a new mobile experience for ChatGPT! It’s easier to get to your favorite features and discover what you can do in ChatGPT. We’re starting…",
-      "category": "动态",
-      "resetSignal": "none",
-      "url": "https://x.com/thsottiaux/status/2123557171321561133"
-    },
-    {
-      "id": "2123556256392847657",
-      "publishedAt": "2026-11-19T23:17:19.000Z",
-      "title": "Heads up, we’re starting to test dots with a…",
-      "summary": "Heads up, we’re starting to test dots with a small number of ChatGPT Plus users. Looking forward to the continued feedback as we expand and I’m recently seeing…",
-      "category": "动态",
-      "resetSignal": "none",
-      "url": "https://x.com/thsottiaux/status/2123556256392847657"
     }
   ],
-  "lastAttemptAt": "2026-11-25T13:09:09.809Z",
+  "lastAttemptAt": "2026-11-26T03:00:17.950Z",
   "lastError": null
 }
