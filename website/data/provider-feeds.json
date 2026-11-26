@@ -1,8 +1,8 @@
 {
   "schemaVersion": 1,
   "claude": {
-    "checkedAt": "2026-11-26T07:00:16.989Z",
-    "lastAttemptAt": "2026-11-26T07:00:16.989Z",
+    "checkedAt": "2026-11-26T13:00:17.303Z",
+    "lastAttemptAt": "2026-11-26T13:00:17.303Z",
     "error": null,
     "announcements": [
       {
@@ -354,8 +354,8 @@
   },
   "grok": {
     "checkedAt": "2026-11-26T07:00:22.363Z",
-    "lastAttemptAt": "2026-11-26T07:00:22.363Z",
-    "error": null,
+    "lastAttemptAt": "2026-11-26T13:00:22.212Z",
+    "error": "本次公开数据采集失败，保留上次核验记录",
     "announcements": [
       {
         "id": "2106083136002310193",
