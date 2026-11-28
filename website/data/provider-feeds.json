@@ -1,8 +1,8 @@
 {
   "schemaVersion": 1,
   "claude": {
-    "checkedAt": "2026-11-28T03:00:16.125Z",
-    "lastAttemptAt": "2026-11-28T03:00:16.125Z",
+    "checkedAt": "2026-11-28T07:00:11.345Z",
+    "lastAttemptAt": "2026-11-28T07:00:11.345Z",
     "error": null,
     "announcements": [
       {
@@ -330,32 +330,32 @@
         "contentHash": "6dda018bac326b0dcf26e5146efb60d123b0272d2be931d7f0c91d8a2e91625e"
       },
       {
-        "id": "2122457608963395586",
-        "authorHandle": "@claudedevs",
-        "publishedAt": "2026-11-16T22:31:41.000Z",
-        "text": "Claude writes better code when it can verify its work. Checks that used to be expensive, like tests, benchmarks, and end-to-end runs, are now cheap. Here’s how the Claude Code team thinks about verification: https://claude.dev/blog/how-the-claude-code-team-thinks-about-verification/",
-        "postType": "original",
-        "mediaUrls": [],
-        "url": "https://x.com/claudedevs/status/2122457608963395586",
-        "contentHash": "a1cbf1d7f8554033e7854161ad7dfb1221461131bace96ee3f35947044854629"
-      },
-      {
-        "id": "2122439104419790958",
-        "authorHandle": "@claudedevs",
-        "publishedAt": "2026-11-16T21:18:10.000Z",
-        "text": "Working in a terminal? The Xcode plugin is now in the official Claude Code plugin marketplace. Claude can use it to build, run, and test your app, render SwiftUI previews, and search developer docs. /plugin install xcode@claude-plugins-official",
+        "id": "2120974000746582357",
+        "authorHandle": "@claudeai",
+        "publishedAt": "2026-11-12T20:16:22.000Z",
+        "text": "Claude Meetings is starting with Google Meet, with support for other video conferencing platforms coming soon. Learn more: https://claude.com/resources/articles/claude-meetings",
         "postType": "reply",
         "mediaUrls": [],
-        "url": "https://x.com/claudedevs/status/2122439104419790958",
-        "contentHash": "c2ad7449275c96b24f8fc75949e833d61ff26de52023cc047891f871d24ca216"
+        "url": "https://x.com/claudeai/status/2120974000746582357",
+        "contentHash": "4db6e358f2f25ad0e309a55f325205255b95300d65acf06ff98b261d5870f331"
+      },
+      {
+        "id": "2120973999295643679",
+        "authorHandle": "@claudeai",
+        "publishedAt": "2026-11-12T20:16:21.000Z",
+        "text": "Claude takes the notes, too. After the call, the notes, action items, transcript, and anything Claude built are on the meeting’s page in Claude.",
+        "postType": "reply",
+        "mediaUrls": [],
+        "url": "https://x.com/claudeai/status/2120973999295643679",
+        "contentHash": "4de1fabb5399acd74d61df52b8f0e6a805dab133de5d27b127cf86f1c8f1bd43"
       }
     ],
     "coverage": "近期官方时间线＋已核验历史原帖；不代表全部历史"
   },
   "grok": {
     "checkedAt": "2026-11-28T03:00:18.780Z",
-    "lastAttemptAt": "2026-11-28T03:00:18.780Z",
-    "error": null,
+    "lastAttemptAt": "2026-11-28T07:00:16.842Z",
+    "error": "本次公开数据采集失败，保留上次核验记录",
     "announcements": [
       {
         "id": "2106083136002310193",
